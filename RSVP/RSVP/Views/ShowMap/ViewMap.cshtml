@@ -23,14 +23,20 @@
     html, body, h1, h2, h3, h4, h5 {
         font-family: "Open Sans", sans-serif
     }
+
+    .w3-theme-orange {
+        color: #f1f1f1 !important;
+        background-color: #ff9800 !important;
+    }
+
 </style>
 <body class="w3-theme-l5">
 
     <!-- Navbar -->
     <div class="w3-top">
-        <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+        <div class="w3-bar w3-theme-orange w3-left-align w3-large">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange"><i class="fa fa-home w3-margin-right"></i><img src="~/XDel Logo.gif" alt="Xdel Logo" style="height:30px;width:30px" /></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
@@ -45,7 +51,7 @@
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src="/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></a>
         </div>
     </div>
-
+  
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
@@ -155,48 +161,48 @@
                                 <!-- MAP -->
                                 <h6 class="w3-opacity">Map</h6>
                                 <!--<p contenteditable="true" class="w3-border w3-padding">-->
-                                <div id="map" style="height: 440px; border: 1px solid #AAA;">
+                                    <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
 
-                                    <script>
-                                        var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                            subdomains: ['a', 'b', 'c']
-                                        }).addTo(map);
+                                        <script>
+                                            var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                                subdomains: ['a', 'b', 'c']
+                                            }).addTo(map);
 
 
-                                        // try 2
+                                            // try 2
 
 
-                                        L.Routing.control({
-                                            waypoints: [
-                                                L.latLng(1.280695300, 103.817823900),
-                                                L.latLng(1.4017990359049928, 103.90718500596159)
-                                            ]
-                                        }).addTo(map);
+                                            L.Routing.control({
+                                                waypoints: [
+                                                    L.latLng(1.280695300, 103.817823900),
+                                                    L.latLng(1.4017990359049928, 103.90718500596159)
+                                                ]
+                                            }).addTo(map);
 
 
-                                        L.Routing.control({
-                                            waypoints: [
-                                                L.latLng(1.3792739652902239, 103.7493013932787),
-                                                L.latLng(1.3383084287737352, 103.74366271453675),
-                                            ]
-                                        }).addTo(map);
+                                            L.Routing.control({
+                                                waypoints: [
+                                                    L.latLng(1.3792739652902239, 103.7493013932787),
+                                                    L.latLng(1.3383084287737352, 103.74366271453675),
+                                                ]
+                                            }).addTo(map);
 
 
-                                        L.marker([1.3792739652902239, 103.7493013932787]).addTo(map)
-                                            .bindPopup('<strong>CCK</strong><br>Where Vera the awesome was born.')
-                                            .openPopup();
+                                            L.marker([1.3792739652902239, 103.7493013932787]).addTo(map)
+                                                .bindPopup('<strong>CCK</strong><br>Where Vera the awesome was born.')
+                                                .openPopup();
 
-
+                                           
 
 
                                             //var polyline = L.polyline(latlngs, { color: 'red' });
                                             //polyline.addTo(map);
 
-                                    </script>
-                                </div>
+                                        </script>
+                                    </div>
 
                                 </p>
                                 <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button>
@@ -310,29 +316,30 @@
     </footer>
 
     <script>
-                                        // Accordion
-                                        function myFunction(id) {
-                                            var x = document.getElementById(id);
-                                            if (x.className.indexOf("w3-show") == -1) {
-                                                x.className += " w3-show";
-                                                x.previousElementSibling.className += " w3-theme-d1";
-                                            } else {
-                                                x.className = x.className.replace("w3-show", "");
-                                                x.previousElementSibling.className =
-                                                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-                                            }
-                                        }
+        // Accordion
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+                x.previousElementSibling.className += " w3-theme-d1";
+            } else {
+                x.className = x.className.replace("w3-show", "");
+                x.previousElementSibling.className =
+                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+            }
+        }
 
-                                        // Used to toggle the menu on smaller screens when clicking on the menu button
-                                        function openNav() {
-                                            var x = document.getElementById("navDemo");
-                                            if (x.className.indexOf("w3-show") == -1) {
-                                                x.className += " w3-show";
-                                            } else {
-                                                x.className = x.className.replace(" w3-show", "");
-                                            }
-                                        }
+        // Used to toggle the menu on smaller screens when clicking on the menu button
+        function openNav() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
     </script>
 
 </body>
 </html>
+

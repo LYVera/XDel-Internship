@@ -11,6 +11,7 @@ namespace RSVP.Controllers
         // GET: ShowMap
         public ActionResult ViewMap()
         {
+
             return View();
         }
     }
