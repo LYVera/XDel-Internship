@@ -153,6 +153,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Web References\LukeRefL2\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\LukeRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -172,6 +177,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Web References\LukeRefL2\DriverObject.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\LukeRefL2\l2.disco" />
     <Content Include="XDel Logo.gif" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -277,6 +286,14 @@
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\package.json" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\README.md" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\scripts\publish.sh" />
+    <None Include="Web References\LukeRefL2\l2.wsdl" />
+    <Content Include="Web References\LukeRefL2\LocationInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web References\LukeRef\lukews.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -358,6 +375,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://www.xdel.com/lukews/l2.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LukeRefL2\</RelPath>
+      <UpdateFromURL>http://www.xdel.com/lukews/l2.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RSVP_LukeRefL2_L2</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://www.xdel.com/lukews/lukews.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\LukeRef\</RelPath>

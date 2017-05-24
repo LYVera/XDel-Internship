@@ -12,25 +12,31 @@
 
 <script type='text/javascript' src='~/Scripts/Leaflet/leaflet.js'></script>
 <script src="~/Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <!DOCTYPE html>
 
+
+
 <html>
-<title>View Map</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>View Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html, body, h1, h2, h3, h4, h5 {
+            font-family: "Open Sans", sans-serif
+        }
 
-<style>
-    html, body, h1, h2, h3, h4, h5 {
-        font-family: "Open Sans", sans-serif
-    }
+        .w3-theme-orange {
+            color: #f1f1f1 !important;
+            background-color: #ff9800 !important;
+        }
+    </style>
 
-    .w3-theme-orange {
-        color: #f1f1f1 !important;
-        background-color: #ff9800 !important;
-    }
+</head>
 
 
-</style>
+
 <body class="w3-theme-l5">
 
     <!-- Navbar -->
@@ -53,7 +59,7 @@
             <!--Top Right Hand Corner-->
         </div>
     </div>
-  
+
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
@@ -67,16 +73,22 @@
         <!-- The Grid -->
         <div class="w3-row">
             <!-- Left Column -->
-            <div class="w3-col m3">
+            <div class="w3-col m2">
                 <!-- Profile -->
                 <div class="w3-card-2 w3-round w3-white">
                     <div class="w3-container">
                         <h4 class="w3-center">Show</h4>
-                        
+
                         <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> </p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> </p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i></p>
+                        <p>
+                            <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
+                        </p>
+                        <p>
+                            <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
+                        </p>
+                        <p>
+                            <i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
+                        </p>
                     </div>
                 </div>
                 <br>
@@ -97,7 +109,7 @@
                         <div id="Demo2" class="w3-hide w3-container">
                             <p>Some other text..</p>
                         </div>
-                        
+
                     </div>
                 </div>
                 <br>
@@ -107,7 +119,7 @@
                     <div class="w3-container">
                         <p>Others</p>
                         <p>
-                            
+
                         </p>
                     </div>
                 </div>
@@ -118,7 +130,9 @@
                     <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
                         <i class="fa fa-remove"></i>
                     </span>
-                    <p><strong>Hey!</strong></p>
+                    <p>
+                        <strong>Hey!</strong>
+                    </p>
                     <p>Tan's Battery is Low.</p>
                 </div>
 
@@ -135,53 +149,53 @@
                                 <!-- MAP -->
                                 <h6 class="w3-opacity">Map</h6>
                                 <!--<p contenteditable="true" class="w3-border w3-padding">-->
-                                    <div id="map" style="height: 440px; border: 1px solid #AAA;">
+                                <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
 
-                                        <script>
-                                            var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                                subdomains: ['a', 'b', 'c']
-                                            }).addTo(map);
+                                    <script>
+                                        var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                            subdomains: ['a', 'b', 'c']
+                                        }).addTo(map);
 
 
-                                            // try 2
+                                        // try 2
 
 
-                                            L.Routing.control({
-                                                waypoints: [
-                                                    L.latLng(1.280695300, 103.817823900),
-                                                    L.latLng(1.4017990359049928, 103.90718500596159)
-                                                ]
-                                            }).addTo(map).hide();
-                                            
-
-                                            L.Routing.control({
-                                                waypoints: [
-                                                    L.latLng(1.3792739652902239, 103.7493013932787),
-                                                    L.latLng(1.3383084287737352, 103.74366271453675),
-                                                ]
-                                            }).addTo(map).hide();
+                                        L.Routing.control({
+                                            waypoints: [
+                                                L.latLng(1.280695300, 103.817823900),
+                                                L.latLng(1.4017990359049928, 103.90718500596159)
+                                            ]
+                                        }).addTo(map).hide();
 
 
-                                            
+                                        L.Routing.control({
+                                            waypoints: [
+                                                L.latLng(1.3792739652902239, 103.7493013932787),
+                                                L.latLng(1.3383084287737352, 103.74366271453675),
+                                            ]
+                                        }).addTo(map).hide();
 
-                                            L.marker([1.3792739652902239, 103.7493013932787]).addTo(map)
-                                                .bindPopup('<strong>CCK</strong><br>Where Vera the awesome was born.')
-                                                .openPopup();
 
-                                           
+
+
+                                        L.marker([1.3792739652902239, 103.7493013932787]).addTo(map)
+                                            .bindPopup('<strong>CCK</strong><br>Where Vera the awesome was born.')
+                                            .openPopup();
+
+
 
 
                                             //var polyline = L.polyline(latlngs, { color: 'red' });
                                             //polyline.addTo(map);
 
-                                        </script>
-                                    </div>
+                                    </script>
+                                </div>
 
                                 </p>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -189,47 +203,95 @@
 
                 <!--Container-->
                 <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-                    
-                 
-                    
+
+
+
                 </div>
 
-                
+
 
                 <!-- End Middle Column -->
             </div>
 
             <!-- Right Column -->
-            <div class="w3-col m2">
+            <div class="w3-col m3">
                 <div class="w3-card-2 w3-round w3-white w3-center">
                     <div class="w3-container">
-                        <p>Search Drivers:</p>
-                        <form action="">
-                            Driver Name:<br>
-                            <input type="text" name="name" value="">
-                            <br>
-                            <br>
-                            <input type="submit" value="Submit">
-                        </form> 
-                        <!-- put <p> to next line-->
-                        
-                    </div>
-                </div>
-                <br>
 
-                <div class="w3-card-2 w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p>Driver List</p>
+                        <p>Search Drivers:</p>
+                        <script>
+                                        $(document).ready(function () {
+                                            (function ($) {
+                                                $("#UserGridView tbody").addClass("search");
+                                                $('#filter').keyup(function () {
+                                                    var rex = new RegExp($(this).val(), 'i');
+                                                    // var $t = $(this).children(":eq(4))");
+                                                    $('.search tr ').hide();
+
+                                                    //Recusively filter the jquery object to get results.
+                                                    $('.search tr ').filter(function (i, v) {
+                                                        //Get the 1st column object here which is driver's name'
+                                                        var $t = $(this).children(":eq(" + "0" + ")");
+                                                        return rex.test($t.text());
+                                                    }).show();
+                                                })
+
+                                            }(jQuery));
+
+                                        });
+                        </script>
+                        <p/>
+                        <input type="text" name="" id="filter">
+                        <!--Count ViewBag List size-->
+                        <p />
+                        <strong>Driver List</strong>
+
+                        <p/>
+                        
+                           <table id="UserGridView">
+                                <thead>
+                                    <tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Check</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="searchable">
+
+
+                                    @for (int i = 0; i <= ViewBag.Size - 1; i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ViewBag.Collection[i].Name
+                                            </td>
+                                            <td>
+                                                <form action="">
+                                                    <input type="checkbox" name="name" value="<%=ViewBag.Collection[i]%>">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+ 
+                        <!-- Clear and Clear All button-->
                         <div class="w3-row w3-opacity">
                             <div class="w3-half">
-                                <button class="w3-button w3-block w3-green w3-section" title="Accept">Clear</button>
-                               
+                                <button class="w3-button w3-block w3-green w3-section" title="Clear">Clear</button>
                             </div>
                             <div class="w3-half">
-                                
-                                <button class="w3-button w3-block w3-red w3-section" title="Accept">Clear All</button>
+                                <button class="w3-button w3-block w3-red w3-section" title="ClearAll">Clear All</button>
                             </div>
                         </div>
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="w3-card-2 w3-round w3-white w3-center">
+                    <div class="w3-container">
+
                     </div>
                 </div>
                 <br>
@@ -237,7 +299,7 @@
 
                 <br>
 
-                
+
 
                 <!-- End Right Column -->
             </div>
@@ -255,30 +317,29 @@
     </footer>
 
     <script>
-        // Accordion
-        function myFunction(id) {
-            var x = document.getElementById(id);
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-                x.previousElementSibling.className += " w3-theme-d1";
-            } else {
-                x.className = x.className.replace("w3-show", "");
-                x.previousElementSibling.className =
-                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
-            }
-        }
+                                        // Accordion
+                                        function myFunction(id) {
+                                            var x = document.getElementById(id);
+                                            if (x.className.indexOf("w3-show") == -1) {
+                                                x.className += " w3-show";
+                                                x.previousElementSibling.className += " w3-theme-d1";
+                                            } else {
+                                                x.className = x.className.replace("w3-show", "");
+                                                x.previousElementSibling.className =
+                                                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                                            }
+                                        }
 
-        // Used to toggle the menu on smaller screens when clicking on the menu button
-        function openNav() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
+                                        // Used to toggle the menu on smaller screens when clicking on the menu button
+                                        function openNav() {
+                                            var x = document.getElementById("navDemo");
+                                            if (x.className.indexOf("w3-show") == -1) {
+                                                x.className += " w3-show";
+                                            } else {
+                                                x.className = x.className.replace(" w3-show", "");
+                                            }
+                                        }
     </script>
 
 </body>
 </html>
-

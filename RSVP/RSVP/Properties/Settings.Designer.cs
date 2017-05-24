@@ -32,5 +32,15 @@ namespace RSVP.Properties {
                 return ((string)(this["RSVP_LukeRef_LukeWS"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.xdel.com/lukews/l2.asmx")]
+        public string RSVP_LukeRefL2_L2 {
+            get {
+                return ((string)(this["RSVP_LukeRefL2_L2"]));
+            }
+        }
     }
 }

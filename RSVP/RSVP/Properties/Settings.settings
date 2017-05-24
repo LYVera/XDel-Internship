@@ -5,5 +5,8 @@
     <Setting Name="RSVP_LukeRef_LukeWS" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://www.xdel.com/lukews/lukews.asmx</Value>
     </Setting>
+    <Setting Name="RSVP_LukeRefL2_L2" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.xdel.com/lukews/l2.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
