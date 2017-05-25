@@ -172,11 +172,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="recommend.png" />
+    <Content Include="Scripts\AjaxScript.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\SearchBar.js" />
     <Content Include="Web References\LukeRefL2\DriverObject.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
