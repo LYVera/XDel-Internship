@@ -1,4 +1,9 @@
-﻿@{
+﻿
+@{
+    Layout = null;
+}
+
+@{
     Layout = null;
 }
 
@@ -19,13 +24,12 @@
     <script src="~/Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="~/Scripts/jquery-2.1.1.js"></script>
-    
+
 
     <!--The search bar script here-->
     <script type="text/javascript" src="~/Scripts/SearchBar.js"></script>
-    <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
 
-  
+
 
     <title>View Map</title>
     <meta charset="UTF-8">
@@ -39,12 +43,8 @@
             color: #f1f1f1 !important;
             background-color: #ff9800 !important;
         }
-        .tableC {
-            font-family: Arial,Verdana,sans-serif;
-            font-size: 0.75em;
-        }
     </style>
-    
+
 
 </head>
 
@@ -69,9 +69,6 @@
                     <a href="#" class="w3-bar-item w3-button">High Battery Low</a>
                 </div>
             </div>
-
-            <button onclick="myToggle()" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Toggle Search</button>
-
             <!--Top Right Hand Corner-->
         </div>
     </div>
@@ -93,7 +90,7 @@
                 <!-- Profile -->
                 <div class="w3-card-2 w3-round w3-white">
                     <div class="w3-container">
-                        <h4 class="w3-center">Show</h4>
+                        <h4 class="w3-center">Recommend</h4>
 
                         <hr>
                         <p>
@@ -112,12 +109,12 @@
                 <!-- Accordion -->
                 <div class="w3-card-2 w3-round">
                     <div class="w3-white">
-                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Courier Type</button>
+                        <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Recommendation</button>
                         <div id="Demo1" class="w3-hide w3-container">
                             <form action="#" method="post" id="retrieveChecks">
                                 <input type="checkbox" name="vehicle" value="network">Network<br>
                                 <input type="checkbox" name="vehicle" value="express" checked>Express<br>
-                                
+
                             </form>
 
                         </div>
@@ -126,13 +123,11 @@
                             <p>Some other text..</p>
                         </div>
 
-                        <button onclick="myFunction('3')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Route</button>
+                        <button onclick="myFunction('3')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Show</button>
                         <div id="3" class="w3-hide w3-container">
                             <form>
-                                <input type="checkbox" name="route" value="courierLocation" class="chkitem">Courier Location<br>
-                                <input type="checkbox" name="route" value="courierRoute" class="chkitem">Courier Route<br>
-                                <input type="checkbox" name="route" value="trafficCondition" class="chkitem">Traffic Conditions<br>
-                                
+                                <input type="checkbox" name="route" value="courierLocation" class="chkitem">Show Load<br>
+                                <input type="checkbox" name="route" value="courierRoute" class="chkitem">Show Zone<br>
                             </form>
                         </div>
 
@@ -168,167 +163,142 @@
             </div>
 
             <!-- Middle Column -->
-                <div class="w3-col m8">
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card-2 w3-round w3-white">
-                                <div class="w3-container w3-padding">
+            <div class="w3-col m9">
 
-                                    <!--Try Ajax-->
-                                    <script>
-                                        $("#testCheck").on('click', function () {
-                                            var checkbox_value = "";
-                                            $(":checkbox").each(function () {
-                                                var ischecked = $(this).is(":checked");
-                                                if (ischecked) {
-                                                    checkbox_value += $(this).val() + "|";
-                                                }
-                                            });
-                                            alert(checkbox_value);
-                                            // your awesome code calling ajax
-                                            var checks = checkbox_value.Split('|').ToArray();
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card-2 w3-round w3-white">
+                            <div class="w3-container w3-padding">
 
-
+                                <!--Try Ajax-->
+                                <script>
+                                    $("#testCheck").on('click', function () {
+                                        var checkbox_value = "";
+                                        $(":checkbox").each(function () {
+                                            var ischecked = $(this).is(":checked");
+                                            if (ischecked) {
+                                                checkbox_value += $(this).val() + "|";
+                                            }
                                         });
-                                    </script>
+                                        //alert(checkbox_value);
+                                        // your awesome code calling ajax
+                                        var checks = checkbox_value.Split('|').ToArray();
 
 
-                                    <!-- MAP -->
-                                    <h6 class="w3-opacity">Map</h6>
-                                    <!--<p contenteditable="true" class="w3-border w3-padding">-->
-                                    <div id="map" style="height: 440px; border: 1px solid #AAA;">
+                                    });
+                                </script>
 
 
-                                        <script>
-                                            var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                                subdomains: ['a', 'b', 'c']
-                                            }).addTo(map);
+                                <!-- MAP -->
+                                <h6 class="w3-opacity">Map</h6>
+                                <!--<p contenteditable="true" class="w3-border w3-padding">-->
+                                <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
 
-                                            // try 2
+                                    <script>
+                                       
+                                        var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                            subdomains: ['a', 'b', 'c']
+                                        }).addTo(map);
 
-
-                                            L.Routing.control({
-                                                waypoints: [
-                                                    L.latLng(1.280695300, 103.817823900),
-                                                    L.latLng(1.4017990359049928, 103.90718500596159)
-                                                ]
-                                            }).addTo(map).hide();
-
-
-                                            L.Routing.control({
-                                                waypoints: [
-                                                    L.latLng(1.3792739652902239, 103.7493013932787),
-                                                    L.latLng(1.3383084287737352, 103.74366271453675),
-                                                ]
-                                            }).addTo(map).hide();
-
-
-                                            L.marker([1.3792739652902239, 103.7493013932787]).addTo(map)
-                                                .bindPopup('<strong>CCK</strong><br>.')
-                                                .openPopup();
-
-
-
-
-                                        </script>
-                                    </div>
-
-                                    <p />
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Container-->
-                    <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-
-
-
-                    </div>
-
-
-
-                    <!-- End Middle Column -->
-                </div>
-
-                <!-- Right Column -->
-                <div id="search">
-                    <div class="w3-col m2">
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
-
-                                <p>Search Drivers:</p>
-
-                                <p />
-                                <input type="text" name="" id="filter">
-                                <!--Count ViewBag List size-->
-                                <p />
-                                <strong>Driver List</strong>
-
-                                <p />
-
-                                <table id="UserGridView" class="tableC">
-                                    <thead>
-                                        <tr>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Check</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for (int i = 0; i <= ViewBag.Size - 1; i++)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @ViewBag.Collection[i].Name.ToUpper()
-                                                </td>
-                                                <td>
-                                                    <form action="">
-                                                        <input type="checkbox" name="name" value="@ViewBag.Collection[i].Name.ToUpper(),">
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                        @{
+                                            var count = 0;
+                                            string[] postal = new string[99];
+                                            foreach (var codes in ViewBag.List) {
+                                                postal[count++] = codes;
+                                            }
                                         }
-                                    </tbody>
-                                </table>
 
-                                <!-- Clear and Clear All button-->
-                                <div class="w3-row w3-opacity">
-                                    <div class="w3-half">
-                                        <button class="w3-button w3-block w3-green w3-section" title="Clear">Clear</button>
-                                    </div>
-                                    <div class="w3-half">
-                                        <button class="w3-button w3-block w3-red w3-section" title="ClearAll">Clear All</button>
-                                    </div>
+                                        @{
+                                            List<string> colors = new List<string>();
+                                            colors.Add("#E55F5F");
+                                            colors.Add("#6b34db");
+                                            colors.Add("#d234db");
+                                            colors.Add("#db3439");
+                                            colors.Add("#db8f34");
+                                            colors.Add("#dbd234");
+                                            colors.Add("#81db34");
+                                            colors.Add("#34db63");
+                                            colors.Add("#34d2db");
+                                            colors.Add("#055b60");
+                                            colors.Add("#053460");
+                                            colors.Add("#340560");
+                                            colors.Add("#600556");
+                                            colors.Add("#60050c");
+                                            colors.Add("#602c05");
+                                            colors.Add("#5c6005");
+                                            colors.Add("#1d6005");
+                                            colors.Add("#05601b");
+                                        }
+                                        var polygonList = [];
+                                        @for (int i = 1; i < 11; i++) {
+                                            @:var polygon = L.polygon([@postal[i]]).addTo(map);
+                                            string current = colors[i].Substring(0, colors[i].Length);
+                                            @:polygon.setStyle({ fillColor: '@current', color: '@current' });
+                                            @:polygonList[@i] = polygon;
+                                        }
+
+                                        //function myFunction() {
+                                        //    alert("Hello World!");
+                                        //}
+
+                                        map.on('click', polygonClick);
+                                        function polygonClick(e) {
+                                            polygon.setStyle({ fillColor: '#FFFFFF', color: '#FFFFFF' });
+                                        }
+
+                                    </script>
                                 </div>
 
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
+                                <p />
 
                             </div>
                         </div>
-                        <br>
-
-
-                        <br>
-
-
-
-                        <!-- End Right Column -->
                     </div>
                 </div>
 
+                <!--Container-->
+                <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
 
-                <!-- End Grid -->
+
+
+                </div>
+
+
+
+                <!-- End Middle Column -->
             </div>
+
+            <!-- Right Column -->
+            <div class="w3-col m1">
+                <div class="w3-card-2 w3-round w3-white w3-center">
+                    <div class="w3-container">
+
+                     Zone
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="w3-card-2 w3-round w3-white w3-center">
+                    <div class="w3-container">
+
+                    </div>
+                </div>
+                <br>
+
+
+                <br>
+
+
+
+                <!-- End Right Column -->
+            </div>
+
+            <!-- End Grid -->
+        </div>
 
         <!-- End Page Container -->
     </div>
@@ -366,3 +336,4 @@
 
 </body>
 </html>
+
