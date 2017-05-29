@@ -184,13 +184,21 @@
                                                     checkbox_value += $(this).val() + "|";
                                                 }
                                             });
-                                            alert(checkbox_value);
                                             // your awesome code calling ajax
-                                            var checks = checkbox_value.Split('|').ToArray();
-
-
+                                            //var $checks = checkbox_value.Split('|').ToArray();
+                                              $.ajax({
+                                                    type: "POST",
+                                                    data: checkbox_value,
+                                                    url: @Url.Action("HandleChecks","ShowMap"),
+                                                    success: function (result) {
+                                                        // success function is called when data came back
+                                                        // for example: get your content and display it on your site
+                                                    }
+                                            });
                                         });
+
                                     </script>
+
 
 
                                     <!-- MAP -->
@@ -210,29 +218,20 @@
                                             // try 2
 
 
-                                            L.Routing.control({
+                                            /*L.Routing.control({
                                                 waypoints: [
                                                     L.latLng(1.280695300, 103.817823900),
                                                     L.latLng(1.4017990359049928, 103.90718500596159)
                                                 ]
-                                            }).addTo(map).hide();
+                                            }).addTo(map).hide();*/
 
 
-                                            L.Routing.control({
-                                                waypoints: [
-                                                    L.latLng(1.3792739652902239, 103.7493013932787),
-                                                    L.latLng(1.3383084287737352, 103.74366271453675),
-                                                ]
-                                            }).addTo(map).hide();
-
-
-                                            L.marker([1.3792739652902239, 103.7493013932787]).addTo(map)
-                                                .bindPopup('<strong>CCK</strong><br>.')
-                                                .openPopup();
-
-
-
-
+                                          
+                                        
+                                            @for (int i = 0; i < ViewBag.NumLoc; i++)
+                                            {
+                                                @:L.marker([ViewBag.Lat[i], ViewBag.Long[i]).addTo(map).bindPopup("test").openPopup();
+                                            }
                                         </script>
                                     </div>
 
@@ -288,7 +287,7 @@
                                                 </td>
                                                 <td>
                                                     <form action="">
-                                                        <input type="checkbox" name="name" value="@ViewBag.Collection[i].Name.ToUpper(),">
+                                                        <input type="checkbox" name="name" value="#@ViewBag.Collection[i].DriverIDX">
                                                     </form>
                                                 </td>
                                             </tr>
