@@ -18,14 +18,14 @@
     <script type='text/javascript' src='~/Scripts/Leaflet/leaflet.js'></script>
     <script src="~/Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <script src="~/Scripts/jquery-2.1.1.js"></script>
-    
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
+
 
     <!--The search bar script here-->
     <script type="text/javascript" src="~/Scripts/SearchBar.js"></script>
     <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
 
-  
+
 
     <title>View Map</title>
     <meta charset="UTF-8">
@@ -39,12 +39,13 @@
             color: #f1f1f1 !important;
             background-color: #ff9800 !important;
         }
+
         .tableC {
             font-family: Arial,Verdana,sans-serif;
             font-size: 0.75em;
         }
     </style>
-    
+
 
 </head>
 
@@ -116,8 +117,8 @@
                         <div id="Demo1" class="w3-hide w3-container">
                             <form action="#" method="post" id="retrieveChecks">
                                 <input type="checkbox" name="vehicle" value="network">Network<br>
-                                <input type="checkbox" name="vehicle" value="express" checked>Express<br>
-                                
+                                <input type="checkbox" name="vehicle" value="express">Express<br>
+
                             </form>
 
                         </div>
@@ -132,7 +133,7 @@
                                 <input type="checkbox" name="route" value="courierLocation" class="chkitem">Courier Location<br>
                                 <input type="checkbox" name="route" value="courierRoute" class="chkitem">Courier Route<br>
                                 <input type="checkbox" name="route" value="trafficCondition" class="chkitem">Traffic Conditions<br>
-                                
+
                             </form>
                         </div>
 
@@ -146,6 +147,7 @@
                     <div class="w3-container">
                         <p>Submit</p>
                         <input type="button" value="submit" id="testCheck">
+
                         <p>
 
                         </p>
@@ -168,51 +170,73 @@
             </div>
 
             <!-- Middle Column -->
-                <div class="w3-col m8">
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card-2 w3-round w3-white">
-                                <div class="w3-container w3-padding">
+            <div class="w3-col m8">
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card-2 w3-round w3-white">
+                            <div class="w3-container w3-padding">
 
-                                    <!--Try Ajax-->
-                                    <script>
-                                        $("#testCheck").on('click', function () {
-                                            var checkbox_value = "";
-                                            $(":checkbox").each(function () {
-                                                var ischecked = $(this).is(":checked");
-                                                if (ischecked) {
-                                                    checkbox_value += $(this).val() + "|";
-                                                }
-                                            });
-                                            // your awesome code calling ajax
-                                            //var $checks = checkbox_value.Split('|').ToArray();
-                                              $.ajax({
-                                                    type: "POST",
-                                                    data: checkbox_value,
-                                                    url: @Url.Action("HandleChecks","ShowMap"),
-                                                    success: function (result) {
+                                <!--Try Ajax-->
+                                <script>
+                                    $("#testCheck").on('click', function () {
+                                        var checkbox_value = "";
+                                        $(":checkbox").each(function () {
+                                            var ischecked = $(this).is(":checked");
+                                            if (ischecked) {
+                                                checkbox_value += $(this).val() + "|";
+                                            }
+                                        });
+                                        //alert(checkbox_value);
+
+                                        //var $checks = checkbox_value.Split('|').ToArray();
+                                        $.ajax({
+                                            type: "GET",
+                                            dataType: 'json',
+                                            contentType:'application/json',
+                                            data: { check: checkbox_value },
+                                            url: '@Url.Action("HandleDriverOptions","ShowMap")',
+                                            success: function (result) {
+                                                alert(result);
+                                                
+                                                        //$(".testMessage").html(result);
                                                         // success function is called when data came back
                                                         // for example: get your content and display it on your site
+                                                        var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                                        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                                            subdomains: ['a', 'b', 'c']
+                                                        }).addTo(map);
+
+                                                       
+                                                        @if (@ViewBag.AllDriverLoc != null) {
+                                                                for (int i = 0; i<ViewBag.AllDriverLoc.Length; i++)
+                                                                {
+                                                                    var driver = ViewBag.AllDriverLoc[i];
+                                                                    var driverLat = driver[0];
+                                                                    var driverLong = driver[1];
+                                                                    for(int j = 0; j<driverLat.Length; j++)
+                                                                {
+                                                                @:L.marker(driverLat[j], driverLong[j]]).addTo(mymap);
+                                                        }
+                                                }
+                                            }
+
                                                     }
+                                                })
+
+
                                             });
-                                        });
 
-                                    </script>
-
-
-
-                                    <!-- MAP -->
-                                    <h6 class="w3-opacity">Map</h6>
-                                    <!--<p contenteditable="true" class="w3-border w3-padding">-->
-                                    <div id="map" style="height: 440px; border: 1px solid #AAA;">
+                                </script>                         
+                                <!-- MAP -->
+                                <h6 class="w3-opacity">Map</h6>
+                                <input type="text" runat="server" id="txt" />
+                                <!--<p contenteditable="true" class="w3-border w3-padding">-->
+                                <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
 
-                                        <script>
-                                            var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                                subdomains: ['a', 'b', 'c']
-                                            }).addTo(map);
+                                    <script>
+                                            
 
 
                                             // try 2
@@ -223,111 +247,99 @@
                                                     L.latLng(1.280695300, 103.817823900),
                                                     L.latLng(1.4017990359049928, 103.90718500596159)
                                                 ]
-                                            }).addTo(map).hide();*/
+                                            }).addTo(map).hide();*/                                            
 
 
-                                          
-                                        
-                                            @for (int i = 0; i < ViewBag.NumLoc; i++)
-                                            {
-                                                @:L.marker([ViewBag.Lat[i], ViewBag.Long[i]).addTo(map).bindPopup("test").openPopup();
-                                            }
-                                        </script>
-                                    </div>
-
-                                    <p />
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Container-->
-                    <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-
-
-
-                    </div>
-
-
-
-                    <!-- End Middle Column -->
-                </div>
-
-                <!-- Right Column -->
-                <div id="search">
-                    <div class="w3-col m2">
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
-
-                                <p>Search Drivers:</p>
-
-                                <p />
-                                <input type="text" name="" id="filter">
-                                <!--Count ViewBag List size-->
-                                <p />
-                                <strong>Driver List</strong>
-
-                                <p />
-
-                                <table id="UserGridView" class="tableC">
-                                    <thead>
-                                        <tr>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Check</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for (int i = 0; i <= ViewBag.Size - 1; i++)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @ViewBag.Collection[i].Name.ToUpper()
-                                                </td>
-                                                <td>
-                                                    <form action="">
-                                                        <input type="checkbox" name="name" value="#@ViewBag.Collection[i].DriverIDX">
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-
-                                <!-- Clear and Clear All button-->
-                                <div class="w3-row w3-opacity">
-                                    <div class="w3-half">
-                                        <button class="w3-button w3-block w3-green w3-section" title="Clear">Clear</button>
-                                    </div>
-                                    <div class="w3-half">
-                                        <button class="w3-button w3-block w3-red w3-section" title="ClearAll">Clear All</button>
-                                    </div>
+                                    </script>
                                 </div>
 
-                            </div>
-                        </div>
-                        <br>
+                                
 
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
+                                <p />
 
                             </div>
                         </div>
-                        <br>
-
-
-                        <br>
-
-
-
-                        <!-- End Right Column -->
                     </div>
                 </div>
 
+                <!--Container-->
+                <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+                    
+                </div>
 
-                <!-- End Grid -->
+                <!-- End Middle Column -->
             </div>
+            <!-- Right Column -->
+            <div id="search">
+                <div class="w3-col m2">
+                    <div class="w3-card-2 w3-round w3-white w3-center">
+                        <div class="w3-container">
+
+                            <p>Search Drivers:</p>
+
+                            <p />
+                            <input type="text" name="" id="filter">
+                           
+                            <p />
+                            <strong>Driver List</strong>                            
+                            <p />
+                            <!--filter table for searching drivers-->
+                            <table id="UserGridView" class="tableC">
+                                <thead>
+                                    <tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Check</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i <= ViewBag.Size - 1; i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @ViewBag.driverArr[i].Name.ToUpper()
+                                            </td>
+                                            <td>
+                                                <form action="">
+                                                    <input type="checkbox" name="name" value="#@ViewBag.driverArr[i].DriverIDX">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <!-- Clear and Clear All button-->
+                            <div class="w3-row w3-opacity">
+                                <div class="w3-half">
+                                    <button class="w3-button w3-block w3-green w3-section" title="Clear">Clear</button>
+                                </div>
+                                <div class="w3-half">
+                                    <button class="w3-button w3-block w3-red w3-section" title="ClearAll">Clear All</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="w3-card-2 w3-round w3-white w3-center">
+                        <div class="w3-container">
+
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+
+
+
+                    <!-- End Right Column -->
+                </div>
+            </div>
+
+
+            <!-- End Grid -->
+        </div>
 
         <!-- End Page Container -->
     </div>
@@ -339,28 +351,28 @@
     </footer>
 
     <script>
-                                        // Accordion
-                                        function myFunction(id) {
-                                            var x = document.getElementById(id);
-                                            if (x.className.indexOf("w3-show") == -1) {
-                                                x.className += " w3-show";
-                                                x.previousElementSibling.className += " w3-theme-d1";
-                                            } else {
-                                                x.className = x.className.replace("w3-show", "");
-                                                x.previousElementSibling.className =
-                                                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                                            // Accordion
+                                            function myFunction(id) {
+                                                var x = document.getElementById(id);
+                                                if (x.className.indexOf("w3-show") == -1) {
+                                                    x.className += " w3-show";
+                                                    x.previousElementSibling.className += " w3-theme-d1";
+                                                } else {
+                                                    x.className = x.className.replace("w3-show", "");
+                                                    x.previousElementSibling.className =
+                                                        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                                                }
                                             }
-                                        }
 
-                                        // Used to toggle the menu on smaller screens when clicking on the menu button
-                                        function openNav() {
-                                            var x = document.getElementById("navDemo");
-                                            if (x.className.indexOf("w3-show") == -1) {
-                                                x.className += " w3-show";
-                                            } else {
-                                                x.className = x.className.replace(" w3-show", "");
+                                            // Used to toggle the menu on smaller screens when clicking on the menu button
+                                            function openNav() {
+                                                var x = document.getElementById("navDemo");
+                                                if (x.className.indexOf("w3-show") == -1) {
+                                                    x.className += " w3-show";
+                                                } else {
+                                                    x.className = x.className.replace(" w3-show", "");
+                                                }
                                             }
-                                        }
     </script>
 
 </body>
