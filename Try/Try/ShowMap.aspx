@@ -18,6 +18,7 @@
     <script src="~/Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="Scripts/Leaflet/GrayScale.js" type="text/javascript"></script>
 
 
     <!--The search bar script here-->
@@ -190,37 +191,40 @@
                                     <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
                                             <script>
-                                                //var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
-                                                //    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+                                                var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+                                                    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
-                                                //var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                                //    osmAttrib = '&copy; ' + osmLink + ' Contributors',
-                                                //    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-                                                //    thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
+                                                var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                                    osmAttrib = '&copy; ' + osmLink + ' Contributors',
+                                                    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+                                                    thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
 
-                                                //var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
-                                                //    landMap = L.tileLayer(landUrl, { attribution: thunAttrib });
+                                                var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
+                                                    landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
 
-                                                //var map = L.map('map', {
-                                                //    layers: [osmMap] // only add one!
-                                                //})
-                                                //    .setView([1.3521, 103.8198], 14);
+                                                var map = L.map('map', {
+                                                    layers: [osmMap] // only add one!
+                                                })
+                                                    .setView([1.3521, 103.8198], 14);
 
-                                                //var baseLayers = {
-                                                //    "OSM Mapnik": osmMap,
-                                                //    "Landscape": landMap
-                                                //};
+                                                var baseLayers = {
+                                                    "Colour Map": osmMap,
+                                                    "GrayScale Map": landMap
+                                                };       
+                                                var driverLocationLayer = new L.LayerGroup();   
+                                                var postalCodeBoundaryLayer = new L.LayerGroup();
+                                                var overlays = {
+                                                    "Driver Locations": driverLocationLayer,
+                                                    "Postal Code Boundary": postalCodeBoundaryLayer
+                                                };
+                                                
+                                                L.control.layers(baseLayers, overlays).addTo(map);
 
-                                                var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                                    subdomains: ['a', 'b', 'c']
-                                                }).addTo(map);
 
-                                               <%Try.Models.PolygonO[] polygons = getPolygon(); %>
+                                               <%Try.Models.PolygonO[] polygons = getPolygon(); %>                         
                                                 var polygonList = [];
                                             <%for (int i = 1; i < 84; i++) {%>
-                                                var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(map);
+                                                var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
                                                 poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
                                                 polygonList[<%=i%>] = poly;
                                                 polygonList[<%=i%>].on('click', function () {
@@ -235,7 +239,9 @@
                                                     <%}%>
                                                 });
                                             <%}%>
-                                                //var testLayer = new L.LayerGroup();
+
+                     
+                                                        
                                                 // driver current location marker 
                                                 var allDriverLoc = document.getElementById("HiddenField1").value.split("@");
                                                 
@@ -244,34 +250,13 @@
                                                         var oneDriverLoc = allDriverLoc[i].split(",");
                                                         marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
                                                             .bindPopup(oneDriverLoc[0]).openPopup()
-                                                            .addTo(map);
                                                             //layers code beneath
-                                                            //.addTo(testLayer)
-                                                        //if (i == 1) {
-                                                        //    var overlays = {
-                                                        //        "Driver Locations": testLayer
-                                                        //    };
-                                                        //    L.control.layers(baseLayers, overlays).addTo(map);
-                                                        //};
-                                                    
-                                                    
+                                                            .addTo(driverLocationLayer)
                                                     }                           
-
-                                                //alert(driverLoc[0]);
-                                                //if (driverLoc[0] != "") {
-                                                //    alert(parseFloat(driverLoc[1]));
-                                                //    L.marker([parseFloat(driverLoc[1]), parseFloat(driverLoc[2])]).addTo(map);
-                                                }
-                                                   
                                                 
-
-                                        </script>
-
-                                        
+                                                }  
+                                        </script>                           
                                     </div>
-
-
-
                                     <p />
 
                                 </div>

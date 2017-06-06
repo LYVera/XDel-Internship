@@ -40,7 +40,7 @@ namespace Try.Models
             string coordinateStr = "";
             List<PointD> coordinates = new List<PointD> { };
             List<PointD> sortedCoordinates = new List<PointD> { };
-            System.IO.StreamReader file = new System.IO.StreamReader("D:\\Documents\\XDEL\\Postal Code Boundary Coordinates.csv");
+            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\wkliaw.2015\\Downloads\\Telegram Desktop\\Postal Code Boundary Coordinates.csv");
             file.ReadLine();
             Int32 num = 0;
             while ((line = file.ReadLine()) != null)

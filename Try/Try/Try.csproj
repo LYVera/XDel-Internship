@@ -150,6 +150,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\Leaflet\GrayScale.js" />
     <Content Include="Scripts\Leaflet\images\layers-2x.png" />
     <Content Include="Scripts\Leaflet\images\layers.png" />
     <Content Include="Scripts\Leaflet\images\marker-icon-2x.png" />
