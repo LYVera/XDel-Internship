@@ -14,20 +14,23 @@ namespace Try
             
            if (!IsPostBack)
             {
-                
-
-
-                //load your check box list
-                var driverArray = getDriverArray();
-                for(int i = 0; i < driverArray.Length; i++) {
-
+               //load your check box list                
+                LukeRefL2.DriverObject[] driverObjs = getDriverArray();
+                String[] driverNameArray = new String[getDriverArray().Length];
+                for (int i =0; i< getDriverArray().Length; i++)
+                {
+                    driverNameArray[i] = driverObjs[i].Name;
                 }
 
+                CheckBoxList1.DataSource = driverNameArray;
+                CheckBoxList1.DataBind();
+                
             } else
             {
-          
-                                
-                 
+
+                //lblmessage.Text = "hi can";
+                HiddenField1.Value = "";
+
             }
         }
 
@@ -40,6 +43,32 @@ namespace Try
 
         }
 
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
+            List<ListItem> selected = new List<ListItem>();
+            foreach (ListItem item in CheckBoxList1.Items)
+                if (item.Selected) selected.Add(item);
 
+            for(int j = 0; j < selected.Count; j++)
+            {
+                for(int i = 0; i < driverObjs.Length; i++)
+                {
+                    if (selected[j].ToString().Equals(driverObjs[i].Name))
+                    {
+                        LukeRefL2.LocationInfo driverLocation = driverObjs[i].LastKnownLocation;
+
+                        HiddenField1.Value += driverObjs[i].Name + "," + driverLocation.Latitude + "," + driverLocation.Longitude + "@";
+
+                    }
+                }
+            }
+        }
+        public Models.PolygonO[] getPolygon()
+        {
+            Models.PostalCodeInitializer PostalCodeDAO = new Models.PostalCodeInitializer();
+            Models.PolygonO[] polygons = PostalCodeDAO.GetPostalCodes();
+            return polygons;
+        }
     }
 }

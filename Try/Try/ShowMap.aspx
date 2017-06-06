@@ -52,6 +52,12 @@
 
 <body class="w3-theme-l5">
     <form id="form1" runat="server">
+
+        <!--TRYYYYY function-->
+        
+         
+
+
         <!-- Navbar -->
         <div class="w3-top">
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
@@ -113,26 +119,26 @@
                     <!-- Accordion -->
                     <div class="w3-card-2 w3-round">
                         <div class="w3-white">
-                            <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Courier Type</button>
+                            <button onclick="myFunction('Demo1');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Courier Type</button>
                             <div id="Demo1" class="w3-hide w3-container">
-                                <form action="#" method="post" id="retrieveChecks">
+                                
                                     <input type="checkbox" name="vehicle" value="network">Network<br>
                                     <input type="checkbox" name="vehicle" value="express">Express<br>
-                                </form>
+                             
 
                             </div>
-                            <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Postal Code</button>
+                            <button onclick="myFunction('Demo2');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Postal Code</button>
                             <div id="Demo2" class="w3-hide w3-container">
                                 <p>Some other text..</p>
                             </div>
 
-                            <button onclick="myFunction('3')" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Route</button>
+                            <button onclick="myFunction('3');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Route</button>
                             <div id="3" class="w3-hide w3-container">
-                                
+                               
                                     <input type="checkbox" name="route" value="courierLocation" class="chkitem">Courier Location<br>
                                     <input type="checkbox" name="route" value="courierRoute" class="chkitem">Courier Route<br>
                                     <input type="checkbox" name="route" value="trafficCondition" class="chkitem">Traffic Conditions<br>
-                                
+                               
                             </div>
 
 
@@ -144,21 +150,11 @@
                     <div class="w3-card-2 w3-round w3-white w3-hide-small">
                         <div class="w3-container">
                             <p>Submit</p>
-                            <input type="button" value="submit" id="testCheck">
-                            <%--<asp:Button id="submit" OnClick="Submit_Click" runat="server"/>--%>
+                            <%--<input type="button" value="submit" id="testCheck">--%>
+                            <asp:Button ID="Submit" runat="server" onclick="Submit_Click" Text="Button" />  
                             <p>
                             </p>
-                            <script>
-                                $("#testCheck").on('click', function () {
-                                    var checkbox_value = "";
-                                    $(":checkbox").each(function () {
-                                        var ischecked = $(this).is(":checked");
-                                        if (ischecked) {
-                                            checkbox_value += $(this).val() + "|";
-                                        }
-                                    });
-                                        alert(checkbox_value);
-                            </script>
+
                         </div>
                     </div>
                     <br>
@@ -183,35 +179,95 @@
                         <div class="w3-col m12">
                             <div class="w3-card-2 w3-round w3-white">
                                 <div class="w3-container w3-padding">
-
-
+                                    
+                                    <!-- hidden field-->
+                                    <asp:HiddenField ID="HiddenField1" runat="server" />
+                                    
                                     <!-- MAP -->
                                     <h6 class="w3-opacity">Map</h6>
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                     <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
+                                            <script>
+                                                //var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+                                                //    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
-                                        <script>
+                                                //var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                                //    osmAttrib = '&copy; ' + osmLink + ' Contributors',
+                                                //    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+                                                //    thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
 
-                                            var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                                subdomains: ['a', 'b', 'c']
-                                            }).addTo(map);
+                                                //var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
+                                                //    landMap = L.tileLayer(landUrl, { attribution: thunAttrib });
 
-                                            // try 2
+                                                //var map = L.map('map', {
+                                                //    layers: [osmMap] // only add one!
+                                                //})
+                                                //    .setView([1.3521, 103.8198], 14);
 
+                                                //var baseLayers = {
+                                                //    "OSM Mapnik": osmMap,
+                                                //    "Landscape": landMap
+                                                //};
 
-                                            /*L.Routing.control({
-                                                waypoints: [
-                                                    L.latLng(1.280695300, 103.817823900),
-                                                    L.latLng(1.4017990359049928, 103.90718500596159)
-                                                ]
-                                            }).addTo(map).hide();*/
+                                                var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                                L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                                    subdomains: ['a', 'b', 'c']
+                                                }).addTo(map);
 
+                                               <%Try.Models.PolygonO[] polygons = getPolygon(); %>
+                                                var polygonList = [];
+                                            <%for (int i = 1; i < 84; i++) {%>
+                                                var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(map);
+                                                poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
+                                                polygonList[<%=i%>] = poly;
+                                                polygonList[<%=i%>].on('click', function () {
+                                                    <%if (polygons[i].Color == "#FFFFFF") {%>
+                                                        polygonList[<%=i%>].setStyle({ fillColor: '#1d6005', color: '#34db63' });
+                                                        <%polygons[i].Color = "#1d6005"; %>
+                                                        <%} else {%>
+                                                        alert("<%=polygons[i].Color%>" + polygonList[<%=i%>].color);
+                                                        polygonList[<%=i%>].setStyle({ fillColor: '#FFFFFF', color: '#FFFFFF' });
+                                                        <%polygons[i].Color = "#FFFFFF"; %>
+                                                        alert("<%=polygons[i].Color%>" + polygonList[<%=i%>].color);
+                                                    <%}%>
+                                                });
+                                            <%}%>
+                                                //var testLayer = new L.LayerGroup();
+                                                // driver current location marker 
+                                                var allDriverLoc = document.getElementById("HiddenField1").value.split("@");
+                                                
+                                                if (allDriverLoc[0] != "") {
+                                                    for (i = 0; i < allDriverLoc.length; i++) {
+                                                        var oneDriverLoc = allDriverLoc[i].split(",");
+                                                        marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
+                                                            .bindPopup(oneDriverLoc[0]).openPopup()
+                                                            .addTo(map);
+                                                            //layers code beneath
+                                                            //.addTo(testLayer)
+                                                        //if (i == 1) {
+                                                        //    var overlays = {
+                                                        //        "Driver Locations": testLayer
+                                                        //    };
+                                                        //    L.control.layers(baseLayers, overlays).addTo(map);
+                                                        //};
+                                                    
+                                                    
+                                                    }                           
+
+                                                //alert(driverLoc[0]);
+                                                //if (driverLoc[0] != "") {
+                                                //    alert(parseFloat(driverLoc[1]));
+                                                //    L.marker([parseFloat(driverLoc[1]), parseFloat(driverLoc[2])]).addTo(map);
+                                                }
+                                                   
+                                                
 
                                         </script>
+
+                                        
                                     </div>
 
 
@@ -245,35 +301,21 @@
                                 <strong>Driver List</strong>
                                 <p />
                                 <!--filter table for searching drivers-->
-
-                               
                                 <table id="UserGridView" class="tableC">
-                                <thead>
-                                    <tr>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Check</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                   
-                                        <%  
-                                            var driverArray = getDriverArray();
-                                            for (int i = 0; i < driverArray.Length; i++)
-                                            {
-                                        %>
 
-                                        <tr>
-                                            <td>
-                                               <%= driverArray[i].Name.ToUpper()%>
-                                            </td>
-                                            <td>
-                                                    <input type="checkbox" name="name" value="#driverArray[i].driverIDX">
-                                            </td>
-                                        </tr>
-                                    <%} %>
-                                </tbody>
-                            </table>
+                                    <tr>
+                                        <td style="text-align: left;  padding-left:5px;">
+                                             <asp:CheckBoxList 
+                                             ID="CheckBoxList1" 
+                                             runat="server">
+                                             </asp:CheckBoxList>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                               
+
+                                
 
                                 <!-- Clear and Clear All button-->
                                 <div class="w3-row w3-opacity">
