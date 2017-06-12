@@ -11,14 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
-    <link rel="stylesheet" href="~/Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
 
 
     <script type='text/javascript' src="Scripts/Leaflet/leaflet.js"></script>
-    <script src="~/Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
+    <script src="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
-    <script src="Scripts/Leaflet/GrayScale.js" type="text/javascript"></script>
 
 
     <!--The search bar script here-->
@@ -64,7 +63,7 @@
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
-                    <img src="~/XDel Logo.gif" alt="Xdel Logo" style="height: 36px; width: 36px" /></a>
+                    <img src="XDel Logo.gif" alt="Xdel Logo" style="height: 36px; width: 36px" /></a>
                 <a href="http://localhost:57238/RecommendMap/RecommendView" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Recommend"><i class="fa fa-area-chart"></i></a>
                 <a href="http://localhost:57238/ShowMap/ViewMap" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
@@ -85,11 +84,11 @@
         </div>
 
         <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+        <div id="navDemo" class="w3-bar-block w3-theme-orange w3-hide w3-hide-large w3-hide-medium w3-large">
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Show Map</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">View Map</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Prompt</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large">Recommend Map</a>
         </div>
 
         <!-- Page Container -->
@@ -134,11 +133,9 @@
                             </div>
 
                             <button onclick="myFunction('3');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Route</button>
-                            <div id="3" class="w3-hide w3-container">
-                               
-                                    <input type="checkbox" name="route" value="courierLocation" class="chkitem">Courier Location<br>
-                                    <input type="checkbox" name="route" value="courierRoute" class="chkitem">Courier Route<br>
-                                    <input type="checkbox" name="route" value="trafficCondition" class="chkitem">Traffic Conditions<br>
+                            <div id="3" class="w3-hide w3-container">                                                                  
+                                    <asp:CheckBox ID="courRoute" runat="server"/>Courier Route<br>
+                                    
                                
                             </div>
 
@@ -182,15 +179,24 @@
                                 <div class="w3-container w3-padding">
                                     
                                     <!-- hidden field-->
+                                    <!-- Driver Location Hidden Field -->
                                     <asp:HiddenField ID="HiddenField1" runat="server" />
-                                    
+                                    <!-- Traffic Incident Hidden Field -->
+                                    <asp:HiddenField ID="HiddenField2" runat="server" />
+                                    <!-- Route Hidden Field -->
+                                    <asp:HiddenField ID="HiddenField3" runat="server" />
+
                                     <!-- MAP -->
                                     <h6 class="w3-opacity">Map</h6>
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                     <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
-                                            <script>
+                                        <script>
+                                                //marker 
+                                            
+
+
                                                 var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
                                                     thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
@@ -200,63 +206,127 @@
                                                     thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
 
                                                 var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
-                                                    landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
+                                                    landMap = L.tileLayer(landUrl, { attribution: thunAttrib });
 
                                                 var map = L.map('map', {
                                                     layers: [osmMap] // only add one!
                                                 })
-                                                    .setView([1.3521, 103.8198], 14);
+                                                    .setView([1.3521, 103.8198], 11);
 
                                                 var baseLayers = {
                                                     "Colour Map": osmMap,
                                                     "GrayScale Map": landMap
-                                                };       
-                                                var driverLocationLayer = new L.LayerGroup();   
+                                                };
+
+                                                var trafficLayer = new L.LayerGroup();   
                                                 var postalCodeBoundaryLayer = new L.LayerGroup();
                                                 var overlays = {
-                                                    "Driver Locations": driverLocationLayer,
+                                                    "Traffic Condition": trafficLayer,
                                                     "Postal Code Boundary": postalCodeBoundaryLayer
                                                 };
-                                                
+
+
+                                                // Layers 
                                                 L.control.layers(baseLayers, overlays).addTo(map);
 
+                                            ////Map
+                                            //var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                            //L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            //    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                            //    subdomains: ['a', 'b', 'c']
+                                            //}).addTo(map);
+                                                
 
-                                               <%Try.Models.PolygonO[] polygons = getPolygon(); %>                         
+                                               <%Try.Models.PolygonO[] polygons1 = getPolygon(); %>                         
                                                 var polygonList = [];
-                                            <%for (int i = 1; i < 84; i++) {%>
-                                                var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
-                                                poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
+                                                <%for (int i = 1; i < 84; i++) {%>
+                                                var poly = L.polygon([<%=polygons1[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
+                                                
+                                                poly.setStyle({ fillColor: '<%=polygons1[i].Color%>', color: '<%=polygons1[i].Color%>' });
                                                 polygonList[<%=i%>] = poly;
-                                                polygonList[<%=i%>].on('click', function () {
-                                                    <%if (polygons[i].Color == "#FFFFFF") {%>
-                                                        polygonList[<%=i%>].setStyle({ fillColor: '#1d6005', color: '#34db63' });
-                                                        <%polygons[i].Color = "#1d6005"; %>
-                                                        <%} else {%>
-                                                        alert("<%=polygons[i].Color%>" + polygonList[<%=i%>].color);
-                                                        polygonList[<%=i%>].setStyle({ fillColor: '#FFFFFF', color: '#FFFFFF' });
-                                                        <%polygons[i].Color = "#FFFFFF"; %>
-                                                        alert("<%=polygons[i].Color%>" + polygonList[<%=i%>].color);
+                                                
+                                                $(document).ready(function () {
+                                                    polygonList[<%=i%>].on('click', function (e) {                                                      
+                                                    <%if (polygons1[i].Color == "#FFFFFF") {%>
+                                                    polygonList[<%=i%>].setStyle({ fillColor: '#1d6005', color: '#34db63' });
+                                                        <%polygons1[i].Color = "#1d6005"; %>
+                                                    <%} else {%>
+                                                    alert("<%=polygons1[i].Color%>" + "polygonList[<%=i%>].color");
+                                                    polygonList[<%=i%>].setStyle({ fillColor: '#FFFFFF', color: '#FFFFFF' });
+                                                        <%polygons1[i].Color = "#FFFFFF"; %>
+                                                         
                                                     <%}%>
+                                                    alert("<%=polygons1[i].Color%>" + "polygonList[<%=i%>].color");
+                                                         e.preventDefault();
+                                                    });
                                                 });
-                                            <%}%>
+                                                <%}%>
 
-                     
-                                                        
+
                                                 // driver current location marker 
-                                                var allDriverLoc = document.getElementById("HiddenField1").value.split("@");
-                                                
-                                                if (allDriverLoc[0] != "") {
-                                                    for (i = 0; i < allDriverLoc.length; i++) {
-                                                        var oneDriverLoc = allDriverLoc[i].split(",");
-                                                        marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
-                                                            .bindPopup(oneDriverLoc[0]).openPopup()
-                                                            //layers code beneath
-                                                            .addTo(driverLocationLayer)
-                                                    }                           
-                                                
-                                                }  
-                                        </script>                           
+                                                    var allDriverLoc = document.getElementById("HiddenField1").value.split("@");
+                                                    if (allDriverLoc[0] != "") {
+                                                        var oneDriverLoc = allDriverLoc[0].split(",");
+                                                        
+                                                        for (i = 0; i < allDriverLoc.length; i++) {
+                                                            var oneDriverLoc = allDriverLoc[i].split(",");
+                                                            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
+                                                                .bindPopup(oneDriverLoc[0]).openPopup()
+                                                                //layers code beneath
+                                                                //.addTo(driverLocationLayer)
+                                                                .addTo(map)   
+                                                        }                                                       
+                                                    }
+
+                                                    // //LTA incidents
+                                                    var allLTAIncidents = document.getElementById("HiddenField2").value.split("@");
+
+                                                    if (allLTAIncidents[0] != "") {
+                                                        for (i = 0; i < allLTAIncidents.length; i++) {
+                                                            var oneLTAIncidents = allLTAIncidents[i].split(",");
+                                                            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])])
+                                                                .bindPopup(oneLTAIncidents[0]).openPopup();
+                                                            trafficLayer.addLayer(marker);
+
+                                                        }
+                                                    }
+
+
+                                                    // Route 
+                                                var allDriverRoute = document.getElementById("HiddenField3").value.split("@");
+                                               
+                                                //alert(allDriverRoute);
+                                                if (allDriverRoute[0] != "") {
+                                                    for (i = 0; i < allDriverRoute.length; i++) {
+
+                                                        var oneLocation = allDriverRoute[i].split(",");
+                                                        var oneNextLocation = allDriverRoute[i+1].split(",");
+
+                                                        marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
+                                                            .bindPopup("<b>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
+                                                            .addTo(map)
+
+                                                        ////routing machine
+                                                        //if (i == 0) {
+                                                        //    L.Routing.control({
+                                                        //        waypoints: [
+                                                        //            L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4])),
+                                                        //            L.latLng(parseFloat(oneNextLocation[3]), parseFloat(oneNextLocation[4]))
+                                                        //        ]
+                                                        //    }).addTo(map);
+                                                        //}
+                                                            
+                                                        
+                                                    }
+                                                }
+
+                                        </script>
+                                        `
+                                        
                                     </div>
+
+
+
                                     <p />
 
                                 </div>
@@ -291,7 +361,9 @@
                                     <tr>
                                         <td style="text-align: left;  padding-left:5px;">
                                              <asp:CheckBoxList 
-                                             ID="CheckBoxList1" 
+                                             ID="CheckBoxList1"
+                                             AutoPostBack="True"
+                                             OnSelectedIndexChanged="CheckBoxList_Click"
                                              runat="server">
                                              </asp:CheckBoxList>
                                         </td>

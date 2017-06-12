@@ -32,5 +32,15 @@ namespace Try.Properties {
                 return ((string)(this["Try_LukeRefL2_L2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://www.xdel.com/lukews/lukews.asmx")]
+        public string Try_LukeRef_LukeWS {
+            get {
+                return ((string)(this["Try_LukeRef_LukeWS"]));
+            }
+        }
     }
 }

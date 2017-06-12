@@ -2,6 +2,36 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.xdel.com/L2/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.xdel.com/L2/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://www.xdel.com/L2/">
+      <s:element name="GetLTAIncidents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLTAIncidentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLTAIncidentsResult" type="tns:ArrayOfLTAIncident" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLTAIncident">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LTAIncident" nillable="true" type="tns:LTAIncident" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LTAIncident">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lat" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Long" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Timestamp" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetL2Drivers">
         <s:complexType>
           <s:sequence>
@@ -107,10 +137,301 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetDriverCurrentJobs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ADriverIDX" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverCurrentJobsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverCurrentJobsResult" type="tns:ArrayOfJobInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfJobInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobInfo" nillable="true" type="tns:JobInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobInfo">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XDelBaseObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ClientIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="AddressIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="ContactIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="ByContactIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="JobsIDX" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="ParentJobsIDX" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="LinkedJobs" type="tns:ArrayOfJobInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobNo" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ConsignmentNote" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DOList" type="tns:ArrayOfDOObject" />
+              <s:element minOccurs="0" maxOccurs="1" name="JobLog" type="tns:ArrayOfJobLogObject" />
+              <s:element minOccurs="1" maxOccurs="1" name="COD" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CODCollectAt" nillable="true" type="tns:eCODCollectAt" />
+              <s:element minOccurs="1" maxOccurs="1" name="CODCollected" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExpressType" type="tns:eExpressType" />
+              <s:element minOccurs="1" maxOccurs="1" name="TOSType" type="tns:eTOSType" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReadyDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PickByDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="FromDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ToDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtDateTime" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtCount" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeliveryContents" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SpecialInstructions" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PULocation" type="tns:AddressStructure" />
+              <s:element minOccurs="0" maxOccurs="1" name="PURedirectedLocation" type="tns:AddressStructure" />
+              <s:element minOccurs="0" maxOccurs="1" name="DLLocation" type="tns:AddressStructure" />
+              <s:element minOccurs="0" maxOccurs="1" name="DLRedirectedLocation" type="tns:AddressStructure" />
+              <s:element minOccurs="0" maxOccurs="1" name="PUSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DLSI" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Pieces" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Weight" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="StatusCodeIDX" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="DNF" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="FLAG" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PIN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ScansURL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PicturesURL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SignaturesURL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CNURL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="InventoryItems" type="tns:ArrayOfInventoryEntry" />
+              <s:element minOccurs="0" maxOccurs="1" name="BarcodeTags" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExtraCharges" type="tns:ArrayOfExtraCharges" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="XDelBaseObject" />
+      <s:complexType name="ExtraCharges">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XDelBaseObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtraChargesIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="JobLogObject">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XDelBaseObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="StatusCodeIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DOObject">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XDelBaseObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="DOIDX" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="Invoice" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfDOObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DOObject" nillable="true" type="tns:DOObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobLogObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobLogObject" nillable="true" type="tns:JobLogObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eCODCollectAt">
+        <s:restriction base="s:string">
+          <s:enumeration value="ctPickup" />
+          <s:enumeration value="ctDelivery" />
+          <s:enumeration value="ctOriginator" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eExpressType">
+        <s:restriction base="s:string">
+          <s:enumeration value="etNormal" />
+          <s:enumeration value="etHalfHour" />
+          <s:enumeration value="etOneHour" />
+          <s:enumeration value="etTwoHour" />
+          <s:enumeration value="etThreeHour" />
+          <s:enumeration value="etPriority" />
+          <s:enumeration value="etGuaranteed" />
+          <s:enumeration value="etAOH" />
+          <s:enumeration value="etWeekend" />
+          <s:enumeration value="etTwoDays" />
+          <s:enumeration value="etThreeDays" />
+          <s:enumeration value="etRTwoHour" />
+          <s:enumeration value="etRThreeHour" />
+          <s:enumeration value="etRFourHour" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eTOSType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ttUnknown" />
+          <s:enumeration value="ttEL" />
+          <s:enumeration value="ttTC" />
+          <s:enumeration value="ttRT" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AddressStructure">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="CLIENTIDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ADDRESSTYPE" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ACCOUNT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COMPANY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BLOCK" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="STREET" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UNIT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BUILDING" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="POSTALCODE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ACTIVE" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CUSTOMER_NOTES" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contacts" type="tns:ArrayOfContactStructure" />
+          <s:element minOccurs="1" maxOccurs="1" name="LAT" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="LNG" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="DISTANCE_TOLERANCE" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfContactStructure">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ContactStructure" nillable="true" type="tns:ContactStructure" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ContactStructure">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="CLIENTADDRESSIDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="TITLE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DEPARTMENT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TEL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FAX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OTHER" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MOBILE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SI" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAILADDRESS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WEBLOGIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WEBPASSWORD" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="WEBACCESS" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ACCESS" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CUSTOMER_NOTES" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="COST_CENTER" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ACTIVE" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInventoryEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InventoryEntry" nillable="true" type="tns:InventoryEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InventoryEntry">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="StockCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfExtraCharges">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExtraCharges" nillable="true" type="tns:ExtraCharges" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDriverPoints">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ADriverIDX" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ADateOfDelivery" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDriverPointsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDriverPointsResult" type="tns:DriverPoints" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DriverPoints">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfJobs" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DriverIDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Points" type="tns:ArrayOfDriverPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDriverPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DriverPoint" nillable="true" type="tns:DriverPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DriverPoint">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfDriverPointItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PointValue" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lat" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lng" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDriverPointItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DriverPointItem" nillable="true" type="tns:DriverPointItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DriverPointItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="DriverPointIDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="JobsIDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryContent" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCodeIDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdateMode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdateLat" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdateLng" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpdateAccuracy" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Flag" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfLTAIncident" nillable="true" type="tns:ArrayOfLTAIncident" />
       <s:element name="ArrayOfDriverObject" nillable="true" type="tns:ArrayOfDriverObject" />
       <s:element name="ArrayOfLocationInfo" nillable="true" type="tns:ArrayOfLocationInfo" />
+      <s:element name="ArrayOfJobInfo" nillable="true" type="tns:ArrayOfJobInfo" />
+      <s:element name="DriverPoints" nillable="true" type="tns:DriverPoints" />
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="GetLTAIncidentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLTAIncidents" />
+  </wsdl:message>
+  <wsdl:message name="GetLTAIncidentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLTAIncidentsResponse" />
+  </wsdl:message>
   <wsdl:message name="GetL2DriversSoapIn">
     <wsdl:part name="parameters" element="tns:GetL2Drivers" />
   </wsdl:message>
@@ -128,6 +449,24 @@
   </wsdl:message>
   <wsdl:message name="GetPastLocationsSoapOut">
     <wsdl:part name="parameters" element="tns:GetPastLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverCurrentJobsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverCurrentJobs" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverCurrentJobsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverCurrentJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverPointsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDriverPoints" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverPointsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDriverPointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLTAIncidentsHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLTAIncidentsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLTAIncident" />
   </wsdl:message>
   <wsdl:message name="GetL2DriversHttpGetIn">
     <wsdl:part name="APIKey" type="s:string" />
@@ -153,6 +492,27 @@
   <wsdl:message name="GetPastLocationsHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfLocationInfo" />
   </wsdl:message>
+  <wsdl:message name="GetDriverCurrentJobsHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADriverIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverCurrentJobsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfJobInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverPointsHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADriverIDX" type="s:string" />
+    <wsdl:part name="ADateOfDelivery" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverPointsHttpGetOut">
+    <wsdl:part name="Body" element="tns:DriverPoints" />
+  </wsdl:message>
+  <wsdl:message name="GetLTAIncidentsHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLTAIncidentsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLTAIncident" />
+  </wsdl:message>
   <wsdl:message name="GetL2DriversHttpPostIn">
     <wsdl:part name="APIKey" type="s:string" />
   </wsdl:message>
@@ -177,7 +537,26 @@
   <wsdl:message name="GetPastLocationsHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfLocationInfo" />
   </wsdl:message>
+  <wsdl:message name="GetDriverCurrentJobsHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADriverIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverCurrentJobsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfJobInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverPointsHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADriverIDX" type="s:string" />
+    <wsdl:part name="ADateOfDelivery" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDriverPointsHttpPostOut">
+    <wsdl:part name="Body" element="tns:DriverPoints" />
+  </wsdl:message>
   <wsdl:portType name="L2Soap">
+    <wsdl:operation name="GetLTAIncidents">
+      <wsdl:input message="tns:GetLTAIncidentsSoapIn" />
+      <wsdl:output message="tns:GetLTAIncidentsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <wsdl:input message="tns:GetL2DriversSoapIn" />
       <wsdl:output message="tns:GetL2DriversSoapOut" />
@@ -190,8 +569,20 @@
       <wsdl:input message="tns:GetPastLocationsSoapIn" />
       <wsdl:output message="tns:GetPastLocationsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <wsdl:input message="tns:GetDriverCurrentJobsSoapIn" />
+      <wsdl:output message="tns:GetDriverCurrentJobsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <wsdl:input message="tns:GetDriverPointsSoapIn" />
+      <wsdl:output message="tns:GetDriverPointsSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="L2HttpGet">
+    <wsdl:operation name="GetLTAIncidents">
+      <wsdl:input message="tns:GetLTAIncidentsHttpGetIn" />
+      <wsdl:output message="tns:GetLTAIncidentsHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <wsdl:input message="tns:GetL2DriversHttpGetIn" />
       <wsdl:output message="tns:GetL2DriversHttpGetOut" />
@@ -204,8 +595,20 @@
       <wsdl:input message="tns:GetPastLocationsHttpGetIn" />
       <wsdl:output message="tns:GetPastLocationsHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <wsdl:input message="tns:GetDriverCurrentJobsHttpGetIn" />
+      <wsdl:output message="tns:GetDriverCurrentJobsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <wsdl:input message="tns:GetDriverPointsHttpGetIn" />
+      <wsdl:output message="tns:GetDriverPointsHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="L2HttpPost">
+    <wsdl:operation name="GetLTAIncidents">
+      <wsdl:input message="tns:GetLTAIncidentsHttpPostIn" />
+      <wsdl:output message="tns:GetLTAIncidentsHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <wsdl:input message="tns:GetL2DriversHttpPostIn" />
       <wsdl:output message="tns:GetL2DriversHttpPostOut" />
@@ -218,9 +621,26 @@
       <wsdl:input message="tns:GetPastLocationsHttpPostIn" />
       <wsdl:output message="tns:GetPastLocationsHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <wsdl:input message="tns:GetDriverCurrentJobsHttpPostIn" />
+      <wsdl:output message="tns:GetDriverCurrentJobsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <wsdl:input message="tns:GetDriverPointsHttpPostIn" />
+      <wsdl:output message="tns:GetDriverPointsHttpPostOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="L2Soap" type="tns:L2Soap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLTAIncidents">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetLTAIncidents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <soap:operation soapAction="http://www.xdel.com/L2/GetL2Drivers" style="document" />
       <wsdl:input>
@@ -248,9 +668,36 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetDriverCurrentJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetDriverPoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="L2Soap12" type="tns:L2Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLTAIncidents">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetLTAIncidents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <soap12:operation soapAction="http://www.xdel.com/L2/GetL2Drivers" style="document" />
       <wsdl:input>
@@ -278,9 +725,36 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetDriverCurrentJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetDriverPoints" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="L2HttpGet" type="tns:L2HttpGet">
     <http:binding verb="GET" />
+    <wsdl:operation name="GetLTAIncidents">
+      <http:operation location="/GetLTAIncidents" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <http:operation location="/GetL2Drivers" />
       <wsdl:input>
@@ -301,6 +775,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetPastLocations">
       <http:operation location="/GetPastLocations" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <http:operation location="/GetDriverCurrentJobs" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <http:operation location="/GetDriverPoints" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -311,6 +803,15 @@
   </wsdl:binding>
   <wsdl:binding name="L2HttpPost" type="tns:L2HttpPost">
     <http:binding verb="POST" />
+    <wsdl:operation name="GetLTAIncidents">
+      <http:operation location="/GetLTAIncidents" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetL2Drivers">
       <http:operation location="/GetL2Drivers" />
       <wsdl:input>
@@ -331,6 +832,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetPastLocations">
       <http:operation location="/GetPastLocations" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverCurrentJobs">
+      <http:operation location="/GetDriverCurrentJobs" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDriverPoints">
+      <http:operation location="/GetDriverPoints" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

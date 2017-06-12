@@ -27,13 +27,20 @@ namespace Try.LukeRefL2 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="L2Soap", Namespace="http://www.xdel.com/L2/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(XDelBaseObject))]
     public partial class L2 : System.Web.Services.Protocols.SoapHttpClientProtocol {
+        
+        private System.Threading.SendOrPostCallback GetLTAIncidentsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetL2DriversOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetLocationsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetPastLocationsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetDriverCurrentJobsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetDriverPointsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -74,6 +81,9 @@ namespace Try.LukeRefL2 {
         }
         
         /// <remarks/>
+        public event GetLTAIncidentsCompletedEventHandler GetLTAIncidentsCompleted;
+        
+        /// <remarks/>
         public event GetL2DriversCompletedEventHandler GetL2DriversCompleted;
         
         /// <remarks/>
@@ -81,6 +91,41 @@ namespace Try.LukeRefL2 {
         
         /// <remarks/>
         public event GetPastLocationsCompletedEventHandler GetPastLocationsCompleted;
+        
+        /// <remarks/>
+        public event GetDriverCurrentJobsCompletedEventHandler GetDriverCurrentJobsCompleted;
+        
+        /// <remarks/>
+        public event GetDriverPointsCompletedEventHandler GetDriverPointsCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetLTAIncidents", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LTAIncident[] GetLTAIncidents(string APIKey) {
+            object[] results = this.Invoke("GetLTAIncidents", new object[] {
+                        APIKey});
+            return ((LTAIncident[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLTAIncidentsAsync(string APIKey) {
+            this.GetLTAIncidentsAsync(APIKey, null);
+        }
+        
+        /// <remarks/>
+        public void GetLTAIncidentsAsync(string APIKey, object userState) {
+            if ((this.GetLTAIncidentsOperationCompleted == null)) {
+                this.GetLTAIncidentsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLTAIncidentsOperationCompleted);
+            }
+            this.InvokeAsync("GetLTAIncidents", new object[] {
+                        APIKey}, this.GetLTAIncidentsOperationCompleted, userState);
+        }
+        
+        private void OnGetLTAIncidentsOperationCompleted(object arg) {
+            if ((this.GetLTAIncidentsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLTAIncidentsCompleted(this, new GetLTAIncidentsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetL2Drivers", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -182,6 +227,70 @@ namespace Try.LukeRefL2 {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetDriverCurrentJobs", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public JobInfo[] GetDriverCurrentJobs(string APIKey, long ADriverIDX) {
+            object[] results = this.Invoke("GetDriverCurrentJobs", new object[] {
+                        APIKey,
+                        ADriverIDX});
+            return ((JobInfo[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDriverCurrentJobsAsync(string APIKey, long ADriverIDX) {
+            this.GetDriverCurrentJobsAsync(APIKey, ADriverIDX, null);
+        }
+        
+        /// <remarks/>
+        public void GetDriverCurrentJobsAsync(string APIKey, long ADriverIDX, object userState) {
+            if ((this.GetDriverCurrentJobsOperationCompleted == null)) {
+                this.GetDriverCurrentJobsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDriverCurrentJobsOperationCompleted);
+            }
+            this.InvokeAsync("GetDriverCurrentJobs", new object[] {
+                        APIKey,
+                        ADriverIDX}, this.GetDriverCurrentJobsOperationCompleted, userState);
+        }
+        
+        private void OnGetDriverCurrentJobsOperationCompleted(object arg) {
+            if ((this.GetDriverCurrentJobsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDriverCurrentJobsCompleted(this, new GetDriverCurrentJobsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetDriverPoints", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DriverPoints GetDriverPoints(string APIKey, long ADriverIDX, System.DateTime ADateOfDelivery) {
+            object[] results = this.Invoke("GetDriverPoints", new object[] {
+                        APIKey,
+                        ADriverIDX,
+                        ADateOfDelivery});
+            return ((DriverPoints)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDriverPointsAsync(string APIKey, long ADriverIDX, System.DateTime ADateOfDelivery) {
+            this.GetDriverPointsAsync(APIKey, ADriverIDX, ADateOfDelivery, null);
+        }
+        
+        /// <remarks/>
+        public void GetDriverPointsAsync(string APIKey, long ADriverIDX, System.DateTime ADateOfDelivery, object userState) {
+            if ((this.GetDriverPointsOperationCompleted == null)) {
+                this.GetDriverPointsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDriverPointsOperationCompleted);
+            }
+            this.InvokeAsync("GetDriverPoints", new object[] {
+                        APIKey,
+                        ADriverIDX,
+                        ADateOfDelivery}, this.GetDriverPointsOperationCompleted, userState);
+        }
+        
+        private void OnGetDriverPointsOperationCompleted(object arg) {
+            if ((this.GetDriverPointsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDriverPointsCompleted(this, new GetDriverPointsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -197,6 +306,1856 @@ namespace Try.LukeRefL2 {
                 return true;
             }
             return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class LTAIncident {
+        
+        private int idField;
+        
+        private string titleField;
+        
+        private string messageField;
+        
+        private string typeField;
+        
+        private double latField;
+        
+        private double longField;
+        
+        private System.DateTime timestampField;
+        
+        /// <remarks/>
+        public int ID {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Lat {
+            get {
+                return this.latField;
+            }
+            set {
+                this.latField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Long {
+            get {
+                return this.longField;
+            }
+            set {
+                this.longField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Timestamp {
+            get {
+                return this.timestampField;
+            }
+            set {
+                this.timestampField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class DriverPointItem {
+        
+        private long iDXField;
+        
+        private long driverPointIDXField;
+        
+        private long jobsIDXField;
+        
+        private string jobNoField;
+        
+        private string deliveryContentField;
+        
+        private long statusCodeIDXField;
+        
+        private string statusCodeField;
+        
+        private System.DateTime timeStampField;
+        
+        private long updateModeField;
+        
+        private double updateLatField;
+        
+        private double updateLngField;
+        
+        private int updateAccuracyField;
+        
+        private int flagField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long DriverPointIDX {
+            get {
+                return this.driverPointIDXField;
+            }
+            set {
+                this.driverPointIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long JobsIDX {
+            get {
+                return this.jobsIDXField;
+            }
+            set {
+                this.jobsIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string JobNo {
+            get {
+                return this.jobNoField;
+            }
+            set {
+                this.jobNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DeliveryContent {
+            get {
+                return this.deliveryContentField;
+            }
+            set {
+                this.deliveryContentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long StatusCodeIDX {
+            get {
+                return this.statusCodeIDXField;
+            }
+            set {
+                this.statusCodeIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string StatusCode {
+            get {
+                return this.statusCodeField;
+            }
+            set {
+                this.statusCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime TimeStamp {
+            get {
+                return this.timeStampField;
+            }
+            set {
+                this.timeStampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long UpdateMode {
+            get {
+                return this.updateModeField;
+            }
+            set {
+                this.updateModeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double UpdateLat {
+            get {
+                return this.updateLatField;
+            }
+            set {
+                this.updateLatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double UpdateLng {
+            get {
+                return this.updateLngField;
+            }
+            set {
+                this.updateLngField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int UpdateAccuracy {
+            get {
+                return this.updateAccuracyField;
+            }
+            set {
+                this.updateAccuracyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Flag {
+            get {
+                return this.flagField;
+            }
+            set {
+                this.flagField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class DriverPoint {
+        
+        private long iDXField;
+        
+        private DriverPointItem[] itemsField;
+        
+        private string postalCodeField;
+        
+        private System.DateTime timeStampField;
+        
+        private decimal pointValueField;
+        
+        private double latField;
+        
+        private double lngField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DriverPointItem[] Items {
+            get {
+                return this.itemsField;
+            }
+            set {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PostalCode {
+            get {
+                return this.postalCodeField;
+            }
+            set {
+                this.postalCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime TimeStamp {
+            get {
+                return this.timeStampField;
+            }
+            set {
+                this.timeStampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal PointValue {
+            get {
+                return this.pointValueField;
+            }
+            set {
+                this.pointValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Lat {
+            get {
+                return this.latField;
+            }
+            set {
+                this.latField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Lng {
+            get {
+                return this.lngField;
+            }
+            set {
+                this.lngField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class DriverPoints {
+        
+        private System.DateTime dateOfJobsField;
+        
+        private long driverIDXField;
+        
+        private DriverPoint[] pointsField;
+        
+        /// <remarks/>
+        public System.DateTime DateOfJobs {
+            get {
+                return this.dateOfJobsField;
+            }
+            set {
+                this.dateOfJobsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long DriverIDX {
+            get {
+                return this.driverIDXField;
+            }
+            set {
+                this.driverIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DriverPoint[] Points {
+            get {
+                return this.pointsField;
+            }
+            set {
+                this.pointsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class InventoryEntry {
+        
+        private long iDXField;
+        
+        private string stockCodeField;
+        
+        private string referenceField;
+        
+        private string descriptionField;
+        
+        private int quantityField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string StockCode {
+            get {
+                return this.stockCodeField;
+            }
+            set {
+                this.stockCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Reference {
+            get {
+                return this.referenceField;
+            }
+            set {
+                this.referenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Quantity {
+            get {
+                return this.quantityField;
+            }
+            set {
+                this.quantityField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class ContactStructure {
+        
+        private long iDXField;
+        
+        private long cLIENTADDRESSIDXField;
+        
+        private string tITLEField;
+        
+        private string nAMEField;
+        
+        private string dEPARTMENTField;
+        
+        private string tELField;
+        
+        private string fAXField;
+        
+        private string oTHERField;
+        
+        private string mOBILEField;
+        
+        private string siField;
+        
+        private string eMAILADDRESSField;
+        
+        private string wEBLOGINField;
+        
+        private string wEBPASSWORDField;
+        
+        private bool wEBACCESSField;
+        
+        private bool aCCESSField;
+        
+        private string cUSTOMER_NOTESField;
+        
+        private string cOST_CENTERField;
+        
+        private bool aCTIVEField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long CLIENTADDRESSIDX {
+            get {
+                return this.cLIENTADDRESSIDXField;
+            }
+            set {
+                this.cLIENTADDRESSIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TITLE {
+            get {
+                return this.tITLEField;
+            }
+            set {
+                this.tITLEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NAME {
+            get {
+                return this.nAMEField;
+            }
+            set {
+                this.nAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DEPARTMENT {
+            get {
+                return this.dEPARTMENTField;
+            }
+            set {
+                this.dEPARTMENTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TEL {
+            get {
+                return this.tELField;
+            }
+            set {
+                this.tELField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FAX {
+            get {
+                return this.fAXField;
+            }
+            set {
+                this.fAXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OTHER {
+            get {
+                return this.oTHERField;
+            }
+            set {
+                this.oTHERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MOBILE {
+            get {
+                return this.mOBILEField;
+            }
+            set {
+                this.mOBILEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SI {
+            get {
+                return this.siField;
+            }
+            set {
+                this.siField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMAILADDRESS {
+            get {
+                return this.eMAILADDRESSField;
+            }
+            set {
+                this.eMAILADDRESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string WEBLOGIN {
+            get {
+                return this.wEBLOGINField;
+            }
+            set {
+                this.wEBLOGINField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string WEBPASSWORD {
+            get {
+                return this.wEBPASSWORDField;
+            }
+            set {
+                this.wEBPASSWORDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool WEBACCESS {
+            get {
+                return this.wEBACCESSField;
+            }
+            set {
+                this.wEBACCESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool ACCESS {
+            get {
+                return this.aCCESSField;
+            }
+            set {
+                this.aCCESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CUSTOMER_NOTES {
+            get {
+                return this.cUSTOMER_NOTESField;
+            }
+            set {
+                this.cUSTOMER_NOTESField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string COST_CENTER {
+            get {
+                return this.cOST_CENTERField;
+            }
+            set {
+                this.cOST_CENTERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool ACTIVE {
+            get {
+                return this.aCTIVEField;
+            }
+            set {
+                this.aCTIVEField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class AddressStructure {
+        
+        private long iDXField;
+        
+        private long cLIENTIDXField;
+        
+        private int aDDRESSTYPEField;
+        
+        private string aCCOUNTField;
+        
+        private string cOMPANYField;
+        
+        private string bLOCKField;
+        
+        private string sTREETField;
+        
+        private string uNITField;
+        
+        private string bUILDINGField;
+        
+        private string pOSTALCODEField;
+        
+        private bool aCTIVEField;
+        
+        private string cUSTOMER_NOTESField;
+        
+        private ContactStructure[] contactsField;
+        
+        private double lATField;
+        
+        private double lNGField;
+        
+        private int dISTANCE_TOLERANCEField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long CLIENTIDX {
+            get {
+                return this.cLIENTIDXField;
+            }
+            set {
+                this.cLIENTIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ADDRESSTYPE {
+            get {
+                return this.aDDRESSTYPEField;
+            }
+            set {
+                this.aDDRESSTYPEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ACCOUNT {
+            get {
+                return this.aCCOUNTField;
+            }
+            set {
+                this.aCCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string COMPANY {
+            get {
+                return this.cOMPANYField;
+            }
+            set {
+                this.cOMPANYField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BLOCK {
+            get {
+                return this.bLOCKField;
+            }
+            set {
+                this.bLOCKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string STREET {
+            get {
+                return this.sTREETField;
+            }
+            set {
+                this.sTREETField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UNIT {
+            get {
+                return this.uNITField;
+            }
+            set {
+                this.uNITField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BUILDING {
+            get {
+                return this.bUILDINGField;
+            }
+            set {
+                this.bUILDINGField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string POSTALCODE {
+            get {
+                return this.pOSTALCODEField;
+            }
+            set {
+                this.pOSTALCODEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool ACTIVE {
+            get {
+                return this.aCTIVEField;
+            }
+            set {
+                this.aCTIVEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CUSTOMER_NOTES {
+            get {
+                return this.cUSTOMER_NOTESField;
+            }
+            set {
+                this.cUSTOMER_NOTESField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ContactStructure[] Contacts {
+            get {
+                return this.contactsField;
+            }
+            set {
+                this.contactsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double LAT {
+            get {
+                return this.lATField;
+            }
+            set {
+                this.lATField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double LNG {
+            get {
+                return this.lNGField;
+            }
+            set {
+                this.lNGField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int DISTANCE_TOLERANCE {
+            get {
+                return this.dISTANCE_TOLERANCEField;
+            }
+            set {
+                this.dISTANCE_TOLERANCEField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ExtraCharges))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(JobLogObject))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DOObject))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(JobInfo))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class XDelBaseObject {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class ExtraCharges : XDelBaseObject {
+        
+        private long iDXField;
+        
+        private string descriptionField;
+        
+        private long extraChargesIDXField;
+        
+        private decimal amountField;
+        
+        private string dataField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long ExtraChargesIDX {
+            get {
+                return this.extraChargesIDXField;
+            }
+            set {
+                this.extraChargesIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class JobLogObject : XDelBaseObject {
+        
+        private long statusCodeIDXField;
+        
+        private System.DateTime timeStampField;
+        
+        private string remarksField;
+        
+        /// <remarks/>
+        public long StatusCodeIDX {
+            get {
+                return this.statusCodeIDXField;
+            }
+            set {
+                this.statusCodeIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime TimeStamp {
+            get {
+                return this.timeStampField;
+            }
+            set {
+                this.timeStampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Remarks {
+            get {
+                return this.remarksField;
+            }
+            set {
+                this.remarksField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class DOObject : XDelBaseObject {
+        
+        private long dOIDXField;
+        
+        private string invoiceField;
+        
+        private decimal amountField;
+        
+        /// <remarks/>
+        public long DOIDX {
+            get {
+                return this.dOIDXField;
+            }
+            set {
+                this.dOIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Invoice {
+            get {
+                return this.invoiceField;
+            }
+            set {
+                this.invoiceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class JobInfo : XDelBaseObject {
+        
+        private long clientIDXField;
+        
+        private long addressIDXField;
+        
+        private long contactIDXField;
+        
+        private long byContactIDXField;
+        
+        private System.Nullable<long> jobsIDXField;
+        
+        private System.Nullable<long> parentJobsIDXField;
+        
+        private JobInfo[] linkedJobsField;
+        
+        private string jobNoField;
+        
+        private string consignmentNoteField;
+        
+        private DOObject[] dOListField;
+        
+        private JobLogObject[] jobLogField;
+        
+        private System.Nullable<decimal> cODField;
+        
+        private System.Nullable<eCODCollectAt> cODCollectAtField;
+        
+        private bool cODCollectedField;
+        
+        private eExpressType expressTypeField;
+        
+        private eTOSType tOSTypeField;
+        
+        private System.DateTime readyDateTimeField;
+        
+        private System.DateTime pickByDateTimeField;
+        
+        private System.DateTime fromDateTimeField;
+        
+        private System.DateTime toDateTimeField;
+        
+        private System.DateTime extDateTimeField;
+        
+        private int extCountField;
+        
+        private string deliveryContentsField;
+        
+        private string specialInstructionsField;
+        
+        private AddressStructure pULocationField;
+        
+        private AddressStructure pURedirectedLocationField;
+        
+        private AddressStructure dLLocationField;
+        
+        private AddressStructure dLRedirectedLocationField;
+        
+        private string pUSIField;
+        
+        private string dLSIField;
+        
+        private System.Nullable<int> piecesField;
+        
+        private System.Nullable<int> weightField;
+        
+        private System.Nullable<long> statusCodeIDXField;
+        
+        private bool dNFField;
+        
+        private int fLAGField;
+        
+        private string pINField;
+        
+        private string scansURLField;
+        
+        private string picturesURLField;
+        
+        private string signaturesURLField;
+        
+        private string cNURLField;
+        
+        private InventoryEntry[] inventoryItemsField;
+        
+        private string[] barcodeTagsField;
+        
+        private ExtraCharges[] extraChargesField;
+        
+        /// <remarks/>
+        public long ClientIDX {
+            get {
+                return this.clientIDXField;
+            }
+            set {
+                this.clientIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long AddressIDX {
+            get {
+                return this.addressIDXField;
+            }
+            set {
+                this.addressIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long ContactIDX {
+            get {
+                return this.contactIDXField;
+            }
+            set {
+                this.contactIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long ByContactIDX {
+            get {
+                return this.byContactIDXField;
+            }
+            set {
+                this.byContactIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> JobsIDX {
+            get {
+                return this.jobsIDXField;
+            }
+            set {
+                this.jobsIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> ParentJobsIDX {
+            get {
+                return this.parentJobsIDXField;
+            }
+            set {
+                this.parentJobsIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public JobInfo[] LinkedJobs {
+            get {
+                return this.linkedJobsField;
+            }
+            set {
+                this.linkedJobsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string JobNo {
+            get {
+                return this.jobNoField;
+            }
+            set {
+                this.jobNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ConsignmentNote {
+            get {
+                return this.consignmentNoteField;
+            }
+            set {
+                this.consignmentNoteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DOObject[] DOList {
+            get {
+                return this.dOListField;
+            }
+            set {
+                this.dOListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public JobLogObject[] JobLog {
+            get {
+                return this.jobLogField;
+            }
+            set {
+                this.jobLogField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> COD {
+            get {
+                return this.cODField;
+            }
+            set {
+                this.cODField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<eCODCollectAt> CODCollectAt {
+            get {
+                return this.cODCollectAtField;
+            }
+            set {
+                this.cODCollectAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool CODCollected {
+            get {
+                return this.cODCollectedField;
+            }
+            set {
+                this.cODCollectedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public eExpressType ExpressType {
+            get {
+                return this.expressTypeField;
+            }
+            set {
+                this.expressTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public eTOSType TOSType {
+            get {
+                return this.tOSTypeField;
+            }
+            set {
+                this.tOSTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ReadyDateTime {
+            get {
+                return this.readyDateTimeField;
+            }
+            set {
+                this.readyDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime PickByDateTime {
+            get {
+                return this.pickByDateTimeField;
+            }
+            set {
+                this.pickByDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime FromDateTime {
+            get {
+                return this.fromDateTimeField;
+            }
+            set {
+                this.fromDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ToDateTime {
+            get {
+                return this.toDateTimeField;
+            }
+            set {
+                this.toDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ExtDateTime {
+            get {
+                return this.extDateTimeField;
+            }
+            set {
+                this.extDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ExtCount {
+            get {
+                return this.extCountField;
+            }
+            set {
+                this.extCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DeliveryContents {
+            get {
+                return this.deliveryContentsField;
+            }
+            set {
+                this.deliveryContentsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SpecialInstructions {
+            get {
+                return this.specialInstructionsField;
+            }
+            set {
+                this.specialInstructionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AddressStructure PULocation {
+            get {
+                return this.pULocationField;
+            }
+            set {
+                this.pULocationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AddressStructure PURedirectedLocation {
+            get {
+                return this.pURedirectedLocationField;
+            }
+            set {
+                this.pURedirectedLocationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AddressStructure DLLocation {
+            get {
+                return this.dLLocationField;
+            }
+            set {
+                this.dLLocationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AddressStructure DLRedirectedLocation {
+            get {
+                return this.dLRedirectedLocationField;
+            }
+            set {
+                this.dLRedirectedLocationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PUSI {
+            get {
+                return this.pUSIField;
+            }
+            set {
+                this.pUSIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DLSI {
+            get {
+                return this.dLSIField;
+            }
+            set {
+                this.dLSIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Pieces {
+            get {
+                return this.piecesField;
+            }
+            set {
+                this.piecesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Weight {
+            get {
+                return this.weightField;
+            }
+            set {
+                this.weightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> StatusCodeIDX {
+            get {
+                return this.statusCodeIDXField;
+            }
+            set {
+                this.statusCodeIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool DNF {
+            get {
+                return this.dNFField;
+            }
+            set {
+                this.dNFField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int FLAG {
+            get {
+                return this.fLAGField;
+            }
+            set {
+                this.fLAGField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PIN {
+            get {
+                return this.pINField;
+            }
+            set {
+                this.pINField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ScansURL {
+            get {
+                return this.scansURLField;
+            }
+            set {
+                this.scansURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PicturesURL {
+            get {
+                return this.picturesURLField;
+            }
+            set {
+                this.picturesURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SignaturesURL {
+            get {
+                return this.signaturesURLField;
+            }
+            set {
+                this.signaturesURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CNURL {
+            get {
+                return this.cNURLField;
+            }
+            set {
+                this.cNURLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public InventoryEntry[] InventoryItems {
+            get {
+                return this.inventoryItemsField;
+            }
+            set {
+                this.inventoryItemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string[] BarcodeTags {
+            get {
+                return this.barcodeTagsField;
+            }
+            set {
+                this.barcodeTagsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ExtraCharges[] ExtraCharges {
+            get {
+                return this.extraChargesField;
+            }
+            set {
+                this.extraChargesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public enum eCODCollectAt {
+        
+        /// <remarks/>
+        ctPickup,
+        
+        /// <remarks/>
+        ctDelivery,
+        
+        /// <remarks/>
+        ctOriginator,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public enum eExpressType {
+        
+        /// <remarks/>
+        etNormal,
+        
+        /// <remarks/>
+        etHalfHour,
+        
+        /// <remarks/>
+        etOneHour,
+        
+        /// <remarks/>
+        etTwoHour,
+        
+        /// <remarks/>
+        etThreeHour,
+        
+        /// <remarks/>
+        etPriority,
+        
+        /// <remarks/>
+        etGuaranteed,
+        
+        /// <remarks/>
+        etAOH,
+        
+        /// <remarks/>
+        etWeekend,
+        
+        /// <remarks/>
+        etTwoDays,
+        
+        /// <remarks/>
+        etThreeDays,
+        
+        /// <remarks/>
+        etRTwoHour,
+        
+        /// <remarks/>
+        etRThreeHour,
+        
+        /// <remarks/>
+        etRFourHour,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public enum eTOSType {
+        
+        /// <remarks/>
+        ttUnknown,
+        
+        /// <remarks/>
+        ttEL,
+        
+        /// <remarks/>
+        ttTC,
+        
+        /// <remarks/>
+        ttRT,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class LocationInfo {
+        
+        private double latitudeField;
+        
+        private double longitudeField;
+        
+        private int accuracyField;
+        
+        private System.DateTime timestampField;
+        
+        /// <remarks/>
+        public double Latitude {
+            get {
+                return this.latitudeField;
+            }
+            set {
+                this.latitudeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Longitude {
+            get {
+                return this.longitudeField;
+            }
+            set {
+                this.longitudeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Accuracy {
+            get {
+                return this.accuracyField;
+            }
+            set {
+                this.accuracyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Timestamp {
+            get {
+                return this.timestampField;
+            }
+            set {
+                this.timestampField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class VehicleTypeObject {
+        
+        private long vehicleTypeIDXField;
+        
+        private string vehicleTypeNameField;
+        
+        private int rankField;
+        
+        /// <remarks/>
+        public long VehicleTypeIDX {
+            get {
+                return this.vehicleTypeIDXField;
+            }
+            set {
+                this.vehicleTypeIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VehicleTypeName {
+            get {
+                return this.vehicleTypeNameField;
+            }
+            set {
+                this.vehicleTypeNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Rank {
+            get {
+                return this.rankField;
+            }
+            set {
+                this.rankField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class VehicleObject {
+        
+        private long vehicleIDXField;
+        
+        private VehicleTypeObject vehicleTypeField;
+        
+        private string licensePlateField;
+        
+        private int maxWeightField;
+        
+        private int maxVolumeField;
+        
+        /// <remarks/>
+        public long VehicleIDX {
+            get {
+                return this.vehicleIDXField;
+            }
+            set {
+                this.vehicleIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public VehicleTypeObject VehicleType {
+            get {
+                return this.vehicleTypeField;
+            }
+            set {
+                this.vehicleTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LicensePlate {
+            get {
+                return this.licensePlateField;
+            }
+            set {
+                this.licensePlateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int MaxWeight {
+            get {
+                return this.maxWeightField;
+            }
+            set {
+                this.maxWeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int MaxVolume {
+            get {
+                return this.maxVolumeField;
+            }
+            set {
+                this.maxVolumeField = value;
+            }
         }
     }
     
@@ -378,172 +2337,27 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
-    public partial class VehicleObject {
-        
-        private long vehicleIDXField;
-        
-        private VehicleTypeObject vehicleTypeField;
-        
-        private string licensePlateField;
-        
-        private int maxWeightField;
-        
-        private int maxVolumeField;
-        
-        /// <remarks/>
-        public long VehicleIDX {
-            get {
-                return this.vehicleIDXField;
-            }
-            set {
-                this.vehicleIDXField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public VehicleTypeObject VehicleType {
-            get {
-                return this.vehicleTypeField;
-            }
-            set {
-                this.vehicleTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LicensePlate {
-            get {
-                return this.licensePlateField;
-            }
-            set {
-                this.licensePlateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int MaxWeight {
-            get {
-                return this.maxWeightField;
-            }
-            set {
-                this.maxWeightField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int MaxVolume {
-            get {
-                return this.maxVolumeField;
-            }
-            set {
-                this.maxVolumeField = value;
-            }
-        }
-    }
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetLTAIncidentsCompletedEventHandler(object sender, GetLTAIncidentsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
-    public partial class VehicleTypeObject {
+    public partial class GetLTAIncidentsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
-        private long vehicleTypeIDXField;
+        private object[] results;
         
-        private string vehicleTypeNameField;
-        
-        private int rankField;
-        
-        /// <remarks/>
-        public long VehicleTypeIDX {
-            get {
-                return this.vehicleTypeIDXField;
-            }
-            set {
-                this.vehicleTypeIDXField = value;
-            }
+        internal GetLTAIncidentsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
         }
         
         /// <remarks/>
-        public string VehicleTypeName {
+        public LTAIncident[] Result {
             get {
-                return this.vehicleTypeNameField;
-            }
-            set {
-                this.vehicleTypeNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Rank {
-            get {
-                return this.rankField;
-            }
-            set {
-                this.rankField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
-    public partial class LocationInfo {
-        
-        private double latitudeField;
-        
-        private double longitudeField;
-        
-        private int accuracyField;
-        
-        private System.DateTime timestampField;
-        
-        /// <remarks/>
-        public double Latitude {
-            get {
-                return this.latitudeField;
-            }
-            set {
-                this.latitudeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double Longitude {
-            get {
-                return this.longitudeField;
-            }
-            set {
-                this.longitudeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Accuracy {
-            get {
-                return this.accuracyField;
-            }
-            set {
-                this.accuracyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime Timestamp {
-            get {
-                return this.timestampField;
-            }
-            set {
-                this.timestampField = value;
+                this.RaiseExceptionIfNecessary();
+                return ((LTAIncident[])(this.results[0]));
             }
         }
     }
@@ -622,6 +2436,58 @@ namespace Try.LukeRefL2 {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((LocationInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetDriverCurrentJobsCompletedEventHandler(object sender, GetDriverCurrentJobsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDriverCurrentJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDriverCurrentJobsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public JobInfo[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((JobInfo[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetDriverPointsCompletedEventHandler(object sender, GetDriverPointsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDriverPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDriverPointsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public DriverPoints Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((DriverPoints)(this.results[0]));
             }
         }
     }
