@@ -86,18 +86,22 @@
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
                 <div class="w3-dropdown-hover w3-hide-small">
-                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
+                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
+                        <%
+                            ArrayList lowBatts = new ArrayList();
+                            lowBatts = (ArrayList)Session["lowBatt"];
+                        %>
+                        <%=lowBatts.Count %>
+
+                                                                                                                    </span></button>
                     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px">
                             <%
-
-                                ArrayList lowBatts = new ArrayList();
-                                lowBatts = (ArrayList)Session["lowBatt"];
                                 for (int i = 0; i < lowBatts.Count; i++) {
                                     Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
                                     
                             %>
-                                <%=lowBattDriver.Name%> Battery Low <br/>
-                             <%--<a href="#" class="w3-bar-item w3-button">test</a>--%>
+                                
+                             <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name%> Battery Low <br/></a>
                             <%} %>
                     </div>
                 </div>
