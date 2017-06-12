@@ -53,7 +53,7 @@ namespace Try
             for (int i =0; i< arrayOfDrivers.Length; i++)
             {
                 int battPCT = arrayOfDrivers[i].BattPCT;
-                if(battPCT < 50)
+                if(battPCT < 95)
                 {
                     //String toAdd = "";
                     //toAdd = arrayOfDrivers[i].Name + "," + arrayOfDrivers[i].Mobile + "," + arrayOfDrivers[i].BattPCT + "," + arrayOfDrivers[i].BattLastUpdate;
