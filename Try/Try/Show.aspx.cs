@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,7 +26,9 @@ namespace Try
                 CheckBoxList1.DataSource = driverNameArray;
                 CheckBoxList1.DataBind();
                 getTrafficConditions();
-
+                getBattery();
+                HiddenPostalCode.Value = "0";
+                HiddenTrafficLayer.Value = "0";
             }
             else
             {
@@ -33,6 +36,8 @@ namespace Try
                 //lblmessage.Text = "hi can";
                 HiddenField1.Value = "";
                 HiddenField3.Value = "";
+                HiddenPostalCode.Value = "1";
+                HiddenTrafficLayer.Value = "1";
             }
 
 
@@ -64,6 +69,7 @@ namespace Try
 
         protected void Submit_Click(object sender, EventArgs e)
         {
+            String driverRoute = "";
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();
             List<ListItem> selected = new List<ListItem>();
             foreach (ListItem item in CheckBoxList1.Items)
@@ -87,6 +93,7 @@ namespace Try
                                 {
                                     LukeRef.Address jobLoc = driverJobLocations[k].Location;
                                     HiddenField3.Value += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ",";
+                                    //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
                                     //obtain array of delivery jobs id
                                     long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
                                     //if its not a dlvery job 
@@ -95,15 +102,19 @@ namespace Try
                                         //obtain array of pick up jobs id
                                         long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
                                         HiddenField3.Value += "PU" + "@";
+                                        //driverRoute += "PU" + "@";
                                     }
                                     else
                                     {
                                         HiddenField3.Value += "DL" + "@";
+                                        //driverRoute += "DL" + "@";
                                     }
                                 }
 
-                                HiddenField3.Value += "/";
+                                HiddenField3.Value += "$";
+                                //driverRoute += "$";
                             }
+                            //Session["driverRoute"] = driverRoute;
                         }
                     }
                 }
@@ -173,6 +184,25 @@ namespace Try
                     }
                 }
             }
+        }
+
+        public void getBattery()
+        {
+            LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
+
+            LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
+            ArrayList lowBatts = new ArrayList();
+            for (int i = 0; i < arrayOfDrivers.Length; i++)
+            {
+                int battPCT = arrayOfDrivers[i].BattPCT;
+                if (battPCT < 50)
+                {
+                    //String toAdd = "";
+                    //toAdd = arrayOfDrivers[i].Name + "," + arrayOfDrivers[i].Mobile + "," + arrayOfDrivers[i].BattPCT + "," + arrayOfDrivers[i].BattLastUpdate;
+                    lowBatts.Add(arrayOfDrivers[i]);
+                }
+            }
+            Session["lowBatt"] = lowBatts;
         }
 
     }

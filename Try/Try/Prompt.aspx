@@ -70,11 +70,7 @@
 <body class="w3-theme-l5">
     <form id="form1" runat="server">
 
-        <!--TRYYYYY function-->
-        
-         
-
-
+       
         <!-- Navbar -->
         <div class="w3-top">
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
@@ -93,8 +89,8 @@
                         %>
                         <%=lowBatts.Count %>
 
-                                                                                                                    </span></button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px">
+                    </span></button>
+                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; ">
                             <%
                                 for (int i = 0; i < lowBatts.Count; i++) {
                                     Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
@@ -249,6 +245,7 @@
 
                                 <p />
                                 <strong>Driver List</strong>
+                                <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="SelectAll" Text="Select All"></asp:Button>
                                 <p />
                                 <!--filter table for searching drivers-->
                                 <table id="UserGridView" class="tableC">

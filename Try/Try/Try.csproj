@@ -139,6 +139,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Prompt.aspx" />
+    <Content Include="Scripts\Leaflet\GreyScale.js" />
     <Content Include="Show.aspx" />
     <Content Include="Validate.aspx" />
     <Content Include="XDel Logo.gif" />

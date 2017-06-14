@@ -67,6 +67,24 @@ namespace Try {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
         
         /// <summary>
+        /// HiddenPostalCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenPostalCode;
+        
+        /// <summary>
+        /// HiddenTrafficLayer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenTrafficLayer;
+        
+        /// <summary>
         /// selectAll control.
         /// </summary>
         /// <remarks>
@@ -76,15 +94,6 @@ namespace Try {
         protected global::System.Web.UI.WebControls.Button selectAll;
         
         /// <summary>
-        /// CheckBoxList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
-        
-        /// <summary>
         /// uncheckAll control.
         /// </summary>
         /// <remarks>
@@ -92,5 +101,14 @@ namespace Try {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button uncheckAll;
+        
+        /// <summary>
+        /// CheckBoxList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
     }
 }

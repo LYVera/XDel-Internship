@@ -53,7 +53,7 @@ namespace Try
             for (int i =0; i< arrayOfDrivers.Length; i++)
             {
                 int battPCT = arrayOfDrivers[i].BattPCT;
-                if(battPCT < 85)
+                if(battPCT < 50)
                 {
                     //String toAdd = "";
                     //toAdd = arrayOfDrivers[i].Name + "," + arrayOfDrivers[i].Mobile + "," + arrayOfDrivers[i].BattPCT + "," + arrayOfDrivers[i].BattLastUpdate;
@@ -61,8 +61,31 @@ namespace Try
                 }
             }
             Session["lowBatt"] = lowBatts;
+        }
 
+        protected void selectAll_Click(object sender, EventArgs e)
+        {
+            foreach (ListItem listItem in CheckBoxList1.Items)
+            {
+                listItem.Selected = true;
+            }
 
+            List<ListItem> selected = new List<ListItem>();
+            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
+            foreach (ListItem item in CheckBoxList1.Items)
+                if (item.Selected) selected.Add(item);
+
+            for (int j = 0; j < selected.Count; j++)
+            {
+                for (int i = 0; i < driverObjs.Length; i++)
+                {
+                    if (selected[j].ToString().Equals(driverObjs[i].Name))
+                    {
+                        
+
+                    }
+                }
+            }
         }
     }
 }
