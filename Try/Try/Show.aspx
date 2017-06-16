@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.Default.css" />
+
 
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
     <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
@@ -19,6 +22,7 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="Scripts/Leaflet/GreyScale.js" type="text/javascript"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/leaflet.markercluster.js'></script>
 
 
     <!--The search bar script here-->
@@ -55,7 +59,9 @@
             padding: 8px;
         }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
 
         th {
             background-color: #FFA500;
@@ -72,8 +78,8 @@
     <form id="form1" runat="server">
 
         <!--TRYYYYY function-->
-        
-         
+
+
 
 
         <!-- Navbar -->
@@ -87,23 +93,28 @@
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
                 <div class="w3-dropdown-hover w3-hide-small">
-                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
-                        <%
-                            ArrayList lowBatts = new ArrayList();
-                            lowBatts = (ArrayList)Session["lowBatt"];
-                        %>
-                        <%=lowBatts.Count %>
-
-                    </span></button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; ">
+                    <button class="w3-button w3-padding-large" title="Notifications">
+                        <i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
                             <%
-                                for (int i = 0; i < lowBatts.Count; i++) {
-                                    Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
-                                    
+                                ArrayList lowBatts = new ArrayList();
+                                lowBatts = (ArrayList)Session["lowBatt"];
                             %>
-                                
-                             <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name%> Battery Low <br/></a>
-                            <%} %>
+                            <%=lowBatts.Count %>
+
+                        </span>
+                    </button>
+                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px;  font-size: 0.45em">
+                        <%
+                            for (int i = 0; i < lowBatts.Count; i++)
+                            {
+                                Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
+
+                        %>
+
+                        <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%> 
+                            <br />
+                        </a>
+                        <%} %>
                     </div>
                 </div>
 
@@ -151,11 +162,9 @@
                         <div class="w3-white">
                             <button onclick="myFunction('Demo1');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Courier Type</button>
                             <div id="Demo1" class="w3-hide w3-container">
-                                
-                                    <input type="checkbox" name="vehicle" value="network">Network<br>
-                                    <input type="checkbox" name="vehicle" value="express">Express<br>
-                             
 
+                                <input type="checkbox" name="vehicle" value="network">Network<br>
+                                <input type="checkbox" name="vehicle" value="express">Express<br>
                             </div>
                             <button onclick="myFunction('Demo2');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Postal Code</button>
                             <div id="Demo2" class="w3-hide w3-container">
@@ -163,10 +172,8 @@
                             </div>
 
                             <button onclick="myFunction('3');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Route</button>
-                            <div id="3" class="w3-hide w3-container">                                                                  
-                                    <asp:CheckBox ID="courRoute" runat="server"/>Courier Route<br>
-                                    
-                               
+                            <div id="3" class="w3-hide w3-container">
+                                <asp:CheckBox ID="courRoute" runat="server" />Courier Route<br>
                             </div>
 
 
@@ -179,7 +186,7 @@
                         <div class="w3-container">
                             <p>Submit</p>
                             <%--<input type="button" value="submit" id="testCheck">--%>
-                            <asp:Button ID="Submit" runat="server" onclick="Submit_Click" Text="Button" />  
+                            <asp:Button ID="Submit" runat="server" OnClick="Submit_Click" Text="Button" />
                             <p>
                             </p>
 
@@ -207,7 +214,7 @@
                         <div class="w3-col m12">
                             <div class="w3-card-2 w3-round w3-white">
                                 <div class="w3-container w3-padding">
-                                    
+
                                     <!-- hidden field-->
                                     <!-- Driver Location Hidden Field -->
                                     <asp:HiddenField ID="HiddenField1" runat="server" />
@@ -227,52 +234,52 @@
                                     <div id="map" style="height: 440px; border: 1px solid #AAA;">
 
                                         <script>
-                                                //marker 
-                                            
-
-                                                //var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
-                                                //    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
-
-                                                //var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                                //    osmAttrib = '&copy; ' + osmLink + ' Contributors',
-                                                //    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-                                                //    thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
-
-                                                //var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
-                                                //    landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
-
-                                                //var map = L.map('map', {
-                                                //    layers: [osmMap] // only add one!
-                                                //})
-                                                //    .setView([1.3521, 103.8198], 11);
-
-                                                //var baseLayers = {
-                                                //    "Colour Map": osmMap,
-                                                //    "GrayScale Map": landMap
-                                                //};
-
-                                                //var trafficLayer = new L.LayerGroup();   
-                                                //var postalCodeBoundaryLayer = new L.LayerGroup();
-                                                //var driverRoute = new L.LayerGroup();
-                                                //var overlays = {
-                                                //    "Traffic Condition": trafficLayer,
-                                                //    "Postal Code Boundary": postalCodeBoundaryLayer,
-                                                //    "Driver Route": driverRoute
-                                                //};
+                                            //marker 
 
 
-                                                //// Layers 
-                                                //L.control.layers(baseLayers, overlays).addTo(map);
-                                                //if (document.getElementById("HiddenPostalCode").value == "1") {
-                                                //    postalCodeBoundaryLayer.addTo(map);
-                                                //}
-                                                //if (document.getElementById("HiddenTrafficLayer").value == "1") {
-                                                //    trafficLayer.addTo(map);
-                                                //}
-                                                //if (document.getElementById("HiddenTrafficLayer").value == "1") {
-                                                //    driverRoute.addTo(map);
-                                                //}
-                                                
+                                            //var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+                                            //    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+
+                                            //var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                            //    osmAttrib = '&copy; ' + osmLink + ' Contributors',
+                                            //    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+                                            //    thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
+
+                                            //var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
+                                            //    landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
+
+                                            //var map = L.map('map', {
+                                            //    layers: [osmMap] // only add one!
+                                            //})
+                                            //    .setView([1.3521, 103.8198], 11);
+
+                                            //var baseLayers = {
+                                            //    "Colour Map": osmMap,
+                                            //    "GrayScale Map": landMap
+                                            //};
+
+                                            //var trafficLayer = new L.LayerGroup();   
+                                            //var postalCodeBoundaryLayer = new L.LayerGroup();
+                                            //var driverRoute = new L.LayerGroup();
+                                            //var overlays = {
+                                            //    "Traffic Condition": trafficLayer,
+                                            //    "Postal Code Boundary": postalCodeBoundaryLayer,
+                                            //    "Driver Route": driverRoute
+                                            //};
+
+
+                                            //// Layers 
+                                            //L.control.layers(baseLayers, overlays).addTo(map);
+                                            //if (document.getElementById("HiddenPostalCode").value == "1") {
+                                            //    postalCodeBoundaryLayer.addTo(map);
+                                            //}
+                                            //if (document.getElementById("HiddenTrafficLayer").value == "1") {
+                                            //    trafficLayer.addTo(map);
+                                            //}
+                                            //if (document.getElementById("HiddenTrafficLayer").value == "1") {
+                                            //    driverRoute.addTo(map);
+                                            //}
+
 
                                             //Map
                                             var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
@@ -280,7 +287,7 @@
                                                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                                                 subdomains: ['a', 'b', 'c']
                                             }).addTo(map);
-                                                
+
 
                                                 <%--<%Try.Models.PolygonO[] polygons1 = getPolygon(); %>                         
                                                 var polygonList = [];
@@ -307,52 +314,60 @@
                                                 });
                                                 <%}%>--%>
 
-                                                // Route 
+                                            // Route 
+                                            //var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            //for (j = 0; j < allDriver.length; j++) {
+                                            //    var test = []
                                                 
-                                                var allDriver = document.getElementById("HiddenField3").value.split("$");
-                                                //individual driver
-                                                alert(allDriver);
+                                            //    if (allDriver[j].length > 0) {
+                                            //        var allDriverRoute = allDriver[j].split("@");
+                                            //        for (i = 0; i < allDriverRoute.length; i++) {
+                                            //            if (allDriverRoute[i].length > 0) {
+                                            //                var oneLocation = allDriverRoute[i].split("*");
+                                            //                //var oneNextLocation = allDriverRoute[i + 1].split("*");
+                                            //                if (oneLocation.length > 0) {
+                                            //                    alert(oneLocation)
+                                                              
+                                            //                    test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))
+                                                                
+                                            //                }
+                                            //            }
+                                            //        }
+                                            //            route = L.Routing.control({
+                                            //            waypoints: test
+                                            //        }).addTo(map).hide();
+                                            //    }
+                                            //}
 
+                                            //var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            //for (j = 0; j < allDriver.length; j++) {
+                                            //    var test = []
+                                            //    var test2 = []
+                                            //    if (allDriver[j].length > 0) {
+                                            //        var allDriverRoute = allDriver[j].split("@");
+                                            //        for (i = 0; i < allDriverRoute.length; i++) {
+                                            //            if (allDriverRoute[i].length > 0) {
+                                            //                var oneLocation = allDriverRoute[i].split("*");
+                                            //                if (oneLocation.length > 0) {
+                                            //                    alert(oneLocation)
+                                            //                    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
+                                            //                    .bindPopup( (i+1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
+                                            //                    .addTo(map)
 
-                                                for (var j = 0; j < allDriver.length; j++) {
-
-                                                    if (allDriver[j].length > 0) {
-                                                        var allDriverRoute = allDriver[j].split("@");
-
-                                                        //Individual location
-                                                        for (var i = 0; i < allDriverRoute.length; i++) {
-                                                            if (allDriverRoute[i].length > 0) {
-                                                                var oneLocation = allDriverRoute[i].split(",");
-                                                                //Individual details of location
-                                                                //var oneNextLocation = allDriverRoute[i + 1].split(",");
-                                                                if (oneLocation.length > 0) {
-
-                                                                    //route = L.Routing.control({
-                                                                    //    waypoints: [
-                                                                    //        L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4])),
-                                                                    //        L.latLng(parseFloat(oneNextLocation[3]), parseFloat(oneNextLocation[4]))
-                                                                    //    ]
-                                                                    //}).addTo(map).hide();
-                                                                    //driverRoute.addLayer(route);
-
-                                                                    var marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                                                        .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
-                                                                        .addTo(map)
-
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
+                                            //                }
+                                            //            }
+                                            //        }
+                                                  
+                                            //    }
+                                            //}
 
                                                 //// driver current location marker 
                                                 //    var allDriverLoc = document.getElementById("HiddenField1").value.split("@");
                                                 //    if (allDriverLoc[0] != "") {
-                                                //        var oneDriverLoc = allDriverLoc[0].split(",");
-                                                        
+                                                //        var oneDriverLoc = allDriverLoc[0].split("*");
+
                                                 //        for (i = 0; i < allDriverLoc.length; i++) {
-                                                //            var oneDriverLoc = allDriverLoc[i].split(",");
+                                                //            var oneDriverLoc = allDriverLoc[i].split("*");
                                                 //            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
                                                 //                .bindPopup(oneDriverLoc[0]).openPopup()
                                                 //                //layers code beneath
@@ -366,7 +381,7 @@
 
                                                 //    if (allLTAIncidents[0] != "") {
                                                 //        for (i = 0; i < allLTAIncidents.length; i++) {
-                                                //            var oneLTAIncidents = allLTAIncidents[i].split(",");
+                                                //            var oneLTAIncidents = allLTAIncidents[i].split("*");
                                                 //            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])])
                                                 //                .bindPopup(oneLTAIncidents[0]).openPopup()
                                                 //                //.addTo(map)
@@ -375,37 +390,40 @@
                                                 //        }
                                                 //    }
 
+                                            //cluster
+                                            var cluster = L.markerClusterGroup();
+                                            var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            
+                                            for (j = 0; j < allDriver.length; j++) {
+                                                var test = []
+                                                var test2 = []
+                                                if (allDriver[j].length > 0) {
+                                                    var allDriverRoute = allDriver[j].split("@");
+                                                    for (i = 0; i < allDriverRoute.length; i++) {
+                                                        if (allDriverRoute[i].length > 0) {
+                                                            var oneLocation = allDriverRoute[i].split("*");
+                                                            if (oneLocation.length > 0) {
+                                                                //alert(oneLocation)
+                                                                marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
+                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup();
+                                                                    //.addTo(map)
+                                                                cluster.addLayer(marker);
+                                                            }
+                                                        }
+                                                    }
+                                                    map.addLayer(cluster);
 
-                                          
+                                                }
+                                            }
 
 
-                                                    //var allDriverRoute = document.getElementById("HiddenField3").value.split("@");
 
-                                                    ////alert(allDriverRoute);
 
-                                                    //for (i = 0; i < allDriverRoute.length; i++) {
 
-                                                    //    var oneLocation = allDriverRoute[i].split(",");
-                                                    //    var oneNextLocation = allDriverRoute[i+1].split(",");
-
-                                                    //    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                                    //        .bindPopup("<b>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
-                                                    //        .addTo(map)
-
-                                                    //    ////routing machine
-                                                    //    ////if (i == 1) {
-                                                    //    //    L.Routing.control({
-                                                    //    //        waypoints: [
-                                                    //    //            L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4])),
-                                                    //    //            L.latLng(parseFloat(oneNextLocation[3]), parseFloat(oneNextLocation[4]))
-                                                    //    //        ]
-                                                    //    //    }).addTo(map).hide();
-                                                    //    ////}
-                                                    //}
-
+                                            
                                         </script>
-                                        
-                                        
+
+
                                     </div>
 
 
@@ -425,7 +443,7 @@
                 </div>
                 <!-- Right Column -->
                 <div id="search">
-                    
+
                     <div class="w3-col m2">
                         <div class="w3-card-2 w3-round w3-white w3-center">
                             <div class="w3-container">
@@ -440,25 +458,25 @@
                                 <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
                                 <!-- Clear and Clear All button-->
                                 <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
-                                   
-                                
+
+
                                 <p />
                                 <!--filter table for searching drivers-->
                                 <table id="UserGridView" class="tableC">
 
                                     <tr>
-                                        <td style="text-align: left;  padding-left:5px;">
-                                             <asp:CheckBoxList 
-                                             ID="CheckBoxList1"
-                                             AutoPostBack="True"
-                                             OnSelectedIndexChanged="CheckBoxList_Click"
-                                             runat="server">
-                                             </asp:CheckBoxList>
+                                        <td style="text-align: left; padding-left: 5px;">
+                                            <asp:CheckBoxList
+                                                ID="CheckBoxList1"
+                                                AutoPostBack="True"
+                                                OnSelectedIndexChanged="CheckBoxList_Click"
+                                                runat="server">
+                                            </asp:CheckBoxList>
                                         </td>
                                     </tr>
 
                                 </table>
-                               
+
                             </div>
                         </div>
                         <br>
@@ -490,28 +508,28 @@
         </footer>
 
         <script>
-                                            // Accordion
-                                            function myFunction(id) {
-                                                var x = document.getElementById(id);
-                                                if (x.className.indexOf("w3-show") == -1) {
-                                                    x.className += " w3-show";
-                                                    x.previousElementSibling.className += " w3-theme-d1";
-                                                } else {
-                                                    x.className = x.className.replace("w3-show", "");
-                                                    x.previousElementSibling.className =
-                                                        x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                                                // Accordion
+                                                function myFunction(id) {
+                                                    var x = document.getElementById(id);
+                                                    if (x.className.indexOf("w3-show") == -1) {
+                                                        x.className += " w3-show";
+                                                        x.previousElementSibling.className += " w3-theme-d1";
+                                                    } else {
+                                                        x.className = x.className.replace("w3-show", "");
+                                                        x.previousElementSibling.className =
+                                                            x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                                                    }
                                                 }
-                                            }
 
-                                            // Used to toggle the menu on smaller screens when clicking on the menu button
-                                            function openNav() {
-                                                var x = document.getElementById("navDemo");
-                                                if (x.className.indexOf("w3-show") == -1) {
-                                                    x.className += " w3-show";
-                                                } else {
-                                                    x.className = x.className.replace(" w3-show", "");
+                                                // Used to toggle the menu on smaller screens when clicking on the menu button
+                                                function openNav() {
+                                                    var x = document.getElementById("navDemo");
+                                                    if (x.className.indexOf("w3-show") == -1) {
+                                                        x.className += " w3-show";
+                                                    } else {
+                                                        x.className = x.className.replace(" w3-show", "");
+                                                    }
                                                 }
-                                            }
         </script>
     </form>
 </body>

@@ -61,7 +61,7 @@ namespace Try
 
             foreach (LukeRefL2.LTAIncident incident in arrayOfIncidents)
             {
-                HiddenField2.Value += incident.Message + "," + incident.Lat + "," + incident.Long + "@";
+                HiddenField2.Value += incident.Message + "*" + incident.Lat + "*" + incident.Long + "@";
             }
 
 
@@ -92,7 +92,7 @@ namespace Try
                                 for (int k = 0; k < driverJobLocations.Length; k++)
                                 {
                                     LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                                    HiddenField3.Value += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ",";
+                                    HiddenField3.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*";
                                     //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
                                     //obtain array of delivery jobs id
                                     long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
@@ -137,7 +137,7 @@ namespace Try
                     {
                         LukeRefL2.LocationInfo driverLocation = driverObjs[i].LastKnownLocation;
 
-                        HiddenField1.Value += driverObjs[i].Name + "," + driverLocation.Latitude + "," + driverLocation.Longitude + "@";
+                        HiddenField1.Value += driverObjs[i].Name + "*" + driverLocation.Latitude + "*" + driverLocation.Longitude + "@";
 
                     }
                 }
@@ -179,7 +179,7 @@ namespace Try
                     {
                         LukeRefL2.LocationInfo driverLocation = driverObjs[i].LastKnownLocation;
 
-                        HiddenField1.Value += driverObjs[i].Name + "," + driverLocation.Latitude + "," + driverLocation.Longitude + "@";
+                        HiddenField1.Value += driverObjs[i].Name + "*" + driverLocation.Latitude + "*" + driverLocation.Longitude + "@";
 
                     }
                 }
