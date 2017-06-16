@@ -61,7 +61,7 @@ namespace Try
 
             foreach (LukeRefL2.LTAIncident incident in arrayOfIncidents)
             {
-                HiddenField2.Value += incident.Message + "*" + incident.Lat + "*" + incident.Long + "@";
+                HiddenField2.Value += incident.Message + "*" + incident.Lat + "*" + incident.Long + "^";
             }
 
 
@@ -69,7 +69,6 @@ namespace Try
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            String driverRoute = "";
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();
             List<ListItem> selected = new List<ListItem>();
             foreach (ListItem item in CheckBoxList1.Items)
@@ -81,8 +80,7 @@ namespace Try
                 {
                     if (selected[j].ToString().Equals(driverObjs[i].Name))
                     {
-                        if (courRoute.Checked == true)
-                        {
+                       
                             long driverID = driverObjs[i].DriverIDX;
                             LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
                             LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
@@ -101,13 +99,13 @@ namespace Try
                                     {
                                         //obtain array of pick up jobs id
                                         long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
-                                        HiddenField3.Value += "PU" + "@";
-                                        //driverRoute += "PU" + "@";
+                                        HiddenField3.Value += "PU" + "^";
+                                        //driverRoute += "PU" + "^";
                                     }
                                     else
                                     {
-                                        HiddenField3.Value += "DL" + "@";
-                                        //driverRoute += "DL" + "@";
+                                        HiddenField3.Value += "DL" + "^";
+                                        //driverRoute += "DL" + "^";
                                     }
                                 }
 
@@ -116,7 +114,7 @@ namespace Try
                             }
                             //Session["driverRoute"] = driverRoute;
                         }
-                    }
+                    
                 }
             }
         }
@@ -137,7 +135,7 @@ namespace Try
                     {
                         LukeRefL2.LocationInfo driverLocation = driverObjs[i].LastKnownLocation;
 
-                        HiddenField1.Value += driverObjs[i].Name + "*" + driverLocation.Latitude + "*" + driverLocation.Longitude + "@";
+                        HiddenField1.Value += driverObjs[i].Name + "*" + driverLocation.Latitude + "*" + driverLocation.Longitude + "^";
 
                     }
                 }
@@ -179,7 +177,7 @@ namespace Try
                     {
                         LukeRefL2.LocationInfo driverLocation = driverObjs[i].LastKnownLocation;
 
-                        HiddenField1.Value += driverObjs[i].Name + "*" + driverLocation.Latitude + "*" + driverLocation.Longitude + "@";
+                        HiddenField1.Value += driverObjs[i].Name + "*" + driverLocation.Latitude + "*" + driverLocation.Longitude + "^";
 
                     }
                 }

@@ -186,7 +186,7 @@
                         <div class="w3-container">
                             <p>Submit</p>
                             <%--<input type="button" value="submit" id="testCheck">--%>
-                            <asp:Button ID="Submit" runat="server" OnClick="Submit_Click" Text="Button" />
+                            
                             <p>
                             </p>
 
@@ -229,6 +229,12 @@
 
                                     <!-- MAP -->
                                     <h6 class="w3-opacity">Map</h6>
+                                    <div class="btn-group">
+                                      <asp:Button ID="Submit" runat="server" OnClick="Submit_Click" Text="Button" />
+                                      <button>Samsung</button>
+                                      <button>Sony</button>
+                                    </div>
+
                                     <%--<asp:Button ID="test" OnClick="getTrafficConditions" runat="server" class="w3-button w3-block w3-red w3-section" title="Test" Text="Test"></asp:Button>--%>
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                     <div id="map" style="height: 440px; border: 1px solid #AAA;">
@@ -315,54 +321,55 @@
                                                 <%}%>--%>
 
                                             // Route 
-                                            //var allDriver = document.getElementById("HiddenField3").value.split("$");
-                                            //for (j = 0; j < allDriver.length; j++) {
-                                            //    var test = []
+                                            var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            for (j = 0; j < allDriver.length; j++) {
+                                                var test = []
                                                 
-                                            //    if (allDriver[j].length > 0) {
-                                            //        var allDriverRoute = allDriver[j].split("@");
-                                            //        for (i = 0; i < allDriverRoute.length; i++) {
-                                            //            if (allDriverRoute[i].length > 0) {
-                                            //                var oneLocation = allDriverRoute[i].split("*");
-                                            //                //var oneNextLocation = allDriverRoute[i + 1].split("*");
-                                            //                if (oneLocation.length > 0) {
-                                            //                    alert(oneLocation)
+                                                if (allDriver[j].length > 0) {
+                                                    var allDriverRoute = allDriver[j].split("^");
+                                                    for (i = 0; i < allDriverRoute.length; i++) {
+                                                        if (allDriverRoute[i].length > 0) {
+                                                            alert(allDriverRoute)
+                                                            var oneLocation = allDriverRoute[i].split("*");
+                                                            //var oneNextLocation = allDriverRoute[i + 1].split("*");
+                                                            if (oneLocation.length > 0) {
+                                                                alert(oneLocation)
                                                               
-                                            //                    test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))
+                                                                test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))
                                                                 
-                                            //                }
-                                            //            }
-                                            //        }
-                                            //            route = L.Routing.control({
-                                            //            waypoints: test
-                                            //        }).addTo(map).hide();
-                                            //    }
-                                            //}
+                                                            }
+                                                        }
+                                                    }
+                                                        route = L.Routing.control({
+                                                        waypoints: test
+                                                    }).addTo(map).hide();
+                                                }
+                                            }
 
-                                            //var allDriver = document.getElementById("HiddenField3").value.split("$");
-                                            //for (j = 0; j < allDriver.length; j++) {
-                                            //    var test = []
-                                            //    var test2 = []
-                                            //    if (allDriver[j].length > 0) {
-                                            //        var allDriverRoute = allDriver[j].split("@");
-                                            //        for (i = 0; i < allDriverRoute.length; i++) {
-                                            //            if (allDriverRoute[i].length > 0) {
-                                            //                var oneLocation = allDriverRoute[i].split("*");
-                                            //                if (oneLocation.length > 0) {
-                                            //                    alert(oneLocation)
-                                            //                    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                            //                    .bindPopup( (i+1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
-                                            //                    .addTo(map)
+                                            var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            for (j = 0; j < allDriver.length; j++) {
+                                                var test = []
+                                                var test2 = []
+                                                if (allDriver[j].length > 0) {
+                                                    var allDriverRoute = allDriver[j].split("^");
+                                                    for (i = 0; i < allDriverRoute.length; i++) {
+                                                        if (allDriverRoute[i].length > 0) {
+                                                            var oneLocation = allDriverRoute[i].split("*");
+                                                            if (oneLocation.length > 0) {
+                                                                alert(oneLocation)
+                                                                marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
+                                                                .bindPopup( (i+1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
+                                                                .addTo(map)
 
-                                            //                }
-                                            //            }
-                                            //        }
+                                                            }
+                                                        }
+                                                    }
                                                   
-                                            //    }
-                                            //}
+                                                }
+                                            }
 
                                                 //// driver current location marker 
-                                                //    var allDriverLoc = document.getElementById("HiddenField1").value.split("@");
+                                                //    var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
                                                 //    if (allDriverLoc[0] != "") {
                                                 //        var oneDriverLoc = allDriverLoc[0].split("*");
 
@@ -377,7 +384,7 @@
                                                 //    }
 
                                                 //    //LTA incidents
-                                                //    var allLTAIncidents = document.getElementById("HiddenField2").value.split("@");
+                                                //    var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
 
                                                 //    if (allLTAIncidents[0] != "") {
                                                 //        for (i = 0; i < allLTAIncidents.length; i++) {
@@ -390,42 +397,37 @@
                                                 //        }
                                                 //    }
 
-                                            //cluster
-                                            var cluster = L.markerClusterGroup();
-                                            var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            ////cluster
+                                            //var cluster = L.markerClusterGroup();
+                                            //var allDriver = document.getElementById("HiddenField3").value.split("$");
                                             
-                                            for (j = 0; j < allDriver.length; j++) {
-                                                var test = []
-                                                var test2 = []
-                                                if (allDriver[j].length > 0) {
-                                                    var allDriverRoute = allDriver[j].split("@");
-                                                    for (i = 0; i < allDriverRoute.length; i++) {
-                                                        if (allDriverRoute[i].length > 0) {
-                                                            var oneLocation = allDriverRoute[i].split("*");
-                                                            if (oneLocation.length > 0) {
-                                                                //alert(oneLocation)
-                                                                marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup();
-                                                                    //.addTo(map)
-                                                                cluster.addLayer(marker);
-                                                            }
-                                                        }
-                                                    }
-                                                    map.addLayer(cluster);
+                                            //for (j = 0; j < allDriver.length; j++) {
+                                            //    var test = []
+                                            //    var test2 = []
+                                            //    if (allDriver[j].length > 0) {
+                                            //        var allDriverRoute = allDriver[j].split("^");
+                                            //        for (i = 0; i < allDriverRoute.length; i++) {
+                                            //            if (allDriverRoute[i].length > 0) {
+                                            //                var oneLocation = allDriverRoute[i].split("*");
+                                            //                if (oneLocation.length > 0) {
+                                            //                    //alert(oneLocation)
+                                            //                    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
+                                            //                        .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup();
+                                            //                        //.addTo(map)
+                                            //                    cluster.addLayer(marker);
+                                            //                }
+                                            //            }
+                                            //        }
+                                            //        map.addLayer(cluster);
 
-                                                }
-                                            }
+                                            //    }
+                                            //}
 
-
-
-
-
-                                            
+    
                                         </script>
 
 
                                     </div>
-
 
 
                                     <p />
