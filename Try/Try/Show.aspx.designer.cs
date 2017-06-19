@@ -22,15 +22,6 @@ namespace Try {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// courRoute control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox courRoute;
-        
-        /// <summary>
         /// HiddenField1 control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,22 @@ namespace Try {
         protected global::System.Web.UI.WebControls.HiddenField HiddenTrafficLayer;
         
         /// <summary>
-        /// Submit control.
+        /// submitRoute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Submit;
+        protected global::System.Web.UI.WebControls.Button submitRoute;
+        
+        /// <summary>
+        /// trafficCondi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button trafficCondi;
         
         /// <summary>
         /// selectAll control.

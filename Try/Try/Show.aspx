@@ -67,6 +67,8 @@
             background-color: #FFA500;
             color: white;
         }
+
+
     </style>
 
 
@@ -133,69 +135,31 @@
         </div>
 
         <!-- Page Container -->
-        <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 80px">
+        <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 70px">
             <!-- The Grid -->
             <div class="w3-row">
                 <!-- Left Column -->
-                <div class="w3-col m2">
+                <%--<div class="w3-col m2">
                     <!-- Profile -->
                     <div class="w3-card-2 w3-round w3-white">
-                        <div class="w3-container">
-                            <h4 class="w3-center">Show</h4>
-
-                            <hr>
-                            <p>
-                                <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
-                            </p>
-                            <p>
-                                <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
-                            </p>
-                            <p>
-                                <i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
-                            </p>
-                        </div>
+                        
                     </div>
                     <br>
 
                     <!-- Accordion -->
                     <div class="w3-card-2 w3-round">
-                        <div class="w3-white">
-                            <button onclick="myFunction('Demo1');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Courier Type</button>
-                            <div id="Demo1" class="w3-hide w3-container">
-
-                                <input type="checkbox" name="vehicle" value="network">Network<br>
-                                <input type="checkbox" name="vehicle" value="express">Express<br>
-                            </div>
-                            <button onclick="myFunction('Demo2');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Postal Code</button>
-                            <div id="Demo2" class="w3-hide w3-container">
-                                <p>Some other text..</p>
-                            </div>
-
-                            <button onclick="myFunction('3');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Route</button>
-                            <div id="3" class="w3-hide w3-container">
-                                <asp:CheckBox ID="courRoute" runat="server" />Courier Route<br>
-                            </div>
-
-
-                        </div>
+                        
                     </div>
                     <br>
 
                     <!-- Others -->
                     <div class="w3-card-2 w3-round w3-white w3-hide-small">
-                        <div class="w3-container">
-                            <p>Submit</p>
-                            <%--<input type="button" value="submit" id="testCheck">--%>
-                            
-                            <p>
-                            </p>
-
-                        </div>
-                    </div>
-                    <br>
+                       
+                    </div>--%>
+                    <%--<br>--%>
 
                     <!-- Alert Box -->
-                    <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+                    <%--<div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
                         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
                             <i class="fa fa-remove"></i>
                         </span>
@@ -203,13 +167,13 @@
                             <strong>Hey!</strong>
                         </p>
                         <p>Tan's Battery is Low.</p>
-                    </div>
+                    </div>--%>
 
                     <!-- End Left Column -->
                 </div>
 
                 <!-- Middle Column -->
-                <div class="w3-col m8">
+                <div class="w3-col m10">
                     <div class="w3-row-padding">
                         <div class="w3-col m12">
                             <div class="w3-card-2 w3-round w3-white">
@@ -228,16 +192,17 @@
                                     <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
 
                                     <!-- MAP -->
-                                    <h6 class="w3-opacity">Map</h6>
+                                    
                                     <div class="btn-group">
-                                      <asp:Button ID="Submit" runat="server" OnClick="Submit_Click" Text="Button" />
-                                      <button>Samsung</button>
-                                      <button>Sony</button>
+                                      <asp:Button ID="submitRoute" runat="server" OnClick="Submit_Click" Text="Courier Route" />
+                                      <asp:Button ID="trafficCondi" runat="server" OnClick="getTrafficConditions" Text="Traffic Conditions" />
+                                      
                                     </div>
+                                    <p />
 
                                     <%--<asp:Button ID="test" OnClick="getTrafficConditions" runat="server" class="w3-button w3-block w3-red w3-section" title="Test" Text="Test"></asp:Button>--%>
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
-                                    <div id="map" style="height: 440px; border: 1px solid #AAA;">
+                                    <div id="map" style="height: 500px; border: 1px solid #AAA;">
 
                                         <script>
                                             //marker 
@@ -328,15 +293,11 @@
                                                 if (allDriver[j].length > 0) {
                                                     var allDriverRoute = allDriver[j].split("^");
                                                     for (i = 0; i < allDriverRoute.length; i++) {
-                                                        if (allDriverRoute[i].length > 0) {
-                                                            alert(allDriverRoute)
+                                                        if (allDriverRoute[i].length > 0) {                                                            
                                                             var oneLocation = allDriverRoute[i].split("*");
                                                             //var oneNextLocation = allDriverRoute[i + 1].split("*");
                                                             if (oneLocation.length > 0) {
-                                                                alert(oneLocation)
-                                                              
-                                                                test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))
-                                                                
+                                                                test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))                                                                
                                                             }
                                                         }
                                                     }
@@ -355,47 +316,44 @@
                                                     for (i = 0; i < allDriverRoute.length; i++) {
                                                         if (allDriverRoute[i].length > 0) {
                                                             var oneLocation = allDriverRoute[i].split("*");
-                                                            if (oneLocation.length > 0) {
-                                                                alert(oneLocation)
+                                                            if (oneLocation.length > 0) {                                                                
                                                                 marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
                                                                 .bindPopup( (i+1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
                                                                 .addTo(map)
-
                                                             }
                                                         }
-                                                    }
-                                                  
+                                                    }                                                 
                                                 }
                                             }
 
-                                                //// driver current location marker 
-                                                //    var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
-                                                //    if (allDriverLoc[0] != "") {
-                                                //        var oneDriverLoc = allDriverLoc[0].split("*");
+                                                // driver current location marker 
+                                                    var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
+                                                    if (allDriverLoc[0] != "") {
+                                                        var oneDriverLoc = allDriverLoc[0].split("*");
 
-                                                //        for (i = 0; i < allDriverLoc.length; i++) {
-                                                //            var oneDriverLoc = allDriverLoc[i].split("*");
-                                                //            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
-                                                //                .bindPopup(oneDriverLoc[0]).openPopup()
-                                                //                //layers code beneath
-                                                //                //.addTo(driverLocationLayer)
-                                                //                .addTo(map)   
-                                                //        }                                                       
-                                                //    }
+                                                        for (i = 0; i < allDriverLoc.length; i++) {
+                                                            var oneDriverLoc = allDriverLoc[i].split("*");
+                                                            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
+                                                                .bindPopup(oneDriverLoc[0]).openPopup()
+                                                                //layers code beneath
+                                                                //.addTo(driverLocationLayer)
+                                                                .addTo(map)   
+                                                        }                                                       
+                                                    }
 
                                                 //    //LTA incidents
-                                                //    var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
+                                                    var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
 
-                                                //    if (allLTAIncidents[0] != "") {
-                                                //        for (i = 0; i < allLTAIncidents.length; i++) {
-                                                //            var oneLTAIncidents = allLTAIncidents[i].split("*");
-                                                //            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])])
-                                                //                .bindPopup(oneLTAIncidents[0]).openPopup()
-                                                //                //.addTo(map)
-                                                //                trafficLayer.addLayer(marker);
+                                                    if (allLTAIncidents[0] != "") {
+                                                        for (i = 0; i < allLTAIncidents.length; i++) {
+                                                            var oneLTAIncidents = allLTAIncidents[i].split("*");
+                                                            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])])
+                                                                .bindPopup(oneLTAIncidents[0]).openPopup()
+                                                                .addTo(map)
+                                                                //trafficLayer.addLayer(marker);
 
-                                                //        }
-                                                //    }
+                                                        }
+                                                    }
 
                                             ////cluster
                                             //var cluster = L.markerClusterGroup();
@@ -501,7 +459,7 @@
             </div>
 
             <!-- End Page Container -->
-        </div>
+        <%--</div>--%>
         <br>
 
         <!-- Footer -->

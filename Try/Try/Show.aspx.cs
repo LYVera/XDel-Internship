@@ -25,7 +25,7 @@ namespace Try
 
                 CheckBoxList1.DataSource = driverNameArray;
                 CheckBoxList1.DataBind();
-                getTrafficConditions();
+                //getTrafficConditions();
                 getBattery();
                 HiddenPostalCode.Value = "0";
                 HiddenTrafficLayer.Value = "0";
@@ -53,7 +53,7 @@ namespace Try
 
         }
 
-        public void getTrafficConditions()
+        public void getTrafficConditions(object sender, EventArgs e)
         {
             LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
 
