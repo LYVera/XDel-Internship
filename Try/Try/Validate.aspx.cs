@@ -23,13 +23,7 @@ namespace Try
 
         }
 
-        public Models.PolygonO[] getPolygon()
-        {
-            Models.PostalCodeInitializer PostalCodeDAO = new Models.PostalCodeInitializer();
-            Models.PolygonO[] polygons = PostalCodeDAO.GetPostalCodes();
-            return polygons;
-        }
-
+      
         protected void Validate_Click(object sender, EventArgs e)
         {
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();

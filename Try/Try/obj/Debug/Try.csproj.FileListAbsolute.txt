@@ -184,3 +184,17 @@ C:\Users\Vera\Desktop\Try\Try\bin\Microsoft.AI.Web.xml
 C:\Users\Vera\Desktop\Try\Try\obj\Debug\Try.csprojResolveAssemblyReference.cache
 C:\Users\Vera\Desktop\Try\Try\obj\Debug\Try.dll
 C:\Users\Vera\Desktop\Try\Try\obj\Debug\Try.pdb
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Caliburn.Micro.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\IronRuby.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\IronRuby.Libraries.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\IronRuby.Libraries.Yaml.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Jurassic.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Microsoft.Dynamic.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Microsoft.Scripting.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Microsoft.Scripting.Metadata.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\SassAndCoffee.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\System.Windows.Interactivity.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Telerik.Web.Mvc.dll
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Caliburn.Micro.pdb
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\Caliburn.Micro.xml
+C:\Users\Vera\Desktop\XDel-Internship\Try\Try\bin\System.Windows.Interactivity.xml

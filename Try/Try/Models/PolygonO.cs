@@ -5,12 +5,14 @@
         public string Coordinates { get; set; }
         public string Color { get; set; }
         public int Id { get; set; }
+        public string Cluster { get; set; }
 
-        public PolygonO(string Coor, string C, int I)
+        public PolygonO(string Coor, string C, int I, string Cl)
         {
             Coordinates = Coor;
             Color = C;
             Id = I;
+            Cluster = Cl;
         }
 
         public string getCoordinates()
@@ -26,4 +28,3 @@
 
     }
 }
-

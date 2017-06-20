@@ -30,59 +30,19 @@
     <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
 
 
+    <!-- Css for ShowMap -->
+    <link rel="stylesheet" type="text/css" href="Scripts/ShowMap.css" />
 
     <title>View Map</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        html, body, h1, h2, h3, h4, h5 {
-            font-family: "Open Sans", sans-serif
-        }
-
-        .w3-theme-orange {
-            color: #f1f1f1 !important;
-            background-color: #ff9800 !important;
-        }
-
-        .tableC {
-            font-family: Arial,Verdana,sans-serif;
-            font-size: 0.75em;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2
-        }
-
-        th {
-            background-color: #FFA500;
-            color: white;
-        }
-
-
-    </style>
-
-
+    
 </head>
 
 
 
 <body class="w3-theme-l5">
     <form id="form1" runat="server">
-
-        <!--TRYYYYY function-->
-
-
-
 
         <!-- Navbar -->
         <div class="w3-top">
@@ -192,55 +152,109 @@
                                     <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
 
                                     <!-- MAP -->
+                                
+
+
+                                    <div class="row">
+                                     <div class="divToggleButton">
+                                    <asp:CheckBox ID="chkTraffic" runat="server" 
+
+                                    AutoPostBack="true" />
+                                    <asp:Label ID="lblToggleTraffic" 
+
+                                    AssociatedControlID="chkTraffic" runat="server" 
+
+                                    ToolTip="Toggle between Traffic Condition"/>
+                                </div>
+
+                                     <div class="divToggleRoute">
+                                            <asp:CheckBox ID="toggleRoute" runat="server" 
+
+                                            AutoPostBack="true" />
+                                            <asp:Label ID="lblToggleRoute" 
+
+                                            AssociatedControlID="toggleRoute" runat="server" 
+
+                                            ToolTip="Toggle between Traffic Condition"/>
+                                        </div>
+
+                                         <!— Button —>
+                                        <asp:DropDownList ID="Grouping" runat="server" Width="200px">
+                                            <asp:ListItem Text="Central 1" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="Central 2" Value="2"></asp:ListItem>
+                                            <asp:ListItem Text="Central 3" Value="3"></asp:ListItem>
+                                            <asp:ListItem Text="Central 4" Value="4"></asp:ListItem>
+                                            <asp:ListItem Text="East 1" Value="5"></asp:ListItem>
+                                            <asp:ListItem Text="East 2" Value="6"></asp:ListItem>
+                                            <asp:ListItem Text="North 1" Value="7"></asp:ListItem>
+                                            <asp:ListItem Text="North 2" Value="8"></asp:ListItem>
+                                            <asp:ListItem Text="Northeast 1" Value="9"></asp:ListItem>
+                                            <asp:ListItem Text="Northeast 2" Value="10"></asp:ListItem>
+                                            <asp:ListItem Text="Northwest 1" Value="11"></asp:ListItem>
+                                            <asp:ListItem Text="Northwest 2" Value="12"></asp:ListItem>
+                                            <asp:ListItem Text="West 1" Value="13"></asp:ListItem>
+                                            <asp:ListItem Text="West 2" Value="14"></asp:ListItem>
+                                            <asp:ListItem Text="West 3" Value="15"></asp:ListItem>
+                                            <asp:ListItem Text="New 1" Value="16"></asp:ListItem>
+                                            <asp:ListItem Text="New 2" Value="17"></asp:ListItem>
+                                            <asp:ListItem Text="New 3" Value="18"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit"  />
+
+
+                                    <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                     
-                                    <div class="btn-group">
-                                      <asp:Button ID="submitRoute" runat="server" OnClick="Submit_Click" Text="Courier Route" />
-                                      <asp:Button ID="trafficCondi" runat="server" OnClick="getTrafficConditions" Text="Traffic Conditions" />
-                                      
+                                    <asp:HiddenField ID="HiddenField4" runat="server" Value="" /> 
+
+
+
+                                      <%--<asp:Button ID="submitRoute" runat="server" OnClick="Submit_Click" Text="Courier Route" />--%>
+                                      <%--<asp:Button ID="trafficCondi" runat="server" OnClick="getTrafficConditions" Text="Traffic Conditions" />  --%>
                                     </div>
+                                     
+                                    <br />
+
                                     <p />
 
-                                    <%--<asp:Button ID="test" OnClick="getTrafficConditions" runat="server" class="w3-button w3-block w3-red w3-section" title="Test" Text="Test"></asp:Button>--%>
-                                    <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                     <div id="map" style="height: 500px; border: 1px solid #AAA;">
 
                                         <script>
                                             //marker 
 
 
-                                            //var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
-                                            //    thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+                                            var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+                                                thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
-                                            //var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                            //    osmAttrib = '&copy; ' + osmLink + ' Contributors',
-                                            //    landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-                                            //    thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
+                                            var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                                osmAttrib = '&copy; ' + osmLink + ' Contributors',
+                                                landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+                                                thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
 
-                                            //var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
-                                            //    landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
+                                            var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
+                                                landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
 
-                                            //var map = L.map('map', {
-                                            //    layers: [osmMap] // only add one!
-                                            //})
-                                            //    .setView([1.3521, 103.8198], 11);
+                                            var map = L.map('map', {
+                                                layers: [osmMap] // only add one!
+                                            })
+                                                .setView([1.3521, 103.8198], 11);
 
-                                            //var baseLayers = {
-                                            //    "Colour Map": osmMap,
-                                            //    "GrayScale Map": landMap
-                                            //};
+                                            var baseLayers = {
+                                                "Colour Map": osmMap,
+                                                "GrayScale Map": landMap
+                                            };
 
-                                            //var trafficLayer = new L.LayerGroup();   
-                                            //var postalCodeBoundaryLayer = new L.LayerGroup();
+                                           // var trafficLayer = new L.LayerGroup();   
+                                            var postalCodeBoundaryLayer = new L.LayerGroup();
                                             //var driverRoute = new L.LayerGroup();
-                                            //var overlays = {
-                                            //    "Traffic Condition": trafficLayer,
-                                            //    "Postal Code Boundary": postalCodeBoundaryLayer,
-                                            //    "Driver Route": driverRoute
-                                            //};
+                                            var overlays = {
+                                                //"Traffic Condition": trafficLayer,
+                                                "Postal Code Boundary": postalCodeBoundaryLayer,
+                                                //"Driver Route": driverRoute
+                                            };
 
 
-                                            //// Layers 
-                                            //L.control.layers(baseLayers, overlays).addTo(map);
+                                            // Layers 
+                                            L.control.layers(baseLayers, overlays).addTo(map);
                                             //if (document.getElementById("HiddenPostalCode").value == "1") {
                                             //    postalCodeBoundaryLayer.addTo(map);
                                             //}
@@ -253,37 +267,35 @@
 
 
                                             //Map
-                                            var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                                subdomains: ['a', 'b', 'c']
-                                            }).addTo(map);
+                                            //var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
+                                            //L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                            //    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                                            //    subdomains: ['a', 'b', 'c']
+                                            //}).addTo(map);
 
 
-                                                <%--<%Try.Models.PolygonO[] polygons1 = getPolygon(); %>                         
-                                                var polygonList = [];
-                                                <%for (int i = 1; i < 84; i++) {%>
-                                                var poly = L.polygon([<%=polygons1[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
-                                                
-                                                poly.setStyle({ fillColor: '<%=polygons1[i].Color%>', color: '<%=polygons1[i].Color%>' });
-                                                polygonList[<%=i%>] = poly;
-                                                
-                                                $(document).ready(function () {
-                                                    polygonList[<%=i%>].on('click', function (e) {                                                      
-                                                    <%if (polygons1[i].Color == "#FFFFFF") {%>
-                                                    polygonList[<%=i%>].setStyle({ fillColor: '#1d6005', color: '#34db63' });
-                                                        <%polygons1[i].Color = "#1d6005"; %>
-                                                    <%} else {%>
-                                                    alert("<%=polygons1[i].Color%>" + "polygonList[<%=i%>].color");
-                                                    polygonList[<%=i%>].setStyle({ fillColor: '#FFFFFF', color: '#FFFFFF' });
-                                                        <%polygons1[i].Color = "#FFFFFF"; %>
-                                                         
-                                                    <%}%>
-                                                    alert("<%=polygons1[i].Color%>" + "polygonList[<%=i%>].color");
-                                                         e.preventDefault();
+                                                <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
+                                                <%String[] clusteringGroups = GetClusteringNumbers();%>
+                                                <%int[] totalJobs = CalculateTotalJobsPerPostal();%>
+                                            var polygonList = [];
+                                            var count = [];
+
+                                                <%for (int i = 1; i < 84; i++)
+                                                {%>
+                                                var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
+                                                count[<%=i%>] = 0;
+                                                    poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
+                                                    poly.bindTooltip("<%=i%> " + "(" + "<%=clusteringGroups[i]%>" + ") " + "<%=totalJobs[i]%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 });
+                                                    polygonList[<%=i%>] = poly;
+                                                    $(document).ready(function () {
+                                                        polygonList[<%=i%>].on('click', function (e) {
+                                                            document.getElementById("HiddenId").value = "<%=i%>";
+                                                            document.getElementById("polygonclick").click();
+
+                                                     e.preventDefault();
+                                                        });
                                                     });
-                                                });
-                                                <%}%>--%>
+                                                <%}%>
 
                                             // Route 
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
@@ -301,7 +313,8 @@
                                                             }
                                                         }
                                                     }
-                                                        route = L.Routing.control({
+                                                    route = L.Routing.control({
+                                                        draggableWaypoints: false,
                                                         waypoints: test
                                                     }).addTo(map).hide();
                                                 }
@@ -384,6 +397,8 @@
     
                                         </script>
 
+                                        <asp:Button runat="server" ID="polygonclick" Text="" Style="display: none;" OnClick="polygon_Click" />
+                                        <asp:HiddenField ID="HiddenId" runat="server" /> 
 
                                     </div>
 

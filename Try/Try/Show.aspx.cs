@@ -10,6 +10,16 @@ namespace Try
 {
     public partial class Show : System.Web.UI.Page
     {
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Models.PostalCodeInitializer.InitialisePostalCodes();
+            }
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -26,9 +36,11 @@ namespace Try
                 CheckBoxList1.DataSource = driverNameArray;
                 CheckBoxList1.DataBind();
                 //getTrafficConditions();
+                HiddenPostalCode.Value = "0";
                 getBattery();
                 HiddenPostalCode.Value = "0";
                 HiddenTrafficLayer.Value = "0";
+              
             }
             else
             {
@@ -38,6 +50,27 @@ namespace Try
                 HiddenField3.Value = "";
                 HiddenPostalCode.Value = "1";
                 HiddenTrafficLayer.Value = "1";
+
+                //toggle traffic condition
+                if (chkTraffic.Checked)
+                {
+                    getTrafficConditions();
+                }
+                else
+                {
+                    HiddenField2.Value = "";
+                }
+
+                //toggle route
+                if (toggleRoute.Checked)
+                {
+                    Route_Click();
+                }
+                else
+                {
+                    HiddenField3.Value = "";
+                }
+                
             }
 
 
@@ -53,7 +86,7 @@ namespace Try
 
         }
 
-        public void getTrafficConditions(object sender, EventArgs e)
+        public void getTrafficConditions()
         {
             LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
 
@@ -67,7 +100,7 @@ namespace Try
 
         }
 
-        protected void Submit_Click(object sender, EventArgs e)
+        protected void Route_Click()
         {
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();
             List<ListItem> selected = new List<ListItem>();
@@ -142,11 +175,51 @@ namespace Try
             }
         }
 
-        public Models.PolygonO[] getPolygon()
+        protected Models.PolygonO[] InitialisePolygon()
         {
-            Models.PostalCodeInitializer PostalCodeDAO = new Models.PostalCodeInitializer();
-            Models.PolygonO[] polygons = PostalCodeDAO.GetPostalCodes();
+            Models.PolygonO[] polygons = Models.PostalCodeInitializer.GetPostalCodes();
             return polygons;
+        }
+
+        protected void Color_Click(object sender, EventArgs e)
+        {
+            Models.PostalCodeInitializer.ChangeClusterColor(int.Parse(Grouping.SelectedValue));
+        }
+
+        protected string[] GetClusteringNumbers()
+        {
+            return Models.PostalCodeInitializer.GetClustering();
+        }
+
+        protected void polygon_Click(object sender, EventArgs e)
+        {
+            string id = this.HiddenId.Value;
+            if (!id.Equals(""))
+            {
+                Models.PostalCodeInitializer.ChangeColor(int.Parse(id));
+            }
+        }
+
+        protected int[] CalculateTotalJobsPerPostal()
+        {
+            int[] jobs = new int[84];
+
+            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
+            for (int i = 0; i < driverObjs.Length; i++)
+            {
+                long driverID = driverObjs[i].DriverIDX;
+                LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
+                LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
+                if (driverJobLocations != null)
+                {
+                    for (int k = 0; k < driverJobLocations.Length; k++)
+                    {
+                        LukeRef.Address jobLoc = driverJobLocations[k].Location;
+                        jobs[int.Parse(jobLoc.postal.Substring(0, 2))] += 1;
+                    }
+                }
+            }
+            return jobs;
         }
 
         protected void uncheckAll_Click(object sender, EventArgs e)

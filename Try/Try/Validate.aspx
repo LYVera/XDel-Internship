@@ -238,7 +238,7 @@
                                             //}).addTo(map);
                                                 
 
-                                               <%Try.Models.PolygonO[] polygons1 = getPolygon(); %>                         
+                                              <%-- <%Try.Models.PolygonO[] polygons1 = getPolygon(); %>                         
                                                 var polygonList = [];
                                                 <%for (int i = 1; i < 84; i++) {%>
                                                 var poly = L.polygon([<%=polygons1[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
@@ -261,7 +261,7 @@
                                                          e.preventDefault();
                                                     });
                                                 });
-                                                <%}%>
+                                                <%}%>--%>
 
 
                                                 // driver current location marker 
