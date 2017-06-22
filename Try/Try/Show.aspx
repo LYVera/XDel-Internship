@@ -147,6 +147,8 @@
                                     <!-- Route Hidden Field -->
                                     <asp:HiddenField ID="HiddenField3" runat="server" />
                                     <!-- Route Hidden Field -->
+                                    <asp:HiddenField ID="HiddenField4" runat="server" />
+                                    <!-- Route Hidden Field -->
                                     <asp:HiddenField ID="HiddenPostalCode" runat="server" />
                                     <!-- Route Hidden Field -->
                                     <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
@@ -157,15 +159,15 @@
 
                                     <div class="row">
                                      <div class="divToggleButton">
-                                    <asp:CheckBox ID="chkTraffic" runat="server" 
+                                        <asp:CheckBox ID="chkTraffic" runat="server" 
 
-                                    AutoPostBack="true" />
-                                    <asp:Label ID="lblToggleTraffic" 
+                                        AutoPostBack="true" />
+                                        <asp:Label ID="lblToggleTraffic" 
 
-                                    AssociatedControlID="chkTraffic" runat="server" 
+                                        AssociatedControlID="chkTraffic" runat="server" 
 
-                                    ToolTip="Toggle between Traffic Condition"/>
-                                </div>
+                                        ToolTip="Toggle between Traffic Condition"/>
+                                    </div>
 
                                      <div class="divToggleRoute">
                                             <asp:CheckBox ID="toggleRoute" runat="server" 
@@ -176,9 +178,20 @@
                                             AssociatedControlID="toggleRoute" runat="server" 
 
                                             ToolTip="Toggle between Traffic Condition"/>
-                                        </div>
+                                     </div>
+                                    
+                                        <div class="divToggleCluster">
+                                            <asp:CheckBox ID="toggleCluster" runat="server" 
 
-                                         <!— Button —>
+                                            AutoPostBack="true" />
+                                            <asp:Label ID="lblToggleCluster" 
+
+                                            AssociatedControlID="toggleCluster" runat="server" 
+
+                                            ToolTip="Toggle between Traffic Condition"/>
+                                     </div>
+
+                                         <!-- Button -->
                                         <asp:DropDownList ID="Grouping" runat="server" Width="200px">
                                             <asp:ListItem Text="Central 1" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="Central 2" Value="2"></asp:ListItem>
@@ -204,9 +217,6 @@
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                     
-                                    <asp:HiddenField ID="HiddenField4" runat="server" Value="" /> 
-
-
 
                                       <%--<asp:Button ID="submitRoute" runat="server" OnClick="Submit_Click" Text="Courier Route" />--%>
                                       <%--<asp:Button ID="trafficCondi" runat="server" OnClick="getTrafficConditions" Text="Traffic Conditions" />  --%>
@@ -274,7 +284,7 @@
                                             //}).addTo(map);
 
 
-                                                <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
+                                               <%-- <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
                                                 <%String[] clusteringGroups = GetClusteringNumbers();%>
                                                 <%int[] totalJobs = CalculateTotalJobsPerPostal();%>
                                             var polygonList = [];
@@ -295,7 +305,7 @@
                                                      e.preventDefault();
                                                         });
                                                     });
-                                                <%}%>
+                                                <%}%>--%>
 
                                             // Route 
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
@@ -368,31 +378,31 @@
                                                         }
                                                     }
 
-                                            ////cluster
-                                            //var cluster = L.markerClusterGroup();
-                                            //var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                            //cluster
+                                            var cluster = L.markerClusterGroup();
+                                            var allDriver = document.getElementById("HiddenField4").value.split("$");
                                             
-                                            //for (j = 0; j < allDriver.length; j++) {
-                                            //    var test = []
-                                            //    var test2 = []
-                                            //    if (allDriver[j].length > 0) {
-                                            //        var allDriverRoute = allDriver[j].split("^");
-                                            //        for (i = 0; i < allDriverRoute.length; i++) {
-                                            //            if (allDriverRoute[i].length > 0) {
-                                            //                var oneLocation = allDriverRoute[i].split("*");
-                                            //                if (oneLocation.length > 0) {
-                                            //                    //alert(oneLocation)
-                                            //                    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                            //                        .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup();
-                                            //                        //.addTo(map)
-                                            //                    cluster.addLayer(marker);
-                                            //                }
-                                            //            }
-                                            //        }
-                                            //        map.addLayer(cluster);
+                                            for (j = 0; j < allDriver.length; j++) {
+                                                var test = []
+                                                var test2 = []
+                                                if (allDriver[j].length > 0) {
+                                                    var allDriverRoute = allDriver[j].split("^");
+                                                    for (i = 0; i < allDriverRoute.length; i++) {
+                                                        if (allDriverRoute[i].length > 0) {
+                                                            var oneLocation = allDriverRoute[i].split("*");
+                                                            if (oneLocation.length > 0) {
+                                                                //alert(oneLocation)
+                                                                marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
+                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup();
+                                                                    //.addTo(map)
+                                                                cluster.addLayer(marker);
+                                                            }
+                                                        }
+                                                    }
+                                                    map.addLayer(cluster);
 
-                                            //    }
-                                            //}
+                                                }
+                                            }
 
     
                                         </script>

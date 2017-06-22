@@ -49,6 +49,15 @@ namespace Try {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
         
         /// <summary>
+        /// HiddenField4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField4;
+        
+        /// <summary>
         /// HiddenPostalCode control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,24 @@ namespace Try {
         protected global::System.Web.UI.WebControls.Label lblToggleRoute;
         
         /// <summary>
+        /// toggleCluster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox toggleCluster;
+        
+        /// <summary>
+        /// lblToggleCluster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblToggleCluster;
+        
+        /// <summary>
         /// Grouping control.
         /// </summary>
         /// <remarks>
@@ -119,15 +146,6 @@ namespace Try {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// HiddenField4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField4;
         
         /// <summary>
         /// polygonclick control.

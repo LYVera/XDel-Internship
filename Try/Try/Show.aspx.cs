@@ -70,7 +70,16 @@ namespace Try
                 {
                     HiddenField3.Value = "";
                 }
-                
+
+                //toggle route
+                if (toggleCluster.Checked)
+                {
+                    Cluster_Click();
+                }
+                else
+                {
+                    HiddenField4.Value = "";
+                }
             }
 
 
@@ -148,6 +157,59 @@ namespace Try
                             //Session["driverRoute"] = driverRoute;
                         }
                     
+                }
+            }
+        }
+
+        // cluster
+        protected void Cluster_Click()
+        {
+            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
+            List<ListItem> selected = new List<ListItem>();
+            foreach (ListItem item in CheckBoxList1.Items)
+                if (item.Selected) selected.Add(item);
+
+            for (int j = 0; j < selected.Count; j++)
+            {
+                for (int i = 0; i < driverObjs.Length; i++)
+                {
+                    if (selected[j].ToString().Equals(driverObjs[i].Name))
+                    {
+
+                        long driverID = driverObjs[i].DriverIDX;
+                        LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
+                        LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
+                        if (driverJobLocations != null)
+                        {
+
+                            for (int k = 0; k < driverJobLocations.Length; k++)
+                            {
+                                LukeRef.Address jobLoc = driverJobLocations[k].Location;
+                                HiddenField4.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*";
+                                //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
+                                //obtain array of delivery jobs id
+                                long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
+                                //if its not a dlvery job 
+                                if (dlJobsID.Length == 0)
+                                {
+                                    //obtain array of pick up jobs id
+                                    long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
+                                    HiddenField4.Value += "PU" + "^";
+                                    //driverRoute += "PU" + "^";
+                                }
+                                else
+                                {
+                                    HiddenField4.Value += "DL" + "^";
+                                    //driverRoute += "DL" + "^";
+                                }
+                            }
+
+                            HiddenField4.Value += "$";
+                            //driverRoute += "$";
+                        }
+                        //Session["driverRoute"] = driverRoute;
+                    }
+
                 }
             }
         }
