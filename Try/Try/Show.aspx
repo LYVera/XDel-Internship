@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.Default.css" />
-
-
+    <link rel="stylesheet" href="Scripts/leaflet.extra-markers.min.css"/>
+    
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
     <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
-
 
     <script type='text/javascript' src="Scripts/Leaflet/leaflet.js"></script>
     <script src="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
@@ -23,8 +22,7 @@
     <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
     <script src="Scripts/Leaflet/GreyScale.js" type="text/javascript"></script>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/leaflet.markercluster.js'></script>
-
-
+    <script src="Scripts/leaflet.extra-markers.min.js"></script>
     <!--The search bar script here-->
     <script type="text/javascript" src="Scripts/SearchBar.js"></script>
     <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
@@ -229,9 +227,22 @@
                                     <div id="map" style="height: 500px; border: 1px solid #AAA;">
 
                                         <script>
-                                            //marker 
+                                            //markers
+                                            var trafficMarker = L.ExtraMarkers.icon({
+                                                icon: 'fa-warning',
+                                                markerColor: 'red',
+                                                shape: 'star',
+                                                prefix: 'fa'
+                                            });
 
-
+                                            var humanMarker = L.ExtraMarkers.icon({
+                                                icon: 'fa-user-circle',
+                                                markerColor: 'blue',
+                                                shape: 'circle',
+                                                prefix: 'fa',                                            
+                                            });
+                                           
+                                            //map
                                             var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
                                                 thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
@@ -324,6 +335,7 @@
                                                         }
                                                     }
                                                     route = L.Routing.control({
+                                                        createMarker: function () { return null; },
                                                         draggableWaypoints: false,
                                                         waypoints: test
                                                     }).addTo(map).hide();
@@ -331,20 +343,45 @@
                                             }
 
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
+                                           
                                             for (j = 0; j < allDriver.length; j++) {
                                                 var test = []
                                                 var test2 = []
                                                 if (allDriver[j].length > 0) {
                                                     var allDriverRoute = allDriver[j].split("^");
+                                                    var count = 1;
                                                     for (i = 0; i < allDriverRoute.length; i++) {
+                                                        
+                                                        var pickUpMarker = L.ExtraMarkers.icon({
+                                                            icon: 'fa-number',
+                                                            number: count,
+                                                            markerColor: 'orange',
+                                                            iconColor: 'black'
+                                                        });
+                                                        var deliveryMarker = L.ExtraMarkers.icon({
+                                                            icon: 'fa-number',
+                                                            number: count,
+                                                            markerColor: 'green',
+                                                            iconColor: 'black'
+                                                        });
+
+
                                                         if (allDriverRoute[i].length > 0) {
                                                             var oneLocation = allDriverRoute[i].split("*");
-                                                            if (oneLocation.length > 0) {                                                                
-                                                                marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                                                .bindPopup( (i+1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup()
-                                                                .addTo(map)
+                                                            if (oneLocation.length > 0) {         
+                                                                if (oneLocation[5] == "DL") {
+                                                                    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: deliveryMarker })
+                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
+                                                                    .addTo(map)
+                                                                } else {
+                                                                    marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: pickUpMarker })
+                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
+                                                                    .addTo(map)
+                                                                }
+                                                               
                                                             }
                                                         }
+                                                        count++;
                                                     }                                                 
                                                 }
                                             }
@@ -356,7 +393,7 @@
 
                                                         for (i = 0; i < allDriverLoc.length; i++) {
                                                             var oneDriverLoc = allDriverLoc[i].split("*");
-                                                            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])])
+                                                            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])], { icon: humanMarker })
                                                                 .bindPopup(oneDriverLoc[0]).openPopup()
                                                                 //layers code beneath
                                                                 //.addTo(driverLocationLayer)
@@ -370,7 +407,7 @@
                                                     if (allLTAIncidents[0] != "") {
                                                         for (i = 0; i < allLTAIncidents.length; i++) {
                                                             var oneLTAIncidents = allLTAIncidents[i].split("*");
-                                                            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])])
+                                                            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker})
                                                                 .bindPopup(oneLTAIncidents[0]).openPopup()
                                                                 .addTo(map)
                                                                 //trafficLayer.addLayer(marker);
@@ -393,7 +430,7 @@
                                                             if (oneLocation.length > 0) {
                                                                 //alert(oneLocation)
                                                                 marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[5]).openPopup();
+                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup();
                                                                     //.addTo(map)
                                                                 cluster.addLayer(marker);
                                                             }
@@ -427,64 +464,140 @@
                     <!-- End Middle Column -->
                 </div>
                 <!-- Right Column -->
-                <div id="search">
+                
+            
+                <script>
+                    function openTabs(tabName) {
+                        var i;
+                        var x = document.getElementsByClassName("tab");
+                        for (i = 0; i < x.length; i++) {
+                            x[i].style.display = "none";
+                        }
+                        document.getElementById(tabName).style.display = "block";
+                    }
+                </script>
+                
+               
+
 
                     <div class="w3-col m2">
                         <div class="w3-card-2 w3-round w3-white w3-center">
                             <div class="w3-container">
+                               
+                                 
+                                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchTab');return false">Search</button>
+                                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Route Details</button>
+                                   
+                                
 
-                                <p>Search Drivers:</p>
+                                <div id="SearchTab" class="w3-container tab">
+                                        <p>Search Drivers:</p>
+                                    <div id="search">
+                                        <p />
+                                       
+                                        <input type="text" name="" id="filter" size="15">
 
-                                <p />
-                                <input type="text" name="" id="filter">
-
-                                <p />
-                                <strong>Driver List</strong>
-                                <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
-                                <!-- Clear and Clear All button-->
-                                <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
+                                        <p />
+                                        <strong>Driver List</strong>
+                                        <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
+                                        <!-- Clear and Clear All button-->
+                                        <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
 
 
-                                <p />
-                                <!--filter table for searching drivers-->
-                                <table id="UserGridView" class="tableC">
+                                        <p />
+                                        <!--filter table for searching drivers-->
+                                        <table id="UserGridView" class="tableC">
 
-                                    <tr>
-                                        <td style="text-align: left; padding-left: 5px;">
-                                            <asp:CheckBoxList
-                                                ID="CheckBoxList1"
-                                                AutoPostBack="True"
-                                                OnSelectedIndexChanged="CheckBoxList_Click"
-                                                runat="server">
-                                            </asp:CheckBoxList>
-                                        </td>
-                                    </tr>
+                                            <tr>
+                                                <td style="text-align: left; padding-left: 5px;">
+                                                    <asp:CheckBoxList
+                                                        ID="CheckBoxList1"
+                                                        AutoPostBack="True"
+                                                        OnSelectedIndexChanged="CheckBoxList_Click"
+                                                        runat="server">
+                                                    </asp:CheckBoxList>
+                                                </td>
+                                            </tr>
 
-                                </table>
+                                        </table>
+                                        </div>
+                                </div>
+
+
+                                <div id="routeDetails" class="w3-container tab" style="display:none">
+                                 
+                                    <table border="2">
+
+                             <%
+
+                                        var allDriver = HiddenField3.Value.Split('$');
+                                        for (int j = 0; j < allDriver.Length; j++)
+                                        {
+
+                                            if (allDriver[j].Length > 0)
+                                            {
+                                                var allDriverRoute = allDriver[j].Split('^');
+                                                var count = 1;
+                                                        
+                                           
+                                                 for (int i = 0; i < allDriverRoute.Length; i++)
+                                                {
+                                              %>
+                                        <tr>
+                                            
+                                            <%
+                        
+
+                                                    if (allDriverRoute[i].Length > 0)
+                                                    {
+                                                        var oneLocation = allDriverRoute[i].Split('*');
+                                                 %>
+                                                             
+
+                                                            
+                                                             <%=oneLocation[2] + " " + oneLocation[0] + oneLocation[5] + " - " + oneLocation[6]%>
+                                                
+
+                                                       
+                                                       <% 
+
+                                                    }
+                                                                       %>
+                                                
+                                             </tr>
+                                        <%
+                                                }
+                                               
+                                            } 
+                                        }
+                                       
+                                    
+
+                                        %>
+                                            
+
+                                          </table>
+
+                                </div>
+
+
 
                             </div>
                         </div>
-                        <br>
-
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-
+                    </div>
+                        
 
 
                         <!-- End Right Column -->
-                    </div>
-                </div>
+                
+             
 
 
                 <!-- End Grid -->
-            </div>
+            
 
             <!-- End Page Container -->
-        <%--</div>--%>
+        </div>
         <br>
 
         <!-- Footer -->

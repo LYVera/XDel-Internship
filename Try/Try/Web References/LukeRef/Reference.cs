@@ -23,7 +23,7 @@ namespace Try.LukeRef {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="LukeWSSoap", Namespace="http://www.xdel.com/LukeWS/")]
@@ -35,6 +35,20 @@ namespace Try.LukeRef {
         private System.Threading.SendOrPostCallback UploadJSOperationCompleted;
         
         private System.Threading.SendOrPostCallback DoTestOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetCheckListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckList_GetForClientOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckList_GetForContactOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckList_GetForJobOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckList_SetForClientOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckList_SetForContactOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckList_SetForJobOperationCompleted;
         
         private System.Threading.SendOrPostCallback TriggerCirclesProxyCheckOperationCompleted;
         
@@ -62,7 +76,11 @@ namespace Try.LukeRef {
         
         private System.Threading.SendOrPostCallback ST_GetSolOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ST_GetSolDetailsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ST_GetHistoricSolOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ST_GetHistoricSolDetailsOperationCompleted;
         
         private System.Threading.SendOrPostCallback ST_GetStoredProblemsOperationCompleted;
         
@@ -86,6 +104,8 @@ namespace Try.LukeRef {
         
         private System.Threading.SendOrPostCallback GetDirectionsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetDistrictJobsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetSDOperationCompleted;
         
         private System.Threading.SendOrPostCallback PODImageExtractToFTPOperationCompleted;
@@ -103,6 +123,8 @@ namespace Try.LukeRef {
         private System.Threading.SendOrPostCallback L2_UpdateJobStatusAOperationCompleted;
         
         private System.Threading.SendOrPostCallback L2_UpdateDOStatusOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback L2_UpdateDOCODOperationCompleted;
         
         private System.Threading.SendOrPostCallback L2_UpdateTagStatusOperationCompleted;
         
@@ -320,7 +342,7 @@ namespace Try.LukeRef {
         
         /// <remarks/>
         public LukeWS() {
-            this.Url = global::Try.Properties.Settings.Default.Try_LukeRef_LukeWS;
+            this.Url = global::Try.Properties.Settings.Default.Try_com_xdel_intranet_LukeWS;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
@@ -359,6 +381,27 @@ namespace Try.LukeRef {
         
         /// <remarks/>
         public event DoTestCompletedEventHandler DoTestCompleted;
+        
+        /// <remarks/>
+        public event GetCheckListCompletedEventHandler GetCheckListCompleted;
+        
+        /// <remarks/>
+        public event CheckList_GetForClientCompletedEventHandler CheckList_GetForClientCompleted;
+        
+        /// <remarks/>
+        public event CheckList_GetForContactCompletedEventHandler CheckList_GetForContactCompleted;
+        
+        /// <remarks/>
+        public event CheckList_GetForJobCompletedEventHandler CheckList_GetForJobCompleted;
+        
+        /// <remarks/>
+        public event CheckList_SetForClientCompletedEventHandler CheckList_SetForClientCompleted;
+        
+        /// <remarks/>
+        public event CheckList_SetForContactCompletedEventHandler CheckList_SetForContactCompleted;
+        
+        /// <remarks/>
+        public event CheckList_SetForJobCompletedEventHandler CheckList_SetForJobCompleted;
         
         /// <remarks/>
         public event TriggerCirclesProxyCheckCompletedEventHandler TriggerCirclesProxyCheckCompleted;
@@ -400,7 +443,13 @@ namespace Try.LukeRef {
         public event ST_GetSolCompletedEventHandler ST_GetSolCompleted;
         
         /// <remarks/>
+        public event ST_GetSolDetailsCompletedEventHandler ST_GetSolDetailsCompleted;
+        
+        /// <remarks/>
         public event ST_GetHistoricSolCompletedEventHandler ST_GetHistoricSolCompleted;
+        
+        /// <remarks/>
+        public event ST_GetHistoricSolDetailsCompletedEventHandler ST_GetHistoricSolDetailsCompleted;
         
         /// <remarks/>
         public event ST_GetStoredProblemsCompletedEventHandler ST_GetStoredProblemsCompleted;
@@ -436,6 +485,9 @@ namespace Try.LukeRef {
         public event GetDirectionsCompletedEventHandler GetDirectionsCompleted;
         
         /// <remarks/>
+        public event GetDistrictJobsCompletedEventHandler GetDistrictJobsCompleted;
+        
+        /// <remarks/>
         public event GetSDCompletedEventHandler GetSDCompleted;
         
         /// <remarks/>
@@ -461,6 +513,9 @@ namespace Try.LukeRef {
         
         /// <remarks/>
         public event L2_UpdateDOStatusCompletedEventHandler L2_UpdateDOStatusCompleted;
+        
+        /// <remarks/>
+        public event L2_UpdateDOCODCompletedEventHandler L2_UpdateDOCODCompleted;
         
         /// <remarks/>
         public event L2_UpdateTagStatusCompletedEventHandler L2_UpdateTagStatusCompleted;
@@ -811,27 +866,252 @@ namespace Try.LukeRef {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/DoTest", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DoTest() {
-            this.Invoke("DoTest", new object[0]);
+        public void DoTest(System.DateTime ADate) {
+            this.Invoke("DoTest", new object[] {
+                        ADate});
         }
         
         /// <remarks/>
-        public void DoTestAsync() {
-            this.DoTestAsync(null);
+        public void DoTestAsync(System.DateTime ADate) {
+            this.DoTestAsync(ADate, null);
         }
         
         /// <remarks/>
-        public void DoTestAsync(object userState) {
+        public void DoTestAsync(System.DateTime ADate, object userState) {
             if ((this.DoTestOperationCompleted == null)) {
                 this.DoTestOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDoTestOperationCompleted);
             }
-            this.InvokeAsync("DoTest", new object[0], this.DoTestOperationCompleted, userState);
+            this.InvokeAsync("DoTest", new object[] {
+                        ADate}, this.DoTestOperationCompleted, userState);
         }
         
         private void OnDoTestOperationCompleted(object arg) {
             if ((this.DoTestCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.DoTestCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/GetCheckList", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public CheckListItem[] GetCheckList(string APIKey, long AJobsIDX) {
+            object[] results = this.Invoke("GetCheckList", new object[] {
+                        APIKey,
+                        AJobsIDX});
+            return ((CheckListItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCheckListAsync(string APIKey, long AJobsIDX) {
+            this.GetCheckListAsync(APIKey, AJobsIDX, null);
+        }
+        
+        /// <remarks/>
+        public void GetCheckListAsync(string APIKey, long AJobsIDX, object userState) {
+            if ((this.GetCheckListOperationCompleted == null)) {
+                this.GetCheckListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCheckListOperationCompleted);
+            }
+            this.InvokeAsync("GetCheckList", new object[] {
+                        APIKey,
+                        AJobsIDX}, this.GetCheckListOperationCompleted, userState);
+        }
+        
+        private void OnGetCheckListOperationCompleted(object arg) {
+            if ((this.GetCheckListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCheckListCompleted(this, new GetCheckListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/CheckList_GetForClient", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public CheckListItem[] CheckList_GetForClient(string APIKey, long AClientIDX) {
+            object[] results = this.Invoke("CheckList_GetForClient", new object[] {
+                        APIKey,
+                        AClientIDX});
+            return ((CheckListItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckList_GetForClientAsync(string APIKey, long AClientIDX) {
+            this.CheckList_GetForClientAsync(APIKey, AClientIDX, null);
+        }
+        
+        /// <remarks/>
+        public void CheckList_GetForClientAsync(string APIKey, long AClientIDX, object userState) {
+            if ((this.CheckList_GetForClientOperationCompleted == null)) {
+                this.CheckList_GetForClientOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckList_GetForClientOperationCompleted);
+            }
+            this.InvokeAsync("CheckList_GetForClient", new object[] {
+                        APIKey,
+                        AClientIDX}, this.CheckList_GetForClientOperationCompleted, userState);
+        }
+        
+        private void OnCheckList_GetForClientOperationCompleted(object arg) {
+            if ((this.CheckList_GetForClientCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckList_GetForClientCompleted(this, new CheckList_GetForClientCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/CheckList_GetForContact", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public CheckListItem[] CheckList_GetForContact(string APIKey, long AContactIDX) {
+            object[] results = this.Invoke("CheckList_GetForContact", new object[] {
+                        APIKey,
+                        AContactIDX});
+            return ((CheckListItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckList_GetForContactAsync(string APIKey, long AContactIDX) {
+            this.CheckList_GetForContactAsync(APIKey, AContactIDX, null);
+        }
+        
+        /// <remarks/>
+        public void CheckList_GetForContactAsync(string APIKey, long AContactIDX, object userState) {
+            if ((this.CheckList_GetForContactOperationCompleted == null)) {
+                this.CheckList_GetForContactOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckList_GetForContactOperationCompleted);
+            }
+            this.InvokeAsync("CheckList_GetForContact", new object[] {
+                        APIKey,
+                        AContactIDX}, this.CheckList_GetForContactOperationCompleted, userState);
+        }
+        
+        private void OnCheckList_GetForContactOperationCompleted(object arg) {
+            if ((this.CheckList_GetForContactCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckList_GetForContactCompleted(this, new CheckList_GetForContactCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/CheckList_GetForJob", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public CheckListItem[] CheckList_GetForJob(string APIKey, long AJobsIDX) {
+            object[] results = this.Invoke("CheckList_GetForJob", new object[] {
+                        APIKey,
+                        AJobsIDX});
+            return ((CheckListItem[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckList_GetForJobAsync(string APIKey, long AJobsIDX) {
+            this.CheckList_GetForJobAsync(APIKey, AJobsIDX, null);
+        }
+        
+        /// <remarks/>
+        public void CheckList_GetForJobAsync(string APIKey, long AJobsIDX, object userState) {
+            if ((this.CheckList_GetForJobOperationCompleted == null)) {
+                this.CheckList_GetForJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckList_GetForJobOperationCompleted);
+            }
+            this.InvokeAsync("CheckList_GetForJob", new object[] {
+                        APIKey,
+                        AJobsIDX}, this.CheckList_GetForJobOperationCompleted, userState);
+        }
+        
+        private void OnCheckList_GetForJobOperationCompleted(object arg) {
+            if ((this.CheckList_GetForJobCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckList_GetForJobCompleted(this, new CheckList_GetForJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/CheckList_SetForClient", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public long CheckList_SetForClient(string APIKey, long AClientIDX, CheckListItem[] ACheckList) {
+            object[] results = this.Invoke("CheckList_SetForClient", new object[] {
+                        APIKey,
+                        AClientIDX,
+                        ACheckList});
+            return ((long)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckList_SetForClientAsync(string APIKey, long AClientIDX, CheckListItem[] ACheckList) {
+            this.CheckList_SetForClientAsync(APIKey, AClientIDX, ACheckList, null);
+        }
+        
+        /// <remarks/>
+        public void CheckList_SetForClientAsync(string APIKey, long AClientIDX, CheckListItem[] ACheckList, object userState) {
+            if ((this.CheckList_SetForClientOperationCompleted == null)) {
+                this.CheckList_SetForClientOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckList_SetForClientOperationCompleted);
+            }
+            this.InvokeAsync("CheckList_SetForClient", new object[] {
+                        APIKey,
+                        AClientIDX,
+                        ACheckList}, this.CheckList_SetForClientOperationCompleted, userState);
+        }
+        
+        private void OnCheckList_SetForClientOperationCompleted(object arg) {
+            if ((this.CheckList_SetForClientCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckList_SetForClientCompleted(this, new CheckList_SetForClientCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/CheckList_SetForContact", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public long CheckList_SetForContact(string APIKey, long AContactIDX, CheckListItem[] ACheckList) {
+            object[] results = this.Invoke("CheckList_SetForContact", new object[] {
+                        APIKey,
+                        AContactIDX,
+                        ACheckList});
+            return ((long)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckList_SetForContactAsync(string APIKey, long AContactIDX, CheckListItem[] ACheckList) {
+            this.CheckList_SetForContactAsync(APIKey, AContactIDX, ACheckList, null);
+        }
+        
+        /// <remarks/>
+        public void CheckList_SetForContactAsync(string APIKey, long AContactIDX, CheckListItem[] ACheckList, object userState) {
+            if ((this.CheckList_SetForContactOperationCompleted == null)) {
+                this.CheckList_SetForContactOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckList_SetForContactOperationCompleted);
+            }
+            this.InvokeAsync("CheckList_SetForContact", new object[] {
+                        APIKey,
+                        AContactIDX,
+                        ACheckList}, this.CheckList_SetForContactOperationCompleted, userState);
+        }
+        
+        private void OnCheckList_SetForContactOperationCompleted(object arg) {
+            if ((this.CheckList_SetForContactCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckList_SetForContactCompleted(this, new CheckList_SetForContactCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/CheckList_SetForJob", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public long CheckList_SetForJob(string APIKey, long AJobsIDX, CheckListItem[] ACheckList) {
+            object[] results = this.Invoke("CheckList_SetForJob", new object[] {
+                        APIKey,
+                        AJobsIDX,
+                        ACheckList});
+            return ((long)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckList_SetForJobAsync(string APIKey, long AJobsIDX, CheckListItem[] ACheckList) {
+            this.CheckList_SetForJobAsync(APIKey, AJobsIDX, ACheckList, null);
+        }
+        
+        /// <remarks/>
+        public void CheckList_SetForJobAsync(string APIKey, long AJobsIDX, CheckListItem[] ACheckList, object userState) {
+            if ((this.CheckList_SetForJobOperationCompleted == null)) {
+                this.CheckList_SetForJobOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckList_SetForJobOperationCompleted);
+            }
+            this.InvokeAsync("CheckList_SetForJob", new object[] {
+                        APIKey,
+                        AJobsIDX,
+                        ACheckList}, this.CheckList_SetForJobOperationCompleted, userState);
+        }
+        
+        private void OnCheckList_SetForJobOperationCompleted(object arg) {
+            if ((this.CheckList_SetForJobCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckList_SetForJobCompleted(this, new CheckList_SetForJobCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1216,6 +1496,37 @@ namespace Try.LukeRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/ST_GetSolDetails", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public RouteLocationDetails[] ST_GetSolDetails(string AProblemID, string ASolutionID) {
+            object[] results = this.Invoke("ST_GetSolDetails", new object[] {
+                        AProblemID,
+                        ASolutionID});
+            return ((RouteLocationDetails[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ST_GetSolDetailsAsync(string AProblemID, string ASolutionID) {
+            this.ST_GetSolDetailsAsync(AProblemID, ASolutionID, null);
+        }
+        
+        /// <remarks/>
+        public void ST_GetSolDetailsAsync(string AProblemID, string ASolutionID, object userState) {
+            if ((this.ST_GetSolDetailsOperationCompleted == null)) {
+                this.ST_GetSolDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnST_GetSolDetailsOperationCompleted);
+            }
+            this.InvokeAsync("ST_GetSolDetails", new object[] {
+                        AProblemID,
+                        ASolutionID}, this.ST_GetSolDetailsOperationCompleted, userState);
+        }
+        
+        private void OnST_GetSolDetailsOperationCompleted(object arg) {
+            if ((this.ST_GetSolDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ST_GetSolDetailsCompleted(this, new ST_GetSolDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/ST_GetHistoricSol", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public RouteLocation[] ST_GetHistoricSol(long ASpringBoardIDX) {
             object[] results = this.Invoke("ST_GetHistoricSol", new object[] {
@@ -1241,6 +1552,35 @@ namespace Try.LukeRef {
             if ((this.ST_GetHistoricSolCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ST_GetHistoricSolCompleted(this, new ST_GetHistoricSolCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/ST_GetHistoricSolDetails", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public RouteLocationDetails[] ST_GetHistoricSolDetails(long ASpringBoardIDX) {
+            object[] results = this.Invoke("ST_GetHistoricSolDetails", new object[] {
+                        ASpringBoardIDX});
+            return ((RouteLocationDetails[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ST_GetHistoricSolDetailsAsync(long ASpringBoardIDX) {
+            this.ST_GetHistoricSolDetailsAsync(ASpringBoardIDX, null);
+        }
+        
+        /// <remarks/>
+        public void ST_GetHistoricSolDetailsAsync(long ASpringBoardIDX, object userState) {
+            if ((this.ST_GetHistoricSolDetailsOperationCompleted == null)) {
+                this.ST_GetHistoricSolDetailsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnST_GetHistoricSolDetailsOperationCompleted);
+            }
+            this.InvokeAsync("ST_GetHistoricSolDetails", new object[] {
+                        ASpringBoardIDX}, this.ST_GetHistoricSolDetailsOperationCompleted, userState);
+        }
+        
+        private void OnST_GetHistoricSolDetailsOperationCompleted(object arg) {
+            if ((this.ST_GetHistoricSolDetailsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ST_GetHistoricSolDetailsCompleted(this, new ST_GetHistoricSolDetailsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1569,6 +1909,33 @@ namespace Try.LukeRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/GetDistrictJobs", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DistrictJobs[] GetDistrictJobs() {
+            object[] results = this.Invoke("GetDistrictJobs", new object[0]);
+            return ((DistrictJobs[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDistrictJobsAsync() {
+            this.GetDistrictJobsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetDistrictJobsAsync(object userState) {
+            if ((this.GetDistrictJobsOperationCompleted == null)) {
+                this.GetDistrictJobsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDistrictJobsOperationCompleted);
+            }
+            this.InvokeAsync("GetDistrictJobs", new object[0], this.GetDistrictJobsOperationCompleted, userState);
+        }
+        
+        private void OnGetDistrictJobsOperationCompleted(object arg) {
+            if ((this.GetDistrictJobsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDistrictJobsCompleted(this, new GetDistrictJobsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/GetSD", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public AddressStructure[] GetSD(string ASearchString) {
             object[] results = this.Invoke("GetSD", new object[] {
@@ -1878,6 +2245,41 @@ namespace Try.LukeRef {
             if ((this.L2_UpdateDOStatusCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.L2_UpdateDOStatusCompleted(this, new L2_UpdateDOStatusCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/L2_UpdateDOCOD", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool L2_UpdateDOCOD(string ARegID, long[] AInvoicesIDX, DOCODObject[] ACODList, System.DateTime AUTC) {
+            object[] results = this.Invoke("L2_UpdateDOCOD", new object[] {
+                        ARegID,
+                        AInvoicesIDX,
+                        ACODList,
+                        AUTC});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void L2_UpdateDOCODAsync(string ARegID, long[] AInvoicesIDX, DOCODObject[] ACODList, System.DateTime AUTC) {
+            this.L2_UpdateDOCODAsync(ARegID, AInvoicesIDX, ACODList, AUTC, null);
+        }
+        
+        /// <remarks/>
+        public void L2_UpdateDOCODAsync(string ARegID, long[] AInvoicesIDX, DOCODObject[] ACODList, System.DateTime AUTC, object userState) {
+            if ((this.L2_UpdateDOCODOperationCompleted == null)) {
+                this.L2_UpdateDOCODOperationCompleted = new System.Threading.SendOrPostCallback(this.OnL2_UpdateDOCODOperationCompleted);
+            }
+            this.InvokeAsync("L2_UpdateDOCOD", new object[] {
+                        ARegID,
+                        AInvoicesIDX,
+                        ACODList,
+                        AUTC}, this.L2_UpdateDOCODOperationCompleted, userState);
+        }
+        
+        private void OnL2_UpdateDOCODOperationCompleted(object arg) {
+            if ((this.L2_UpdateDOCODCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.L2_UpdateDOCODCompleted(this, new L2_UpdateDOCODCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -5441,433 +5843,139 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
-    public partial class AddressStructure {
+    public partial class CheckListItem {
         
-        private long iDXField;
+        private eCheckListType checkListTypeField;
         
-        private long cLIENTIDXField;
+        private eInput inputField;
         
-        private int aDDRESSTYPEField;
+        private eInputType inputTypeField;
         
-        private string aCCOUNTField;
+        private string textField;
         
-        private string cOMPANYField;
-        
-        private string bLOCKField;
-        
-        private string sTREETField;
-        
-        private string uNITField;
-        
-        private string bUILDINGField;
-        
-        private string pOSTALCODEField;
-        
-        private bool aCTIVEField;
-        
-        private string cUSTOMER_NOTESField;
-        
-        private ContactStructure[] contactsField;
-        
-        private double lATField;
-        
-        private double lNGField;
-        
-        private int dISTANCE_TOLERANCEField;
+        private string[] optionsField;
         
         /// <remarks/>
-        public long IDX {
+        public eCheckListType CheckListType {
             get {
-                return this.iDXField;
+                return this.checkListTypeField;
             }
             set {
-                this.iDXField = value;
+                this.checkListTypeField = value;
             }
         }
         
         /// <remarks/>
-        public long CLIENTIDX {
+        public eInput Input {
             get {
-                return this.cLIENTIDXField;
+                return this.inputField;
             }
             set {
-                this.cLIENTIDXField = value;
+                this.inputField = value;
             }
         }
         
         /// <remarks/>
-        public int ADDRESSTYPE {
+        public eInputType InputType {
             get {
-                return this.aDDRESSTYPEField;
+                return this.inputTypeField;
             }
             set {
-                this.aDDRESSTYPEField = value;
+                this.inputTypeField = value;
             }
         }
         
         /// <remarks/>
-        public string ACCOUNT {
+        public string Text {
             get {
-                return this.aCCOUNTField;
+                return this.textField;
             }
             set {
-                this.aCCOUNTField = value;
+                this.textField = value;
             }
         }
         
         /// <remarks/>
-        public string COMPANY {
+        public string[] Options {
             get {
-                return this.cOMPANYField;
+                return this.optionsField;
             }
             set {
-                this.cOMPANYField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string BLOCK {
-            get {
-                return this.bLOCKField;
-            }
-            set {
-                this.bLOCKField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string STREET {
-            get {
-                return this.sTREETField;
-            }
-            set {
-                this.sTREETField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string UNIT {
-            get {
-                return this.uNITField;
-            }
-            set {
-                this.uNITField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string BUILDING {
-            get {
-                return this.bUILDINGField;
-            }
-            set {
-                this.bUILDINGField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string POSTALCODE {
-            get {
-                return this.pOSTALCODEField;
-            }
-            set {
-                this.pOSTALCODEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool ACTIVE {
-            get {
-                return this.aCTIVEField;
-            }
-            set {
-                this.aCTIVEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CUSTOMER_NOTES {
-            get {
-                return this.cUSTOMER_NOTESField;
-            }
-            set {
-                this.cUSTOMER_NOTESField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ContactStructure[] Contacts {
-            get {
-                return this.contactsField;
-            }
-            set {
-                this.contactsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double LAT {
-            get {
-                return this.lATField;
-            }
-            set {
-                this.lATField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public double LNG {
-            get {
-                return this.lNGField;
-            }
-            set {
-                this.lNGField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int DISTANCE_TOLERANCE {
-            get {
-                return this.dISTANCE_TOLERANCEField;
-            }
-            set {
-                this.dISTANCE_TOLERANCEField = value;
+                this.optionsField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
-    public partial class ContactStructure {
-        
-        private long iDXField;
-        
-        private long cLIENTADDRESSIDXField;
-        
-        private string tITLEField;
-        
-        private string nAMEField;
-        
-        private string dEPARTMENTField;
-        
-        private string tELField;
-        
-        private string fAXField;
-        
-        private string oTHERField;
-        
-        private string mOBILEField;
-        
-        private string siField;
-        
-        private string eMAILADDRESSField;
-        
-        private string wEBLOGINField;
-        
-        private string wEBPASSWORDField;
-        
-        private bool wEBACCESSField;
-        
-        private bool aCCESSField;
-        
-        private string cUSTOMER_NOTESField;
-        
-        private string cOST_CENTERField;
-        
-        private bool aCTIVEField;
+    public enum eCheckListType {
         
         /// <remarks/>
-        public long IDX {
-            get {
-                return this.iDXField;
-            }
-            set {
-                this.iDXField = value;
-            }
-        }
+        c_PickSuccess,
         
         /// <remarks/>
-        public long CLIENTADDRESSIDX {
-            get {
-                return this.cLIENTADDRESSIDXField;
-            }
-            set {
-                this.cLIENTADDRESSIDXField = value;
-            }
-        }
+        c_PickFail,
         
         /// <remarks/>
-        public string TITLE {
-            get {
-                return this.tITLEField;
-            }
-            set {
-                this.tITLEField = value;
-            }
-        }
+        c_DeliverySuccess,
         
         /// <remarks/>
-        public string NAME {
-            get {
-                return this.nAMEField;
-            }
-            set {
-                this.nAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string DEPARTMENT {
-            get {
-                return this.dEPARTMENTField;
-            }
-            set {
-                this.dEPARTMENTField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string TEL {
-            get {
-                return this.tELField;
-            }
-            set {
-                this.tELField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string FAX {
-            get {
-                return this.fAXField;
-            }
-            set {
-                this.fAXField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OTHER {
-            get {
-                return this.oTHERField;
-            }
-            set {
-                this.oTHERField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string MOBILE {
-            get {
-                return this.mOBILEField;
-            }
-            set {
-                this.mOBILEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string SI {
-            get {
-                return this.siField;
-            }
-            set {
-                this.siField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string EMAILADDRESS {
-            get {
-                return this.eMAILADDRESSField;
-            }
-            set {
-                this.eMAILADDRESSField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string WEBLOGIN {
-            get {
-                return this.wEBLOGINField;
-            }
-            set {
-                this.wEBLOGINField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string WEBPASSWORD {
-            get {
-                return this.wEBPASSWORDField;
-            }
-            set {
-                this.wEBPASSWORDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool WEBACCESS {
-            get {
-                return this.wEBACCESSField;
-            }
-            set {
-                this.wEBACCESSField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool ACCESS {
-            get {
-                return this.aCCESSField;
-            }
-            set {
-                this.aCCESSField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CUSTOMER_NOTES {
-            get {
-                return this.cUSTOMER_NOTESField;
-            }
-            set {
-                this.cUSTOMER_NOTESField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string COST_CENTER {
-            get {
-                return this.cOST_CENTERField;
-            }
-            set {
-                this.cOST_CENTERField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool ACTIVE {
-            get {
-                return this.aCTIVEField;
-            }
-            set {
-                this.aCTIVEField = value;
-            }
-        }
+        c_DeliveryFail,
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public enum eInput {
+        
+        /// <remarks/>
+        i_TextBox,
+        
+        /// <remarks/>
+        i_CheckBox,
+        
+        /// <remarks/>
+        i_YesNo,
+        
+        /// <remarks/>
+        i_Date,
+        
+        /// <remarks/>
+        i_DateTime,
+        
+        /// <remarks/>
+        i_Label,
+        
+        /// <remarks/>
+        i_CheckBoxGroup,
+        
+        /// <remarks/>
+        i_RadioButtonGroup,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public enum eInputType {
+        
+        /// <remarks/>
+        t_Mandatory,
+        
+        /// <remarks/>
+        t_Optional,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5900,7 +6008,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -6089,7 +6197,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -6098,7 +6206,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -6236,6 +6344,18 @@ namespace Try.LukeRef {
         private int langIDField;
         
         private int[] langIDsField;
+        
+        private TimeSpan s1_FromField;
+        
+        private TimeSpan s1_ToField;
+        
+        private TimeSpan s2_FromField;
+        
+        private TimeSpan s2_ToField;
+        
+        private TimeSpan s3_FromField;
+        
+        private TimeSpan s3_ToField;
         
         /// <remarks/>
         public string SelfCollectWarningHTML {
@@ -6896,10 +7016,70 @@ namespace Try.LukeRef {
                 this.langIDsField = value;
             }
         }
+        
+        /// <remarks/>
+        public TimeSpan S1_From {
+            get {
+                return this.s1_FromField;
+            }
+            set {
+                this.s1_FromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TimeSpan S1_To {
+            get {
+                return this.s1_ToField;
+            }
+            set {
+                this.s1_ToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TimeSpan S2_From {
+            get {
+                return this.s2_FromField;
+            }
+            set {
+                this.s2_FromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TimeSpan S2_To {
+            get {
+                return this.s2_ToField;
+            }
+            set {
+                this.s2_ToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TimeSpan S3_From {
+            get {
+                return this.s3_FromField;
+            }
+            set {
+                this.s3_FromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TimeSpan S3_To {
+            get {
+                return this.s3_ToField;
+            }
+            set {
+                this.s3_ToField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum ResponseAction {
@@ -6921,7 +7101,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7158,7 +7338,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7250,6 +7430,8 @@ namespace Try.LukeRef {
         private string[] barcodeTagsField;
         
         private ExtraCharges[] extraChargesField;
+        
+        private string[] checkListField;
         
         /// <remarks/>
         public long ClientIDX {
@@ -7687,10 +7869,20 @@ namespace Try.LukeRef {
                 this.extraChargesField = value;
             }
         }
+        
+        /// <remarks/>
+        public string[] CheckList {
+            get {
+                return this.checkListField;
+            }
+            set {
+                this.checkListField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7702,6 +7894,10 @@ namespace Try.LukeRef {
         private string invoiceField;
         
         private decimal amountField;
+        
+        private string remarksField;
+        
+        private DOCODObject[] cODListField;
         
         /// <remarks/>
         public long DOIDX {
@@ -7732,15 +7928,117 @@ namespace Try.LukeRef {
                 this.amountField = value;
             }
         }
+        
+        /// <remarks/>
+        public string Remarks {
+            get {
+                return this.remarksField;
+            }
+            set {
+                this.remarksField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DOCODObject[] CODList {
+            get {
+                return this.cODListField;
+            }
+            set {
+                this.cODListField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class DOCODObject : XDelBaseObject {
+        
+        private long iDXField;
+        
+        private long dOObjectIDXField;
+        
+        private long amountTypeIDXField;
+        
+        private string amountTypeField;
+        
+        private string referenceField;
+        
+        private decimal amountField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long DOObjectIDX {
+            get {
+                return this.dOObjectIDXField;
+            }
+            set {
+                this.dOObjectIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long AmountTypeIDX {
+            get {
+                return this.amountTypeIDXField;
+            }
+            set {
+                this.amountTypeIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AmountType {
+            get {
+                return this.amountTypeField;
+            }
+            set {
+                this.amountTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Reference {
+            get {
+                return this.referenceField;
+            }
+            set {
+                this.referenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(CODObject))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(JobInfo))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DOObject))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DOCODObject))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(JobLogObject))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ExtraCharges))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7749,7 +8047,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7806,7 +8104,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7851,7 +8149,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -7920,7 +8218,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eCODCollectAt {
@@ -7936,7 +8234,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eExpressType {
@@ -7985,7 +8283,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eTOSType {
@@ -8004,7 +8302,433 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class AddressStructure {
+        
+        private long iDXField;
+        
+        private long cLIENTIDXField;
+        
+        private int aDDRESSTYPEField;
+        
+        private string aCCOUNTField;
+        
+        private string cOMPANYField;
+        
+        private string bLOCKField;
+        
+        private string sTREETField;
+        
+        private string uNITField;
+        
+        private string bUILDINGField;
+        
+        private string pOSTALCODEField;
+        
+        private bool aCTIVEField;
+        
+        private string cUSTOMER_NOTESField;
+        
+        private ContactStructure[] contactsField;
+        
+        private double lATField;
+        
+        private double lNGField;
+        
+        private int dISTANCE_TOLERANCEField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long CLIENTIDX {
+            get {
+                return this.cLIENTIDXField;
+            }
+            set {
+                this.cLIENTIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ADDRESSTYPE {
+            get {
+                return this.aDDRESSTYPEField;
+            }
+            set {
+                this.aDDRESSTYPEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ACCOUNT {
+            get {
+                return this.aCCOUNTField;
+            }
+            set {
+                this.aCCOUNTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string COMPANY {
+            get {
+                return this.cOMPANYField;
+            }
+            set {
+                this.cOMPANYField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BLOCK {
+            get {
+                return this.bLOCKField;
+            }
+            set {
+                this.bLOCKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string STREET {
+            get {
+                return this.sTREETField;
+            }
+            set {
+                this.sTREETField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UNIT {
+            get {
+                return this.uNITField;
+            }
+            set {
+                this.uNITField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BUILDING {
+            get {
+                return this.bUILDINGField;
+            }
+            set {
+                this.bUILDINGField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string POSTALCODE {
+            get {
+                return this.pOSTALCODEField;
+            }
+            set {
+                this.pOSTALCODEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool ACTIVE {
+            get {
+                return this.aCTIVEField;
+            }
+            set {
+                this.aCTIVEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CUSTOMER_NOTES {
+            get {
+                return this.cUSTOMER_NOTESField;
+            }
+            set {
+                this.cUSTOMER_NOTESField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ContactStructure[] Contacts {
+            get {
+                return this.contactsField;
+            }
+            set {
+                this.contactsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double LAT {
+            get {
+                return this.lATField;
+            }
+            set {
+                this.lATField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double LNG {
+            get {
+                return this.lNGField;
+            }
+            set {
+                this.lNGField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int DISTANCE_TOLERANCE {
+            get {
+                return this.dISTANCE_TOLERANCEField;
+            }
+            set {
+                this.dISTANCE_TOLERANCEField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class ContactStructure {
+        
+        private long iDXField;
+        
+        private long cLIENTADDRESSIDXField;
+        
+        private string tITLEField;
+        
+        private string nAMEField;
+        
+        private string dEPARTMENTField;
+        
+        private string tELField;
+        
+        private string fAXField;
+        
+        private string oTHERField;
+        
+        private string mOBILEField;
+        
+        private string siField;
+        
+        private string eMAILADDRESSField;
+        
+        private string wEBLOGINField;
+        
+        private string wEBPASSWORDField;
+        
+        private bool wEBACCESSField;
+        
+        private bool aCCESSField;
+        
+        private string cUSTOMER_NOTESField;
+        
+        private string cOST_CENTERField;
+        
+        private bool aCTIVEField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long CLIENTADDRESSIDX {
+            get {
+                return this.cLIENTADDRESSIDXField;
+            }
+            set {
+                this.cLIENTADDRESSIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TITLE {
+            get {
+                return this.tITLEField;
+            }
+            set {
+                this.tITLEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NAME {
+            get {
+                return this.nAMEField;
+            }
+            set {
+                this.nAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DEPARTMENT {
+            get {
+                return this.dEPARTMENTField;
+            }
+            set {
+                this.dEPARTMENTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TEL {
+            get {
+                return this.tELField;
+            }
+            set {
+                this.tELField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FAX {
+            get {
+                return this.fAXField;
+            }
+            set {
+                this.fAXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OTHER {
+            get {
+                return this.oTHERField;
+            }
+            set {
+                this.oTHERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MOBILE {
+            get {
+                return this.mOBILEField;
+            }
+            set {
+                this.mOBILEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SI {
+            get {
+                return this.siField;
+            }
+            set {
+                this.siField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMAILADDRESS {
+            get {
+                return this.eMAILADDRESSField;
+            }
+            set {
+                this.eMAILADDRESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string WEBLOGIN {
+            get {
+                return this.wEBLOGINField;
+            }
+            set {
+                this.wEBLOGINField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string WEBPASSWORD {
+            get {
+                return this.wEBPASSWORDField;
+            }
+            set {
+                this.wEBPASSWORDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool WEBACCESS {
+            get {
+                return this.wEBACCESSField;
+            }
+            set {
+                this.wEBACCESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool ACCESS {
+            get {
+                return this.aCCESSField;
+            }
+            set {
+                this.aCCESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CUSTOMER_NOTES {
+            get {
+                return this.cUSTOMER_NOTESField;
+            }
+            set {
+                this.cUSTOMER_NOTESField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string COST_CENTER {
+            get {
+                return this.cOST_CENTERField;
+            }
+            set {
+                this.cOST_CENTERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool ACTIVE {
+            get {
+                return this.aCTIVEField;
+            }
+            set {
+                this.aCTIVEField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8073,7 +8797,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8286,7 +9010,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8320,7 +9044,7 @@ namespace Try.LukeRef {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(SettingsInfo))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8353,7 +9077,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8434,7 +9158,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8707,7 +9431,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum TViewLevel {
@@ -8723,7 +9447,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8804,7 +9528,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum TDestinationType {
@@ -8823,7 +9547,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum TEventType {
@@ -8890,7 +9614,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8923,7 +9647,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8992,7 +9716,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eAccountType {
@@ -9006,7 +9730,7 @@ namespace Try.LukeRef {
     
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StatusCodeStructureEx))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9075,7 +9799,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eCodeType {
@@ -9121,7 +9845,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eDriverAffected {
@@ -9137,7 +9861,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9170,7 +9894,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum eBillingType {
@@ -9189,7 +9913,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9258,7 +9982,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum TPostType {
@@ -9277,7 +10001,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9310,7 +10034,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9475,7 +10199,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9568,7 +10292,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9613,7 +10337,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9730,7 +10454,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9847,7 +10571,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum DeliveryStatus {
@@ -9902,7 +10626,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum TypeofDwelling {
@@ -9927,7 +10651,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9972,7 +10696,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10053,7 +10777,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10134,7 +10858,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10167,7 +10891,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10200,7 +10924,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10257,7 +10981,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10314,7 +11038,64 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class DistrictJobs {
+        
+        private string districtField;
+        
+        private int newJobsField;
+        
+        private int pIPJobsField;
+        
+        private int dIPJobsField;
+        
+        /// <remarks/>
+        public string District {
+            get {
+                return this.districtField;
+            }
+            set {
+                this.districtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int NewJobs {
+            get {
+                return this.newJobsField;
+            }
+            set {
+                this.newJobsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int PIPJobs {
+            get {
+                return this.pIPJobsField;
+            }
+            set {
+                this.pIPJobsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int DIPJobs {
+            get {
+                return this.dIPJobsField;
+            }
+            set {
+                this.dIPJobsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10347,7 +11128,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10392,7 +11173,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10449,7 +11230,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10590,7 +11371,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10635,7 +11416,226 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class JobDateTime {
+        
+        private long jobsIDXField;
+        
+        private System.DateTime fromDateTimeField;
+        
+        private System.DateTime toDateTimeField;
+        
+        /// <remarks/>
+        public long JobsIDX {
+            get {
+                return this.jobsIDXField;
+            }
+            set {
+                this.jobsIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime FromDateTime {
+            get {
+                return this.fromDateTimeField;
+            }
+            set {
+                this.fromDateTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ToDateTime {
+            get {
+                return this.toDateTimeField;
+            }
+            set {
+                this.toDateTimeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class RouteLocationDetails {
+        
+        private Address locationField;
+        
+        private System.DateTime arriveField;
+        
+        private System.DateTime departField;
+        
+        private int priorityField;
+        
+        private JobDateTime[] jobsListField;
+        
+        private JobDateTime[] pUJobsListField;
+        
+        private JobDateTime[] dLJobsListField;
+        
+        /// <remarks/>
+        public Address Location {
+            get {
+                return this.locationField;
+            }
+            set {
+                this.locationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Arrive {
+            get {
+                return this.arriveField;
+            }
+            set {
+                this.arriveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Depart {
+            get {
+                return this.departField;
+            }
+            set {
+                this.departField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public JobDateTime[] JobsList {
+            get {
+                return this.jobsListField;
+            }
+            set {
+                this.jobsListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public JobDateTime[] PUJobsList {
+            get {
+                return this.pUJobsListField;
+            }
+            set {
+                this.pUJobsListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public JobDateTime[] DLJobsList {
+            get {
+                return this.dLJobsListField;
+            }
+            set {
+                this.dLJobsListField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
+    public partial class Address {
+        
+        private string postalField;
+        
+        private string idField;
+        
+        private string latField;
+        
+        private string lonField;
+        
+        private string nameField;
+        
+        private string full_addressField;
+        
+        /// <remarks/>
+        public string postal {
+            get {
+                return this.postalField;
+            }
+            set {
+                this.postalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string lat {
+            get {
+                return this.latField;
+            }
+            set {
+                this.latField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string lon {
+            get {
+                return this.lonField;
+            }
+            set {
+                this.lonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string full_address {
+            get {
+                return this.full_addressField;
+            }
+            set {
+                this.full_addressField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10728,88 +11728,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
-    public partial class Address {
-        
-        private string postalField;
-        
-        private string idField;
-        
-        private string latField;
-        
-        private string lonField;
-        
-        private string nameField;
-        
-        private string full_addressField;
-        
-        /// <remarks/>
-        public string postal {
-            get {
-                return this.postalField;
-            }
-            set {
-                this.postalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string lat {
-            get {
-                return this.latField;
-            }
-            set {
-                this.latField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string lon {
-            get {
-                return this.lonField;
-            }
-            set {
-                this.lonField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string name {
-            get {
-                return this.nameField;
-            }
-            set {
-                this.nameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string full_address {
-            get {
-                return this.full_addressField;
-            }
-            set {
-                this.full_addressField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -10974,7 +11893,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11115,7 +12034,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11388,7 +12307,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11529,7 +12448,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11562,7 +12481,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11679,7 +12598,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11760,7 +12679,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -11865,7 +12784,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -12042,7 +12961,7 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/LukeWS/")]
     public enum RetrieveType {
@@ -12067,11 +12986,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UploadJSCompletedEventHandler(object sender, UploadJSCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UploadJSCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12093,35 +13012,217 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DoTestCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetCheckListCompletedEventHandler(object sender, GetCheckListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCheckListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCheckListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CheckListItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CheckListItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void CheckList_GetForClientCompletedEventHandler(object sender, CheckList_GetForClientCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckList_GetForClientCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckList_GetForClientCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CheckListItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CheckListItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void CheckList_GetForContactCompletedEventHandler(object sender, CheckList_GetForContactCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckList_GetForContactCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckList_GetForContactCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CheckListItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CheckListItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void CheckList_GetForJobCompletedEventHandler(object sender, CheckList_GetForJobCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckList_GetForJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckList_GetForJobCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public CheckListItem[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((CheckListItem[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void CheckList_SetForClientCompletedEventHandler(object sender, CheckList_SetForClientCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckList_SetForClientCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckList_SetForClientCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public long Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((long)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void CheckList_SetForContactCompletedEventHandler(object sender, CheckList_SetForContactCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckList_SetForContactCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckList_SetForContactCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public long Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((long)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void CheckList_SetForJobCompletedEventHandler(object sender, CheckList_SetForJobCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckList_SetForJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckList_SetForJobCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public long Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((long)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void TriggerCirclesProxyCheckCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void TriggerSingTelCheckCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void Expeditor_ManualPODSendCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void Expeditor_ManualStatusSendCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void Expeditor_SendCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckCurrentAddressesCompletedEventHandler(object sender, CheckCurrentAddressesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckCurrentAddressesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12143,11 +13244,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckAddressValidityCompletedEventHandler(object sender, CheckAddressValidityCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckAddressValidityCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12169,11 +13270,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ReverseGeoCodeCompletedEventHandler(object sender, ReverseGeoCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ReverseGeoCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12195,15 +13296,15 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void FixPayPalPrePaidCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteTaskQueueCompletedEventHandler(object sender, DeleteTaskQueueCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DeleteTaskQueueCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12225,15 +13326,15 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GeneratePerfStatsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_CreateProblemCompletedEventHandler(object sender, ST_CreateProblemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_CreateProblemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12255,11 +13356,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_GetSolCompletedEventHandler(object sender, ST_GetSolCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_GetSolCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12281,11 +13382,37 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void ST_GetSolDetailsCompletedEventHandler(object sender, ST_GetSolDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ST_GetSolDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ST_GetSolDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RouteLocationDetails[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RouteLocationDetails[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_GetHistoricSolCompletedEventHandler(object sender, ST_GetHistoricSolCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_GetHistoricSolCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12307,11 +13434,37 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void ST_GetHistoricSolDetailsCompletedEventHandler(object sender, ST_GetHistoricSolDetailsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ST_GetHistoricSolDetailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ST_GetHistoricSolDetailsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RouteLocationDetails[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RouteLocationDetails[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_GetStoredProblemsCompletedEventHandler(object sender, ST_GetStoredProblemsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_GetStoredProblemsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12333,15 +13486,15 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_DeleteAllProblemsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_GetProblemsCompletedEventHandler(object sender, ST_GetProblemsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_GetProblemsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12363,11 +13516,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_GetProblemCompletedEventHandler(object sender, ST_GetProblemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_GetProblemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12389,11 +13542,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_SolveProblemCompletedEventHandler(object sender, ST_SolveProblemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_SolveProblemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12415,11 +13568,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_GetProblematicProblemsCompletedEventHandler(object sender, ST_GetProblematicProblemsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_GetProblematicProblemsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12441,11 +13594,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ST_DeleteProblemCompletedEventHandler(object sender, ST_DeleteProblemCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ST_DeleteProblemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12467,11 +13620,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void BarcodeTag_GenerateCompletedEventHandler(object sender, BarcodeTag_GenerateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BarcodeTag_GenerateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12493,11 +13646,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void BarcodeTag_ValidateCompletedEventHandler(object sender, BarcodeTag_ValidateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BarcodeTag_ValidateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12519,11 +13672,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckForEventCompletedEventHandler(object sender, CheckForEventCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckForEventCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12545,11 +13698,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetDirectionsCompletedEventHandler(object sender, GetDirectionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDirectionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12571,11 +13724,37 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetDistrictJobsCompletedEventHandler(object sender, GetDistrictJobsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDistrictJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDistrictJobsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public DistrictJobs[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((DistrictJobs[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetSDCompletedEventHandler(object sender, GetSDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetSDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12597,11 +13776,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void PODImageExtractToFTPCompletedEventHandler(object sender, PODImageExtractToFTPCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PODImageExtractToFTPCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12623,11 +13802,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetRouteListCompletedEventHandler(object sender, L2_GetRouteListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetRouteListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12649,11 +13828,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetDriverJobsIDXCompletedEventHandler(object sender, L2_GetDriverJobsIDXCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetDriverJobsIDXCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12675,11 +13854,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetDriverJobsHashCompletedEventHandler(object sender, L2_GetDriverJobsHashCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetDriverJobsHashCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12701,11 +13880,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetDriverJobInfoCompletedEventHandler(object sender, L2_GetDriverJobInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetDriverJobInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12727,11 +13906,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UpdateJobStatusCompletedEventHandler(object sender, L2_UpdateJobStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UpdateJobStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12753,11 +13932,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UpdateJobStatusACompletedEventHandler(object sender, L2_UpdateJobStatusACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UpdateJobStatusACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12779,11 +13958,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UpdateDOStatusCompletedEventHandler(object sender, L2_UpdateDOStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UpdateDOStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12805,11 +13984,37 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void L2_UpdateDOCODCompletedEventHandler(object sender, L2_UpdateDOCODCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class L2_UpdateDOCODCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal L2_UpdateDOCODCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UpdateTagStatusCompletedEventHandler(object sender, L2_UpdateTagStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UpdateTagStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12831,11 +14036,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UpdateCODCompletedEventHandler(object sender, L2_UpdateCODCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UpdateCODCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12857,11 +14062,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobImageCompletedEventHandler(object sender, L2_UploadJobImageCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobImageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12883,11 +14088,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobImageRCompletedEventHandler(object sender, L2_UploadJobImageRCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobImageRCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12909,11 +14114,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobsImageCompletedEventHandler(object sender, L2_UploadJobsImageCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobsImageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12935,11 +14140,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UpdateJobConsignmentNoteCompletedEventHandler(object sender, L2_UpdateJobConsignmentNoteCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UpdateJobConsignmentNoteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12961,11 +14166,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobTagsCompletedEventHandler(object sender, L2_UploadJobTagsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobTagsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -12987,11 +14192,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_RemoveJobTagsCompletedEventHandler(object sender, L2_RemoveJobTagsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_RemoveJobTagsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13013,11 +14218,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_CheckJobTagCompletedEventHandler(object sender, L2_CheckJobTagCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_CheckJobTagCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13039,11 +14244,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobSignatureCompletedEventHandler(object sender, L2_UploadJobSignatureCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobSignatureCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13065,11 +14270,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Auth_DriverCompletedEventHandler(object sender, L2_Auth_DriverCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Auth_DriverCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13091,11 +14296,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UnAuth_DriverCompletedEventHandler(object sender, L2_UnAuth_DriverCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UnAuth_DriverCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13117,11 +14322,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Upload_GPSCompletedEventHandler(object sender, L2_Upload_GPSCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Upload_GPSCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13143,11 +14348,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Upload_GPSBattCompletedEventHandler(object sender, L2_Upload_GPSBattCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Upload_GPSBattCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13169,11 +14374,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetStatusCodeLibraryCompletedEventHandler(object sender, L2_GetStatusCodeLibraryCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetStatusCodeLibraryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13195,11 +14400,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetStatusCodeLibraryExCompletedEventHandler(object sender, L2_GetStatusCodeLibraryExCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetStatusCodeLibraryExCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13221,11 +14426,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetRecipientTypesCompletedEventHandler(object sender, L2_GetRecipientTypesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetRecipientTypesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13247,11 +14452,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetWIFIHomeCompletedEventHandler(object sender, L2_GetWIFIHomeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetWIFIHomeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13273,11 +14478,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_JobSpoolCompletedEventHandler(object sender, L2_JobSpoolCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_JobSpoolCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13299,11 +14504,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_SendMessageCompletedEventHandler(object sender, L2_SendMessageCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_SendMessageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13325,11 +14530,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_RetrieveMessagesCompletedEventHandler(object sender, L2_RetrieveMessagesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_RetrieveMessagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13351,11 +14556,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_AckMessagesCompletedEventHandler(object sender, L2_AckMessagesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_AckMessagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13377,11 +14582,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetUpdateCompletedEventHandler(object sender, L2_GetUpdateCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetUpdateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13403,11 +14608,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetDriverCODCompletedEventHandler(object sender, L2_GetDriverCODCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetDriverCODCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13429,11 +14634,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Update_BattCompletedEventHandler(object sender, L2_Update_BattCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Update_BattCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13455,11 +14660,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Update_DunningCompletedEventHandler(object sender, L2_Update_DunningCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Update_DunningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13481,11 +14686,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Update_DunningACompletedEventHandler(object sender, L2_Update_DunningACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Update_DunningACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13507,11 +14712,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetDriverPointSummaryCompletedEventHandler(object sender, L2_GetDriverPointSummaryCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetDriverPointSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13533,11 +14738,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_GetDriverPointsCompletedEventHandler(object sender, L2_GetDriverPointsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_GetDriverPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13559,11 +14764,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobImageACompletedEventHandler(object sender, L2_UploadJobImageACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobImageACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13585,11 +14790,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobsImageACompletedEventHandler(object sender, L2_UploadJobsImageACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobsImageACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13611,11 +14816,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobImageRACompletedEventHandler(object sender, L2_UploadJobImageRACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobImageRACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13637,11 +14842,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobTagsACompletedEventHandler(object sender, L2_UploadJobTagsACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobTagsACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13663,11 +14868,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_RemoveJobTagsACompletedEventHandler(object sender, L2_RemoveJobTagsACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_RemoveJobTagsACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13689,11 +14894,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobSignatureACompletedEventHandler(object sender, L2_UploadJobSignatureACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobSignatureACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13715,11 +14920,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UploadJobsSignatureACompletedEventHandler(object sender, L2_UploadJobsSignatureACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UploadJobsSignatureACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13741,11 +14946,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_Auth_DriverACompletedEventHandler(object sender, L2_Auth_DriverACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_Auth_DriverACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13767,11 +14972,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_UnAuth_DriverACompletedEventHandler(object sender, L2_UnAuth_DriverACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_UnAuth_DriverACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13793,11 +14998,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_JobSpoolACompletedEventHandler(object sender, L2_JobSpoolACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_JobSpoolACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13819,11 +15024,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_SendMessageACompletedEventHandler(object sender, L2_SendMessageACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_SendMessageACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13845,11 +15050,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_AckMessagesACompletedEventHandler(object sender, L2_AckMessagesACompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_AckMessagesACompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13871,11 +15076,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void L2_SendPINCompletedEventHandler(object sender, L2_SendPINCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class L2_SendPINCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13897,11 +15102,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SendPINCompletedEventHandler(object sender, SendPINCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SendPINCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13923,11 +15128,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetQRCodeCompletedEventHandler(object sender, GetQRCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetQRCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13949,11 +15154,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateDunningCompletedEventHandler(object sender, UpdateDunningCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateDunningCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -13975,11 +15180,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetXDelOnlineSettingsCompletedEventHandler(object sender, GetXDelOnlineSettingsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetXDelOnlineSettingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14001,11 +15206,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SetXDelOnlineSettingsCompletedEventHandler(object sender, SetXDelOnlineSettingsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SetXDelOnlineSettingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14027,11 +15232,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetCNXDelOnlineSettingsCompletedEventHandler(object sender, GetCNXDelOnlineSettingsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCNXDelOnlineSettingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14053,11 +15258,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SetCNXDelOnlineSettingsCompletedEventHandler(object sender, SetCNXDelOnlineSettingsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SetCNXDelOnlineSettingsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14079,11 +15284,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SendCommandToDriverCompletedEventHandler(object sender, SendCommandToDriverCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SendCommandToDriverCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14105,11 +15310,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SendMessageToDriverCompletedEventHandler(object sender, SendMessageToDriverCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SendMessageToDriverCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14131,11 +15336,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SendECommerceAlertCompletedEventHandler(object sender, SendECommerceAlertCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SendECommerceAlertCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14157,11 +15362,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SendExpeditorsAlertCompletedEventHandler(object sender, SendExpeditorsAlertCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SendExpeditorsAlertCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14183,11 +15388,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetJobCompletedEventHandler(object sender, GetJobCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14209,11 +15414,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ConvertCurrencyCompletedEventHandler(object sender, ConvertCurrencyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConvertCurrencyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14235,11 +15440,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AuthDriverCompletedEventHandler(object sender, AuthDriverCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AuthDriverCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14261,11 +15466,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AuthUserCompletedEventHandler(object sender, AuthUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AuthUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14287,11 +15492,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckJobStatusCompletedEventHandler(object sender, CheckJobStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckJobStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14313,11 +15518,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SubmitJobSheetCompletedEventHandler(object sender, SubmitJobSheetCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SubmitJobSheetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14339,11 +15544,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void SubmitItemGroupCompletedEventHandler(object sender, SubmitItemGroupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SubmitItemGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14365,11 +15570,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckTaggingGroupCompletedEventHandler(object sender, CheckTaggingGroupCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckTaggingGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14391,11 +15596,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckStatusCompletedEventHandler(object sender, CheckStatusCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckStatusCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14417,11 +15622,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterCitiJobCompletedEventHandler(object sender, EnterCitiJobCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterCitiJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14443,11 +15648,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterCitiJobDeliveryTypeCompletedEventHandler(object sender, EnterCitiJobDeliveryTypeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterCitiJobDeliveryTypeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14469,11 +15674,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterCitiJobsCompletedEventHandler(object sender, EnterCitiJobsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterCitiJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14495,11 +15700,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterCitiJobs3HCompletedEventHandler(object sender, EnterCitiJobs3HCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterCitiJobs3HCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14521,11 +15726,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterDBSJobCompletedEventHandler(object sender, EnterDBSJobCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterDBSJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14547,11 +15752,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterDBSJobsCompletedEventHandler(object sender, EnterDBSJobsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterDBSJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14573,11 +15778,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterHSBCJobCompletedEventHandler(object sender, EnterHSBCJobCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterHSBCJobCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14599,11 +15804,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void EnterHSBCJobsCompletedEventHandler(object sender, EnterHSBCJobsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class EnterHSBCJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14625,11 +15830,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateWeightCompletedEventHandler(object sender, UpdateWeightCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateWeightCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14651,11 +15856,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GenerateManagementStatsCompletedEventHandler(object sender, GenerateManagementStatsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GenerateManagementStatsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14677,11 +15882,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GenerateDunningReportCompletedEventHandler(object sender, GenerateDunningReportCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GenerateDunningReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14703,11 +15908,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DoCitiFlatFileCompletedEventHandler(object sender, DoCitiFlatFileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DoCitiFlatFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14729,11 +15934,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CustCareActionsCompletedEventHandler(object sender, CustCareActionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CustCareActionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14755,11 +15960,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void IBBroadcastCompletedEventHandler(object sender, IBBroadcastCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IBBroadcastCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14781,11 +15986,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void IBPPCheckCompletedEventHandler(object sender, IBPPCheckCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IBPPCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14807,11 +16012,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ImportCheckCompletedEventHandler(object sender, ImportCheckCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ImportCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14833,11 +16038,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetNestleObjectCompletedEventHandler(object sender, GetNestleObjectCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetNestleObjectCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14859,11 +16064,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void IBCheckInCompletedEventHandler(object sender, IBCheckInCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IBCheckInCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14885,11 +16090,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void IBClearDormantCompletedEventHandler(object sender, IBClearDormantCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IBClearDormantCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14911,11 +16116,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void IBPickListCompletedEventHandler(object sender, IBPickListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IBPickListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14937,11 +16142,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GenerateDriverAuthCompletedEventHandler(object sender, GenerateDriverAuthCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GenerateDriverAuthCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14963,11 +16168,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GenerateUserAuthCompletedEventHandler(object sender, GenerateUserAuthCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GenerateUserAuthCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -14989,11 +16194,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GenerateBookingLinkCompletedEventHandler(object sender, GenerateBookingLinkCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GenerateBookingLinkCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15015,11 +16220,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void OpsRemindersCompletedEventHandler(object sender, OpsRemindersCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class OpsRemindersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15041,11 +16246,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DoInvoiceEMailingCompletedEventHandler(object sender, DoInvoiceEMailingCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DoInvoiceEMailingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15067,11 +16272,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetJobBookingInfoCompletedEventHandler(object sender, GetJobBookingInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetJobBookingInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15093,11 +16298,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AddressCanEditCompletedEventHandler(object sender, AddressCanEditCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddressCanEditCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15119,11 +16324,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AddressCanEditExCompletedEventHandler(object sender, AddressCanEditExCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddressCanEditExCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15145,11 +16350,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetUnmanifestedItemsCompletedEventHandler(object sender, GetUnmanifestedItemsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUnmanifestedItemsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15171,11 +16376,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckVersionCompletedEventHandler(object sender, CheckVersionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckVersionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15197,11 +16402,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void CheckJobPrivacyCompletedEventHandler(object sender, CheckJobPrivacyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CheckJobPrivacyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15223,11 +16428,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void ExtractEMailsCompletedEventHandler(object sender, ExtractEMailsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ExtractEMailsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15249,11 +16454,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateNewJobsCompletedEventHandler(object sender, UpdateNewJobsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateNewJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15275,11 +16480,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateCODListCompletedEventHandler(object sender, UpdateCODListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateCODListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15301,15 +16506,15 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void FixPostalCacheCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetPostalsCompletedEventHandler(object sender, GetPostalsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPostalsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15331,11 +16536,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetPostalCompletedEventHandler(object sender, GetPostalCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPostalCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15357,11 +16562,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetAddressPostalCodeCompletedEventHandler(object sender, GetAddressPostalCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAddressPostalCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15383,11 +16588,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetAddressPostalCodesCompletedEventHandler(object sender, GetAddressPostalCodesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAddressPostalCodesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15409,11 +16614,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetAllPostalCodesCompletedEventHandler(object sender, GetAllPostalCodesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAllPostalCodesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15435,11 +16640,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetPostalDistanceCompletedEventHandler(object sender, GetPostalDistanceCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPostalDistanceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15461,11 +16666,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetDistanceCompletedEventHandler(object sender, GetDistanceCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDistanceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15487,11 +16692,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetTrafficCompletedEventHandler(object sender, GetTrafficCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTrafficCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -15513,11 +16718,11 @@ namespace Try.LukeRef {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetUpdateInfoCompletedEventHandler(object sender, GetUpdateInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUpdateInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

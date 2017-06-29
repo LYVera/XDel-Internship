@@ -486,11 +486,75 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="img\markers_default%402x.png" />
+    <Content Include="img\markers_default.png" />
+    <Content Include="img\markers_shadow%402x.png" />
+    <Content Include="img\markers_shadow.png" />
     <Content Include="Prompt.aspx" />
+    <Content Include="Scripts\leaflet.extra-markers.min.css" />
+    <Content Include="Scripts\leaflet.extra-markers.min.js" />
     <Content Include="Scripts\Leaflet\GreyScale.js" />
     <Content Include="Scripts\ShowMap.css" />
     <Content Include="Show.aspx" />
     <Content Include="Validate.aspx" />
+    <Content Include="Web References\LukeRefL2\DriverObject.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\DriverPoints.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\JobInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\LukeRefL2\l2.disco" />
+    <Content Include="Web References\LukeRef\AddressStructure1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\ChatMessage1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\CheckListItem1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\CODObject1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\DeliveryBooking1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\DistrictJobs1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\DriverPoints1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\DriverPointSummary1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\EventLocation1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\HOMESVersion1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\JobBarcodeTag1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\JobInfo1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\LukeRefL2\l2.wsdl" />
+    <Content Include="Web References\LukeRefL2\LocationInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\LTAIncident.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\LukeRef\lukews.disco" />
     <Content Include="XDel Logo.gif" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -553,15 +617,6 @@
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Scripts\Leaflet\leaflet-src.map" />
-    <Content Include="Web References\LukeRefL2\DriverObject.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRefL2\DriverPoints.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRefL2\JobInfo.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.gitignore" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.jshintrc" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.npmignore" />
@@ -572,38 +627,6 @@
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\package.json" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\README.md" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\scripts\publish.sh" />
-    <None Include="Web References\LukeRefL2\l2.disco" />
-    <Content Include="Web References\LukeRef\AddressStructure.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\ChatMessage.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\CODObject.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\DeliveryBooking.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\DriverPoints.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\DriverPointSummary.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\EventLocation.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\HOMESVersion.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\JobBarcodeTag.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\JobInfo.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <None Include="Web References\LukeRef\lukews.disco" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -782,53 +805,45 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <None Include="Web References\LukeRefL2\l2.wsdl" />
-    <Content Include="Web References\LukeRefL2\LocationInfo.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRefL2\LTAIncident.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRefL2\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <None Include="Web References\LukeRef\lukews.wsdl" />
-    <Content Include="Web References\LukeRef\Nestle.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\Problem.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRef\RecipientType.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Web References\LukeRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
-    <Content Include="Web References\LukeRef\RouteInfo.datasource">
+    <Content Include="Web References\LukeRef\Nestle1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\RouteLocation.datasource">
+    <Content Include="Web References\LukeRef\Problem1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\SettingsInfo.datasource">
+    <Content Include="Web References\LukeRef\RecipientType1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\Solution.datasource">
+    <Content Include="Web References\LukeRef\RouteInfo1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\StatusCodeLibrary.datasource">
+    <Content Include="Web References\LukeRef\RouteLocation1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\StatusCodeLibraryEx.datasource">
+    <Content Include="Web References\LukeRef\RouteLocationDetails1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\StoredProblem.datasource">
+    <Content Include="Web References\LukeRef\SettingsInfo1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\LukeRef\UpdateInfo.datasource">
+    <Content Include="Web References\LukeRef\Solution1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\StatusCodeLibrary1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\StatusCodeLibraryEx1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\StoredProblem1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRef\UpdateInfo1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
@@ -843,30 +858,6 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://www.xdel.com/lukews/l2.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\LukeRefL2\</RelPath>
-      <UpdateFromURL>http://www.xdel.com/lukews/l2.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Try_LukeRefL2_L2</CachedSettingsPropName>
-    </WebReferenceUrl>
-    <WebReferenceUrl Include="http://www.xdel.com/lukews/lukews.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\LukeRef\</RelPath>
-      <UpdateFromURL>http://www.xdel.com/lukews/lukews.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Try_LukeRef_LukeWS</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\UploadLocalization.en-US.resx">
@@ -987,6 +978,30 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>EditorLocalization.bg-BG.designer.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://intranet.xdel.com/lukews/l2.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LukeRefL2\</RelPath>
+      <UpdateFromURL>http://intranet.xdel.com/lukews/l2.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Try_LukeRefL2_L2</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://intranet.xdel.com/lukews/lukews.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LukeRef\</RelPath>
+      <UpdateFromURL>http://intranet.xdel.com/lukews/lukews.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Try_com_xdel_intranet_LukeWS</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

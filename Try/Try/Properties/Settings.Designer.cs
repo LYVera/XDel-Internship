@@ -26,20 +26,20 @@ namespace Try.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.xdel.com/lukews/l2.asmx")]
-        public string Try_LukeRefL2_L2 {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://intranet.xdel.com/lukews/lukews.asmx")]
+        public string Try_com_xdel_intranet_LukeWS {
             get {
-                return ((string)(this["Try_LukeRefL2_L2"]));
+                return ((string)(this["Try_com_xdel_intranet_LukeWS"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.xdel.com/lukews/lukews.asmx")]
-        public string Try_LukeRef_LukeWS {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://intranet.xdel.com/lukews/l2.asmx")]
+        public string Try_LukeRefL2_L2 {
             get {
-                return ((string)(this["Try_LukeRef_LukeWS"]));
+                return ((string)(this["Try_LukeRefL2_L2"]));
             }
         }
     }

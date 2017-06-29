@@ -17,10 +17,167 @@
         </s:complexType>
       </s:element>
       <s:element name="DoTest">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ADate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="DoTestResponse">
         <s:complexType />
+      </s:element>
+      <s:element name="GetCheckList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AJobsIDX" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCheckListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCheckListResult" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCheckListItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CheckListItem" nillable="true" type="tns:CheckListItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CheckListItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CheckListType" type="tns:eCheckListType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Input" type="tns:eInput" />
+          <s:element minOccurs="1" maxOccurs="1" name="InputType" type="tns:eInputType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Options" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eCheckListType">
+        <s:restriction base="s:string">
+          <s:enumeration value="c_PickSuccess" />
+          <s:enumeration value="c_PickFail" />
+          <s:enumeration value="c_DeliverySuccess" />
+          <s:enumeration value="c_DeliveryFail" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eInput">
+        <s:restriction base="s:string">
+          <s:enumeration value="i_TextBox" />
+          <s:enumeration value="i_CheckBox" />
+          <s:enumeration value="i_YesNo" />
+          <s:enumeration value="i_Date" />
+          <s:enumeration value="i_DateTime" />
+          <s:enumeration value="i_Label" />
+          <s:enumeration value="i_CheckBoxGroup" />
+          <s:enumeration value="i_RadioButtonGroup" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eInputType">
+        <s:restriction base="s:string">
+          <s:enumeration value="t_Mandatory" />
+          <s:enumeration value="t_Optional" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckList_GetForClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AClientIDX" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_GetForClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckList_GetForClientResult" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_GetForContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AContactIDX" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_GetForContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckList_GetForContactResult" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_GetForJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AJobsIDX" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_GetForJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckList_GetForJobResult" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_SetForClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AClientIDX" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACheckList" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_SetForClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckList_SetForClientResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_SetForContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AContactIDX" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACheckList" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_SetForContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckList_SetForContactResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_SetForJob">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AJobsIDX" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACheckList" type="tns:ArrayOfCheckListItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckList_SetForJobResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckList_SetForJobResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="TriggerCirclesProxyCheck">
         <s:complexType />
@@ -295,11 +452,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="end" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:complexType name="ArrayOfString">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:complexType name="ArrayOfShipment">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="Shipment" nillable="true" type="tns:Shipment" />
@@ -439,6 +591,49 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ST_GetSolDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AProblemID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ASolutionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RouteLocationDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:Address" />
+          <s:element minOccurs="1" maxOccurs="1" name="Arrive" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Depart" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="JobsList" type="tns:ArrayOfJobDateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PUJobsList" type="tns:ArrayOfJobDateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="DLJobsList" type="tns:ArrayOfJobDateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfJobDateTime">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JobDateTime" nillable="true" type="tns:JobDateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JobDateTime">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="JobsIDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FromDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ToDateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRouteLocationDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RouteLocationDetails" nillable="true" type="tns:RouteLocationDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ST_GetSolDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ST_GetSolDetailsResult" type="tns:ArrayOfRouteLocationDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ST_GetHistoricSol">
         <s:complexType>
           <s:sequence>
@@ -450,6 +645,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ST_GetHistoricSolResult" type="tns:ArrayOfRouteLocation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ST_GetHistoricSolDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ASpringBoardIDX" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ST_GetHistoricSolDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ST_GetHistoricSolDetailsResult" type="tns:ArrayOfRouteLocationDetails" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -655,6 +864,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetDistrictJobs">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="DistrictJobs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="District" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewJobs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PIPJobs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DIPJobs" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDistrictJobs">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DistrictJobs" nillable="true" type="tns:DistrictJobs" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistrictJobsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistrictJobsResult" type="tns:ArrayOfDistrictJobs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetSD">
         <s:complexType>
           <s:sequence>
@@ -783,6 +1015,20 @@
           </s:extension>
         </s:complexContent>
       </s:complexType>
+      <s:complexType name="DOCODObject">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:XDelBaseObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="DOObjectIDX" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="AmountTypeIDX" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="AmountType" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
       <s:complexType name="DOObject">
         <s:complexContent mixed="false">
           <s:extension base="tns:XDelBaseObject">
@@ -790,9 +1036,16 @@
               <s:element minOccurs="1" maxOccurs="1" name="DOIDX" type="s:long" />
               <s:element minOccurs="0" maxOccurs="1" name="Invoice" type="s:string" />
               <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Remarks" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CODList" type="tns:ArrayOfDOCODObject" />
             </s:sequence>
           </s:extension>
         </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfDOCODObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DOCODObject" nillable="true" type="tns:DOCODObject" />
+        </s:sequence>
       </s:complexType>
       <s:complexType name="JobInfo">
         <s:complexContent mixed="false">
@@ -841,6 +1094,7 @@
               <s:element minOccurs="0" maxOccurs="1" name="InventoryItems" type="tns:ArrayOfInventoryEntry" />
               <s:element minOccurs="0" maxOccurs="1" name="BarcodeTags" type="tns:ArrayOfString" />
               <s:element minOccurs="0" maxOccurs="1" name="ExtraCharges" type="tns:ArrayOfExtraCharges" />
+              <s:element minOccurs="0" maxOccurs="1" name="CheckList" type="tns:ArrayOfString" />
             </s:sequence>
           </s:extension>
         </s:complexContent>
@@ -968,6 +1222,23 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="L2_UpdateDOStatusResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="L2_UpdateDOCOD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ARegID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AInvoicesIDX" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACODList" type="tns:ArrayOfDOCODObject" />
+            <s:element minOccurs="1" maxOccurs="1" name="AUTC" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="L2_UpdateDOCODResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="L2_UpdateDOCODResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2965,6 +3236,12 @@
           <s:element minOccurs="1" maxOccurs="1" name="ConsolidationSurcharge" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="LangID" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="LangIDs" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="S1_From" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="S1_To" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="S2_From" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="S2_To" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="S3_From" type="tns:TimeSpan" />
+          <s:element minOccurs="1" maxOccurs="1" name="S3_To" type="tns:TimeSpan" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="TimeSpan" />
@@ -3255,15 +3532,18 @@
         </s:complexType>
       </s:element>
       <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfCheckListItem" nillable="true" type="tns:ArrayOfCheckListItem" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="ArrayOfAddressStructure" nillable="true" type="tns:ArrayOfAddressStructure" />
       <s:element name="Problem" nillable="true" type="tns:Problem" />
       <s:element name="ArrayOfRouteLocation" nillable="true" type="tns:ArrayOfRouteLocation" />
+      <s:element name="ArrayOfRouteLocationDetails" nillable="true" type="tns:ArrayOfRouteLocationDetails" />
       <s:element name="ArrayOfStoredProblem" nillable="true" type="tns:ArrayOfStoredProblem" />
       <s:element name="ArrayOfProblem" nillable="true" type="tns:ArrayOfProblem" />
       <s:element name="Solution" nillable="true" type="tns:Solution" />
       <s:element name="EventLocation" nillable="true" type="tns:EventLocation" />
       <s:element name="RouteInfo" nillable="true" type="tns:RouteInfo" />
+      <s:element name="ArrayOfDistrictJobs" nillable="true" type="tns:ArrayOfDistrictJobs" />
       <s:element name="ArrayOfLong" nillable="true" type="tns:ArrayOfLong" />
       <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
       <s:element name="ArrayOfJobInfo" nillable="true" type="tns:ArrayOfJobInfo" />
@@ -3311,6 +3591,48 @@
   </wsdl:message>
   <wsdl:message name="DoTestSoapOut">
     <wsdl:part name="parameters" element="tns:DoTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCheckList" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCheckListResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForClientSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckList_GetForClient" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForClientSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckList_GetForClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForContactSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckList_GetForContact" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForContactSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckList_GetForContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForJobSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckList_GetForJob" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForJobSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckList_GetForJobResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_SetForClientSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckList_SetForClient" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_SetForClientSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckList_SetForClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_SetForContactSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckList_SetForContact" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_SetForContactSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckList_SetForContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_SetForJobSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckList_SetForJob" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_SetForJobSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckList_SetForJobResponse" />
   </wsdl:message>
   <wsdl:message name="TriggerCirclesProxyCheckSoapIn">
     <wsdl:part name="parameters" element="tns:TriggerCirclesProxyCheck" />
@@ -3390,11 +3712,23 @@
   <wsdl:message name="ST_GetSolSoapOut">
     <wsdl:part name="parameters" element="tns:ST_GetSolResponse" />
   </wsdl:message>
+  <wsdl:message name="ST_GetSolDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:ST_GetSolDetails" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetSolDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:ST_GetSolDetailsResponse" />
+  </wsdl:message>
   <wsdl:message name="ST_GetHistoricSolSoapIn">
     <wsdl:part name="parameters" element="tns:ST_GetHistoricSol" />
   </wsdl:message>
   <wsdl:message name="ST_GetHistoricSolSoapOut">
     <wsdl:part name="parameters" element="tns:ST_GetHistoricSolResponse" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetHistoricSolDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:ST_GetHistoricSolDetails" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetHistoricSolDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:ST_GetHistoricSolDetailsResponse" />
   </wsdl:message>
   <wsdl:message name="ST_GetStoredProblemsSoapIn">
     <wsdl:part name="parameters" element="tns:ST_GetStoredProblems" />
@@ -3462,6 +3796,12 @@
   <wsdl:message name="GetDirectionsSoapOut">
     <wsdl:part name="parameters" element="tns:GetDirectionsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetDistrictJobsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistrictJobs" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistrictJobsResponse" />
+  </wsdl:message>
   <wsdl:message name="GetSDSoapIn">
     <wsdl:part name="parameters" element="tns:GetSD" />
   </wsdl:message>
@@ -3515,6 +3855,12 @@
   </wsdl:message>
   <wsdl:message name="L2_UpdateDOStatusSoapOut">
     <wsdl:part name="parameters" element="tns:L2_UpdateDOStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="L2_UpdateDOCODSoapIn">
+    <wsdl:part name="parameters" element="tns:L2_UpdateDOCOD" />
+  </wsdl:message>
+  <wsdl:message name="L2_UpdateDOCODSoapOut">
+    <wsdl:part name="parameters" element="tns:L2_UpdateDOCODResponse" />
   </wsdl:message>
   <wsdl:message name="L2_UpdateTagStatusSoapIn">
     <wsdl:part name="parameters" element="tns:L2_UpdateTagStatus" />
@@ -4158,8 +4504,38 @@
   <wsdl:message name="UploadJSHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DoTestHttpGetIn" />
+  <wsdl:message name="DoTestHttpGetIn">
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="DoTestHttpGetOut" />
+  <wsdl:message name="GetCheckListHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AJobsIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForClientHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AClientIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForClientHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForContactHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AContactIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForContactHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForJobHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AJobsIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForJobHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
   <wsdl:message name="TriggerCirclesProxyCheckHttpGetIn" />
   <wsdl:message name="TriggerCirclesProxyCheckHttpGetOut" />
   <wsdl:message name="TriggerSingTelCheckHttpGetIn" />
@@ -4225,11 +4601,24 @@
   <wsdl:message name="ST_GetSolHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfRouteLocation" />
   </wsdl:message>
+  <wsdl:message name="ST_GetSolDetailsHttpGetIn">
+    <wsdl:part name="AProblemID" type="s:string" />
+    <wsdl:part name="ASolutionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetSolDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRouteLocationDetails" />
+  </wsdl:message>
   <wsdl:message name="ST_GetHistoricSolHttpGetIn">
     <wsdl:part name="ASpringBoardIDX" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ST_GetHistoricSolHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfRouteLocation" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetHistoricSolDetailsHttpGetIn">
+    <wsdl:part name="ASpringBoardIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetHistoricSolDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRouteLocationDetails" />
   </wsdl:message>
   <wsdl:message name="ST_GetStoredProblemsHttpGetIn">
     <wsdl:part name="ADriverIDX" type="s:string" />
@@ -4294,6 +4683,10 @@
   </wsdl:message>
   <wsdl:message name="GetDirectionsHttpGetOut">
     <wsdl:part name="Body" element="tns:RouteInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsHttpGetIn" />
+  <wsdl:message name="GetDistrictJobsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDistrictJobs" />
   </wsdl:message>
   <wsdl:message name="GetSDHttpGetIn">
     <wsdl:part name="ASearchString" type="s:string" />
@@ -5155,8 +5548,38 @@
   <wsdl:message name="UploadJSHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DoTestHttpPostIn" />
+  <wsdl:message name="DoTestHttpPostIn">
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
   <wsdl:message name="DoTestHttpPostOut" />
+  <wsdl:message name="GetCheckListHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AJobsIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCheckListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForClientHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AClientIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForClientHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForContactHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AContactIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForContactHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForJobHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="AJobsIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckList_GetForJobHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfCheckListItem" />
+  </wsdl:message>
   <wsdl:message name="TriggerCirclesProxyCheckHttpPostIn" />
   <wsdl:message name="TriggerCirclesProxyCheckHttpPostOut" />
   <wsdl:message name="TriggerSingTelCheckHttpPostIn" />
@@ -5222,11 +5645,24 @@
   <wsdl:message name="ST_GetSolHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfRouteLocation" />
   </wsdl:message>
+  <wsdl:message name="ST_GetSolDetailsHttpPostIn">
+    <wsdl:part name="AProblemID" type="s:string" />
+    <wsdl:part name="ASolutionID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetSolDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRouteLocationDetails" />
+  </wsdl:message>
   <wsdl:message name="ST_GetHistoricSolHttpPostIn">
     <wsdl:part name="ASpringBoardIDX" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ST_GetHistoricSolHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfRouteLocation" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetHistoricSolDetailsHttpPostIn">
+    <wsdl:part name="ASpringBoardIDX" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ST_GetHistoricSolDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRouteLocationDetails" />
   </wsdl:message>
   <wsdl:message name="ST_GetStoredProblemsHttpPostIn">
     <wsdl:part name="ADriverIDX" type="s:string" />
@@ -5291,6 +5727,10 @@
   </wsdl:message>
   <wsdl:message name="GetDirectionsHttpPostOut">
     <wsdl:part name="Body" element="tns:RouteInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsHttpPostIn" />
+  <wsdl:message name="GetDistrictJobsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDistrictJobs" />
   </wsdl:message>
   <wsdl:message name="GetSDHttpPostIn">
     <wsdl:part name="ASearchString" type="s:string" />
@@ -6155,6 +6595,34 @@
       <wsdl:input message="tns:DoTestSoapIn" />
       <wsdl:output message="tns:DoTestSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <wsdl:input message="tns:GetCheckListSoapIn" />
+      <wsdl:output message="tns:GetCheckListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <wsdl:input message="tns:CheckList_GetForClientSoapIn" />
+      <wsdl:output message="tns:CheckList_GetForClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <wsdl:input message="tns:CheckList_GetForContactSoapIn" />
+      <wsdl:output message="tns:CheckList_GetForContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <wsdl:input message="tns:CheckList_GetForJobSoapIn" />
+      <wsdl:output message="tns:CheckList_GetForJobSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForClient">
+      <wsdl:input message="tns:CheckList_SetForClientSoapIn" />
+      <wsdl:output message="tns:CheckList_SetForClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForContact">
+      <wsdl:input message="tns:CheckList_SetForContactSoapIn" />
+      <wsdl:output message="tns:CheckList_SetForContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForJob">
+      <wsdl:input message="tns:CheckList_SetForJobSoapIn" />
+      <wsdl:output message="tns:CheckList_SetForJobSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <wsdl:input message="tns:TriggerCirclesProxyCheckSoapIn" />
       <wsdl:output message="tns:TriggerCirclesProxyCheckSoapOut" />
@@ -6207,9 +6675,17 @@
       <wsdl:input message="tns:ST_GetSolSoapIn" />
       <wsdl:output message="tns:ST_GetSolSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <wsdl:input message="tns:ST_GetSolDetailsSoapIn" />
+      <wsdl:output message="tns:ST_GetSolDetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <wsdl:input message="tns:ST_GetHistoricSolSoapIn" />
       <wsdl:output message="tns:ST_GetHistoricSolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <wsdl:input message="tns:ST_GetHistoricSolDetailsSoapIn" />
+      <wsdl:output message="tns:ST_GetHistoricSolDetailsSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="ST_GetStoredProblems">
       <wsdl:input message="tns:ST_GetStoredProblemsSoapIn" />
@@ -6255,6 +6731,10 @@
       <wsdl:input message="tns:GetDirectionsSoapIn" />
       <wsdl:output message="tns:GetDirectionsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <wsdl:input message="tns:GetDistrictJobsSoapIn" />
+      <wsdl:output message="tns:GetDistrictJobsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetSD">
       <wsdl:input message="tns:GetSDSoapIn" />
       <wsdl:output message="tns:GetSDSoapOut" />
@@ -6290,6 +6770,10 @@
     <wsdl:operation name="L2_UpdateDOStatus">
       <wsdl:input message="tns:L2_UpdateDOStatusSoapIn" />
       <wsdl:output message="tns:L2_UpdateDOStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="L2_UpdateDOCOD">
+      <wsdl:input message="tns:L2_UpdateDOCODSoapIn" />
+      <wsdl:output message="tns:L2_UpdateDOCODSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="L2_UpdateTagStatus">
       <wsdl:input message="tns:L2_UpdateTagStatusSoapIn" />
@@ -6725,6 +7209,22 @@
       <wsdl:input message="tns:DoTestHttpGetIn" />
       <wsdl:output message="tns:DoTestHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <wsdl:input message="tns:GetCheckListHttpGetIn" />
+      <wsdl:output message="tns:GetCheckListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <wsdl:input message="tns:CheckList_GetForClientHttpGetIn" />
+      <wsdl:output message="tns:CheckList_GetForClientHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <wsdl:input message="tns:CheckList_GetForContactHttpGetIn" />
+      <wsdl:output message="tns:CheckList_GetForContactHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <wsdl:input message="tns:CheckList_GetForJobHttpGetIn" />
+      <wsdl:output message="tns:CheckList_GetForJobHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <wsdl:input message="tns:TriggerCirclesProxyCheckHttpGetIn" />
       <wsdl:output message="tns:TriggerCirclesProxyCheckHttpGetOut" />
@@ -6777,9 +7277,17 @@
       <wsdl:input message="tns:ST_GetSolHttpGetIn" />
       <wsdl:output message="tns:ST_GetSolHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <wsdl:input message="tns:ST_GetSolDetailsHttpGetIn" />
+      <wsdl:output message="tns:ST_GetSolDetailsHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <wsdl:input message="tns:ST_GetHistoricSolHttpGetIn" />
       <wsdl:output message="tns:ST_GetHistoricSolHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <wsdl:input message="tns:ST_GetHistoricSolDetailsHttpGetIn" />
+      <wsdl:output message="tns:ST_GetHistoricSolDetailsHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="ST_GetStoredProblems">
       <wsdl:input message="tns:ST_GetStoredProblemsHttpGetIn" />
@@ -6824,6 +7332,10 @@
     <wsdl:operation name="GetDirections">
       <wsdl:input message="tns:GetDirectionsHttpGetIn" />
       <wsdl:output message="tns:GetDirectionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <wsdl:input message="tns:GetDistrictJobsHttpGetIn" />
+      <wsdl:output message="tns:GetDistrictJobsHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetSD">
       <wsdl:input message="tns:GetSDHttpGetIn" />
@@ -7251,6 +7763,22 @@
       <wsdl:input message="tns:DoTestHttpPostIn" />
       <wsdl:output message="tns:DoTestHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <wsdl:input message="tns:GetCheckListHttpPostIn" />
+      <wsdl:output message="tns:GetCheckListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <wsdl:input message="tns:CheckList_GetForClientHttpPostIn" />
+      <wsdl:output message="tns:CheckList_GetForClientHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <wsdl:input message="tns:CheckList_GetForContactHttpPostIn" />
+      <wsdl:output message="tns:CheckList_GetForContactHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <wsdl:input message="tns:CheckList_GetForJobHttpPostIn" />
+      <wsdl:output message="tns:CheckList_GetForJobHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <wsdl:input message="tns:TriggerCirclesProxyCheckHttpPostIn" />
       <wsdl:output message="tns:TriggerCirclesProxyCheckHttpPostOut" />
@@ -7303,9 +7831,17 @@
       <wsdl:input message="tns:ST_GetSolHttpPostIn" />
       <wsdl:output message="tns:ST_GetSolHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <wsdl:input message="tns:ST_GetSolDetailsHttpPostIn" />
+      <wsdl:output message="tns:ST_GetSolDetailsHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <wsdl:input message="tns:ST_GetHistoricSolHttpPostIn" />
       <wsdl:output message="tns:ST_GetHistoricSolHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <wsdl:input message="tns:ST_GetHistoricSolDetailsHttpPostIn" />
+      <wsdl:output message="tns:ST_GetHistoricSolDetailsHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ST_GetStoredProblems">
       <wsdl:input message="tns:ST_GetStoredProblemsHttpPostIn" />
@@ -7350,6 +7886,10 @@
     <wsdl:operation name="GetDirections">
       <wsdl:input message="tns:GetDirectionsHttpPostIn" />
       <wsdl:output message="tns:GetDirectionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <wsdl:input message="tns:GetDistrictJobsHttpPostIn" />
+      <wsdl:output message="tns:GetDistrictJobsHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetSD">
       <wsdl:input message="tns:GetSDHttpPostIn" />
@@ -7788,6 +8328,69 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/GetCheckList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/CheckList_GetForClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/CheckList_GetForContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/CheckList_GetForJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForClient">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/CheckList_SetForClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForContact">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/CheckList_SetForContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForJob">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/CheckList_SetForJob" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/TriggerCirclesProxyCheck" style="document" />
       <wsdl:input>
@@ -7905,8 +8508,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/ST_GetSolDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/ST_GetHistoricSol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/ST_GetHistoricSolDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8013,6 +8634,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/GetDistrictJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetSD">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/GetSD" style="document" />
       <wsdl:input>
@@ -8087,6 +8717,15 @@
     </wsdl:operation>
     <wsdl:operation name="L2_UpdateDOStatus">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/L2_UpdateDOStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="L2_UpdateDOCOD">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/L2_UpdateDOCOD" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9069,6 +9708,69 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/GetCheckList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/CheckList_GetForClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/CheckList_GetForContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/CheckList_GetForJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForClient">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/CheckList_SetForClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForContact">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/CheckList_SetForContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_SetForJob">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/CheckList_SetForJob" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/TriggerCirclesProxyCheck" style="document" />
       <wsdl:input>
@@ -9186,8 +9888,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/ST_GetSolDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/ST_GetHistoricSol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/ST_GetHistoricSolDetails" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -9294,6 +10014,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/GetDistrictJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetSD">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/GetSD" style="document" />
       <wsdl:input>
@@ -9368,6 +10097,15 @@
     </wsdl:operation>
     <wsdl:operation name="L2_UpdateDOStatus">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/L2_UpdateDOStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="L2_UpdateDOCOD">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/L2_UpdateDOCOD" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10348,6 +11086,42 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <http:operation location="/GetCheckList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <http:operation location="/CheckList_GetForClient" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <http:operation location="/CheckList_GetForContact" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <http:operation location="/CheckList_GetForJob" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <http:operation location="/TriggerCirclesProxyCheck" />
       <wsdl:input>
@@ -10451,8 +11225,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <http:operation location="/ST_GetSolDetails" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <http:operation location="/ST_GetHistoricSol" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <http:operation location="/ST_GetHistoricSolDetails" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -10550,6 +11342,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDirections">
       <http:operation location="/GetDirections" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <http:operation location="/GetDistrictJobs" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -11510,6 +12311,42 @@
       </wsdl:input>
       <wsdl:output />
     </wsdl:operation>
+    <wsdl:operation name="GetCheckList">
+      <http:operation location="/GetCheckList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForClient">
+      <http:operation location="/CheckList_GetForClient" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForContact">
+      <http:operation location="/CheckList_GetForContact" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckList_GetForJob">
+      <http:operation location="/CheckList_GetForJob" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="TriggerCirclesProxyCheck">
       <http:operation location="/TriggerCirclesProxyCheck" />
       <wsdl:input>
@@ -11613,8 +12450,26 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ST_GetSolDetails">
+      <http:operation location="/ST_GetSolDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ST_GetHistoricSol">
       <http:operation location="/ST_GetHistoricSol" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ST_GetHistoricSolDetails">
+      <http:operation location="/ST_GetHistoricSolDetails" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -11712,6 +12567,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDirections">
       <http:operation location="/GetDirections" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobs">
+      <http:operation location="/GetDistrictJobs" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
@@ -12656,16 +13520,16 @@
   </wsdl:binding>
   <wsdl:service name="LukeWS">
     <wsdl:port name="LukeWSSoap" binding="tns:LukeWSSoap">
-      <soap:address location="http://www.xdel.com/lukews/lukews.asmx" />
+      <soap:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
     <wsdl:port name="LukeWSSoap12" binding="tns:LukeWSSoap12">
-      <soap12:address location="http://www.xdel.com/lukews/lukews.asmx" />
+      <soap12:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
     <wsdl:port name="LukeWSHttpGet" binding="tns:LukeWSHttpGet">
-      <http:address location="http://www.xdel.com/lukews/lukews.asmx" />
+      <http:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
     <wsdl:port name="LukeWSHttpPost" binding="tns:LukeWSHttpPost">
-      <http:address location="http://www.xdel.com/lukews/lukews.asmx" />
+      <http:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

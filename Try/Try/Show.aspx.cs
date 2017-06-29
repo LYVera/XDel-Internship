@@ -132,7 +132,10 @@ namespace Try
                                 for (int k = 0; k < driverJobLocations.Length; k++)
                                 {
                                     LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                                    HiddenField3.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*";
+                                    string arriveDate = driverJobLocations[k].Arrive.ToLongTimeString();
+                                    string departDate = driverJobLocations[k].Depart.ToLongTimeString();
+
+                                HiddenField3.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*" + arriveDate + "*" + departDate + "*";
                                     //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
                                     //obtain array of delivery jobs id
                                     long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
