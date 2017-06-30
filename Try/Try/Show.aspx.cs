@@ -132,8 +132,8 @@ namespace Try
                                 for (int k = 0; k < driverJobLocations.Length; k++)
                                 {
                                     LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                                    string arriveDate = driverJobLocations[k].Arrive.ToLongTimeString();
-                                    string departDate = driverJobLocations[k].Depart.ToLongTimeString();
+                                    string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
+                                    string departDate = driverJobLocations[k].Depart.ToShortTimeString();
 
                                 HiddenField3.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*" + arriveDate + "*" + departDate + "*";
                                     //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
@@ -144,12 +144,12 @@ namespace Try
                                     {
                                         //obtain array of pick up jobs id
                                         long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
-                                        HiddenField3.Value += "PU" + "^";
+                                        HiddenField3.Value += "PU" + "*" + selected[j] + "^";
                                         //driverRoute += "PU" + "^";
                                     }
                                     else
                                     {
-                                        HiddenField3.Value += "DL" + "^";
+                                        HiddenField3.Value += "DL" + "*" + selected[j] + "^";
                                         //driverRoute += "DL" + "^";
                                     }
                                 }

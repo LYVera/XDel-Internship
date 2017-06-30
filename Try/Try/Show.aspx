@@ -486,7 +486,7 @@
                                
                                  
                                     <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchTab');return false">Search</button>
-                                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Route Details</button>
+                                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Details</button>
                                    
                                 
 
@@ -526,46 +526,68 @@
 
                                 <div id="routeDetails" class="w3-container tab" style="display:none">
                                  
-                                    <table border="2">
+                                   <table class="tableC">
 
                              <%
 
                                         var allDriver = HiddenField3.Value.Split('$');
                                         for (int j = 0; j < allDriver.Length; j++)
                                         {
-
+                                            
+                                    
                                             if (allDriver[j].Length > 0)
                                             {
                                                 var allDriverRoute = allDriver[j].Split('^');
                                                 var count = 1;
+                                             %>
+                                       
+                                               <tr>
+                                                   <td class="align-center">
+                                                         <%
+                                                        var forName =  allDriverRoute[0].Split('*');
                                                         
+                                                        %>
+                                                       <b/>
+                                                    <span style="background-color:yellow;"><%=forName[8].ToUpper() %></span>
+
+                                                   </td>
+                                                  
+                                                    
+                                                </tr>
+                                       <%
                                            
                                                  for (int i = 0; i < allDriverRoute.Length; i++)
                                                 {
-                                              %>
-                                        <tr>
-                                            
-                                            <%
+                                             
                         
 
                                                     if (allDriverRoute[i].Length > 0)
                                                     {
                                                         var oneLocation = allDriverRoute[i].Split('*');
                                                  %>
-                                                             
-
                                                             
-                                                             <%=oneLocation[2] + " " + oneLocation[0] + oneLocation[5] + " - " + oneLocation[6]%>
-                                                
-
+                                                             
+                                                            <tr>
+                                                                <td>
+                                                                    <%=oneLocation[2] + " " + oneLocation[0] %>
+                                                                    <br />
+                                                                    <b/>
+                                                                    <%=oneLocation[5] + " - " + oneLocation[6] %>
+                                                                </td>
+                                                                
+                                                            </tr>
+                                        
+                                                            <%--<tr>
+                                                                <td>
+                                                                     
+                                                                </td>
+                                                               
+                                                            </tr>--%>
                                                        
                                                        <% 
 
                                                     }
-                                                                       %>
-                                                
-                                             </tr>
-                                        <%
+                                                         
                                                 }
                                                
                                             } 

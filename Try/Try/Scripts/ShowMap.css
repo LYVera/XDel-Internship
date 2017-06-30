@@ -31,6 +31,11 @@ th {
     color: white;
 }
 
+
+.align-center {
+    text-align: center;
+}
+
 div.divToggleButton input[type=checkbox] {
     display: none;
     white-space: nowrap;
