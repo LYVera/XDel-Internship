@@ -39,7 +39,7 @@
 
 
 
-<body class="w3-theme-l5">
+<body class="w3-theme-l5" >
     <form id="form1" runat="server">
 
         <!-- Navbar -->
@@ -48,7 +48,7 @@
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
                     <img src="XDel Logo.gif" alt="Xdel Logo" style="height: 36px; width: 36px" /></a>
-                <a href="http://localhost:57238/RecommendMap/RecommendView" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Recommend"><i class="fa fa-area-chart"></i></a>
+                <a href="http://localhost:57238/RecommendMap/RecommendView" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
@@ -295,7 +295,7 @@
                                             //}).addTo(map);
 
 
-                                               <%-- <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
+                                               <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
                                                 <%String[] clusteringGroups = GetClusteringNumbers();%>
                                                 <%int[] totalJobs = CalculateTotalJobsPerPostal();%>
                                             var polygonList = [];
@@ -316,7 +316,7 @@
                                                      e.preventDefault();
                                                         });
                                                     });
-                                                <%}%>--%>
+                                                <%}%>
 
                                             // Route 
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
@@ -371,11 +371,11 @@
                                                             if (oneLocation.length > 0) {         
                                                                 if (oneLocation[5] == "DL") {
                                                                     marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: deliveryMarker })
-                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
+                                                                        .bindPopup(oneLocation[8] + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
                                                                     .addTo(map)
                                                                 } else {
                                                                     marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: pickUpMarker })
-                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
+                                                                        .bindPopup(oneLocation[8] + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
                                                                     .addTo(map)
                                                                 }
                                                                
@@ -506,6 +506,7 @@
 
                                         <p />
                                         <!--filter table for searching drivers-->
+                                         <div class="scroll">
                                         <table id="UserGridView" class="tableC">
 
                                             <tr>
@@ -521,11 +522,14 @@
 
                                         </table>
                                         </div>
+                                        </div>
                                 </div>
 
 
                                 <div id="routeDetails" class="w3-container tab" style="display:none">
                                  
+
+                                   <div class="scroll">
                                    <table class="tableC">
 
                              <%
@@ -569,7 +573,12 @@
                                                              
                                                             <tr>
                                                                 <td>
+                                                                    <b><%= i+1 + ". "%></b>
+                                                                   
+                                                                    
+                                                                    
                                                                     <%=oneLocation[2] + " " + oneLocation[0] %>
+
                                                                     <br />
                                                                     <b/>
                                                                     <%=oneLocation[5] + " - " + oneLocation[6] %>
@@ -599,14 +608,12 @@
                                             
 
                                           </table>
-
+                                        </div>
+                                    </div>
                                 </div>
-
-
-
                             </div>
                         </div>
-                    </div>
+                    
                         
 
 

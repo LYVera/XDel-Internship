@@ -347,6 +347,6 @@ C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\bin\Microsoft.AI.Dependen
 C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\bin\Microsoft.AI.Web.xml
-C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\obj\Debug\Try.csprojResolveAssemblyReference.cache
 C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\obj\Debug\Try.dll
 C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\obj\Debug\Try.pdb
+C:\Users\Vera\Documents\GitHub\XDel-Internship\Try\Try\obj\Debug\Try.csprojResolveAssemblyReference.cache
