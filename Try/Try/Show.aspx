@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.Default.css" />
-    <link rel="stylesheet" href="Scripts/leaflet.extra-markers.min.css"/>
-    
+    <link rel="stylesheet" href="Scripts/leaflet.extra-markers.min.css" />
+
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
     <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
 
@@ -31,15 +31,23 @@
     <!-- Css for ShowMap -->
     <link rel="stylesheet" type="text/css" href="Scripts/ShowMap.css" />
 
+    
+    <style>
+            div.scroll {
+            height: 500px;
+            width: 180px; 
+            overflow: scroll;
+        }
+    </style>
+
     <title>View Map</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
 </head>
 
 
 
-<body class="w3-theme-l5" >
+<body class="w3-theme-l5">
     <form id="form1" runat="server">
 
         <!-- Navbar -->
@@ -48,7 +56,7 @@
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
                     <img src="XDel Logo.gif" alt="Xdel Logo" style="height: 36px; width: 36px" /></a>
-                <a href="http://localhost:57238/RecommendMap/RecommendView" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
+                <a href="http://localhost:62482/DashBoard" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
@@ -63,7 +71,7 @@
 
                         </span>
                     </button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px;  font-size: 0.45em">
+                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.45em">
                         <%
                             for (int i = 0; i < lowBatts.Count; i++)
                             {
@@ -71,7 +79,7 @@
 
                         %>
 
-                        <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%> 
+                        <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
                             <br />
                         </a>
                         <%} %>
@@ -114,10 +122,10 @@
                     <div class="w3-card-2 w3-round w3-white w3-hide-small">
                        
                     </div>--%>
-                    <%--<br>--%>
+                <%--<br>--%>
 
-                    <!-- Alert Box -->
-                    <%--<div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+                <!-- Alert Box -->
+                <%--<div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
                         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
                             <i class="fa fa-remove"></i>
                         </span>
@@ -127,155 +135,135 @@
                         <p>Tan's Battery is Low.</p>
                     </div>--%>
 
-                    <!-- End Left Column -->
-                </div>
+                <!-- End Left Column -->
+            </div>
 
-                <!-- Middle Column -->
-                <div class="w3-col m10">
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card-2 w3-round w3-white">
-                                <div class="w3-container w3-padding">
+            <!-- Middle Column -->
+            <div class="w3-col m10">
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card-2 w3-round w3-white">
+                            <div class="w3-container w3-padding">
 
-                                    <!-- hidden field-->
-                                    <!-- Driver Location Hidden Field -->
-                                    <asp:HiddenField ID="HiddenField1" runat="server" />
-                                    <!-- Traffic Incident Hidden Field -->
-                                    <asp:HiddenField ID="HiddenField2" runat="server" />
-                                    <!-- Route Hidden Field -->
-                                    <asp:HiddenField ID="HiddenField3" runat="server" />
-                                    <!-- Route Hidden Field -->
-                                    <asp:HiddenField ID="HiddenField4" runat="server" />
-                                    <!-- Route Hidden Field -->
-                                    <asp:HiddenField ID="HiddenPostalCode" runat="server" />
-                                    <!-- Route Hidden Field -->
-                                    <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
+                                <!-- hidden field-->
+                                <!-- Driver Location Hidden Field -->
+                                <asp:HiddenField ID="HiddenField1" runat="server" />
+                                <!-- Traffic Incident Hidden Field -->
+                                <asp:HiddenField ID="HiddenField2" runat="server" />
+                                <!-- Route Hidden Field -->
+                                <asp:HiddenField ID="HiddenField3" runat="server" />
+                                <!-- Route Hidden Field -->
+                                <asp:HiddenField ID="HiddenField4" runat="server" />
+                                <!-- Route Hidden Field -->
+                                <asp:HiddenField ID="HiddenPostalCode" runat="server" />
+                                <!-- Route Hidden Field -->
+                                <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
 
-                                    <!-- MAP -->
-                                
+                                <!-- MAP -->
 
 
-                                    <div class="row">
-                                     <div class="divToggleButton">
-                                        <asp:CheckBox ID="chkTraffic" runat="server" 
 
-                                        AutoPostBack="true" />
-                                        <asp:Label ID="lblToggleTraffic" 
-
-                                        AssociatedControlID="chkTraffic" runat="server" 
-
-                                        ToolTip="Toggle between Traffic Condition"/>
+                                <div class="row">
+                                    <div class="divToggleButton">
+                                        <asp:CheckBox ID="chkTraffic" runat="server"
+                                            AutoPostBack="true" />
+                                        <asp:Label ID="lblToggleTraffic"
+                                            AssociatedControlID="chkTraffic" runat="server"
+                                            ToolTip="Toggle between Traffic Condition" />
                                     </div>
 
-                                     <div class="divToggleRoute">
-                                            <asp:CheckBox ID="toggleRoute" runat="server" 
-
+                                    <div class="divToggleRoute">
+                                        <asp:CheckBox ID="toggleRoute" runat="server"
                                             AutoPostBack="true" />
-                                            <asp:Label ID="lblToggleRoute" 
+                                        <asp:Label ID="lblToggleRoute"
+                                            AssociatedControlID="toggleRoute" runat="server"
+                                            ToolTip="Toggle between Traffic Condition" />
+                                    </div>                                    
 
-                                            AssociatedControlID="toggleRoute" runat="server" 
-
-                                            ToolTip="Toggle between Traffic Condition"/>
-                                     </div>
-                                    
-                                        <div class="divToggleCluster">
-                                            <asp:CheckBox ID="toggleCluster" runat="server" 
-
-                                            AutoPostBack="true" />
-                                            <asp:Label ID="lblToggleCluster" 
-
-                                            AssociatedControlID="toggleCluster" runat="server" 
-
-                                            ToolTip="Toggle between Traffic Condition"/>
-                                     </div>
-
-                                         <!-- Button -->
-                                        <asp:DropDownList ID="Grouping" runat="server" Width="200px">
-                                            <asp:ListItem Text="Central 1" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="Central 2" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Central 3" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="Central 4" Value="4"></asp:ListItem>
-                                            <asp:ListItem Text="East 1" Value="5"></asp:ListItem>
-                                            <asp:ListItem Text="East 2" Value="6"></asp:ListItem>
-                                            <asp:ListItem Text="North 1" Value="7"></asp:ListItem>
-                                            <asp:ListItem Text="North 2" Value="8"></asp:ListItem>
-                                            <asp:ListItem Text="Northeast 1" Value="9"></asp:ListItem>
-                                            <asp:ListItem Text="Northeast 2" Value="10"></asp:ListItem>
-                                            <asp:ListItem Text="Northwest 1" Value="11"></asp:ListItem>
-                                            <asp:ListItem Text="Northwest 2" Value="12"></asp:ListItem>
-                                            <asp:ListItem Text="West 1" Value="13"></asp:ListItem>
-                                            <asp:ListItem Text="West 2" Value="14"></asp:ListItem>
-                                            <asp:ListItem Text="West 3" Value="15"></asp:ListItem>
-                                            <asp:ListItem Text="New 1" Value="16"></asp:ListItem>
-                                            <asp:ListItem Text="New 2" Value="17"></asp:ListItem>
-                                            <asp:ListItem Text="New 3" Value="18"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit"  />
+                                    <!-- Button -->
+                                    <asp:DropDownList ID="Grouping" runat="server" Width="200px">
+                                        <asp:ListItem Text="Central 1" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Central 2" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="Central 3" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="Central 4" Value="4"></asp:ListItem>
+                                        <asp:ListItem Text="East 1" Value="5"></asp:ListItem>
+                                        <asp:ListItem Text="East 2" Value="6"></asp:ListItem>
+                                        <asp:ListItem Text="North 1" Value="7"></asp:ListItem>
+                                        <asp:ListItem Text="North 2" Value="8"></asp:ListItem>
+                                        <asp:ListItem Text="Northeast 1" Value="9"></asp:ListItem>
+                                        <asp:ListItem Text="Northeast 2" Value="10"></asp:ListItem>
+                                        <asp:ListItem Text="Northwest 1" Value="11"></asp:ListItem>
+                                        <asp:ListItem Text="Northwest 2" Value="12"></asp:ListItem>
+                                        <asp:ListItem Text="West 1" Value="13"></asp:ListItem>
+                                        <asp:ListItem Text="West 2" Value="14"></asp:ListItem>
+                                        <asp:ListItem Text="West 3" Value="15"></asp:ListItem>
+                                        <asp:ListItem Text="New 1" Value="16"></asp:ListItem>
+                                        <asp:ListItem Text="New 2" Value="17"></asp:ListItem>
+                                        <asp:ListItem Text="New 3" Value="18"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit" />
 
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
-                                    
+                                  
+                                </div>
 
-                                      <%--<asp:Button ID="submitRoute" runat="server" OnClick="Submit_Click" Text="Courier Route" />--%>
-                                      <%--<asp:Button ID="trafficCondi" runat="server" OnClick="getTrafficConditions" Text="Traffic Conditions" />  --%>
-                                    </div>
-                                     
-                                    <br />
+                                <br />
 
-                                    <p />
+                                <p />
 
-                                    <div id="map" style="height: 500px; border: 1px solid #AAA;">
+                                <div id="map" style="height: 500px; border: 1px solid #AAA;">
 
-                                        <script>
-                                            //markers
-                                            var trafficMarker = L.ExtraMarkers.icon({
-                                                icon: 'fa-warning',
-                                                markerColor: 'red',
-                                                shape: 'star',
-                                                prefix: 'fa'
-                                            });
+                                    <script>
+                                        //markers
+                                        var trafficMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-warning',
+                                            markerColor: 'red',
+                                            shape: 'star',
+                                            prefix: 'fa'
+                                        });
 
-                                            var humanMarker = L.ExtraMarkers.icon({
-                                                icon: 'fa-user-circle',
-                                                markerColor: 'blue',
-                                                shape: 'circle',
-                                                prefix: 'fa',                                            
-                                            });
-                                           
-                                            //map
-                                            var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
-                                                thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+                                        var humanMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-user-circle',
+                                            markerColor: 'blue',
+                                            shape: 'circle',
+                                            prefix: 'fa',
+                                        });
 
-                                            var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                                osmAttrib = '&copy; ' + osmLink + ' Contributors',
-                                                landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
-                                                thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
+                                        //map
+                                        var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+                                            thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
 
-                                            var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
-                                                landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
+                                        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                            osmAttrib = '&copy; ' + osmLink + ' Contributors',
+                                            landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+                                            thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
 
-                                            var map = L.map('map', {
-                                                layers: [osmMap] // only add one!
-                                            })
-                                                .setView([1.3521, 103.8198], 11);
+                                        var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
+                                            landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
 
-                                            var baseLayers = {
-                                                "Colour Map": osmMap,
-                                                "GrayScale Map": landMap
-                                            };
+                                        var map = L.map('map', {
+                                            layers: [osmMap] // only add one!
+                                        })
+                                            .setView([1.3521, 103.8198], 11);
 
-                                           // var trafficLayer = new L.LayerGroup();   
-                                            var postalCodeBoundaryLayer = new L.LayerGroup();
-                                            //var driverRoute = new L.LayerGroup();
-                                            var overlays = {
-                                                //"Traffic Condition": trafficLayer,
-                                                "Postal Code Boundary": postalCodeBoundaryLayer,
-                                                //"Driver Route": driverRoute
-                                            };
+                                        var baseLayers = {
+                                            "Colour Map": osmMap,
+                                            "GrayScale Map": landMap
+                                        };
+
+                                        // var trafficLayer = new L.LayerGroup();   
+                                        var postalCodeBoundaryLayer = new L.LayerGroup();
+                                        //var driverRoute = new L.LayerGroup();
+                                        var overlays = {
+                                            //"Traffic Condition": trafficLayer,
+                                            "Postal Code Boundary": postalCodeBoundaryLayer,
+                                            //"Driver Route": driverRoute
+                                        };
 
 
-                                            // Layers 
-                                            L.control.layers(baseLayers, overlays).addTo(map);
+                                        // Layers 
+                                        L.control.layers(baseLayers, overlays).addTo(map);
                                             //if (document.getElementById("HiddenPostalCode").value == "1") {
                                             //    postalCodeBoundaryLayer.addTo(map);
                                             //}
@@ -295,42 +283,80 @@
                                             //}).addTo(map);
 
 
-                                               <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
+                                              <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
                                                 <%String[] clusteringGroups = GetClusteringNumbers();%>
                                                 <%int[] totalJobs = CalculateTotalJobsPerPostal();%>
-                                            var polygonList = [];
-                                            var count = [];
+                                        var polygonList = [];
+                                        var count = [];
 
                                                 <%for (int i = 1; i < 84; i++)
-                                                {%>
-                                                var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
-                                                count[<%=i%>] = 0;
-                                                    poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
-                                                    poly.bindTooltip("<%=i%> " + "(" + "<%=clusteringGroups[i]%>" + ") " + "<%=totalJobs[i]%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 });
-                                                    polygonList[<%=i%>] = poly;
-                                                    $(document).ready(function () {
-                                                        polygonList[<%=i%>].on('click', function (e) {
-                                                            document.getElementById("HiddenId").value = "<%=i%>";
-                                                            document.getElementById("polygonclick").click();
+                                        {%>
+                                        var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
+                                        count[<%=i%>] = 0;
+                                        poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
+                                        poly.bindTooltip("<%=i%> " + "(" + "<%=clusteringGroups[i]%>" + ") " + "<%=totalJobs[i]%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 });
+                                            polygonList[<%=i%>] = poly;
+                                            $(document).ready(function () {
+                                                polygonList[<%=i%>].on('click', function (e) {
+                                                    document.getElementById("HiddenId").value = "<%=i%>";
+                                                    document.getElementById("polygonclick").click();
 
-                                                     e.preventDefault();
-                                                        });
-                                                    });
+                                                    e.preventDefault();
+                                                });
+                                            });
                                                 <%}%>
+
+                                            // driver current location marker 
+                                            var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
+                                            if (allDriverLoc[0] != "") {
+                                                var oneDriverLoc = allDriverLoc[0].split("*");
+
+                                                for (i = 0; i < allDriverLoc.length; i++) {
+                                                    if (allDriverLoc[i].length > 0) {
+                                                        var oneDriverLoc = allDriverLoc[i].split("*");
+                                                        marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])], { icon: humanMarker })
+                                                            .bindPopup(oneDriverLoc[0]).openPopup()
+                                                            //layers code beneath
+                                                            //.addTo(driverLocationLayer)
+                                                            .addTo(map)
+                                                    }
+                                                    
+                                                }
+                                            }
+
+                                            //LTA incidents
+                                            var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
+
+                                            if (allLTAIncidents[0] != "") {
+                                                for (i = 0; i < allLTAIncidents.length; i++) {
+                                                    if (allLTAIncidents[i].length > 0) {
+                                                        var oneLTAIncidents = allLTAIncidents[i].split("*");
+                                                        marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker })
+                                                            .bindPopup(oneLTAIncidents[0]).openPopup()
+                                                            .addTo(map)
+                                                    //trafficLayer.addLayer(marker);
+                                                    }
+                                                    
+
+                                                }
+                                            }
+
+
+
 
                                             // Route 
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
                                             for (j = 0; j < allDriver.length; j++) {
                                                 var test = []
-                                                
+
                                                 if (allDriver[j].length > 0) {
                                                     var allDriverRoute = allDriver[j].split("^");
                                                     for (i = 0; i < allDriverRoute.length; i++) {
-                                                        if (allDriverRoute[i].length > 0) {                                                            
+                                                        if (allDriverRoute[i].length > 0) {
                                                             var oneLocation = allDriverRoute[i].split("*");
                                                             //var oneNextLocation = allDriverRoute[i + 1].split("*");
                                                             if (oneLocation.length > 0) {
-                                                                test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))                                                                
+                                                                test[i] = L.latLng(parseFloat(oneLocation[3]), parseFloat(oneLocation[4]))
                                                             }
                                                         }
                                                     }
@@ -343,7 +369,7 @@
                                             }
 
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
-                                           
+
                                             for (j = 0; j < allDriver.length; j++) {
                                                 var test = []
                                                 var test2 = []
@@ -351,7 +377,7 @@
                                                     var allDriverRoute = allDriver[j].split("^");
                                                     var count = 1;
                                                     for (i = 0; i < allDriverRoute.length; i++) {
-                                                        
+
                                                         var pickUpMarker = L.ExtraMarkers.icon({
                                                             icon: 'fa-number',
                                                             number: count,
@@ -368,262 +394,205 @@
 
                                                         if (allDriverRoute[i].length > 0) {
                                                             var oneLocation = allDriverRoute[i].split("*");
-                                                            if (oneLocation.length > 0) {         
+                                                            if (oneLocation.length > 0) {
                                                                 if (oneLocation[5] == "DL") {
                                                                     marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: deliveryMarker })
                                                                         .bindPopup(oneLocation[8] + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
-                                                                    .addTo(map)
+                                                                        .addTo(map)
                                                                 } else {
                                                                     marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: pickUpMarker })
                                                                         .bindPopup(oneLocation[8] + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
-                                                                    .addTo(map)
+                                                                        .addTo(map)
                                                                 }
-                                                               
+
                                                             }
                                                         }
                                                         count++;
-                                                    }                                                 
+                                                    }
                                                 }
                                             }
-
-                                                // driver current location marker 
-                                                    var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
-                                                    if (allDriverLoc[0] != "") {
-                                                        var oneDriverLoc = allDriverLoc[0].split("*");
-
-                                                        for (i = 0; i < allDriverLoc.length; i++) {
-                                                            var oneDriverLoc = allDriverLoc[i].split("*");
-                                                            marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])], { icon: humanMarker })
-                                                                .bindPopup(oneDriverLoc[0]).openPopup()
-                                                                //layers code beneath
-                                                                //.addTo(driverLocationLayer)
-                                                                .addTo(map)   
-                                                        }                                                       
-                                                    }
-
-                                                //    //LTA incidents
-                                                    var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
-
-                                                    if (allLTAIncidents[0] != "") {
-                                                        for (i = 0; i < allLTAIncidents.length; i++) {
-                                                            var oneLTAIncidents = allLTAIncidents[i].split("*");
-                                                            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker})
-                                                                .bindPopup(oneLTAIncidents[0]).openPopup()
-                                                                .addTo(map)
-                                                                //trafficLayer.addLayer(marker);
-
-                                                        }
-                                                    }
-
-                                            //cluster
-                                            var cluster = L.markerClusterGroup();
-                                            var allDriver = document.getElementById("HiddenField4").value.split("$");
                                             
-                                            for (j = 0; j < allDriver.length; j++) {
-                                                var test = []
-                                                var test2 = []
-                                                if (allDriver[j].length > 0) {
-                                                    var allDriverRoute = allDriver[j].split("^");
-                                                    for (i = 0; i < allDriverRoute.length; i++) {
-                                                        if (allDriverRoute[i].length > 0) {
-                                                            var oneLocation = allDriverRoute[i].split("*");
-                                                            if (oneLocation.length > 0) {
-                                                                //alert(oneLocation)
-                                                                marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])])
-                                                                    .bindPopup((i + 1) + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup();
-                                                                    //.addTo(map)
-                                                                cluster.addLayer(marker);
-                                                            }
-                                                        }
-                                                    }
-                                                    map.addLayer(cluster);
+                                    </script>
 
-                                                }
-                                            }
-
-    
-                                        </script>
-
-                                        <asp:Button runat="server" ID="polygonclick" Text="" Style="display: none;" OnClick="polygon_Click" />
-                                        <asp:HiddenField ID="HiddenId" runat="server" /> 
-
-                                    </div>
-
-
-                                    <p />
+                                    <asp:Button runat="server" ID="polygonclick" Text="" Style="display: none;" OnClick="polygon_Click" />
+                                    <asp:HiddenField ID="HiddenId" runat="server" />
 
                                 </div>
+
+
+                                <p />
+
                             </div>
                         </div>
                     </div>
-
-                    <!--Container-->
-                    <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
-                    </div>
-
-                    <!-- End Middle Column -->
                 </div>
-                <!-- Right Column -->
-                
-            
-                <script>
-                    function openTabs(tabName) {
-                        var i;
-                        var x = document.getElementsByClassName("tab");
-                        for (i = 0; i < x.length; i++) {
-                            x[i].style.display = "none";
-                        }
-                        document.getElementById(tabName).style.display = "block";
-                    }
-                </script>
-                
-               
+
+                <!--Container-->
+                <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+                </div>
+
+                <!-- End Middle Column -->
+            </div>
+            <!-- Right Column -->
 
 
-                    <div class="w3-col m2">
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
-                               
-                                 
-                                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchTab');return false">Search</button>
-                                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Details</button>
-                                   
-                                
-
-                                <div id="SearchTab" class="w3-container tab">
-                                        <p>Search Drivers:</p>
-                                    <div id="search">
-                                        <p />
-                                       
-                                        <input type="text" name="" id="filter" size="15">
-
-                                        <p />
-                                        <strong>Driver List</strong>
-                                        <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
-                                        <!-- Clear and Clear All button-->
-                                        <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
+            <script>
+                                            function openTabs(tabName) {
+                                                var i;
+                                                var x = document.getElementsByClassName("tab");
+                                                for (i = 0; i < x.length; i++) {
+                                                    x[i].style.display = "none";
+                                                }
+                                                document.getElementById(tabName).style.display = "block";
+                                            }
+            </script>
 
 
-                                        <p />
-                                        <!--filter table for searching drivers-->
-                                         <div class="scroll">
-                                        <table id="UserGridView" class="tableC">
 
-                                            <tr>
-                                                <td style="text-align: left; padding-left: 5px;">
-                                                    <asp:CheckBoxList
-                                                        ID="CheckBoxList1"
-                                                        AutoPostBack="True"
-                                                        OnSelectedIndexChanged="CheckBoxList_Click"
-                                                        runat="server">
-                                                    </asp:CheckBoxList>
-                                                </td>
-                                            </tr>
 
-                                        </table>
-                                        </div>
-                                        </div>
+            <div class="w3-col m2">
+                <div class="w3-card-2 w3-round w3-white w3-center">
+                    <div class="w3-container">
+
+
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchTab');return false">Search</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Details</button>
+
+
+
+                        <div id="SearchTab" class="w3-container tab">
+                            <p>Search Drivers:</p>
+                            <div id="search">
+                                <p />
+
+                                <input type="text" name="" id="filter" size="15">
+
+                                <p />
+                                <strong>Driver List</strong>
+                                <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
+                                <!-- Clear and Clear All button-->
+                                <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
+
+
+                                <p />
+                                <!--filter table for searching drivers-->
+                                <div class="scroll">
+
+                                    <table id="UserGridView" class="tableC">
+
+                                        <tr>
+                                            <td style="text-align: left; padding-left: 5px;">
+                                                <asp:CheckBoxList
+                                                    ID="CheckBoxList1"
+                                                    AutoPostBack="True"
+                                                    OnSelectedIndexChanged="CheckBoxList_Click"
+                                                    runat="server">
+                                                </asp:CheckBoxList>
+                                            </td>
+                                        </tr>
+
+                                    </table>
                                 </div>
+                            </div>
+                        </div>
 
 
-                                <div id="routeDetails" class="w3-container tab" style="display:none">
-                                 
+                        <div id="routeDetails" class="w3-container tab" style="display: none">
+                            
 
-                                   <div class="scroll">
-                                   <table class="tableC">
+                            <div class="scroll">
+                                <table class="tableC">
 
-                             <%
+                                    <%
 
                                         var allDriver = HiddenField3.Value.Split('$');
                                         for (int j = 0; j < allDriver.Length; j++)
                                         {
-                                            
-                                    
+
+
                                             if (allDriver[j].Length > 0)
                                             {
                                                 var allDriverRoute = allDriver[j].Split('^');
                                                 var count = 1;
-                                             %>
-                                       
-                                               <tr>
-                                                   <td class="align-center">
-                                                         <%
-                                                        var forName =  allDriverRoute[0].Split('*');
-                                                        
-                                                        %>
-                                                       <b/>
-                                                    <span style="background-color:yellow;"><%=forName[8].ToUpper() %></span>
+                                    %>
 
-                                                   </td>
-                                                  
-                                                    
-                                                </tr>
-                                       <%
-                                           
-                                                 for (int i = 0; i < allDriverRoute.Length; i++)
-                                                {
-                                             
-                        
+                                    <tr>
+                                        <td class="align-center">
+                                            <%
+                                                var forName = allDriverRoute[0].Split('*');
 
-                                                    if (allDriverRoute[i].Length > 0)
-                                                    {
-                                                        var oneLocation = allDriverRoute[i].Split('*');
-                                                 %>
-                                                            
-                                                             
-                                                            <tr>
-                                                                <td>
-                                                                    <b><%= i+1 + ". "%></b>
-                                                                   
-                                                                    
-                                                                    
-                                                                    <%=oneLocation[2] + " " + oneLocation[0] %>
+                                            %>
+                                            <b />
+                                            <span style="background-color: yellow;"><%=forName[8].ToUpper() %></span>
 
-                                                                    <br />
-                                                                    <b/>
-                                                                    <%=oneLocation[5] + " - " + oneLocation[6] %>
-                                                                </td>
-                                                                
-                                                            </tr>
-                                        
-                                                            <%--<tr>
+                                        </td>
+
+
+                                    </tr>
+                                    <%
+
+                                        for (int i = 0; i < allDriverRoute.Length; i++)
+                                        {
+
+
+
+                                            if (allDriverRoute[i].Length > 0)
+                                            {
+                                                var oneLocation = allDriverRoute[i].Split('*');
+                                    %>
+
+
+                                    <tr>
+                                        <td>
+                                            <b><%= i+1 + ". "%></b>
+
+
+
+                                            <%=oneLocation[2] + " " + oneLocation[0] %>
+
+                                            <br />
+                                            <b />
+                                            <%=oneLocation[5] + " - " + oneLocation[6] %>
+                                        </td>
+
+                                    </tr>
+
+                                    <%--<tr>
                                                                 <td>
                                                                      
                                                                 </td>
                                                                
                                                             </tr>--%>
-                                                       
-                                                       <% 
+
+                                    <% 
 
                                                     }
-                                                         
+
                                                 }
-                                               
-                                            } 
+
+                                            }
                                         }
-                                       
-                                    
 
-                                        %>
-                                            
 
-                                          </table>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                    %>
+                                </table>
                             </div>
                         </div>
-                    
-                        
+                    </div>
+                </div>
+            </div>
 
 
-                        <!-- End Right Column -->
-                
-             
 
 
-                <!-- End Grid -->
-            
+            <!-- End Right Column -->
+
+
+
+
+            <!-- End Grid -->
+
 
             <!-- End Page Container -->
         </div>

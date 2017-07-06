@@ -40,7 +40,7 @@ namespace Try
                 getBattery();
                 HiddenPostalCode.Value = "0";
                 HiddenTrafficLayer.Value = "0";
-              
+
             }
             else
             {
@@ -70,16 +70,7 @@ namespace Try
                 {
                     HiddenField3.Value = "";
                 }
-
-                //toggle route
-                if (toggleCluster.Checked)
-                {
-                    Cluster_Click();
-                }
-                else
-                {
-                    HiddenField4.Value = "";
-                }
+ 
             }
 
 
@@ -122,44 +113,44 @@ namespace Try
                 {
                     if (selected[j].ToString().Equals(driverObjs[i].Name))
                     {
-                       
-                            long driverID = driverObjs[i].DriverIDX;
-                            LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
-                            LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
-                            if (driverJobLocations != null)
-                            {
 
-                                for (int k = 0; k < driverJobLocations.Length; k++)
-                                {
-                                    LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                                    string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
-                                    string departDate = driverJobLocations[k].Depart.ToShortTimeString();
+                        long driverID = driverObjs[i].DriverIDX;
+                        LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
+                        LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
+                        if (driverJobLocations != null)
+                        {
+
+                            for (int k = 0; k < driverJobLocations.Length; k++)
+                            {
+                                LukeRef.Address jobLoc = driverJobLocations[k].Location;
+                                string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
+                                string departDate = driverJobLocations[k].Depart.ToShortTimeString();
 
                                 HiddenField3.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*" + arriveDate + "*" + departDate + "*";
-                                    //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
-                                    //obtain array of delivery jobs id
-                                    long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
-                                    //if its not a dlvery job 
-                                    if (dlJobsID.Length == 0)
-                                    {
-                                        //obtain array of pick up jobs id
-                                        long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
-                                        HiddenField3.Value += "PU" + "*" + selected[j] + "^";
-                                        //driverRoute += "PU" + "^";
-                                    }
-                                    else
-                                    {
-                                        HiddenField3.Value += "DL" + "*" + selected[j] + "^";
-                                        //driverRoute += "DL" + "^";
-                                    }
+                                //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
+                                //obtain array of delivery jobs id
+                                long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
+                                //if its not a dlvery job 
+                                if (dlJobsID.Length == 0)
+                                {
+                                    //obtain array of pick up jobs id
+                                    long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
+                                    HiddenField3.Value += "PU" + "*" + selected[j] + "^";
+                                    //driverRoute += "PU" + "^";
                                 }
-
-                                HiddenField3.Value += "$";
-                                //driverRoute += "$";
+                                else
+                                {
+                                    HiddenField3.Value += "DL" + "*" + selected[j] + "^";
+                                    //driverRoute += "DL" + "^";
+                                }
                             }
-                            //Session["driverRoute"] = driverRoute;
+
+                            HiddenField3.Value += "$";
+                            //driverRoute += "$";
                         }
-                    
+                        //Session["driverRoute"] = driverRoute;
+                    }
+
                 }
             }
         }

@@ -53,12 +53,20 @@ namespace Try
         {
 
             LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
+            
             LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
             ArrayList driverIDx = new ArrayList();
+            ArrayList driverPoints = new ArrayList();
 
-            for(int i = 0; i < arrayOfDrivers.Length; i++)
+            // to get all driverIDX
+            for (int i = 0; i < arrayOfDrivers.Length; i++)
             {
                 driverIDx.Add(arrayOfDrivers[i].DriverIDX);
+            }
+
+            for (int i = 0; i < arrayOfDrivers.Length; i++)
+            {
+                
             }
         }
     }
