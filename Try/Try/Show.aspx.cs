@@ -44,9 +44,6 @@ namespace Try
             }
             else
             {
-
-                //lblmessage.Text = "hi can";
-                HiddenField1.Value = "";
                 HiddenField3.Value = "";
                 HiddenPostalCode.Value = "1";
                 HiddenTrafficLayer.Value = "1";
@@ -215,7 +212,7 @@ namespace Try
             List<ListItem> selected = new List<ListItem>();
             foreach (ListItem item in CheckBoxList1.Items)
                 if (item.Selected) selected.Add(item);
-
+            HiddenField1.Value = "";
             for (int j = 0; j < selected.Count; j++)
             {
                 for (int i = 0; i < driverObjs.Length; i++)
@@ -230,21 +227,14 @@ namespace Try
                 }
             }
         }
-
-        protected Models.PolygonO[] InitialisePolygon()
+        protected ArrayList GetPolygons()
         {
-            Models.PolygonO[] polygons = Models.PostalCodeInitializer.GetPostalCodes();
-            return polygons;
+            return Models.PostalCodeInitializer.GetPostalCodes();
         }
 
         protected void Color_Click(object sender, EventArgs e)
         {
-            Models.PostalCodeInitializer.ChangeClusterColor(int.Parse(Grouping.SelectedValue));
-        }
-
-        protected string[] GetClusteringNumbers()
-        {
-            return Models.PostalCodeInitializer.GetClustering();
+            Models.PostalCodeInitializer.changeCluster(Grouping.SelectedValue);
         }
 
         protected void polygon_Click(object sender, EventArgs e)
@@ -252,38 +242,87 @@ namespace Try
             string id = this.HiddenId.Value;
             if (!id.Equals(""))
             {
-                Models.PostalCodeInitializer.ChangeColor(int.Parse(id));
+                Models.PostalCodeInitializer.changePostal(int.Parse(id), "WHITE");
             }
         }
 
-        protected int[] CalculateTotalJobsPerPostal()
+        protected ArrayList getClusters()
         {
-            int[] jobs = new int[84];
+            return Models.PostalCodeInitializer.getClusters();
+        }
 
-            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
-            for (int i = 0; i < driverObjs.Length; i++)
+        protected string getClusterId(int id)
+        {
+            return Models.PostalCodeInitializer.getClusterId(id);
+        }
+
+        protected string getColor(int id)
+        {
+            return Models.PostalCodeInitializer.getColor(id);
+        }
+
+        protected ArrayList getClusterDetails()
+        {
+            ArrayList result = new ArrayList();
+            ArrayList clusters = Models.PostalCodeInitializer.getClusters();
+            int[,] postalJobs = getPostalJobs();
+
+            for (int i = 0; i < clusters.Count; i++)
             {
-                long driverID = driverObjs[i].DriverIDX;
-                LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
-                LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
-                if (driverJobLocations != null)
+                Models.Cluster cluster = (Models.Cluster)clusters[i];
+                Models.ClusterDetails clusterDetail = new Models.ClusterDetails(cluster.id);
+                ArrayList postalcodes = cluster.postals;
+                if (postalcodes.Count > 0)
                 {
-                    for (int k = 0; k < driverJobLocations.Length; k++)
+                    clusterDetail.setLat(Models.PostalCodeInitializer.getClusterLatCenter(cluster.id));
+                    clusterDetail.setLng(Models.PostalCodeInitializer.getClusterLngCenter(cluster.id));
+
+                    for (int j = 0; j < postalcodes.Count; j++)
                     {
-                        LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                        jobs[int.Parse(jobLoc.postal.Substring(0, 2))] += 1;
+                        int postalcode = (int)postalcodes[j];
+                        clusterDetail.addNewJob(postalJobs[j, 0]);
+                        clusterDetail.addPuJob(postalJobs[j, 1]);
+                        clusterDetail.addDelJob(postalJobs[j, 2]);
                     }
+                    result.Add(clusterDetail);
                 }
             }
-            return jobs;
+            return result;
+        }
+
+
+
+        protected int[,] getPostalJobs()
+        {
+            LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
+            LukeRef.DistrictJobs[] arrayOfDistrictJobs = lukeObj.GetDistrictJobs();
+            int[,] postalJobs = new int[150, 3];
+
+            for (int i = 0; i < arrayOfDistrictJobs.Length; i++)
+            {
+                if (arrayOfDistrictJobs[i].NewJobs != 0)
+                {
+                    postalJobs[i, 0] = arrayOfDistrictJobs[i].NewJobs;
+                }
+                if (arrayOfDistrictJobs[i].PIPJobs != 0)
+                {
+                    postalJobs[i, 1] = arrayOfDistrictJobs[i].PIPJobs;
+                }
+                if (arrayOfDistrictJobs[i].DIPJobs != 0)
+                {
+                    postalJobs[i, 2] = arrayOfDistrictJobs[i].DIPJobs;
+                }
+            }
+            return postalJobs;
+
         }
 
         protected void uncheckAll_Click(object sender, EventArgs e)
         {
-            for (int items = 0; items < CheckBoxList1.Items.Count; items++)
-            {
-                CheckBoxList1.ClearSelection();
-            }
+            CheckBoxList1.ClearSelection();
+            HiddenField1.Value = "";
+            HiddenField3.Value = "";
+            
         }
 
         protected void selectAll_Click(object sender, EventArgs e)
@@ -311,6 +350,14 @@ namespace Try
                     }
                 }
             }
+            if (toggleRoute.Checked)
+            {
+                Route_Click();
+            }
+            else
+            {
+                HiddenField3.Value = "";
+            }
         }
 
         public void getBattery()
@@ -330,6 +377,12 @@ namespace Try
                 }
             }
             Session["lowBatt"] = lowBatts;
+        }
+
+        public void logout(object sender, EventArgs e)
+        {
+            HttpContext.Current.Session.Clear();
+            Response.Redirect("http://localhost:62482/Login");
         }
 
     }

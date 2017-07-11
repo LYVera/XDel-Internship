@@ -4,7 +4,7 @@
 
 <html>
 <head>
-
+    <% Server.Execute("Include.aspx"); %>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -38,6 +38,7 @@
             width: 180px; 
             overflow: scroll;
         }
+
     </style>
 
     <title>View Map</title>
@@ -60,6 +61,9 @@
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-info-circle"></i></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class="fa fa-check"></i></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bell"></i></a>
                 <div class="w3-dropdown-hover w3-hide-small">
                     <button class="w3-button w3-padding-large" title="Notifications">
                         <i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
@@ -71,7 +75,7 @@
 
                         </span>
                     </button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.45em">
+                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
                         <%
                             for (int i = 0; i < lowBatts.Count; i++)
                             {
@@ -86,7 +90,7 @@
                     </div>
                 </div>
 
-                <button onclick="myToggle()" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Toggle Search</button>
+                <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" Text="Logout" />
 
                 <!--Top Right Hand Corner-->
             </div>
@@ -98,6 +102,9 @@
             <a href="#" class="w3-bar-item w3-button w3-padding-large">View Map</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">Prompt</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">Recommend Map</a>
+            <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-padding-large" title="ManageUser"><i class="fa fa-info-circle"></i></a>
+            <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-padding-large" title="ManageCluster"><i class="fa fa-check"></i></a>
+            <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-padding-large" title="ManageDrivers"><i class="fa fa-bell"></i></a>
         </div>
 
         <!-- Page Container -->
@@ -178,31 +185,35 @@
                                         <asp:Label ID="lblToggleRoute"
                                             AssociatedControlID="toggleRoute" runat="server"
                                             ToolTip="Toggle between Traffic Condition" />
-                                    </div>                                    
+                                    </div>     
+                                    
+                                    
 
-                                    <!-- Button -->
+                                    <!— Button —>
                                     <asp:DropDownList ID="Grouping" runat="server" Width="200px">
-                                        <asp:ListItem Text="Central 1" Value="1"></asp:ListItem>
-                                        <asp:ListItem Text="Central 2" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="Central 3" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="Central 4" Value="4"></asp:ListItem>
-                                        <asp:ListItem Text="East 1" Value="5"></asp:ListItem>
-                                        <asp:ListItem Text="East 2" Value="6"></asp:ListItem>
-                                        <asp:ListItem Text="North 1" Value="7"></asp:ListItem>
-                                        <asp:ListItem Text="North 2" Value="8"></asp:ListItem>
-                                        <asp:ListItem Text="Northeast 1" Value="9"></asp:ListItem>
-                                        <asp:ListItem Text="Northeast 2" Value="10"></asp:ListItem>
-                                        <asp:ListItem Text="Northwest 1" Value="11"></asp:ListItem>
-                                        <asp:ListItem Text="Northwest 2" Value="12"></asp:ListItem>
-                                        <asp:ListItem Text="West 1" Value="13"></asp:ListItem>
-                                        <asp:ListItem Text="West 2" Value="14"></asp:ListItem>
-                                        <asp:ListItem Text="West 3" Value="15"></asp:ListItem>
-                                        <asp:ListItem Text="New 1" Value="16"></asp:ListItem>
-                                        <asp:ListItem Text="New 2" Value="17"></asp:ListItem>
-                                        <asp:ListItem Text="New 3" Value="18"></asp:ListItem>
+                                        <asp:ListItem Text="Central 1" Value="C1"></asp:ListItem>
+                                        <asp:ListItem Text="Central 2" Value="C2"></asp:ListItem>
+                                        <asp:ListItem Text="Central 3" Value="C3"></asp:ListItem>
+                                        <asp:ListItem Text="Central 4" Value="C4"></asp:ListItem>
+                                        <asp:ListItem Text="Central 5" Value="C5"></asp:ListItem>
+                                        <asp:ListItem Text="East 1" Value="E1"></asp:ListItem>
+                                        <asp:ListItem Text="East 2" Value="E2"></asp:ListItem>
+                                        <asp:ListItem Text="East 3" Value="E3"></asp:ListItem>
+                                        <asp:ListItem Text="North 1" Value="N1"></asp:ListItem>
+                                        <asp:ListItem Text="North 2" Value="N2"></asp:ListItem>
+                                        <asp:ListItem Text="North 3" Value="N3"></asp:ListItem>
+                                        <asp:ListItem Text="Northeast 1" Value="NE1"></asp:ListItem>
+                                        <asp:ListItem Text="Northeast 2" Value="NE2"></asp:ListItem>
+                                        <asp:ListItem Text="Northeast 3" Value="NE3"></asp:ListItem>
+                                        <asp:ListItem Text="Northwest 1" Value="NW1"></asp:ListItem>
+                                        <asp:ListItem Text="Northwest 2" Value="NW2"></asp:ListItem>
+                                        <asp:ListItem Text="Northwest 3" Value="NW3"></asp:ListItem>
+                                        <asp:ListItem Text="West 1" Value="W1"></asp:ListItem>
+                                        <asp:ListItem Text="West 2" Value="W2"></asp:ListItem>
+                                        <asp:ListItem Text="West 3" Value="W3"></asp:ListItem>
+                                        <asp:ListItem Text="West 4" Value="W4"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit" />
-
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                   
@@ -251,61 +262,64 @@
                                             "Colour Map": osmMap,
                                             "GrayScale Map": landMap
                                         };
-
-                                        // var trafficLayer = new L.LayerGroup();   
+ 
                                         var postalCodeBoundaryLayer = new L.LayerGroup();
-                                        //var driverRoute = new L.LayerGroup();
+                                        var popUpDetailsLayer = new L.LayerGroup();
                                         var overlays = {
-                                            //"Traffic Condition": trafficLayer,
                                             "Postal Code Boundary": postalCodeBoundaryLayer,
-                                            //"Driver Route": driverRoute
+                                            "pop up details": popUpDetailsLayer
                                         };
 
 
                                         // Layers 
                                         L.control.layers(baseLayers, overlays).addTo(map);
-                                            //if (document.getElementById("HiddenPostalCode").value == "1") {
-                                            //    postalCodeBoundaryLayer.addTo(map);
-                                            //}
-                                            //if (document.getElementById("HiddenTrafficLayer").value == "1") {
-                                            //    trafficLayer.addTo(map);
-                                            //}
-                                            //if (document.getElementById("HiddenTrafficLayer").value == "1") {
-                                            //    driverRoute.addTo(map);
-                                            //}
-
-
-                                            //Map
-                                            //var map = L.map('map', { center: [1.3521, 103.8198], minZoom: 2, zoom: 12 });
-                                            //L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                                            //    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                                            //    subdomains: ['a', 'b', 'c']
-                                            //}).addTo(map);
-
-
-                                              <%Try.Models.PolygonO[] polygons = InitialisePolygon(); %>
-                                                <%String[] clusteringGroups = GetClusteringNumbers();%>
-                                                <%int[] totalJobs = CalculateTotalJobsPerPostal();%>
+                                            
+                                        <%ArrayList polygons = GetPolygons(); %>
+                                            <%ArrayList polygonClicked = new ArrayList();%>
                                         var polygonList = [];
-                                        var count = [];
+                                            <%foreach (Try.Models.PolygonO polygon in polygons)
+                                        {
+                                            if (polygon != null)
+                                            {
+                                                %>
 
-                                                <%for (int i = 1; i < 84; i++)
-                                        {%>
-                                        var poly = L.polygon([<%=polygons[i].Coordinates%>]).addTo(postalCodeBoundaryLayer);
-                                        count[<%=i%>] = 0;
-                                        poly.setStyle({ fillColor: '<%=polygons[i].Color%>', color: '<%=polygons[i].Color%>' });
-                                        poly.bindTooltip("<%=i%> " + "(" + "<%=clusteringGroups[i]%>" + ") " + "<%=totalJobs[i]%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 });
-                                            polygonList[<%=i%>] = poly;
-                                            $(document).ready(function () {
-                                                polygonList[<%=i%>].on('click', function (e) {
-                                                    document.getElementById("HiddenId").value = "<%=i%>";
-                                                    document.getElementById("polygonclick").click();
+                                            <%
+                                            %>
+                                            var poly = L.polygon([<%=polygon.getCoordinates()%>]).addTo(postalCodeBoundaryLayer);
+                                                    <%
+                                                    int id = polygon.id;
+                                                    String color = getColor(id);
+                                                    String cluster = getClusterId(id);
+                                                    
+                                                    
+                                                    %>
+                                                    poly.setStyle({ fillColor: '<%=color%>', color: '<%=color%>' });
 
-                                                    e.preventDefault();
-                                                });
-                                            });
-                                                <%}%>
 
+                                                    polygonList[<%=id%>] = poly;
+                                                    $(document).ready(function () {
+                                                        polygonList[<%=id%>].on('click', function (e) {
+                                                            document.getElementById("HiddenId").value = "<%=id%>";
+                                                            document.getElementById("polygonclick").click();
+                                                            e.preventDefault();
+                                                        });
+                                                    });
+                                              <%}
+                                            }%>
+
+                                                    <%ArrayList clusterDetails = getClusterDetails();%>
+                                                    <%
+                                                    for(int i=0; i < clusterDetails.Count; i++)
+                                                    {
+                                                        Try.Models.ClusterDetails clusterDetail = (Try.Models.ClusterDetails)clusterDetails[i];
+                                                        %>
+                                                    var popup = L.popup()
+                                                        .setLatLng([<%=clusterDetail.lat%>, <%=clusterDetail.lng%>])
+                                                            .setContent("<%=clusterDetail.id%> " + ": NJ=" + "<%=clusterDetail.newJob%>" + ", DL=" + "<%=clusterDetail.delJob%>" + ", PU=" + "<%=clusterDetail.puJob%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 })
+                                                        .addTo(popUpDetailsLayer);
+                                        <%
+                                        }
+                                                    %>
                                             // driver current location marker 
                                             var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
                                             if (allDriverLoc[0] != "") {
@@ -371,8 +385,6 @@
                                             var allDriver = document.getElementById("HiddenField3").value.split("$");
 
                                             for (j = 0; j < allDriver.length; j++) {
-                                                var test = []
-                                                var test2 = []
                                                 if (allDriver[j].length > 0) {
                                                     var allDriverRoute = allDriver[j].split("^");
                                                     var count = 1;

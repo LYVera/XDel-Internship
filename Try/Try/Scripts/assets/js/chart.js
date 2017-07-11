@@ -56,11 +56,11 @@ demo = {
         Chartist.Line('#chartHours', dataSales, optionsSales, responsiveSales);
 
 
-        var data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        var dataTop = {
+            labels: ['Xu Huan', 'Gary', 'Person3', 'Person4', 'Person5', 'Person6', 'Person7', 'Person8', 'Person9', 'Person10'],
             series: [
                 [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-                [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
+                
             ]
         };
 
@@ -83,7 +83,37 @@ demo = {
             }]
         ];
 
-        Chartist.Bar('#chartActivity', data, options, responsiveOptions);
+        Chartist.Bar('#chartActivity', dataTop, options, responsiveOptions);
+
+        var dataWorst = {
+            labels: ['Xu Huan', 'Gary', 'Person3', 'Person4', 'Person5', 'Person6', 'Person7', 'Person8', 'Person9', 'Person10'],
+            series: [
+                [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+                
+            ]
+        };
+
+        
+        var options = {
+            seriesBarDistance: 10,
+            axisX: {
+                showGrid: false
+            },
+            height: "245px"
+        };
+
+        var responsiveOptions = [
+            ['screen and (max-width: 640px)', {
+                seriesBarDistance: 5,
+                axisX: {
+                    labelInterpolationFnc: function (value) {
+                        return value[0];
+                    }
+                }
+            }]
+        ];
+
+        Chartist.Bar('#chartWorst', dataWorst, options, responsiveOptions);
 
         var dataPreferences = {
             series: [
@@ -101,6 +131,7 @@ demo = {
                 showGrid: false
             }
         };
+
 
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
@@ -129,23 +160,6 @@ demo = {
         // To add the marker to the map, call setMap();
         marker.setMap(map);
     },
-
-    showNotification: function (from, align) {
-        color = Math.floor((Math.random() * 4) + 1);
-
-        $.notify({
-            icon: "pe-7s-gift",
-            message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-        }, {
-                type: type[color],
-                timer: 4000,
-                placement: {
-                    from: from,
-                    align: align
-                }
-            });
-    }
 
 
 }

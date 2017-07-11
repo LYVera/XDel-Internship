@@ -480,6 +480,7 @@
     <Content Include="DashBoard.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForgetPassword.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -491,6 +492,11 @@
     <Content Include="img\markers_default.png" />
     <Content Include="img\markers_shadow%402x.png" />
     <Content Include="img\markers_shadow.png" />
+    <Content Include="Include.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="ManageCluster.aspx" />
+    <Content Include="ManageDrivers.aspx" />
+    <Content Include="ManageUser.aspx" />
     <Content Include="Prompt.aspx" />
     <Content Include="Scripts\assets\css\animate.min.css" />
     <Content Include="Scripts\assets\css\bootstrap.min.css" />
@@ -571,15 +577,6 @@
     <Content Include="Scripts\ShowMap.css" />
     <Content Include="Show.aspx" />
     <Content Include="Validate.aspx" />
-    <Content Include="Web References\LukeRefL2\DriverObject.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRefL2\DriverPoints.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\LukeRefL2\JobInfo.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.gitignore" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.jshintrc" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.npmignore" />
@@ -622,6 +619,18 @@
     <Content Include="Scripts\assets\sass\lbd\_typography.scss" />
     <Content Include="Scripts\assets\sass\lbd\_variables.scss" />
     <Content Include="Scripts\assets\sass\light-bootstrap-dashboard.scss" />
+    <Content Include="Web References\LukeRefL2\DriverObject.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\DriverPoints.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\DriverPointSummary.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\JobInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\LukeRefL2\l2.disco" />
     <Content Include="Web References\LukeRef\AddressStructure1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -808,12 +817,61 @@
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Include.aspx.cs">
+      <DependentUpon>Include.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include.aspx.designer.cs">
+      <DependentUpon>Include.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCluster.aspx.cs">
+      <DependentUpon>ManageCluster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageCluster.aspx.designer.cs">
+      <DependentUpon>ManageCluster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDrivers.aspx.cs">
+      <DependentUpon>ManageDrivers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageDrivers.aspx.designer.cs">
+      <DependentUpon>ManageDrivers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cluster.cs" />
+    <Compile Include="Models\ClusterDAO.cs" />
+    <Compile Include="Models\ClusterDetails.cs" />
+    <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\PointD.cs" />
     <Compile Include="Models\PolygonO.cs" />
+    <Compile Include="Models\PolygonODAO.cs" />
     <Compile Include="Models\PostalCodeInitializer.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserDAO.cs" />
     <Compile Include="Prompt.aspx.cs">
       <DependentUpon>Prompt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

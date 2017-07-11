@@ -49,7 +49,7 @@ namespace Try
             Session["lowBatt"] = lowBatts;
         }
 
-        public void topHighestLowest()
+        public ArrayList topHighestLowest()
         {
 
             LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
@@ -57,6 +57,7 @@ namespace Try
             LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
             ArrayList driverIDx = new ArrayList();
             ArrayList driverPoints = new ArrayList();
+            DateTime thisDay = DateTime.Today;
 
             // to get all driverIDX
             for (int i = 0; i < arrayOfDrivers.Length; i++)
@@ -66,8 +67,18 @@ namespace Try
 
             for (int i = 0; i < arrayOfDrivers.Length; i++)
             {
-                
+                String driverPointDetails = "";
+                LukeRefL2.DriverPointSummary[] details = luke2Obj.L2_GetDriverPointSummary("130FEE3E0ACA2B608929CE0DEA1C15812365AAE6", arrayOfDrivers[i].DriverIDX, thisDay, thisDay);
+                for(int j =0; j < details.Length; j++)
+                {
+                    driverPointDetails += details[j].Points;
+                    
+                }
+
+                driverPoints.Add(driverPointDetails);
             }
+
+            return driverPoints;
         }
     }
 

@@ -441,11 +441,47 @@
           <s:element minOccurs="1" maxOccurs="1" name="Flag" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="L2_GetDriverPointSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ADriverIDX" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="AStartDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="AEndDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="L2_GetDriverPointSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="L2_GetDriverPointSummaryResult" type="tns:ArrayOfDriverPointSummary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDriverPointSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DriverPointSummary" nillable="true" type="tns:DriverPointSummary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DriverPointSummary">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DriverIDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Date_Of_Work" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Points" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Actual_Jobs" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance_Violations" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Jobs_Failed_Early" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Jobs_Failed_Late" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Attend_Early" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Attend_Late" type="s:int" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="ArrayOfLTAIncident" nillable="true" type="tns:ArrayOfLTAIncident" />
       <s:element name="ArrayOfDriverObject" nillable="true" type="tns:ArrayOfDriverObject" />
       <s:element name="ArrayOfLocationInfo" nillable="true" type="tns:ArrayOfLocationInfo" />
       <s:element name="ArrayOfJobInfo" nillable="true" type="tns:ArrayOfJobInfo" />
       <s:element name="DriverPoints" nillable="true" type="tns:DriverPoints" />
+      <s:element name="ArrayOfDriverPointSummary" nillable="true" type="tns:ArrayOfDriverPointSummary" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetLTAIncidentsSoapIn">
@@ -483,6 +519,12 @@
   </wsdl:message>
   <wsdl:message name="GetDriverPointsSoapOut">
     <wsdl:part name="parameters" element="tns:GetDriverPointsResponse" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetDriverPointSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:L2_GetDriverPointSummary" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetDriverPointSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:L2_GetDriverPointSummaryResponse" />
   </wsdl:message>
   <wsdl:message name="GetLTAIncidentsHttpGetIn">
     <wsdl:part name="APIKey" type="s:string" />
@@ -529,6 +571,15 @@
   <wsdl:message name="GetDriverPointsHttpGetOut">
     <wsdl:part name="Body" element="tns:DriverPoints" />
   </wsdl:message>
+  <wsdl:message name="L2_GetDriverPointSummaryHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADriverIDX" type="s:string" />
+    <wsdl:part name="AStartDate" type="s:string" />
+    <wsdl:part name="AEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetDriverPointSummaryHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDriverPointSummary" />
+  </wsdl:message>
   <wsdl:message name="GetLTAIncidentsHttpPostIn">
     <wsdl:part name="APIKey" type="s:string" />
   </wsdl:message>
@@ -574,6 +625,15 @@
   <wsdl:message name="GetDriverPointsHttpPostOut">
     <wsdl:part name="Body" element="tns:DriverPoints" />
   </wsdl:message>
+  <wsdl:message name="L2_GetDriverPointSummaryHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADriverIDX" type="s:string" />
+    <wsdl:part name="AStartDate" type="s:string" />
+    <wsdl:part name="AEndDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetDriverPointSummaryHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDriverPointSummary" />
+  </wsdl:message>
   <wsdl:portType name="L2Soap">
     <wsdl:operation name="GetLTAIncidents">
       <wsdl:input message="tns:GetLTAIncidentsSoapIn" />
@@ -598,6 +658,10 @@
     <wsdl:operation name="GetDriverPoints">
       <wsdl:input message="tns:GetDriverPointsSoapIn" />
       <wsdl:output message="tns:GetDriverPointsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <wsdl:input message="tns:L2_GetDriverPointSummarySoapIn" />
+      <wsdl:output message="tns:L2_GetDriverPointSummarySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="L2HttpGet">
@@ -625,6 +689,10 @@
       <wsdl:input message="tns:GetDriverPointsHttpGetIn" />
       <wsdl:output message="tns:GetDriverPointsHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <wsdl:input message="tns:L2_GetDriverPointSummaryHttpGetIn" />
+      <wsdl:output message="tns:L2_GetDriverPointSummaryHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="L2HttpPost">
     <wsdl:operation name="GetLTAIncidents">
@@ -650,6 +718,10 @@
     <wsdl:operation name="GetDriverPoints">
       <wsdl:input message="tns:GetDriverPointsHttpPostIn" />
       <wsdl:output message="tns:GetDriverPointsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <wsdl:input message="tns:L2_GetDriverPointSummaryHttpPostIn" />
+      <wsdl:output message="tns:L2_GetDriverPointSummaryHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="L2Soap" type="tns:L2Soap">
@@ -701,6 +773,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDriverPoints">
       <soap:operation soapAction="http://www.xdel.com/L2/GetDriverPoints" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <soap:operation soapAction="http://www.xdel.com/L2/L2_GetDriverPointSummary" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -765,6 +846,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <soap12:operation soapAction="http://www.xdel.com/L2/L2_GetDriverPointSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="L2HttpGet" type="tns:L2HttpGet">
     <http:binding verb="GET" />
@@ -822,6 +912,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <http:operation location="/L2_GetDriverPointSummary" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="L2HttpPost" type="tns:L2HttpPost">
     <http:binding verb="POST" />
@@ -872,6 +971,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDriverPoints">
       <http:operation location="/GetDriverPoints" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="L2_GetDriverPointSummary">
+      <http:operation location="/L2_GetDriverPointSummary" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

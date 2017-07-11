@@ -23,7 +23,7 @@ namespace Try.LukeRefL2 {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="L2Soap", Namespace="http://www.xdel.com/L2/")]
@@ -41,6 +41,8 @@ namespace Try.LukeRefL2 {
         private System.Threading.SendOrPostCallback GetDriverCurrentJobsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetDriverPointsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback L2_GetDriverPointSummaryOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -97,6 +99,9 @@ namespace Try.LukeRefL2 {
         
         /// <remarks/>
         public event GetDriverPointsCompletedEventHandler GetDriverPointsCompleted;
+        
+        /// <remarks/>
+        public event L2_GetDriverPointSummaryCompletedEventHandler L2_GetDriverPointSummaryCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetLTAIncidents", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -291,6 +296,41 @@ namespace Try.LukeRefL2 {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/L2_GetDriverPointSummary", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DriverPointSummary[] L2_GetDriverPointSummary(string APIKey, long ADriverIDX, System.DateTime AStartDate, System.DateTime AEndDate) {
+            object[] results = this.Invoke("L2_GetDriverPointSummary", new object[] {
+                        APIKey,
+                        ADriverIDX,
+                        AStartDate,
+                        AEndDate});
+            return ((DriverPointSummary[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void L2_GetDriverPointSummaryAsync(string APIKey, long ADriverIDX, System.DateTime AStartDate, System.DateTime AEndDate) {
+            this.L2_GetDriverPointSummaryAsync(APIKey, ADriverIDX, AStartDate, AEndDate, null);
+        }
+        
+        /// <remarks/>
+        public void L2_GetDriverPointSummaryAsync(string APIKey, long ADriverIDX, System.DateTime AStartDate, System.DateTime AEndDate, object userState) {
+            if ((this.L2_GetDriverPointSummaryOperationCompleted == null)) {
+                this.L2_GetDriverPointSummaryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnL2_GetDriverPointSummaryOperationCompleted);
+            }
+            this.InvokeAsync("L2_GetDriverPointSummary", new object[] {
+                        APIKey,
+                        ADriverIDX,
+                        AStartDate,
+                        AEndDate}, this.L2_GetDriverPointSummaryOperationCompleted, userState);
+        }
+        
+        private void OnL2_GetDriverPointSummaryOperationCompleted(object arg) {
+            if ((this.L2_GetDriverPointSummaryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.L2_GetDriverPointSummaryCompleted(this, new L2_GetDriverPointSummaryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -310,7 +350,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -403,7 +443,124 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class DriverPointSummary {
+        
+        private long driverIDXField;
+        
+        private System.DateTime date_Of_WorkField;
+        
+        private int pointsField;
+        
+        private int actual_JobsField;
+        
+        private int distance_ViolationsField;
+        
+        private int jobs_Failed_EarlyField;
+        
+        private int jobs_Failed_LateField;
+        
+        private int attend_EarlyField;
+        
+        private int attend_LateField;
+        
+        /// <remarks/>
+        public long DriverIDX {
+            get {
+                return this.driverIDXField;
+            }
+            set {
+                this.driverIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Date_Of_Work {
+            get {
+                return this.date_Of_WorkField;
+            }
+            set {
+                this.date_Of_WorkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Points {
+            get {
+                return this.pointsField;
+            }
+            set {
+                this.pointsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Actual_Jobs {
+            get {
+                return this.actual_JobsField;
+            }
+            set {
+                this.actual_JobsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Distance_Violations {
+            get {
+                return this.distance_ViolationsField;
+            }
+            set {
+                this.distance_ViolationsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Jobs_Failed_Early {
+            get {
+                return this.jobs_Failed_EarlyField;
+            }
+            set {
+                this.jobs_Failed_EarlyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Jobs_Failed_Late {
+            get {
+                return this.jobs_Failed_LateField;
+            }
+            set {
+                this.jobs_Failed_LateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Attend_Early {
+            get {
+                return this.attend_EarlyField;
+            }
+            set {
+                this.attend_EarlyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Attend_Late {
+            get {
+                return this.attend_LateField;
+            }
+            set {
+                this.attend_LateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -568,7 +725,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -661,7 +818,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -706,7 +863,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -775,7 +932,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1000,7 +1157,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1206,7 +1363,7 @@ namespace Try.LukeRefL2 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DOCODObject))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(DOObject))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(JobInfo))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1215,7 +1372,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1284,7 +1441,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1329,7 +1486,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1410,7 +1567,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1479,7 +1636,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2023,7 +2180,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
     public enum eCODCollectAt {
@@ -2039,7 +2196,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
     public enum eExpressType {
@@ -2088,7 +2245,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
     public enum eTOSType {
@@ -2107,7 +2264,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2164,7 +2321,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2209,7 +2366,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2278,7 +2435,7 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2455,11 +2612,11 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void GetLTAIncidentsCompletedEventHandler(object sender, GetLTAIncidentsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetLTAIncidentsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2481,11 +2638,11 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void GetL2DriversCompletedEventHandler(object sender, GetL2DriversCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetL2DriversCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2507,11 +2664,11 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void GetLocationsCompletedEventHandler(object sender, GetLocationsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetLocationsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2533,11 +2690,11 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void GetPastLocationsCompletedEventHandler(object sender, GetPastLocationsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetPastLocationsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2559,11 +2716,11 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void GetDriverCurrentJobsCompletedEventHandler(object sender, GetDriverCurrentJobsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDriverCurrentJobsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2585,11 +2742,11 @@ namespace Try.LukeRefL2 {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     public delegate void GetDriverPointsCompletedEventHandler(object sender, GetDriverPointsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetDriverPointsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2606,6 +2763,32 @@ namespace Try.LukeRefL2 {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((DriverPoints)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void L2_GetDriverPointSummaryCompletedEventHandler(object sender, L2_GetDriverPointSummaryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class L2_GetDriverPointSummaryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal L2_GetDriverPointSummaryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public DriverPointSummary[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((DriverPointSummary[])(this.results[0]));
             }
         }
     }

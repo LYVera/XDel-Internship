@@ -176,9 +176,9 @@
                                         <div class="legend">
                                             <i class="fa fa-circle text-info"></i>OK
                                        
-                                            <i class="fa fa-circle text-danger"></i>DIP
+                                            <i class="fa fa-circle text-danger"></i>Outstanding
                                        
-                                            <i class="fa fa-circle text-warning"></i>Outstanding
+                                            <i class="fa fa-circle text-warning"></i>DIP
                                    
                                         </div>
                                         <hr>
@@ -230,36 +230,38 @@
                     </script>
                     
 
-                    <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Details</button>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card ">
                                 <div class="header">
                                     <button class="btn btn-info btn-fill pull-right" onclick="openTabs('Best10Tab');return false">Top 10 Best Driver</button>
-                                    <button class="btn btn-info btn-fill pull-right" onclick="openTabs('Best10Tab');return false">Top 10 Best Driver</button>
+                                    <button class="btn btn-info btn-fill pull-right" onclick="openTabs('Worst10Tab');return false">Top 10 Worst Driver</button>
                                     <h4 class="title">Driver Points</h4>
                                     <p class="category">Driver rankings</p>
                                 </div>
-                                <div id="Best10Tab" class="tab">
 
-                                    <div class="content">
+                                <div class="content">
+                                    <div id="Best10Tab" class="tab">
                                         <div id="chartActivity" class="ct-chart"></div>
-
-                                        <div class="footer">
-                                            <div class="legend">
-                                                <i class="fa fa-circle text-info"></i>Points
-                                   
-                                            </div>
-                                            <hr>
-                                            <div class="stats">
-                                                <i class="fa fa-check"></i>Points points points 
-                                   
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div id="Worst10Tab" class="tab">                                      
+                                            <div id="chartWorst" class="ct-chart"></div>
                                     </div>
 
+                                    <div class="footer">
+                                        <div class="legend">
+                                            <i class="fa fa-circle text-info"></i>Points
+                                        </div>
+                                        <hr>
+                                        <div class="stats">
+                                            <i class="fa fa-check"></i>Points points points 
+                                        </div>
+                                    </div>
                                 </div>
+
+
+
+
 
                             </div>
                         </div>
@@ -272,8 +274,7 @@
             </div>
         </div>
     </div>
-    </div>
-            </div>
+  
 
 
             <footer class="footer">
@@ -281,9 +282,7 @@
                 </div>
             </footer>
 
-    </div>
-    </div>
-
+   
 
 </body>
 
@@ -309,7 +308,11 @@
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="Scripts/assets/js/chart.js"></script>
 
+
+
 <script type="text/javascript">
+
+
     $(document).ready(function () {
 
         demo.initChartist();

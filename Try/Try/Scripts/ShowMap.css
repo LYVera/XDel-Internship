@@ -1,143 +1,102 @@
-﻿html, body, h1, h2, h3, h4, h5 {
-    font-family: "Open Sans", sans-serif
+﻿/* set the size of the pseudo-toggle button control */
+div.divToggleCluster input[type=checkbox]:checked + label::before,
+div.divToggleCluster input[type=checkbox]:not(:checked) + label::before,
+div.divToggleCluster input[type=checkbox] + label {
+    width: 80pt;
+    height: 20pt;
+    line-height: 20pt;
 }
 
-.w3-theme-orange {
-    color: #f1f1f1 !important;
-    background-color: #ff9800 !important;
+/* additional styling: rounded border, gradient */
+div.divToggleCluster input[type=checkbox] + label {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 7pt;
+    font-family: Arial, Calibri;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    background: #f0f0f0;
+    /* gradient style (optional)*/
+    background-image: -moz-linear-gradient(top, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#fdfdfd), color-stop(0.5, #f9f9f9), color-stop(0.5, #e5e5e5 ), to(#fdfdfd));
+    background-image: linear-gradient(to bottom, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
 }
 
-.tableC {
-    font-family: Arial,Verdana,sans-serif;
-    font-size: 0.75em;
+
+div.divToggleCluster input[type=checkbox]:not(:checked) + label::before {
+    content: "Cluster Off";
+    color: #303030;
+    opacity: 0.6;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2
-}
-
-th {
-    background-color: #FFA500;
-    color: white;
-}
-
-div.divToggleButton input[type=checkbox] {
-    display: none;
-    white-space: nowrap;
-}
-
-div.divToggleButton label {
-    display: block;
-    float: left;
-    cursor: pointer;
+/* content to display and style pertinent to checked state*/
+div.divToggleCluster input[type=checkbox]:checked + label::before {
+    content: "Cluster On";
+    color: #000090;
+    font-weight: bold;
 }
 
 .polygonToolTip {
-    background: #f2f2f2;
-    border: #d9d9d9;
-    background: rgba(0, 0, 100, .5);
-    color: white;
-    font-size: 13px;
 }
 
-/* set the size of the pseudo-toggle button control */
-div.divToggleButton input[type=checkbox]:checked + label::before,
-div.divToggleButton input[type=checkbox]:not(:checked) + label::before,
-div.divToggleButton input[type=checkbox] + label {
-    width: 80pt;
-    height: 20pt;
-    line-height: 20pt;
+.user-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* additional styling: rounded border, gradient */
-div.divToggleButton input[type=checkbox] + label {
-    vertical-align: middle;
-    text-align: center;
-    font-size: 7pt;
-    font-family: Arial, Calibri;
-    border: 1px solid #bdbdbd;
-    border-radius: 5px;
-    background: #f0f0f0;
-    /* gradient style (optional)*/
-    background-image: -moz-linear-gradient(top, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
-    background-image: -webkit-gradient(linear, center top, center bottom, from(#fdfdfd), color-stop(0.5, #f9f9f9), color-stop(0.5, #e5e5e5 ), to(#fdfdfd));
-    background-image: linear-gradient(to bottom, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
+/* Modal Content/Box */
+.user-modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
 }
 
-/* content to display and style pertinent to unchecked state*/
-div.divToggleButton input[type=checkbox]:not(:checked) + label::before {
-    content: "Traffic Condition Off";
-    color: #303030;
-    opacity: 0.6;
-}
-
-/* content to display and style pertinent to checked state*/
-div.divToggleButton input[type=checkbox]:checked + label::before {
-    content: "Traffic Condition On";
-    color: #000090;
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
 }
 
-/*FOR ROUTE ONLY*/
-div.divToggleRoute input[type=checkbox] {
-    display: none;
-    white-space: nowrap;
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
 
-div.divToggleRoute label {
-    display: block;
-    float: left;
-    cursor: pointer;
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
 }
-
-/* set the size of the pseudo-toggle button control */
-div.divToggleRoute input[type=checkbox]:checked + label::before,
-div.divToggleRoute input[type=checkbox]:not(:checked) + label::before,
-div.divToggleRoute input[type=checkbox] + label {
-    width: 80pt;
-    height: 20pt;
-    line-height: 20pt;
-}
-
-/* additional styling: rounded border, gradient */
-div.divToggleRoute input[type=checkbox] + label {
-    vertical-align: middle;
-    text-align: center;
-    font-size: 7pt;
-    font-family: Arial, Calibri;
-    border: 1px solid #bdbdbd;
-    border-radius: 5px;
-    background: #f0f0f0;
-    /* gradient style (optional)*/
-    background-image: -moz-linear-gradient(top, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
-    background-image: -webkit-gradient(linear, center top, center bottom, from(#fdfdfd), color-stop(0.5, #f9f9f9), color-stop(0.5, #e5e5e5 ), to(#fdfdfd));
-    background-image: linear-gradient(to bottom, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
-}
-
-
-div.divToggleRoute input[type=checkbox]:not(:checked) + label::before {
-    content: "Route Off";
-    color: #303030;
-    opacity: 0.6;
-}
-
-/* content to display and style pertinent to checked state*/
-div.divToggleRoute input[type=checkbox]:checked + label::before {
-    content: "Route On";
-    color: #000090;
-    font-weight: bold;
-}
-
-
-/*scroll bar*/
-

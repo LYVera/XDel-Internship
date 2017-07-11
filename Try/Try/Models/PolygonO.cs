@@ -1,30 +1,52 @@
-﻿namespace Try.Models
+﻿using System.Collections;
+
+namespace Try.Models
 {
     public class PolygonO
     {
-        public string Coordinates { get; set; }
-        public string Color { get; set; }
-        public int Id { get; set; }
-        public string Cluster { get; set; }
+        public int id { get; set; }
+        public ArrayList lat { get; set; }
+        public ArrayList lng { get; set; }
 
-        public PolygonO(string Coor, string C, int I, string Cl)
+        public PolygonO(int postalcode)
         {
-            Coordinates = Coor;
-            Color = C;
-            Id = I;
-            Cluster = Cl;
+            id = postalcode;
+            lat = new ArrayList();
+            lng = new ArrayList();
+        }
+        
+
+        public void addCoordinates(double latnum, double lngnum)
+        {
+            lat.Add(latnum);
+            lng.Add(lngnum);
         }
 
         public string getCoordinates()
         {
-            return Coordinates;
+            if (lat.Count > 0) {
+                string coordinates = "[" + lat[0] + "," + lng[0] + "]";
+                for (int i = 1; i < lat.Count; i++)
+                {
+                    coordinates = coordinates + "," + "[" + lat[i] + "," + lng[i] + "]";
+                }
+                return coordinates;
+            }
+            return "";
         }
 
-        public void setColor(string c)
+        public int getId()
         {
-            Color = c;
+            return id;
         }
 
-
+        public ArrayList getLat()
+        {
+            return lat;
+        }
+        public ArrayList getLng()
+        {
+            return lng;
+        }
     }
 }
