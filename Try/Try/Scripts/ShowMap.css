@@ -47,13 +47,122 @@ div.divToggleButton label {
     border: #d9d9d9;
     background: rgba(0, 0, 100, .5);
     color: white;
+<<<<<<< HEAD
     font-size: 13px;
+=======
+    font-size: 7px;
+>>>>>>> 702829a0ee72a01abb9f51ebbd7f849897423a3b
 }
 
 /* set the size of the pseudo-toggle button control */
 div.divToggleButton input[type=checkbox]:checked + label::before,
 div.divToggleButton input[type=checkbox]:not(:checked) + label::before,
 div.divToggleButton input[type=checkbox] + label {
+<<<<<<< HEAD
+=======
+    width: 80pt;
+    height: 20pt;
+    line-height: 20pt;
+}
+
+/* additional styling: rounded border, gradient */
+div.divToggleButton input[type=checkbox] + label {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 7pt;
+    font-family: Arial, Calibri;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    background: #f0f0f0;
+    /* gradient style (optional)*/
+    background-image: -moz-linear-gradient(top, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#fdfdfd), color-stop(0.5, #f9f9f9), color-stop(0.5, #e5e5e5 ), to(#fdfdfd));
+    background-image: linear-gradient(to bottom, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
+}
+
+/* content to display and style pertinent to unchecked state*/
+div.divToggleButton input[type=checkbox]:not(:checked) + label::before {
+    content: "Traffic Condition Off";
+    color: #303030;
+    opacity: 0.6;
+}
+
+/* content to display and style pertinent to checked state*/
+div.divToggleButton input[type=checkbox]:checked + label::before {
+    content: "Traffic Condition On";
+    color: #000090;
+    font-weight: bold;
+}
+
+/*FOR ROUTE ONLY*/
+div.divToggleRoute input[type=checkbox] {
+    display: none;
+    white-space: nowrap;
+}
+
+div.divToggleRoute label {
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+
+/* set the size of the pseudo-toggle button control */
+div.divToggleRoute input[type=checkbox]:checked + label::before,
+div.divToggleRoute input[type=checkbox]:not(:checked) + label::before,
+div.divToggleRoute input[type=checkbox] + label {
+    width: 80pt;
+    height: 20pt;
+    line-height: 20pt;
+}
+
+/* additional styling: rounded border, gradient */
+div.divToggleRoute input[type=checkbox] + label {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 7pt;
+    font-family: Arial, Calibri;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+    background: #f0f0f0;
+    /* gradient style (optional)*/
+    background-image: -moz-linear-gradient(top, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#fdfdfd), color-stop(0.5, #f9f9f9), color-stop(0.5, #e5e5e5 ), to(#fdfdfd));
+    background-image: linear-gradient(to bottom, #fdfdfd, #f9f9f9 50%, #e5e5e5 50%, #fdfdfd);
+}
+
+
+div.divToggleRoute input[type=checkbox]:not(:checked) + label::before {
+    content: "Route Off";
+    color: #303030;
+    opacity: 0.6;
+}
+
+/* content to display and style pertinent to checked state*/
+div.divToggleRoute input[type=checkbox]:checked + label::before {
+    content: "Route On";
+    color: #000090;
+    font-weight: bold;
+}
+
+
+/*FOR CLUSTERING ONLY*/
+div.divToggleCluster input[type=checkbox] {
+    display: none;
+    white-space: nowrap;
+}
+
+div.divToggleCluster label {
+    display: block;
+    float: left;
+    cursor: pointer;
+}
+
+Kai Yang (SIS), [11.07.17 10:02]
+/* set the size of the pseudo-toggle button control */
+div.divToggleCluster input[type=checkbox]:checked + label::before,
+div.divToggleCluster input[type=checkbox]:not(:checked) + label::before,
+div.divToggleCluster input[type=checkbox] + label {
+>>>>>>> 702829a0ee72a01abb9f51ebbd7f849897423a3b
     width: 80pt;
     height: 20pt;
     line-height: 20pt;
