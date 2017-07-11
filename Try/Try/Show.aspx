@@ -9,12 +9,28 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+     <!-- Css for ShowMap -->
+    <link rel="stylesheet" type="text/css" href="Scripts/ShowMap.css" />
+
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.Default.css" />
     <link rel="stylesheet" href="Scripts/leaflet.extra-markers.min.css" />
 
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
     <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
+
+    
+    
+    <style>
+            div.scroll {
+            height: 500px;
+            width: 180px; 
+            overflow: scroll;
+        }
+
+    </style>
 
     <script type='text/javascript' src="Scripts/Leaflet/leaflet.js"></script>
     <script src="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
@@ -28,18 +44,7 @@
     <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
 
 
-    <!-- Css for ShowMap -->
-    <link rel="stylesheet" type="text/css" href="Scripts/ShowMap.css" />
-
-    
-    <style>
-            div.scroll {
-            height: 500px;
-            width: 180px; 
-            overflow: scroll;
-        }
-
-    </style>
+   
 
     <title>View Map</title>
     <meta charset="UTF-8">
