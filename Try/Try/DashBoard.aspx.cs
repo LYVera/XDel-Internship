@@ -53,7 +53,7 @@ namespace Try
         {
 
             LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
-            
+
             LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
             ArrayList driverIDx = new ArrayList();
             ArrayList driverPoints = new ArrayList();
@@ -69,10 +69,10 @@ namespace Try
             {
                 String driverPointDetails = "";
                 LukeRefL2.DriverPointSummary[] details = luke2Obj.L2_GetDriverPointSummary("130FEE3E0ACA2B608929CE0DEA1C15812365AAE6", arrayOfDrivers[i].DriverIDX, thisDay, thisDay);
-                for(int j =0; j < details.Length; j++)
+                for (int j = 0; j < details.Length; j++)
                 {
                     driverPointDetails += details[j].Points;
-                    
+
                 }
 
                 driverPoints.Add(driverPointDetails);

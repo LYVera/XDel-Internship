@@ -16,16 +16,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DoTest">
+      <s:element name="GetNewJobsIDX">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNewJobsIDXResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="ADate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewJobsIDXResult" type="tns:ArrayOfLong" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DoTestResponse">
-        <s:complexType />
-      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="GetCheckList">
         <s:complexType>
           <s:sequence>
@@ -572,11 +577,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="JobsIDXList" type="tns:ArrayOfLong" />
           <s:element minOccurs="0" maxOccurs="1" name="PUJobsIDXList" type="tns:ArrayOfLong" />
           <s:element minOccurs="0" maxOccurs="1" name="DLJobsIDXList" type="tns:ArrayOfLong" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfLong">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfRouteLocation">
@@ -1641,6 +1641,33 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="L2_GetRecipientTypesResult" type="tns:ArrayOfRecipientType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="L2_GetTradeInList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ARegID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TradeInItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientIDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTradeInItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TradeInItem" nillable="true" type="tns:TradeInItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="L2_GetTradeInListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="L2_GetTradeInListResult" type="tns:ArrayOfTradeInItem" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2941,6 +2968,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="HourlyActions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="aRunDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HourlyActionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HourlyActionsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="IBBroadcast">
         <s:complexType>
           <s:sequence>
@@ -3218,6 +3260,9 @@
           <s:element minOccurs="1" maxOccurs="1" name="NoResponseAction" type="tns:ResponseAction" />
           <s:element minOccurs="1" maxOccurs="1" name="UndeliveredAction" type="tns:ResponseAction" />
           <s:element minOccurs="1" maxOccurs="1" name="UncollectedAction" type="tns:ResponseAction" />
+          <s:element minOccurs="1" maxOccurs="1" name="EnableSlots" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowStandingOrder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowPreBookingVerification" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="EnableSaturday" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="EnableSunday" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="EnableSelfCollect" type="s:boolean" />
@@ -3532,6 +3577,7 @@
         </s:complexType>
       </s:element>
       <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfLong" nillable="true" type="tns:ArrayOfLong" />
       <s:element name="ArrayOfCheckListItem" nillable="true" type="tns:ArrayOfCheckListItem" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="ArrayOfAddressStructure" nillable="true" type="tns:ArrayOfAddressStructure" />
@@ -3544,7 +3590,6 @@
       <s:element name="EventLocation" nillable="true" type="tns:EventLocation" />
       <s:element name="RouteInfo" nillable="true" type="tns:RouteInfo" />
       <s:element name="ArrayOfDistrictJobs" nillable="true" type="tns:ArrayOfDistrictJobs" />
-      <s:element name="ArrayOfLong" nillable="true" type="tns:ArrayOfLong" />
       <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
       <s:element name="ArrayOfJobInfo" nillable="true" type="tns:ArrayOfJobInfo" />
       <s:element name="JobBarcodeTag" nillable="true" type="tns:JobBarcodeTag" />
@@ -3552,6 +3597,7 @@
       <s:element name="StatusCodeLibrary" nillable="true" type="tns:StatusCodeLibrary" />
       <s:element name="StatusCodeLibraryEx" nillable="true" type="tns:StatusCodeLibraryEx" />
       <s:element name="ArrayOfRecipientType" nillable="true" type="tns:ArrayOfRecipientType" />
+      <s:element name="ArrayOfTradeInItem" nillable="true" type="tns:ArrayOfTradeInItem" />
       <s:element name="ArrayOfChatMessage" nillable="true" type="tns:ArrayOfChatMessage" />
       <s:element name="UpdateInfo" nillable="true" type="tns:UpdateInfo" />
       <s:element name="ArrayOfCODObject" nillable="true" type="tns:ArrayOfCODObject" />
@@ -3586,11 +3632,11 @@
   <wsdl:message name="UploadJSSoapOut">
     <wsdl:part name="parameters" element="tns:UploadJSResponse" />
   </wsdl:message>
-  <wsdl:message name="DoTestSoapIn">
-    <wsdl:part name="parameters" element="tns:DoTest" />
+  <wsdl:message name="GetNewJobsIDXSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewJobsIDX" />
   </wsdl:message>
-  <wsdl:message name="DoTestSoapOut">
-    <wsdl:part name="parameters" element="tns:DoTestResponse" />
+  <wsdl:message name="GetNewJobsIDXSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewJobsIDXResponse" />
   </wsdl:message>
   <wsdl:message name="GetCheckListSoapIn">
     <wsdl:part name="parameters" element="tns:GetCheckList" />
@@ -3964,6 +4010,12 @@
   <wsdl:message name="L2_GetRecipientTypesSoapOut">
     <wsdl:part name="parameters" element="tns:L2_GetRecipientTypesResponse" />
   </wsdl:message>
+  <wsdl:message name="L2_GetTradeInListSoapIn">
+    <wsdl:part name="parameters" element="tns:L2_GetTradeInList" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetTradeInListSoapOut">
+    <wsdl:part name="parameters" element="tns:L2_GetTradeInListResponse" />
+  </wsdl:message>
   <wsdl:message name="L2_GetWIFIHomeSoapIn">
     <wsdl:part name="parameters" element="tns:L2_GetWIFIHome" />
   </wsdl:message>
@@ -4312,6 +4364,12 @@
   <wsdl:message name="CustCareActionsSoapOut">
     <wsdl:part name="parameters" element="tns:CustCareActionsResponse" />
   </wsdl:message>
+  <wsdl:message name="HourlyActionsSoapIn">
+    <wsdl:part name="parameters" element="tns:HourlyActions" />
+  </wsdl:message>
+  <wsdl:message name="HourlyActionsSoapOut">
+    <wsdl:part name="parameters" element="tns:HourlyActionsResponse" />
+  </wsdl:message>
   <wsdl:message name="IBBroadcastSoapIn">
     <wsdl:part name="parameters" element="tns:IBBroadcast" />
   </wsdl:message>
@@ -4504,10 +4562,10 @@
   <wsdl:message name="UploadJSHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DoTestHttpGetIn">
-    <wsdl:part name="ADate" type="s:string" />
+  <wsdl:message name="GetNewJobsIDXHttpGetIn" />
+  <wsdl:message name="GetNewJobsIDXHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLong" />
   </wsdl:message>
-  <wsdl:message name="DoTestHttpGetOut" />
   <wsdl:message name="GetCheckListHttpGetIn">
     <wsdl:part name="APIKey" type="s:string" />
     <wsdl:part name="AJobsIDX" type="s:string" />
@@ -4909,6 +4967,12 @@
   </wsdl:message>
   <wsdl:message name="L2_GetRecipientTypesHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfRecipientType" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetTradeInListHttpGetIn">
+    <wsdl:part name="ARegID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetTradeInListHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTradeInItem" />
   </wsdl:message>
   <wsdl:message name="L2_GetWIFIHomeHttpGetIn">
     <wsdl:part name="ARegID" type="s:string" />
@@ -5346,6 +5410,13 @@
   <wsdl:message name="CustCareActionsHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="HourlyActionsHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="aRunDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HourlyActionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="IBBroadcastHttpGetIn">
     <wsdl:part name="APIKey" type="s:string" />
   </wsdl:message>
@@ -5548,10 +5619,10 @@
   <wsdl:message name="UploadJSHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
-  <wsdl:message name="DoTestHttpPostIn">
-    <wsdl:part name="ADate" type="s:string" />
+  <wsdl:message name="GetNewJobsIDXHttpPostIn" />
+  <wsdl:message name="GetNewJobsIDXHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfLong" />
   </wsdl:message>
-  <wsdl:message name="DoTestHttpPostOut" />
   <wsdl:message name="GetCheckListHttpPostIn">
     <wsdl:part name="APIKey" type="s:string" />
     <wsdl:part name="AJobsIDX" type="s:string" />
@@ -5953,6 +6024,12 @@
   </wsdl:message>
   <wsdl:message name="L2_GetRecipientTypesHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfRecipientType" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetTradeInListHttpPostIn">
+    <wsdl:part name="ARegID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="L2_GetTradeInListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTradeInItem" />
   </wsdl:message>
   <wsdl:message name="L2_GetWIFIHomeHttpPostIn">
     <wsdl:part name="ARegID" type="s:string" />
@@ -6390,6 +6467,13 @@
   <wsdl:message name="CustCareActionsHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="HourlyActionsHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="aRunDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="HourlyActionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="IBBroadcastHttpPostIn">
     <wsdl:part name="APIKey" type="s:string" />
   </wsdl:message>
@@ -6591,9 +6675,9 @@
       <wsdl:input message="tns:UploadJSSoapIn" />
       <wsdl:output message="tns:UploadJSSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <wsdl:input message="tns:DoTestSoapIn" />
-      <wsdl:output message="tns:DoTestSoapOut" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <wsdl:input message="tns:GetNewJobsIDXSoapIn" />
+      <wsdl:output message="tns:GetNewJobsIDXSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetCheckList">
       <wsdl:input message="tns:GetCheckListSoapIn" />
@@ -6843,6 +6927,10 @@
       <wsdl:input message="tns:L2_GetRecipientTypesSoapIn" />
       <wsdl:output message="tns:L2_GetRecipientTypesSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <wsdl:input message="tns:L2_GetTradeInListSoapIn" />
+      <wsdl:output message="tns:L2_GetTradeInListSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <wsdl:input message="tns:L2_GetWIFIHomeSoapIn" />
       <wsdl:output message="tns:L2_GetWIFIHomeSoapOut" />
@@ -7075,6 +7163,10 @@
       <wsdl:input message="tns:CustCareActionsSoapIn" />
       <wsdl:output message="tns:CustCareActionsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <wsdl:input message="tns:HourlyActionsSoapIn" />
+      <wsdl:output message="tns:HourlyActionsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="IBBroadcast">
       <wsdl:input message="tns:IBBroadcastSoapIn" />
       <wsdl:output message="tns:IBBroadcastSoapOut" />
@@ -7205,9 +7297,9 @@
       <wsdl:input message="tns:UploadJSHttpGetIn" />
       <wsdl:output message="tns:UploadJSHttpGetOut" />
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <wsdl:input message="tns:DoTestHttpGetIn" />
-      <wsdl:output message="tns:DoTestHttpGetOut" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <wsdl:input message="tns:GetNewJobsIDXHttpGetIn" />
+      <wsdl:output message="tns:GetNewJobsIDXHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetCheckList">
       <wsdl:input message="tns:GetCheckListHttpGetIn" />
@@ -7433,6 +7525,10 @@
       <wsdl:input message="tns:L2_GetRecipientTypesHttpGetIn" />
       <wsdl:output message="tns:L2_GetRecipientTypesHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <wsdl:input message="tns:L2_GetTradeInListHttpGetIn" />
+      <wsdl:output message="tns:L2_GetTradeInListHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <wsdl:input message="tns:L2_GetWIFIHomeHttpGetIn" />
       <wsdl:output message="tns:L2_GetWIFIHomeHttpGetOut" />
@@ -7629,6 +7725,10 @@
       <wsdl:input message="tns:CustCareActionsHttpGetIn" />
       <wsdl:output message="tns:CustCareActionsHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <wsdl:input message="tns:HourlyActionsHttpGetIn" />
+      <wsdl:output message="tns:HourlyActionsHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="IBBroadcast">
       <wsdl:input message="tns:IBBroadcastHttpGetIn" />
       <wsdl:output message="tns:IBBroadcastHttpGetOut" />
@@ -7759,9 +7859,9 @@
       <wsdl:input message="tns:UploadJSHttpPostIn" />
       <wsdl:output message="tns:UploadJSHttpPostOut" />
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <wsdl:input message="tns:DoTestHttpPostIn" />
-      <wsdl:output message="tns:DoTestHttpPostOut" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <wsdl:input message="tns:GetNewJobsIDXHttpPostIn" />
+      <wsdl:output message="tns:GetNewJobsIDXHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetCheckList">
       <wsdl:input message="tns:GetCheckListHttpPostIn" />
@@ -7987,6 +8087,10 @@
       <wsdl:input message="tns:L2_GetRecipientTypesHttpPostIn" />
       <wsdl:output message="tns:L2_GetRecipientTypesHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <wsdl:input message="tns:L2_GetTradeInListHttpPostIn" />
+      <wsdl:output message="tns:L2_GetTradeInListHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <wsdl:input message="tns:L2_GetWIFIHomeHttpPostIn" />
       <wsdl:output message="tns:L2_GetWIFIHomeHttpPostOut" />
@@ -8183,6 +8287,10 @@
       <wsdl:input message="tns:CustCareActionsHttpPostIn" />
       <wsdl:output message="tns:CustCareActionsHttpPostOut" />
     </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <wsdl:input message="tns:HourlyActionsHttpPostIn" />
+      <wsdl:output message="tns:HourlyActionsHttpPostOut" />
+    </wsdl:operation>
     <wsdl:operation name="IBBroadcast">
       <wsdl:input message="tns:IBBroadcastHttpPostIn" />
       <wsdl:output message="tns:IBBroadcastHttpPostOut" />
@@ -8319,8 +8427,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <soap:operation soapAction="http://www.xdel.com/LukeWS/DoTest" style="document" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/GetNewJobsIDX" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -8886,6 +8994,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/L2_GetTradeInList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/L2_GetWIFIHome" style="document" />
       <wsdl:input>
@@ -9408,6 +9525,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/HourlyActions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IBBroadcast">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/IBBroadcast" style="document" />
       <wsdl:input>
@@ -9699,8 +9825,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <soap12:operation soapAction="http://www.xdel.com/LukeWS/DoTest" style="document" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/GetNewJobsIDX" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10266,6 +10392,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/L2_GetTradeInList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/L2_GetWIFIHome" style="document" />
       <wsdl:input>
@@ -10788,6 +10923,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/HourlyActions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="IBBroadcast">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/IBBroadcast" style="document" />
       <wsdl:input>
@@ -11079,12 +11223,14 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <http:operation location="/DoTest" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <http:operation location="/GetNewJobsIDX" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
-      <wsdl:output />
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetCheckList">
       <http:operation location="/GetCheckList" />
@@ -11574,6 +11720,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <http:operation location="/L2_GetTradeInList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <http:operation location="/L2_GetWIFIHome" />
       <wsdl:input>
@@ -12008,6 +12163,15 @@
     </wsdl:operation>
     <wsdl:operation name="CustCareActions">
       <http:operation location="/CustCareActions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <http:operation location="/HourlyActions" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -12304,12 +12468,14 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoTest">
-      <http:operation location="/DoTest" />
+    <wsdl:operation name="GetNewJobsIDX">
+      <http:operation location="/GetNewJobsIDX" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
-      <wsdl:output />
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetCheckList">
       <http:operation location="/GetCheckList" />
@@ -12799,6 +12965,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="L2_GetTradeInList">
+      <http:operation location="/L2_GetTradeInList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="L2_GetWIFIHome">
       <http:operation location="/L2_GetWIFIHome" />
       <wsdl:input>
@@ -13233,6 +13408,15 @@
     </wsdl:operation>
     <wsdl:operation name="CustCareActions">
       <http:operation location="/CustCareActions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HourlyActions">
+      <http:operation location="/HourlyActions" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>
