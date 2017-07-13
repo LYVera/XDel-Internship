@@ -74,6 +74,8 @@ namespace Try.LukeRef {
         
         private System.Threading.SendOrPostCallback ST_CreateProblemOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ST_CreateTempProblemOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ST_GetSolOperationCompleted;
         
         private System.Threading.SendOrPostCallback ST_GetSolDetailsOperationCompleted;
@@ -442,6 +444,9 @@ namespace Try.LukeRef {
         
         /// <remarks/>
         public event ST_CreateProblemCompletedEventHandler ST_CreateProblemCompleted;
+        
+        /// <remarks/>
+        public event ST_CreateTempProblemCompletedEventHandler ST_CreateTempProblemCompleted;
         
         /// <remarks/>
         public event ST_GetSolCompletedEventHandler ST_GetSolCompleted;
@@ -1470,6 +1475,43 @@ namespace Try.LukeRef {
             if ((this.ST_CreateProblemCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ST_CreateProblemCompleted(this, new ST_CreateProblemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/LukeWS/ST_CreateTempProblem", RequestNamespace="http://www.xdel.com/LukeWS/", ResponseNamespace="http://www.xdel.com/LukeWS/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Problem ST_CreateTempProblem(long ADriverIDX, int ServiceDuration, int RServiceDuration, long[] AdditionalPickUps, long[] AdditionalDeliveries) {
+            object[] results = this.Invoke("ST_CreateTempProblem", new object[] {
+                        ADriverIDX,
+                        ServiceDuration,
+                        RServiceDuration,
+                        AdditionalPickUps,
+                        AdditionalDeliveries});
+            return ((Problem)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ST_CreateTempProblemAsync(long ADriverIDX, int ServiceDuration, int RServiceDuration, long[] AdditionalPickUps, long[] AdditionalDeliveries) {
+            this.ST_CreateTempProblemAsync(ADriverIDX, ServiceDuration, RServiceDuration, AdditionalPickUps, AdditionalDeliveries, null);
+        }
+        
+        /// <remarks/>
+        public void ST_CreateTempProblemAsync(long ADriverIDX, int ServiceDuration, int RServiceDuration, long[] AdditionalPickUps, long[] AdditionalDeliveries, object userState) {
+            if ((this.ST_CreateTempProblemOperationCompleted == null)) {
+                this.ST_CreateTempProblemOperationCompleted = new System.Threading.SendOrPostCallback(this.OnST_CreateTempProblemOperationCompleted);
+            }
+            this.InvokeAsync("ST_CreateTempProblem", new object[] {
+                        ADriverIDX,
+                        ServiceDuration,
+                        RServiceDuration,
+                        AdditionalPickUps,
+                        AdditionalDeliveries}, this.ST_CreateTempProblemOperationCompleted, userState);
+        }
+        
+        private void OnST_CreateTempProblemOperationCompleted(object arg) {
+            if ((this.ST_CreateTempProblemCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ST_CreateTempProblemCompleted(this, new ST_CreateTempProblemCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -13526,6 +13568,32 @@ namespace Try.LukeRef {
         private object[] results;
         
         internal ST_CreateProblemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Problem Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Problem)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void ST_CreateTempProblemCompletedEventHandler(object sender, ST_CreateTempProblemCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ST_CreateTempProblemCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ST_CreateTempProblemCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

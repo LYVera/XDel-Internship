@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Device.Location;
+using System.Collections;
 
 namespace Try
 {
@@ -12,7 +13,10 @@ namespace Try
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                getBattery();
+            }
         }
 
         public LukeRefL2.DriverObject[] getDriverArray()
@@ -24,7 +28,26 @@ namespace Try
 
         }
 
-      
+        public void getBattery()
+        {
+            LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
+
+            LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
+            ArrayList lowBatts = new ArrayList();
+            for (int i = 0; i < arrayOfDrivers.Length; i++)
+            {
+                int battPCT = arrayOfDrivers[i].BattPCT;
+                if (battPCT < 50)
+                {
+                    //String toAdd = "";
+                    //toAdd = arrayOfDrivers[i].Name + "," + arrayOfDrivers[i].Mobile + "," + arrayOfDrivers[i].BattPCT + "," + arrayOfDrivers[i].BattLastUpdate;
+                    lowBatts.Add(arrayOfDrivers[i]);
+                }
+            }
+            Session["lowBatt"] = lowBatts;
+        }
+
+
         protected void Validate_Click(object sender, EventArgs e)
         {
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();

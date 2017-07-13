@@ -47,19 +47,14 @@ div.divToggleButton label {
     border: #d9d9d9;
     background: rgba(0, 0, 100, .5);
     color: white;
-<<<<<<< HEAD
-    font-size: 13px;
-=======
-    font-size: 7px;
->>>>>>> 702829a0ee72a01abb9f51ebbd7f849897423a3b
+
 }
 
 /* set the size of the pseudo-toggle button control */
 div.divToggleButton input[type=checkbox]:checked + label::before,
 div.divToggleButton input[type=checkbox]:not(:checked) + label::before,
 div.divToggleButton input[type=checkbox] + label {
-<<<<<<< HEAD
-=======
+
     width: 80pt;
     height: 20pt;
     line-height: 20pt;
@@ -157,12 +152,11 @@ div.divToggleCluster label {
     cursor: pointer;
 }
 
-Kai Yang (SIS), [11.07.17 10:02]
+
 /* set the size of the pseudo-toggle button control */
 div.divToggleCluster input[type=checkbox]:checked + label::before,
 div.divToggleCluster input[type=checkbox]:not(:checked) + label::before,
 div.divToggleCluster input[type=checkbox] + label {
->>>>>>> 702829a0ee72a01abb9f51ebbd7f849897423a3b
     width: 80pt;
     height: 20pt;
     line-height: 20pt;

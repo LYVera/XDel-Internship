@@ -560,6 +560,24 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="Address" nillable="true" type="tns:Address" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ST_CreateTempProblem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ADriverIDX" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="ServiceDuration" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RServiceDuration" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalPickUps" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="AdditionalDeliveries" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ST_CreateTempProblemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ST_CreateTempProblemResult" type="tns:Problem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ST_GetSol">
         <s:complexType>
           <s:sequence>
@@ -3752,6 +3770,12 @@
   <wsdl:message name="ST_CreateProblemSoapOut">
     <wsdl:part name="parameters" element="tns:ST_CreateProblemResponse" />
   </wsdl:message>
+  <wsdl:message name="ST_CreateTempProblemSoapIn">
+    <wsdl:part name="parameters" element="tns:ST_CreateTempProblem" />
+  </wsdl:message>
+  <wsdl:message name="ST_CreateTempProblemSoapOut">
+    <wsdl:part name="parameters" element="tns:ST_CreateTempProblemResponse" />
+  </wsdl:message>
   <wsdl:message name="ST_GetSolSoapIn">
     <wsdl:part name="parameters" element="tns:ST_GetSol" />
   </wsdl:message>
@@ -4650,6 +4674,16 @@
     <wsdl:part name="RServiceDuration" type="s:string" />
   </wsdl:message>
   <wsdl:message name="ST_CreateProblemHttpGetOut">
+    <wsdl:part name="Body" element="tns:Problem" />
+  </wsdl:message>
+  <wsdl:message name="ST_CreateTempProblemHttpGetIn">
+    <wsdl:part name="ADriverIDX" type="s:string" />
+    <wsdl:part name="ServiceDuration" type="s:string" />
+    <wsdl:part name="RServiceDuration" type="s:string" />
+    <wsdl:part name="AdditionalPickUps" type="s1:StringArray" />
+    <wsdl:part name="AdditionalDeliveries" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="ST_CreateTempProblemHttpGetOut">
     <wsdl:part name="Body" element="tns:Problem" />
   </wsdl:message>
   <wsdl:message name="ST_GetSolHttpGetIn">
@@ -5709,6 +5743,16 @@
   <wsdl:message name="ST_CreateProblemHttpPostOut">
     <wsdl:part name="Body" element="tns:Problem" />
   </wsdl:message>
+  <wsdl:message name="ST_CreateTempProblemHttpPostIn">
+    <wsdl:part name="ADriverIDX" type="s:string" />
+    <wsdl:part name="ServiceDuration" type="s:string" />
+    <wsdl:part name="RServiceDuration" type="s:string" />
+    <wsdl:part name="AdditionalPickUps" type="s1:StringArray" />
+    <wsdl:part name="AdditionalDeliveries" type="s1:StringArray" />
+  </wsdl:message>
+  <wsdl:message name="ST_CreateTempProblemHttpPostOut">
+    <wsdl:part name="Body" element="tns:Problem" />
+  </wsdl:message>
   <wsdl:message name="ST_GetSolHttpPostIn">
     <wsdl:part name="AProblemID" type="s:string" />
     <wsdl:part name="ASolutionID" type="s:string" />
@@ -6755,6 +6799,10 @@
       <wsdl:input message="tns:ST_CreateProblemSoapIn" />
       <wsdl:output message="tns:ST_CreateProblemSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <wsdl:input message="tns:ST_CreateTempProblemSoapIn" />
+      <wsdl:output message="tns:ST_CreateTempProblemSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ST_GetSol">
       <wsdl:input message="tns:ST_GetSolSoapIn" />
       <wsdl:output message="tns:ST_GetSolSoapOut" />
@@ -7365,6 +7413,10 @@
       <wsdl:input message="tns:ST_CreateProblemHttpGetIn" />
       <wsdl:output message="tns:ST_CreateProblemHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <wsdl:input message="tns:ST_CreateTempProblemHttpGetIn" />
+      <wsdl:output message="tns:ST_CreateTempProblemHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="ST_GetSol">
       <wsdl:input message="tns:ST_GetSolHttpGetIn" />
       <wsdl:output message="tns:ST_GetSolHttpGetOut" />
@@ -7926,6 +7978,10 @@
     <wsdl:operation name="ST_CreateProblem">
       <wsdl:input message="tns:ST_CreateProblemHttpPostIn" />
       <wsdl:output message="tns:ST_CreateProblemHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <wsdl:input message="tns:ST_CreateTempProblemHttpPostIn" />
+      <wsdl:output message="tns:ST_CreateTempProblemHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="ST_GetSol">
       <wsdl:input message="tns:ST_GetSolHttpPostIn" />
@@ -8600,6 +8656,15 @@
     </wsdl:operation>
     <wsdl:operation name="ST_CreateProblem">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/ST_CreateProblem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/ST_CreateTempProblem" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -10005,6 +10070,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/ST_CreateTempProblem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ST_GetSol">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/ST_GetSol" style="document" />
       <wsdl:input>
@@ -11362,6 +11436,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <http:operation location="/ST_CreateTempProblem" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ST_GetSol">
       <http:operation location="/ST_GetSol" />
       <wsdl:input>
@@ -12600,6 +12683,15 @@
     </wsdl:operation>
     <wsdl:operation name="ST_CreateProblem">
       <http:operation location="/ST_CreateProblem" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ST_CreateTempProblem">
+      <http:operation location="/ST_CreateTempProblem" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

@@ -95,7 +95,7 @@ namespace Try.Models
         {
             string line;
             int postal = 0;
-            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\wkliaw.2015\\Downloads\\Telegram Desktop\\Postal Code Boundary Coordinates.csv");
+            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Vera\\Downloads\\Telegram Desktop\\Postal Code Boundary Coordinates.csv");
             file.ReadLine();
 
             while ((line = file.ReadLine()) != null)
