@@ -412,7 +412,7 @@
                                                         if (allDriverRoute[i].length > 0) {
                                                             var oneLocation = allDriverRoute[i].split("*");
                                                             if (oneLocation.length > 0) {
-                                                                if (oneLocation[5] == "DL") {
+                                                                if (oneLocation[7] == "DL") {
                                                                     marker = new L.Marker([parseFloat(oneLocation[3]), parseFloat(oneLocation[4])], { icon: deliveryMarker })
                                                                         .bindPopup(oneLocation[8] + "<br>" + oneLocation[1] + "<br>" + oneLocation[2] + "<br>" + oneLocation[0] + "<br>" + oneLocation[7]).openPopup()
                                                                         .addTo(map)

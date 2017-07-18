@@ -6,6 +6,48 @@
 
 <html>
 <head>
+    <style>
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 9px;
+    width: 90%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 12px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+</style>
+
+
+
+        
     <%--<% Server.Execute("Include.aspx"); %>--%>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
@@ -60,6 +102,7 @@
 
         <!-- Navbar -->
         <div class="w3-top">
+            
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
@@ -231,44 +274,57 @@
                                             "Colour Map": osmMap,
                                             "GrayScale Map": landMap
                                         };
- 
-                                       
+                                      
                                         // Layers 
-                                        L.control.layers(baseLayers, overlays).addTo(map);
-                                            
-                                            // driver current location marker 
-                                            var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
-                                            if (allDriverLoc[0] != "") {
-                                                var oneDriverLoc = allDriverLoc[0].split("*");
+                                        //L.control.layers(baseLayers, overlays).addTo(map);
 
-                                                for (i = 0; i < allDriverLoc.length; i++) {
-                                                    if (allDriverLoc[i].length > 0) {
-                                                        var oneDriverLoc = allDriverLoc[i].split("*");
-                                                        marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])], { icon: humanMarker })
-                                                            .bindPopup(oneDriverLoc[0]).openPopup()
-                                                            //layers code beneath
-                                                            //.addTo(driverLocationLayer)
-                                                            .addTo(map)
-                                                    }
-                                                    
+                                        // driver current location marker                
+                                        var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
+                                        if (allDriverLoc[0] != "") {
+                                            for (i = 0; i < allDriverLoc.length; i++) {
+                                                if (allDriverLoc[i].length > 0) {
+                                                    var oneDriverLoc = allDriverLoc[i].split("*");
+                                                    marker = new L.marker([parseFloat(oneDriverLoc[0]), parseFloat(oneDriverLoc[1])], { icon: humanMarker })
+                                                        .bindPopup(oneDriverLoc[2]).openPopup()
+                                                        //layers code beneath
+                                                        //.addTo(driverLocationLayer)
+                                                        .addTo(map)
                                                 }
+                                                    
                                             }
+                                        }
+
+                                        //Job Locations
+                                        var allJobLocations = document.getElementById("HiddenField3").value.split("^");
+                                        if (allJobLocations[0] != "") {
+                                            for (i = 0; i < allJobLocations.length; i++) {
+                                                if (allJobLocations[i].length > 0) {
+                                                var oneJobLoc = allJobLocations[i].split("*");
+                                                marker = new L.marker([parseFloat(oneJobLoc[0]), parseFloat(oneJobLoc[1])], { icon: trafficMarker })
+                                                    .bindPopup(oneJobLoc[2]).openPopup()
+                                                        //layers code beneath
+                                                        //.addTo(driverLocationLayer)
+                                                        .addTo(map)
+                                                }
+
+                                            }
+                                        }
 
                                             //LTA incidents
-                                            var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
+                                            //var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
 
-                                            if (allLTAIncidents[0] != "") {
-                                                for (i = 0; i < allLTAIncidents.length; i++) {
-                                                    if (allLTAIncidents[i].length > 0) {
-                                                        var oneLTAIncidents = allLTAIncidents[i].split("*");
-                                                        marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker })
-                                                            .bindPopup(oneLTAIncidents[0]).openPopup()
-                                                            .addTo(map)
-                                                    //trafficLayer.addLayer(marker);
-                                                    }
+                                            //if (allLTAIncidents[0] != "") {
+                                            //    for (i = 0; i < allLTAIncidents.length; i++) {
+                                            //        if (allLTAIncidents[i].length > 0) {
+                                            //            var oneLTAIncidents = allLTAIncidents[i].split("*");
+                                            //            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker })
+                                            //                .bindPopup(oneLTAIncidents[0]).openPopup()
+                                            //                .addTo(map)
+                                            //        //trafficLayer.addLayer(marker);
+                                            //        }
                                                     
-                                                }
-                                            }
+                                            //    }
+                                            //}
    
                                     </script>
 
@@ -330,19 +386,19 @@
 
 
                                 <p />
-                                <!--filter table for searching drivers-->
+                                <!--filter table for searching jobs-->
                                 <div class="scroll">
-
+                                    
                                     <table id="UserGridView" class="tableC">
 
                                         <tr>
                                             <td style="text-align: left; padding-left: 5px;">
-                                                <%--<asp:CheckBoxList
-                                                    ID="CheckBoxList1"
+                                                <asp:CheckBoxList
+                                                    ID="CheckBoxList2"
                                                     AutoPostBack="True"
                                                     OnSelectedIndexChanged="CheckBoxList_Click"
                                                     runat="server">
-                                                </asp:CheckBoxList>--%>
+                                                </asp:CheckBoxList>
                                             </td>
                                         </tr>
 
@@ -354,53 +410,63 @@
 
                         <div id="JobDetails" class="w3-container tab" style="display: none">
                             <div class="scroll">
-                                <table class="tableC">
 
-                                   <%-- <%
-                                        var allDriver = HiddenField3.Value.Split('$');
-                                        for (int j = 0; j < allDriver.Length; j++)
-                                        {
-                                            if (allDriver[j].Length > 0)
-                                            {
-                                                var allDriverRoute = allDriver[j].Split('^');
-                                                var count = 1;
-                                    %>
-                                    <tr>
-                                        <td class="align-center">
-                                            <%
-                                                var forName = allDriverRoute[0].Split('*');
-                                            %>
-                                            <b />
-                                            <span style="background-color: yellow;"><%=forName[8].ToUpper() %></span>
-                                        </td>
-                                    </tr>
-                                    <%
-                                        for (int i = 0; i < allDriverRoute.Length; i++)
-                                        {
-                                            if (allDriverRoute[i].Length > 0)
-                                            {
-                                                var oneLocation = allDriverRoute[i].Split('*');
-                                    %>
-                                    <tr>
-                                        <td>
-                                            <b><%= i+1 + ". "%></b>
-                                            <%=oneLocation[2] + " " + oneLocation[0] %>
+                                <button class="accordion">Section 1</button>
+                                <div class="panel">
+                                     <table class="tableC">     
+                                   
+                                       <%
+                                           int count = 1;
+                                        var allDriverDetails = HiddenField2.Value.Split('^');
+                                           for (int j = 0; j < allDriverDetails.Length; j++)
+                                           {
+                                               if (allDriverDetails[j].Length > 0)
+                                               {
+                                                   var singleDriverDetails = allDriverDetails[j].Split('*');
+                                        %>
+                                        <tr>
+                                            <td class="align-center">
+                                           
+                                                <%if (count > 5)
+                                                    {
+                                                        count = 1;
+                                                    }%>
 
-                                            <br />
-                                            <b />
-                                            <%=oneLocation[5] + " - " + oneLocation[6] %>
-                                        </td>
+                                            
 
-                                    </tr>
+                                                <b />
+                                                <span style="background-color: yellow;"><%=count++ + ". " + singleDriverDetails[0].ToUpper() %></span>
+                                            </td>
+                                        </tr>
+                                    
+                                        <tr>
+                                            <td>
+                                            
+                                                <%=singleDriverDetails[1]%>
 
-                                    <% 
+                                                <br />
+                                                <b />
+                                            
+                                            </td>
 
-                                                    }
+                                        </tr>
+
+                                        <% 
+
+                                                    
+                                                
                                                 }
                                             }
-                                        }
-                                    %>--%>
-                                </table>
+                                        %>
+
+
+                                    </table>
+
+                                </div>
+
+
+
+                                
                             </div>
                         </div>
                     </div>
@@ -429,15 +495,18 @@
 
         <script>
                                                 // Accordion
-                                                function myFunction(id) {
-                                                    var x = document.getElementById(id);
-                                                    if (x.className.indexOf("w3-show") == -1) {
-                                                        x.className += " w3-show";
-                                                        x.previousElementSibling.className += " w3-theme-d1";
-                                                    } else {
-                                                        x.className = x.className.replace("w3-show", "");
-                                                        x.previousElementSibling.className =
-                                                            x.previousElementSibling.className.replace(" w3-theme-d1", "");
+                                                var acc = document.getElementsByClassName("accordion");
+                                                var i;
+
+                                                for (i = 0; i < acc.length; i++) {
+                                                    acc[i].onclick = function () {
+                                                        this.classList.toggle("active");
+                                                        var panel = this.nextElementSibling;
+                                                        if (panel.style.maxHeight) {
+                                                            panel.style.maxHeight = null;
+                                                        } else {
+                                                            panel.style.maxHeight = panel.scrollHeight + "px";
+                                                        }
                                                     }
                                                 }
 

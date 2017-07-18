@@ -476,12 +476,167 @@
           <s:element minOccurs="1" maxOccurs="1" name="Attend_Late" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetCompletedCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ADate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompletedCountResult" type="tns:ArrayOfDelStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDelStat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DelStat" nillable="true" type="tns:DelStat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DelStat">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfStat" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Desc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCodeIDX" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPIPDIPCount">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPIPDIPCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPIPDIPCountResult" type="tns:ArrayOfDelStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFailedCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AFromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="AToDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFailedCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFailedCountResult" type="tns:ArrayOfDelStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerformanceCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ADate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerformanceCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPerformanceCountResult" type="tns:PerfStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PerfStat">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateOfStat" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Delivered_Count" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OnTime_Count" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Late_Count" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAttemptCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AFromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="AToDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAttemptCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAttemptCountResult" type="tns:ArrayOfAttemptStat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAttemptStat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AttemptStat" nillable="true" type="tns:AttemptStat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AttemptStat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetStatusDefinitions">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStatusDefinitionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatusDefinitionsResult" type="tns:ArrayOfStatusCodeStructure" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfStatusCodeStructure">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="StatusCodeStructure" nillable="true" type="tns:StatusCodeStructure" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="StatusCodeStructure">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IDX" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CodeType" type="tns:eCodeType" />
+          <s:element minOccurs="1" maxOccurs="1" name="DriverAffected" type="tns:eDriverAffected" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="eCodeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ctProgressCheckpoints" />
+          <s:enumeration value="ctNetworkCompletion" />
+          <s:enumeration value="ctServiceIncident" />
+          <s:enumeration value="ctTracingCheckpoints" />
+          <s:enumeration value="ctBillingIndicators" />
+          <s:enumeration value="ctMailingIndicators" />
+          <s:enumeration value="ctDOReturnIndicators" />
+          <s:enumeration value="ctCODReturnIndicators" />
+          <s:enumeration value="ctJobEnquiries" />
+          <s:enumeration value="ctServiceReversalIndicators" />
+          <s:enumeration value="ctSchedulingIndicators" />
+          <s:enumeration value="ctSystemCodes" />
+          <s:enumeration value="ctInternalMeasurements" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="eDriverAffected">
+        <s:restriction base="s:string">
+          <s:enumeration value="daNone" />
+          <s:enumeration value="daPickup" />
+          <s:enumeration value="daDelivery" />
+        </s:restriction>
+      </s:simpleType>
       <s:element name="ArrayOfLTAIncident" nillable="true" type="tns:ArrayOfLTAIncident" />
       <s:element name="ArrayOfDriverObject" nillable="true" type="tns:ArrayOfDriverObject" />
       <s:element name="ArrayOfLocationInfo" nillable="true" type="tns:ArrayOfLocationInfo" />
       <s:element name="ArrayOfJobInfo" nillable="true" type="tns:ArrayOfJobInfo" />
       <s:element name="DriverPoints" nillable="true" type="tns:DriverPoints" />
       <s:element name="ArrayOfDriverPointSummary" nillable="true" type="tns:ArrayOfDriverPointSummary" />
+      <s:element name="ArrayOfDelStat" nillable="true" type="tns:ArrayOfDelStat" />
+      <s:element name="PerfStat" nillable="true" type="tns:PerfStat" />
+      <s:element name="ArrayOfAttemptStat" nillable="true" type="tns:ArrayOfAttemptStat" />
+      <s:element name="ArrayOfStatusCodeStructure" nillable="true" type="tns:ArrayOfStatusCodeStructure" />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetLTAIncidentsSoapIn">
@@ -525,6 +680,42 @@
   </wsdl:message>
   <wsdl:message name="L2_GetDriverPointSummarySoapOut">
     <wsdl:part name="parameters" element="tns:L2_GetDriverPointSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompletedCount" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompletedCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPIPDIPCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPIPDIPCount" />
+  </wsdl:message>
+  <wsdl:message name="GetPIPDIPCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPIPDIPCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFailedCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFailedCount" />
+  </wsdl:message>
+  <wsdl:message name="GetFailedCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFailedCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPerformanceCount" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPerformanceCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAttemptCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAttemptCount" />
+  </wsdl:message>
+  <wsdl:message name="GetAttemptCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAttemptCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusDefinitionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatusDefinitions" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusDefinitionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatusDefinitionsResponse" />
   </wsdl:message>
   <wsdl:message name="GetLTAIncidentsHttpGetIn">
     <wsdl:part name="APIKey" type="s:string" />
@@ -580,6 +771,40 @@
   <wsdl:message name="L2_GetDriverPointSummaryHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfDriverPointSummary" />
   </wsdl:message>
+  <wsdl:message name="GetCompletedCountHttpGetIn">
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDelStat" />
+  </wsdl:message>
+  <wsdl:message name="GetPIPDIPCountHttpGetIn" />
+  <wsdl:message name="GetPIPDIPCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDelStat" />
+  </wsdl:message>
+  <wsdl:message name="GetFailedCountHttpGetIn">
+    <wsdl:part name="AFromDate" type="s:string" />
+    <wsdl:part name="AToDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFailedCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDelStat" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceCountHttpGetIn">
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:PerfStat" />
+  </wsdl:message>
+  <wsdl:message name="GetAttemptCountHttpGetIn">
+    <wsdl:part name="AFromDate" type="s:string" />
+    <wsdl:part name="AToDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAttemptCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAttemptStat" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusDefinitionsHttpGetIn" />
+  <wsdl:message name="GetStatusDefinitionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStatusCodeStructure" />
+  </wsdl:message>
   <wsdl:message name="GetLTAIncidentsHttpPostIn">
     <wsdl:part name="APIKey" type="s:string" />
   </wsdl:message>
@@ -634,6 +859,40 @@
   <wsdl:message name="L2_GetDriverPointSummaryHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfDriverPointSummary" />
   </wsdl:message>
+  <wsdl:message name="GetCompletedCountHttpPostIn">
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetCompletedCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDelStat" />
+  </wsdl:message>
+  <wsdl:message name="GetPIPDIPCountHttpPostIn" />
+  <wsdl:message name="GetPIPDIPCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDelStat" />
+  </wsdl:message>
+  <wsdl:message name="GetFailedCountHttpPostIn">
+    <wsdl:part name="AFromDate" type="s:string" />
+    <wsdl:part name="AToDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetFailedCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDelStat" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceCountHttpPostIn">
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPerformanceCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:PerfStat" />
+  </wsdl:message>
+  <wsdl:message name="GetAttemptCountHttpPostIn">
+    <wsdl:part name="AFromDate" type="s:string" />
+    <wsdl:part name="AToDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAttemptCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfAttemptStat" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusDefinitionsHttpPostIn" />
+  <wsdl:message name="GetStatusDefinitionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfStatusCodeStructure" />
+  </wsdl:message>
   <wsdl:portType name="L2Soap">
     <wsdl:operation name="GetLTAIncidents">
       <wsdl:input message="tns:GetLTAIncidentsSoapIn" />
@@ -662,6 +921,30 @@
     <wsdl:operation name="L2_GetDriverPointSummary">
       <wsdl:input message="tns:L2_GetDriverPointSummarySoapIn" />
       <wsdl:output message="tns:L2_GetDriverPointSummarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <wsdl:input message="tns:GetCompletedCountSoapIn" />
+      <wsdl:output message="tns:GetCompletedCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <wsdl:input message="tns:GetPIPDIPCountSoapIn" />
+      <wsdl:output message="tns:GetPIPDIPCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <wsdl:input message="tns:GetFailedCountSoapIn" />
+      <wsdl:output message="tns:GetFailedCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <wsdl:input message="tns:GetPerformanceCountSoapIn" />
+      <wsdl:output message="tns:GetPerformanceCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <wsdl:input message="tns:GetAttemptCountSoapIn" />
+      <wsdl:output message="tns:GetAttemptCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <wsdl:input message="tns:GetStatusDefinitionsSoapIn" />
+      <wsdl:output message="tns:GetStatusDefinitionsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="L2HttpGet">
@@ -693,6 +976,30 @@
       <wsdl:input message="tns:L2_GetDriverPointSummaryHttpGetIn" />
       <wsdl:output message="tns:L2_GetDriverPointSummaryHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <wsdl:input message="tns:GetCompletedCountHttpGetIn" />
+      <wsdl:output message="tns:GetCompletedCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <wsdl:input message="tns:GetPIPDIPCountHttpGetIn" />
+      <wsdl:output message="tns:GetPIPDIPCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <wsdl:input message="tns:GetFailedCountHttpGetIn" />
+      <wsdl:output message="tns:GetFailedCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <wsdl:input message="tns:GetPerformanceCountHttpGetIn" />
+      <wsdl:output message="tns:GetPerformanceCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <wsdl:input message="tns:GetAttemptCountHttpGetIn" />
+      <wsdl:output message="tns:GetAttemptCountHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <wsdl:input message="tns:GetStatusDefinitionsHttpGetIn" />
+      <wsdl:output message="tns:GetStatusDefinitionsHttpGetOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="L2HttpPost">
     <wsdl:operation name="GetLTAIncidents">
@@ -722,6 +1029,30 @@
     <wsdl:operation name="L2_GetDriverPointSummary">
       <wsdl:input message="tns:L2_GetDriverPointSummaryHttpPostIn" />
       <wsdl:output message="tns:L2_GetDriverPointSummaryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <wsdl:input message="tns:GetCompletedCountHttpPostIn" />
+      <wsdl:output message="tns:GetCompletedCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <wsdl:input message="tns:GetPIPDIPCountHttpPostIn" />
+      <wsdl:output message="tns:GetPIPDIPCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <wsdl:input message="tns:GetFailedCountHttpPostIn" />
+      <wsdl:output message="tns:GetFailedCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <wsdl:input message="tns:GetPerformanceCountHttpPostIn" />
+      <wsdl:output message="tns:GetPerformanceCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <wsdl:input message="tns:GetAttemptCountHttpPostIn" />
+      <wsdl:output message="tns:GetAttemptCountHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <wsdl:input message="tns:GetStatusDefinitionsHttpPostIn" />
+      <wsdl:output message="tns:GetStatusDefinitionsHttpPostOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="L2Soap" type="tns:L2Soap">
@@ -782,6 +1113,60 @@
     </wsdl:operation>
     <wsdl:operation name="L2_GetDriverPointSummary">
       <soap:operation soapAction="http://www.xdel.com/L2/L2_GetDriverPointSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetCompletedCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetPIPDIPCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetFailedCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetPerformanceCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetAttemptCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <soap:operation soapAction="http://www.xdel.com/L2/GetStatusDefinitions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -855,6 +1240,60 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetCompletedCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetPIPDIPCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetFailedCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetPerformanceCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetAttemptCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <soap12:operation soapAction="http://www.xdel.com/L2/GetStatusDefinitions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="L2HttpGet" type="tns:L2HttpGet">
     <http:binding verb="GET" />
@@ -921,6 +1360,60 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <http:operation location="/GetCompletedCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <http:operation location="/GetPIPDIPCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <http:operation location="/GetFailedCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <http:operation location="/GetPerformanceCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <http:operation location="/GetAttemptCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <http:operation location="/GetStatusDefinitions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="L2HttpPost" type="tns:L2HttpPost">
     <http:binding verb="POST" />
@@ -980,6 +1473,60 @@
     </wsdl:operation>
     <wsdl:operation name="L2_GetDriverPointSummary">
       <http:operation location="/L2_GetDriverPointSummary" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompletedCount">
+      <http:operation location="/GetCompletedCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPIPDIPCount">
+      <http:operation location="/GetPIPDIPCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFailedCount">
+      <http:operation location="/GetFailedCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerformanceCount">
+      <http:operation location="/GetPerformanceCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAttemptCount">
+      <http:operation location="/GetAttemptCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusDefinitions">
+      <http:operation location="/GetStatusDefinitions" />
       <wsdl:input>
         <mime:content type="application/x-www-form-urlencoded" />
       </wsdl:input>

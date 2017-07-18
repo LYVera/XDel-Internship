@@ -49,6 +49,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--//Metis Menu -->
 </head>
 <body class="cbp-spmenu-push">
+    <form id="form1" runat="server">
     <div class="main-content">
         <!--left-fixed -navigation-->
         <div class=" sidebar" role="navigation">
@@ -99,7 +100,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <div class="profile_details_left">
                     <!--notifications of menu start -->
                     <ul class="nofitications-dropdown">
-
                         <li class="dropdown head-dpdn">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i>
                                 <span class="badge blue">
@@ -119,7 +119,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </li>
 
                                 <%
-                                    for (int i = 0; i < lowBatts.Count; i++)
+                                    for (int i = 0;  i < lowBatts.Count; i++)
                                     {
                                         Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
 
@@ -146,10 +146,10 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">
                                     <span class="prfil-img">
-                                        <img src="images/a.png" alt="">
+                                        <img src="Peter.jpg" alt=""  style="width:40px;height:40px;">
                                     </span>
                                     <div class="user-name">
-                                        <p>Wikolia</p>
+                                        <p>Peter</p>
                                         <span>Administrator</span>
                                     </div>
                                     <i class="fa fa-angle-down lnr"></i>
@@ -158,8 +158,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </a>
                             <ul class="dropdown-menu drp-mnu">
-                                <li><a href="#"><i class="fa fa-cog"></i>Settings</a> </li>
-                                <li><a href="#"><i class="fa fa-user"></i>Profile</a> </li>
                                 <li><a href="#"><i class="fa fa-sign-out"></i>Logout</a> </li>
                             </ul>
                         </li>
@@ -173,40 +171,39 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <!-- main content start-->
         <div id="page-wrapper">
             <div class="main-page">
-                <div class="row-one">
-                    <div class="col-md-4 widget">
-                        <div class="stats-left ">
-                            <h5>Today</h5>
-                            <h4>Sales</h4>
-                        </div>
-                        <div class="stats-right">
-                            <label>45</label>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="col-md-4 widget states-mdl">
-                        <div class="stats-left">
-                            <h5>Today</h5>
-                            <h4>Visitors</h4>
-                        </div>
-                        <div class="stats-right">
-                            <label>80</label>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="col-md-4 widget states-last">
-                        <div class="stats-left">
-                            <h5>Today</h5>
-                            <h4>Orders</h4>
-                        </div>
-                        <div class="stats-right">
-                            <label>51</label>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="clearfix"></div>
+                <div class="col-md-12 widget-shadow">
+                    <br>
+                    Customer
+                    <asp:DropDownList runat="server">
+                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                        <asp:ListItem Text="Customer classification" Value="custClass"></asp:ListItem>
+                        <asp:ListItem Text="Account" Value="acc"></asp:ListItem>
+                    </asp:DropDownList>
+                    Period
+                    <asp:TextBox runat="server" Text="mm/dd/yy"></asp:TextBox>
+                    Zone
+                    <asp:DropDownList runat="server">
+                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                        <asp:ListItem Text="Group Zone" Value="grpZone"></asp:ListItem>
+                        <asp:ListItem Text="Sub group zone" Value="subGrpZone"></asp:ListItem>
+                        <asp:ListItem Text="Postal Code" Value="postalCode"></asp:ListItem>
+                    </asp:DropDownList>
+                    Express Category
+                    <asp:DropDownList runat="server">
+                        <asp:ListItem Text="All" Value="all"></asp:ListItem>
+                        <asp:ListItem Text="Express" Value="express"></asp:ListItem>
+                        <asp:ListItem Text="Night" Value="night"></asp:ListItem>
+                        <asp:ListItem Text="Same Day" Value="sameDay"></asp:ListItem>
+                    </asp:DropDownList>
+                    <br>
                 </div>
+                <div class="clearfix"></div>
+
+                <!--Chart-->
                 <div class="charts">
+                    <!--Completed Jobs, Ontime/Late-->
+                    <asp:HiddenField ID="completedJobsPassFail" runat="server"/>
+
                     <div class="col-md-4 charts-grids widget">
                          <h4 class="title">Completed Jobs, Ontime/Late</h4>
 						<div class="doughnut-grid">
@@ -223,7 +220,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="clearfix"></div>
                     <script>
-                        
+
                         var CompletedOnTimeLate = [
                             {
                                 value: 30,
@@ -237,10 +234,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 value: 100,
                                 color: "#585858"
                             }
-                            
+
 
                         ];
-
 
 
                         var pieData = [
@@ -271,7 +267,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             {
                                 value: 90,
                                 color: "rgba(233, 78, 2, 1)",
-                                label: "Cust Related"
+                                label: "Bad"
                             },
                             {
                                 value: 50,
@@ -294,30 +290,114 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                 </div>
                 <div class="row">
-                    <div class="col-md-4 stats-info widget">
-                        <div class="stats-title">
-                            <h4 class="title">Browser Stats</h4>
+                     <div class="charts">
+                        <div class="col-md-4 stats-info widget">                        
+                            <h4 class="title">Time Ext Jobs</h4>
+                            <canvas id="TimeExtJobs" height="300" width="400"></canvas>
                         </div>
 
-                    </div>
-                    <!-- end of box -->
+                         <div class="col-md-4 charts-grids widget states-mdl">
+                             <h4 class="title">Type of Service</h4>
+                            <canvas id="typeOfSvc" height="300" width="400"></canvas>
+                        </div>
 
-                    <div class="col-md-8 stats-info stats-last widget-shadow">
-                        BOx BOx 
-                    </div>
-                    <!-- END Box-->
+                         <div class="col-md-4 stats-info widget">                        
+                            <h4 class="title">Time Ext Jobs</h4>
+                            <canvas id="TypeOfProduct" height="300" width="400"></canvas>
+                        </div>
+                    <script>
+
+
+
+                        var timeExtData = [
+                            {
+                                value: 90,
+                                color: "rgba(233, 78, 2, 1)",
+                                label: "Product 1"
+                            },
+                            {
+                                value: 50,
+                                color: "rgba(242, 179, 63, 1)",
+                                label: "Product 2"
+                            },
+                            {
+                                value: 60,
+                                color: "rgba(88, 88, 88,1)",
+                                label: "Product 3"
+                            },
+                            {
+                                value: 40,
+                                color: "rgba(79, 82, 186, 1)",
+                                label: "Product 4"
+                            }
+
+                        ];
+
+
+                        var svcTypeData = [
+                            {
+                                value: 90,
+                                color: "rgba(233, 78, 2, 1)",
+                                label: "Product 1"
+                            },
+                            {
+                                value: 50,
+                                color: "rgba(242, 179, 63, 1)",
+                                label: "Product 2"
+                            },
+                            {
+                                value: 60,
+                                color: "rgba(88, 88, 88,1)",
+                                label: "Product 3"
+                            },
+                            {
+                                value: 40,
+                                color: "rgba(79, 82, 186, 1)",
+                                label: "Product 4"
+                            }
+
+                        ];
+
+
+                        var prodTypeData = [
+                            {
+                                value: 90,
+                                color: "rgba(233, 78, 2, 1)",
+                                label: "Product 1"
+                            },
+                            {
+                                value: 50,
+                                color: "rgba(242, 179, 63, 1)",
+                                label: "Product 2"
+                            },
+                            {
+                                value: 60,
+                                color: "rgba(88, 88, 88,1)",
+                                label: "Product 3"
+                            },
+                            {
+                                value: 40,
+                                color: "rgba(79, 82, 186, 1)",
+                                label: "Product 4"
+                            }
+
+                        ];
+
+
+
+                        new Chart(document.getElementById("TimeExtJobs").getContext("2d")).Pie(timeExtData);
+                        new Chart(document.getElementById("typeOfSvc").getContext("2d")).Pie(svcTypeData);
+                        new Chart(document.getElementById("TypeOfProduct").getContext("2d")).Pie(prodTypeData);
+
+                    </script>
+</div>
+    </div>
+    <!-- end of box -->
+
                     <div class="clearfix"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 map widget-shadow">
-
-                        map maybe
-                        
-                    </div>
-                <div class="col-md-4 social-media widget-shadow">
                     
-                    <div class="clearfix"></div>
-                </div>
                 <div class="clearfix"></div>
             </div>
            
@@ -325,7 +405,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                 <div class="charts">
                     <div class="col-md-4 charts-grids barWidth">
                         <h4 class="title">Bar Chart Example</h4>
-                        <canvas id="bar" height="10" width="25"></canvas>
+                        <canvas id="bar" height="10" width="30"></canvas>
                     </div>
                     <script>
                         var barChartData = {
@@ -353,11 +433,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                         };
 
-                            new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
+                        new Chart(document.getElementById("bar").getContext("2d")).Bar(barChartData);
                       </script>
                     </div>
-               
-            
             <div class="clearfix"></div>
             </div>
         </div>
@@ -370,23 +448,23 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!-- Classie -->
     <script src="Scripts/dashboard/js/classie.js"></script>
     <script>
-                                 var menuLeft = document.getElementById('cbp-spmenu-s1'),
-                                     showLeftPush = document.getElementById('showLeftPush'),
-                                     body = document.body;
+                        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+                            showLeftPush = document.getElementById('showLeftPush'),
+                            body = document.body;
 
-                                 showLeftPush.onclick = function () {
-                                     classie.toggle(this, 'active');
-                                     classie.toggle(body, 'cbp-spmenu-push-toright');
-                                     classie.toggle(menuLeft, 'cbp-spmenu-open');
-                                     disableOther('showLeftPush');
-                                 };
+                        showLeftPush.onclick = function () {
+                            classie.toggle(this, 'active');
+                            classie.toggle(body, 'cbp-spmenu-push-toright');
+                            classie.toggle(menuLeft, 'cbp-spmenu-open');
+                            disableOther('showLeftPush');
+                        };
 
 
-                                 function disableOther(button) {
-                                     if (button !== 'showLeftPush') {
-                                         classie.toggle(showLeftPush, 'disabled');
-                                     }
-                                 }
+                        function disableOther(button) {
+                            if (button !== 'showLeftPush') {
+                                classie.toggle(showLeftPush, 'disabled');
+                            }
+                        }
     </script>
     <!--scrolling js-->
     <script src="Scripts/dashboard/js/jquery.nicescroll.js"></script>
@@ -394,5 +472,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--//scrolling js-->
     <!-- Bootstrap Core JavaScript -->
     <script src="Scripts/dashboard/js/bootstrap.js"> </script>
+        </form>
 </body>
 </html>

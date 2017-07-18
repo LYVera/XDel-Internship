@@ -44,6 +44,18 @@ namespace Try.LukeRefL2 {
         
         private System.Threading.SendOrPostCallback L2_GetDriverPointSummaryOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetCompletedCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPIPDIPCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetFailedCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetPerformanceCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAttemptCountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetStatusDefinitionsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -102,6 +114,24 @@ namespace Try.LukeRefL2 {
         
         /// <remarks/>
         public event L2_GetDriverPointSummaryCompletedEventHandler L2_GetDriverPointSummaryCompleted;
+        
+        /// <remarks/>
+        public event GetCompletedCountCompletedEventHandler GetCompletedCountCompleted;
+        
+        /// <remarks/>
+        public event GetPIPDIPCountCompletedEventHandler GetPIPDIPCountCompleted;
+        
+        /// <remarks/>
+        public event GetFailedCountCompletedEventHandler GetFailedCountCompleted;
+        
+        /// <remarks/>
+        public event GetPerformanceCountCompletedEventHandler GetPerformanceCountCompleted;
+        
+        /// <remarks/>
+        public event GetAttemptCountCompletedEventHandler GetAttemptCountCompleted;
+        
+        /// <remarks/>
+        public event GetStatusDefinitionsCompletedEventHandler GetStatusDefinitionsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetLTAIncidents", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -331,6 +361,180 @@ namespace Try.LukeRefL2 {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetCompletedCount", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DelStat[] GetCompletedCount(System.DateTime ADate) {
+            object[] results = this.Invoke("GetCompletedCount", new object[] {
+                        ADate});
+            return ((DelStat[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetCompletedCountAsync(System.DateTime ADate) {
+            this.GetCompletedCountAsync(ADate, null);
+        }
+        
+        /// <remarks/>
+        public void GetCompletedCountAsync(System.DateTime ADate, object userState) {
+            if ((this.GetCompletedCountOperationCompleted == null)) {
+                this.GetCompletedCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCompletedCountOperationCompleted);
+            }
+            this.InvokeAsync("GetCompletedCount", new object[] {
+                        ADate}, this.GetCompletedCountOperationCompleted, userState);
+        }
+        
+        private void OnGetCompletedCountOperationCompleted(object arg) {
+            if ((this.GetCompletedCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetCompletedCountCompleted(this, new GetCompletedCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetPIPDIPCount", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DelStat[] GetPIPDIPCount() {
+            object[] results = this.Invoke("GetPIPDIPCount", new object[0]);
+            return ((DelStat[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPIPDIPCountAsync() {
+            this.GetPIPDIPCountAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetPIPDIPCountAsync(object userState) {
+            if ((this.GetPIPDIPCountOperationCompleted == null)) {
+                this.GetPIPDIPCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPIPDIPCountOperationCompleted);
+            }
+            this.InvokeAsync("GetPIPDIPCount", new object[0], this.GetPIPDIPCountOperationCompleted, userState);
+        }
+        
+        private void OnGetPIPDIPCountOperationCompleted(object arg) {
+            if ((this.GetPIPDIPCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPIPDIPCountCompleted(this, new GetPIPDIPCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetFailedCount", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DelStat[] GetFailedCount(System.DateTime AFromDate, System.DateTime AToDate) {
+            object[] results = this.Invoke("GetFailedCount", new object[] {
+                        AFromDate,
+                        AToDate});
+            return ((DelStat[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetFailedCountAsync(System.DateTime AFromDate, System.DateTime AToDate) {
+            this.GetFailedCountAsync(AFromDate, AToDate, null);
+        }
+        
+        /// <remarks/>
+        public void GetFailedCountAsync(System.DateTime AFromDate, System.DateTime AToDate, object userState) {
+            if ((this.GetFailedCountOperationCompleted == null)) {
+                this.GetFailedCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFailedCountOperationCompleted);
+            }
+            this.InvokeAsync("GetFailedCount", new object[] {
+                        AFromDate,
+                        AToDate}, this.GetFailedCountOperationCompleted, userState);
+        }
+        
+        private void OnGetFailedCountOperationCompleted(object arg) {
+            if ((this.GetFailedCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetFailedCountCompleted(this, new GetFailedCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetPerformanceCount", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public PerfStat GetPerformanceCount(System.DateTime ADate) {
+            object[] results = this.Invoke("GetPerformanceCount", new object[] {
+                        ADate});
+            return ((PerfStat)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetPerformanceCountAsync(System.DateTime ADate) {
+            this.GetPerformanceCountAsync(ADate, null);
+        }
+        
+        /// <remarks/>
+        public void GetPerformanceCountAsync(System.DateTime ADate, object userState) {
+            if ((this.GetPerformanceCountOperationCompleted == null)) {
+                this.GetPerformanceCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetPerformanceCountOperationCompleted);
+            }
+            this.InvokeAsync("GetPerformanceCount", new object[] {
+                        ADate}, this.GetPerformanceCountOperationCompleted, userState);
+        }
+        
+        private void OnGetPerformanceCountOperationCompleted(object arg) {
+            if ((this.GetPerformanceCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetPerformanceCountCompleted(this, new GetPerformanceCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetAttemptCount", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public AttemptStat[] GetAttemptCount(System.DateTime AFromDate, System.DateTime AToDate) {
+            object[] results = this.Invoke("GetAttemptCount", new object[] {
+                        AFromDate,
+                        AToDate});
+            return ((AttemptStat[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAttemptCountAsync(System.DateTime AFromDate, System.DateTime AToDate) {
+            this.GetAttemptCountAsync(AFromDate, AToDate, null);
+        }
+        
+        /// <remarks/>
+        public void GetAttemptCountAsync(System.DateTime AFromDate, System.DateTime AToDate, object userState) {
+            if ((this.GetAttemptCountOperationCompleted == null)) {
+                this.GetAttemptCountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAttemptCountOperationCompleted);
+            }
+            this.InvokeAsync("GetAttemptCount", new object[] {
+                        AFromDate,
+                        AToDate}, this.GetAttemptCountOperationCompleted, userState);
+        }
+        
+        private void OnGetAttemptCountOperationCompleted(object arg) {
+            if ((this.GetAttemptCountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAttemptCountCompleted(this, new GetAttemptCountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://www.xdel.com/L2/GetStatusDefinitions", RequestNamespace="http://www.xdel.com/L2/", ResponseNamespace="http://www.xdel.com/L2/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public StatusCodeStructure[] GetStatusDefinitions() {
+            object[] results = this.Invoke("GetStatusDefinitions", new object[0]);
+            return ((StatusCodeStructure[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetStatusDefinitionsAsync() {
+            this.GetStatusDefinitionsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetStatusDefinitionsAsync(object userState) {
+            if ((this.GetStatusDefinitionsOperationCompleted == null)) {
+                this.GetStatusDefinitionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetStatusDefinitionsOperationCompleted);
+            }
+            this.InvokeAsync("GetStatusDefinitions", new object[0], this.GetStatusDefinitionsOperationCompleted, userState);
+        }
+        
+        private void OnGetStatusDefinitionsOperationCompleted(object arg) {
+            if ((this.GetStatusDefinitionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetStatusDefinitionsCompleted(this, new GetStatusDefinitionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -438,6 +642,320 @@ namespace Try.LukeRefL2 {
             }
             set {
                 this.timestampField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class StatusCodeStructure {
+        
+        private long iDXField;
+        
+        private string statusCodeField;
+        
+        private string descriptionField;
+        
+        private eCodeType codeTypeField;
+        
+        private eDriverAffected driverAffectedField;
+        
+        /// <remarks/>
+        public long IDX {
+            get {
+                return this.iDXField;
+            }
+            set {
+                this.iDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string StatusCode {
+            get {
+                return this.statusCodeField;
+            }
+            set {
+                this.statusCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public eCodeType CodeType {
+            get {
+                return this.codeTypeField;
+            }
+            set {
+                this.codeTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public eDriverAffected DriverAffected {
+            get {
+                return this.driverAffectedField;
+            }
+            set {
+                this.driverAffectedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public enum eCodeType {
+        
+        /// <remarks/>
+        ctProgressCheckpoints,
+        
+        /// <remarks/>
+        ctNetworkCompletion,
+        
+        /// <remarks/>
+        ctServiceIncident,
+        
+        /// <remarks/>
+        ctTracingCheckpoints,
+        
+        /// <remarks/>
+        ctBillingIndicators,
+        
+        /// <remarks/>
+        ctMailingIndicators,
+        
+        /// <remarks/>
+        ctDOReturnIndicators,
+        
+        /// <remarks/>
+        ctCODReturnIndicators,
+        
+        /// <remarks/>
+        ctJobEnquiries,
+        
+        /// <remarks/>
+        ctServiceReversalIndicators,
+        
+        /// <remarks/>
+        ctSchedulingIndicators,
+        
+        /// <remarks/>
+        ctSystemCodes,
+        
+        /// <remarks/>
+        ctInternalMeasurements,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public enum eDriverAffected {
+        
+        /// <remarks/>
+        daNone,
+        
+        /// <remarks/>
+        daPickup,
+        
+        /// <remarks/>
+        daDelivery,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class AttemptStat {
+        
+        private string companyField;
+        
+        private string statusCodeField;
+        
+        private string categoryField;
+        
+        private string postalCodeField;
+        
+        private int countField;
+        
+        /// <remarks/>
+        public string Company {
+            get {
+                return this.companyField;
+            }
+            set {
+                this.companyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string StatusCode {
+            get {
+                return this.statusCodeField;
+            }
+            set {
+                this.statusCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Category {
+            get {
+                return this.categoryField;
+            }
+            set {
+                this.categoryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PostalCode {
+            get {
+                return this.postalCodeField;
+            }
+            set {
+                this.postalCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Count {
+            get {
+                return this.countField;
+            }
+            set {
+                this.countField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class PerfStat {
+        
+        private System.DateTime dateOfStatField;
+        
+        private int delivered_CountField;
+        
+        private int onTime_CountField;
+        
+        private int late_CountField;
+        
+        /// <remarks/>
+        public System.DateTime DateOfStat {
+            get {
+                return this.dateOfStatField;
+            }
+            set {
+                this.dateOfStatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Delivered_Count {
+            get {
+                return this.delivered_CountField;
+            }
+            set {
+                this.delivered_CountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OnTime_Count {
+            get {
+                return this.onTime_CountField;
+            }
+            set {
+                this.onTime_CountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Late_Count {
+            get {
+                return this.late_CountField;
+            }
+            set {
+                this.late_CountField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.xdel.com/L2/")]
+    public partial class DelStat {
+        
+        private System.DateTime dateOfStatField;
+        
+        private string descField;
+        
+        private long statusCodeIDXField;
+        
+        private int countField;
+        
+        /// <remarks/>
+        public System.DateTime DateOfStat {
+            get {
+                return this.dateOfStatField;
+            }
+            set {
+                this.dateOfStatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Desc {
+            get {
+                return this.descField;
+            }
+            set {
+                this.descField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long StatusCodeIDX {
+            get {
+                return this.statusCodeIDXField;
+            }
+            set {
+                this.statusCodeIDXField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Count {
+            get {
+                return this.countField;
+            }
+            set {
+                this.countField = value;
             }
         }
     }
@@ -2789,6 +3307,162 @@ namespace Try.LukeRefL2 {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((DriverPointSummary[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void GetCompletedCountCompletedEventHandler(object sender, GetCompletedCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetCompletedCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetCompletedCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public DelStat[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((DelStat[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void GetPIPDIPCountCompletedEventHandler(object sender, GetPIPDIPCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPIPDIPCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPIPDIPCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public DelStat[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((DelStat[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void GetFailedCountCompletedEventHandler(object sender, GetFailedCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetFailedCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetFailedCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public DelStat[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((DelStat[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void GetPerformanceCountCompletedEventHandler(object sender, GetPerformanceCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetPerformanceCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetPerformanceCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public PerfStat Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((PerfStat)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void GetAttemptCountCompletedEventHandler(object sender, GetAttemptCountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAttemptCountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAttemptCountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public AttemptStat[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((AttemptStat[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    public delegate void GetStatusDefinitionsCompletedEventHandler(object sender, GetStatusDefinitionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2046.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetStatusDefinitionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetStatusDefinitionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public StatusCodeStructure[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((StatusCodeStructure[])(this.results[0]));
             }
         }
     }

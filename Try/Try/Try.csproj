@@ -600,6 +600,12 @@
     <Content Include="Scripts\dashboard\fonts\FontAwesome.otf" />
     <Content Include="Scripts\dashboard\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\dashboard\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Web References\LukeRefL2\AttemptStat.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\LukeRefL2\DelStat.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\LukeRefL2\l2.disco" />
     <Content Include="Web References\LukeRef\AddressStructure1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -644,10 +650,16 @@
     <Content Include="Web References\LukeRefL2\LTAIncident.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Web References\LukeRefL2\PerfStat.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\LukeRefL2\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Web References\LukeRefL2\StatusCodeStructure.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\LukeRef\lukews.disco" />
     <Content Include="XDel Logo.gif" />
     <None Include="Properties\Settings.settings">
