@@ -25,5 +25,10 @@ namespace Try.Models
         {
             return cluster;
         }
+
+        public void setCluster(string c)
+        {
+            cluster = c;
+        }
     }
 }

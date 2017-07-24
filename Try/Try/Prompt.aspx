@@ -4,7 +4,7 @@
 
 <html>
 <head>
-
+    <% Server.Execute("Include.aspx"); %>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -23,6 +23,8 @@
     <!--The search bar script here-->
     <script type="text/javascript" src="Scripts/SearchBar.js"></script>
     <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 
 
@@ -61,6 +63,15 @@
             color: white;
         }
     </style>
+     
+    <style>
+            div.scroll {
+            height: 500px;
+            width: 180px; 
+            overflow: scroll;
+        }
+
+    </style>
 
 
 </head>
@@ -72,37 +83,52 @@
 
        
         <!-- Navbar -->
-        <div class="w3-top">
+                <div class="w3-top">
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
                     <img src="XDel Logo.gif" alt="Xdel Logo" style="height: 36px; width: 36px" /></a>
-                <a href="http://localhost:57238/RecommendMap/RecommendView" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Recommend"><i class="fa fa-area-chart"></i></a>
+                <a href="http://localhost:62482/DashBoard" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <div class="w3-dropdown-hover w3-hide-small">
-                    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
-                        <%
-                            ArrayList lowBatts = new ArrayList();
-                            lowBatts = (ArrayList)Session["lowBatt"];
-                        %>
-                        <%=lowBatts.Count %>
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
 
-                    </span></button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; ">
+
+                <div class="w3-right">
+
+                    <div class="w3-dropdown-hover w3-hide-small">
+                        <button class="w3-button w3-padding-large" title="Notifications">
+                            <i class="fa fa-battery-1"></i><span class="w3-badge w3-small w3-green">
+                                <%
+                                    ArrayList lowBatts = new ArrayList();
+                                    lowBatts = (ArrayList)Session["lowBatt"];
+                                %>
+                                <%=lowBatts.Count %>
+
+                            </span>
+                        </button>
+                        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
                             <%
-                                for (int i = 0; i < lowBatts.Count; i++) {
+                                for (int i = 0; i < lowBatts.Count; i++)
+                                {
                                     Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
-                                    
-                            %>
-                                
-                             <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name%> Battery Low <br/></a>
-                            <%} %>
-                    </div>
-                </div>
 
-                <button onclick="myToggle()" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white">Toggle Search</button>
+                            %>
+
+                            <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
+                                <br />
+                            </a>
+                            <%} %>
+                        </div>
+                    </div>
+                    <a href="#" class="w3-bar-item w3-button w3-padding-large"></a>
+
+                    <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right w3-right-align" Text="Logout" />
+
+                </div>
 
                 <!--Top Right Hand Corner-->
             </div>
@@ -136,52 +162,18 @@
                     </div>
                     <br>
 
-                    <!-- Accordion -->
-                    <div class="w3-card-2 w3-round">
-                        <div class="w3-white">
-                            <button onclick="myFunction('Demo1');return false" class="w3-button w3-block w3-theme-orange w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Courier Type</button>
-                            <div id="Demo1" class="w3-hide w3-container">
-                                
-                                    <input type="checkbox" name="promptNotif" value="delay">Delay<br>
-                                    <input type="checkbox" name="promptNotif" value="lowBatt">Low Battery<br>
-                             
-
-                            </div>
-                            
-
-
-                        </div>
-                    </div>
-                    <br>
-
-                    <!-- Others -->
-                    <div class="w3-card-2 w3-round w3-white w3-hide-small">
-                        <div class="w3-container">
-                            <p>Submit</p>
-                            
-                            <p>
-                            </p>
-
-                        </div>
-                    </div>
-                    <br>
-
-                    <!-- Alert Box -->
-                    <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-                        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-                            <i class="fa fa-remove"></i>
-                        </span>
-                        <p>
-                            <strong>Hey!</strong>
-                        </p>
-                        <p>Tan's Battery is Low.</p>
-                    </div>
+                    
 
                     <!-- End Left Column -->
                 </div>
 
+
+                <!--Hidden Field for delay table -->
+                <asp:HiddenField ID="Delays" runat="server" />
+
+
                 <!-- Middle Column -->
-                <div class="w3-col m8">
+                <div class="w3-col m10">
                     <div class="w3-row-padding">
                         <div class="w3-col m12">
                             <div class="w3-card-2 w3-round w3-white">
@@ -194,32 +186,55 @@
                                             </th>
 
                                             <th>
-                                                Courier
+                                                Driver Name
                                             </th>
 
                                             <th>
-                                                Location
+                                                Driver ID
                                             </th>
 
                                             <th>
-                                                Expected Time Of Arrival
+                                                Delay ( Hrs,Mins )
                                             </th>
 
                                             <th>
-                                                Delay
+                                                Arrival Time
+                                            </th>
+
+                                            <th>
+                                                End Time
+                                            </th>
+
+                                            <th>
+                                                PU/DL
                                             </th>
                                         </tr>
 
 
+                                        <% string[] eachDelay = Delays.Value.Split('^');
+
+                                            for (int i = 0; i < eachDelay.Length; i++) { %>
+
+                                        <tr>
+                                            <%
+
+                                                if (eachDelay[i].Length != 0)
+                                                {
+                                                    string[] delaySet = eachDelay[i].Split('*');
+                                                    for(int j =0; j< delaySet.Length; j++)
+                                                    {%>
+                                                        
+                                                        <td>
+                                                            <%= delaySet[j]%>
+                                                        </td>
+
+                                                    <%}
+                                                }
+                                            %>
+                                        </tr>
+                                        <%}%>
                                     </table>
                                     
-                                        
-                                    
-
-
-
-                                   
-
                                 </div>
                             </div>
                         </div>
@@ -227,72 +242,56 @@
 
                     <!--Container-->
                     <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+
+                        <table>
+
+                                        <tr>
+                                            <th>
+                                                Driver Name
+                                            </th>
+
+                                            <th>
+                                                Battery Percentage 
+                                            </th>
+                                            
+                                            <th>
+                                                Mobile Number 
+                                            </th>
+
+                                        </tr>
+                            
+                            <%   
+                                for (int i = 0; i < lowBatts.Count; i++)
+                                {
+                            %>
+                            <tr>
+
+                                <% Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i]; %>
+
+                                <td>
+                                    <%= lowBattDriver.Name %>
+                                </td>
+                                 <td>
+                                    <%= lowBattDriver.BattPCT %>
+                                </td>
+                                <td>
+                                    <%= lowBattDriver.Mobile %>
+                                </td>
+
+                            </tr>
+                                   
+
+                                
+                                <%}%>
+
+                                    </table>
+
+
                     </div>
 
                     <!-- End Middle Column -->
                 </div>
-                <!-- Right Column -->
-                <div id="search">
-                    
-                    <div class="w3-col m2">
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
-
-                                <p>Search Drivers:</p>
-
-                                <p />
-                                <input type="text" name="" id="filter">
-
-                                <p />
-                                <strong>Driver List</strong>
-                                <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="SelectAll" Text="Select All"></asp:Button>
-                                <p />
-                                <!--filter table for searching drivers-->
-                                <table id="UserGridView" class="tableC">
-
-                                    <tr>
-                                        <td style="text-align: left;  padding-left:5px;">
-                                             <asp:CheckBoxList 
-                                             ID="CheckBoxList1"
-                                             AutoPostBack="True"
-                                             OnSelectedIndexChanged="CheckBoxList_Click"
-                                             runat="server">
-                                             </asp:CheckBoxList>
-                                        </td>
-                                    </tr>
-
-                                </table>
-                               
-
-                                
-
-                                <!-- Clear and Clear All button-->
-                                <div class="w3-row w3-opacity">
-                                    <div class="w3-half">
-                                        <button class="w3-button w3-block w3-green w3-section" title="Clear">Clear</button>
-                                    </div>
-                                    <div class="w3-half">
-                                        <button class="w3-button w3-block w3-red w3-section" title="ClearAll">Clear All</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="w3-card-2 w3-round w3-white w3-center">
-                            <div class="w3-container">
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-
-
-
-                        <!-- End Right Column -->
-                    </div>
-                </div>
-
+               
 
                 <!-- End Grid -->
             </div>

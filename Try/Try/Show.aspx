@@ -57,7 +57,7 @@
     <form id="form1" runat="server">
 
         <!-- Navbar -->
-        <div class="w3-top">
+<div class="w3-top">
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
@@ -66,40 +66,48 @@
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-info-circle"></i></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class="fa fa-check"></i></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bell"></i></a>
-                <div class="w3-dropdown-hover w3-hide-small">
-                    <button class="w3-button w3-padding-large" title="Notifications">
-                        <i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
+                <div class="w3-right">
+
+                    <div class="w3-dropdown-hover w3-hide-small">
+                        <button class="w3-button w3-padding-large" title="Notifications">
+                            <i class="fa fa-battery-1"></i><span class="w3-badge w3-small w3-green">
+                                <%
+                                    ArrayList lowBatts = new ArrayList();
+                                    lowBatts = (ArrayList)Session["lowBatt"];
+                                %>
+                                <%=lowBatts.Count %>
+
+                            </span>
+                        </button>
+                        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
                             <%
-                                ArrayList lowBatts = new ArrayList();
-                                lowBatts = (ArrayList)Session["lowBatt"];
+                                for (int i = 0; i < lowBatts.Count; i++)
+                                {
+                                    Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
+
                             %>
-                            <%=lowBatts.Count %>
 
-                        </span>
-                    </button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
-                        <%
-                            for (int i = 0; i < lowBatts.Count; i++)
-                            {
-                                Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
-
-                        %>
-
-                        <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
-                            <br />
-                        </a>
-                        <%} %>
+                            <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
+                                <br />
+                            </a>
+                            <%} %>
+                        </div>
                     </div>
-                </div>
+                    <a href="#" class="w3-bar-item w3-button w3-padding-large"></a>
 
-                <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" Text="Logout" />
+                    <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right w3-right-align" Text="Logout" />
+
+                </div>
 
                 <!--Top Right Hand Corner-->
             </div>
         </div>
+
+                
+
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-theme-orange w3-hide w3-hide-large w3-hide-medium w3-large">
@@ -170,6 +178,8 @@
                                 <asp:HiddenField ID="HiddenPostalCode" runat="server" />
                                 <!-- Route Hidden Field -->
                                 <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
+                                <!-- Hidden Status for Postal Code Boundary -->
+                                <asp:HiddenField ID="hiddenStatus" runat="server" />
 
                                 <!-- MAP -->
 
@@ -195,29 +205,8 @@
                                     
 
                                     <!— Button —>
-                                    <asp:DropDownList ID="Grouping" runat="server" Width="200px">
-                                        <asp:ListItem Text="Central 1" Value="C1"></asp:ListItem>
-                                        <asp:ListItem Text="Central 2" Value="C2"></asp:ListItem>
-                                        <asp:ListItem Text="Central 3" Value="C3"></asp:ListItem>
-                                        <asp:ListItem Text="Central 4" Value="C4"></asp:ListItem>
-                                        <asp:ListItem Text="Central 5" Value="C5"></asp:ListItem>
-                                        <asp:ListItem Text="East 1" Value="E1"></asp:ListItem>
-                                        <asp:ListItem Text="East 2" Value="E2"></asp:ListItem>
-                                        <asp:ListItem Text="East 3" Value="E3"></asp:ListItem>
-                                        <asp:ListItem Text="North 1" Value="N1"></asp:ListItem>
-                                        <asp:ListItem Text="North 2" Value="N2"></asp:ListItem>
-                                        <asp:ListItem Text="North 3" Value="N3"></asp:ListItem>
-                                        <asp:ListItem Text="Northeast 1" Value="NE1"></asp:ListItem>
-                                        <asp:ListItem Text="Northeast 2" Value="NE2"></asp:ListItem>
-                                        <asp:ListItem Text="Northeast 3" Value="NE3"></asp:ListItem>
-                                        <asp:ListItem Text="Northwest 1" Value="NW1"></asp:ListItem>
-                                        <asp:ListItem Text="Northwest 2" Value="NW2"></asp:ListItem>
-                                        <asp:ListItem Text="Northwest 3" Value="NW3"></asp:ListItem>
-                                        <asp:ListItem Text="West 1" Value="W1"></asp:ListItem>
-                                        <asp:ListItem Text="West 2" Value="W2"></asp:ListItem>
-                                        <asp:ListItem Text="West 3" Value="W3"></asp:ListItem>
-                                        <asp:ListItem Text="West 4" Value="W4"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="Grouping" runat="server" Width="200px"></asp:DropDownList>
+                                    <asp:HiddenField ID="hiddenArray" runat="server" />
                                     <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit" />
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
@@ -275,6 +264,18 @@
                                             "pop up details": popUpDetailsLayer
                                         };
 
+                                        
+                                        <%
+                                            if (checkPostalCodeBoundaryStatus())
+                                            {
+                                        %>
+                                            postalCodeBoundaryLayer.addTo(map);
+                                            document.getElementById("hiddenStatus").Value = "false";
+                                        <%
+                                            }
+                                        %>
+
+                                        
 
                                         // Layers 
                                         L.control.layers(baseLayers, overlays).addTo(map);
@@ -314,17 +315,18 @@
 
                                                     <%ArrayList clusterDetails = getClusterDetails();%>
                                                     <%
-                                                    for(int i=0; i < clusterDetails.Count; i++)
-                                                    {
-                                                        Try.Models.ClusterDetails clusterDetail = (Try.Models.ClusterDetails)clusterDetails[i];
+                                                        for(int i=0; i < clusterDetails.Count; i++)
+                                                        {
+                                                            Try.Models.ClusterDetails clusterDetail = (Try.Models.ClusterDetails)clusterDetails[i];
+                                                            int value = clusterDetail.newJob + clusterDetail.delJob + clusterDetail.puJob;
                                                         %>
-                                                    var popup = L.popup()
-                                                        .setLatLng([<%=clusterDetail.lat%>, <%=clusterDetail.lng%>])
-                                                            .setContent("<%=clusterDetail.id%> " + ": NJ=" + "<%=clusterDetail.newJob%>" + ", DL=" + "<%=clusterDetail.delJob%>" + ", PU=" + "<%=clusterDetail.puJob%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 })
-                                                        .addTo(popUpDetailsLayer);
-                                        <%
-                                        }
-                                                    %>
+                                                            var popup = L.popup()
+                                                                .setLatLng([<%=clusterDetail.lat%>, <%=clusterDetail.lng%>])
+                                                                    .setContent("<%=clusterDetail.id%>:<%=value%>", { className: 'polygonToolTip', permanent: true, direction: "center", opacity: 6 })
+                                                                .addTo(popUpDetailsLayer);
+                                                        <%
+                                                        }
+                                                        %>
                                             // driver current location marker 
                                             var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
                                             if (allDriverLoc[0] != "") {
@@ -471,29 +473,31 @@
                 <div class="w3-card-2 w3-round w3-white w3-center">
                     <div class="w3-container">
 
-
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchTab');return false">Search</button>
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('routeDetails');return false">Details</button>
-
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('SearchTab');return false">Search</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('routeDetails');return false">Route</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('postalDetails');return false">Zone</button>
 
 
                         <div id="SearchTab" class="w3-container tab">
-                            <p>Search Drivers:</p>
+                            <div class="scroll">
                             <div id="search">
                                 <p />
 
-                                <input type="text" name="" id="filter" size="15">
+                                <input type="text" name="" id="filter" placeholder="Search driver" size="15">
 
                                 <p />
                                 <strong>Driver List</strong>
+                                <div class="col-md-6">
                                 <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
+                                </div>
                                 <!-- Clear and Clear All button-->
+                                <div class="col-md-6">
                                 <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
-
+                                </div>
 
                                 <p />
                                 <!--filter table for searching drivers-->
-                                <div class="scroll">
+                                
 
                                     <table id="UserGridView" class="tableC">
 
@@ -512,7 +516,37 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div id="postalDetails" class="w3-container tab" style="display: none">
+                            <div class="scroll">
+                            <h3>Zone Details</h3>
+                                <table class="tableC">
+                                    <thead>
+                                        <th>ID</th>
+                                        <th>NJ</th>
+                                        <th>PIP</th>
+                                        <th>DIP</th>
+                                    </thead>
+                                    <tbody>
+                                            <%
+                                                for (int i = 0; i < clusterDetails.Count; i++)
+                                                {
+                                                    Try.Models.ClusterDetails clusterDetail = (Try.Models.ClusterDetails)clusterDetails[i];
 
+
+                                            %>
+                                        <tr>
+
+                                            <td><%=clusterDetail.id%></td>
+                                            <td><%=clusterDetail.newJob%></td>
+                                            <td><%=clusterDetail.puJob%></td>
+                                            <td><%=clusterDetail.delJob%></td>
+                                        </tr>
+                                        <%}%>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
                         <div id="routeDetails" class="w3-container tab" style="display: none">
                             

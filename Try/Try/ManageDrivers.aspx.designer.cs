@@ -22,21 +22,30 @@ namespace Try {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// dropDownPostalCode control.
+        /// driverName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropDownPostalCode;
+        protected global::System.Web.UI.WebControls.DropDownList driverName;
         
         /// <summary>
-        /// driverButton control.
+        /// clusterList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button driverButton;
+        protected global::System.Web.UI.WebControls.DropDownList clusterList;
+        
+        /// <summary>
+        /// DriverNameButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DriverNameButton;
     }
 }

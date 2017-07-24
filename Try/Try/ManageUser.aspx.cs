@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Web;
+using System.Web.UI.WebControls;
 using Try.Models;
 
 namespace Try
 {
     public partial class ManageUser : System.Web.UI.Page
     {
-
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-
-            }
-        }
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
             {
+                
                 //load your check box list                
                 LukeRefL2.DriverObject[] driverObjs = getDriverArray();
                 String[] driverNameArray = new String[getDriverArray().Length];
@@ -29,11 +22,13 @@ namespace Try
                 {
                     driverNameArray[i] = driverObjs[i].Name;
                 }
-                
-            }
-            else
-            {
-                
+                userList.DataSource = getListofUserNames();
+                userList.DataBind();
+                roleList.DataSource = getListOfRole();
+                roleList.DataBind();
+                rightsList.DataSource = getListOfRights();
+                rightsList.DataBind();
+
             }
         }
 
@@ -90,6 +85,80 @@ namespace Try
         public ArrayList retrieveClusters()
         {
             return PostalCodeInitializer.getClusters();
+        }
+
+        public ArrayList retrieveUsers()
+        {
+            return PostalCodeInitializer.retrieveAllUsers();
+        }
+
+        public void editUser_Click(object sender, EventArgs e)
+        {
+            String username = userList.SelectedValue;
+            String role = roleList.SelectedValue;
+            ArrayList rightsSelected = new ArrayList();
+            foreach (ListItem item in rightsList.Items)
+            {
+                if (item.Selected) rightsSelected.Add(item.Value);
+            }
+            PostalCodeInitializer.updateUser(username,role,rightsSelected);
+        }
+
+        public ArrayList getListofUserNames()
+        {
+            ArrayList userList = new ArrayList();
+            User loggedInUser = (User)HttpContext.Current.Session["user"];
+            if (loggedInUser != null)
+            {
+                ArrayList users = retrieveUsers();
+                if (loggedInUser.getRole() == "admin" || loggedInUser.getRole() == "superadmin")
+                {
+                    foreach (User user in users)
+                    {
+                        if (user.getRole() == "manager")
+                        {
+                            userList.Add(user.getUsername());
+                        }
+
+                        if (user.getRole() == "admin" && loggedInUser.getRole() == "superadmin")
+                        {
+                            userList.Add(user.getUsername());
+                        }
+                    }
+                }
+            }
+            return userList;
+        }
+
+        public ArrayList getListOfRole()
+        {
+            ArrayList rolesList = new ArrayList();
+            rolesList.Add("--select--");
+            User loggedInUser = (User)HttpContext.Current.Session["user"];
+            if (loggedInUser != null)
+            {
+                if (loggedInUser.getRole() == "admin" || loggedInUser.getRole() == "superadmin")
+                {
+                    rolesList.Add("manager");
+                }
+                if (loggedInUser.getRole() == "superadmin")
+                {
+                    rolesList.Add("admin");
+                }
+            }
+            return rolesList;
+        }
+
+        public ArrayList getListOfRights()
+        {
+            User loggedInUser = (User)HttpContext.Current.Session["user"];
+            if(loggedInUser != null)
+            {
+                return loggedInUser.getPostalCodeRights();
+            } else
+            {
+                return new ArrayList();
+            }
         }
     }
 }

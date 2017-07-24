@@ -92,21 +92,33 @@ namespace Try.Models
                 newCluster.addPostalCode(postal);
             }
         }
+
+        public bool clusterExist(string clusterId)
+        {
+            foreach (Cluster cluster in clusters)
+            {
+                if (cluster.id == clusterId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         
         public void initialiseCluster()
         {
-            clusters.Add(new Cluster("C1", "Central 1", new ArrayList { 5, 6, 7, 8 }, "#E55F5F"));
-            clusters.Add(new Cluster("C2", "Central 2", new ArrayList { 1, 2, 4 }, "#6B34DB"));
+            clusters.Add(new Cluster("C1", "Central 1", new ArrayList { 5, 6, 7, 8 }, "#34D2DB"));
+            clusters.Add(new Cluster("C2", "Central 2", new ArrayList { 1, 2, 4 }, "#DB8F34"));
             clusters.Add(new Cluster("C3", "Central 3", new ArrayList { 3, 17, 18, 19, 20, 21 }, "#D234DB"));
-            clusters.Add(new Cluster("C4", "Central 4", new ArrayList { 22, 23, 24, 25, 30 }, "#DB3439"));
-            clusters.Add(new Cluster("C5", "Central 5", new ArrayList { }, "#DB8F34"));
+            clusters.Add(new Cluster("C4", "Central 4", new ArrayList { 22, 23, 24, 25, 30 }, "#60050C"));
+            clusters.Add(new Cluster("C5", "Central 5", new ArrayList { }, "#9c993d"));
             clusters.Add(new Cluster("W1", "West 1", new ArrayList { 9, 10, 11, 13, 14, 15, 16 }, "#DBD234"));
             clusters.Add(new Cluster("W2", "West 2", new ArrayList { 12, 60 }, "#81DB34"));
-            clusters.Add(new Cluster("W3", "West 3", new ArrayList { 61, 62, 63, 64 }, "#34D2DB"));
+            clusters.Add(new Cluster("W3", "West 3", new ArrayList { 61, 62, 63, 64 }, "#E55F5F"));
             clusters.Add(new Cluster("W4", "West 4", new ArrayList { }, "#055B60"));
             clusters.Add(new Cluster("NW1", "Northwest 1", new ArrayList { 26, 27, 28, 29 }, "#053460"));
             clusters.Add(new Cluster("NW2", "Northwest 2", new ArrayList { 58, 59, 65, 66, 67, 68, 69, 70, 71, 72 }, "#600556"));
-            clusters.Add(new Cluster("NW3", "Northwest 3", new ArrayList { }, "#60050C"));
+            clusters.Add(new Cluster("NW3", "Northwest 3", new ArrayList { }, "#DB3439"));
             clusters.Add(new Cluster("N1", "North 1", new ArrayList { 31, 32, 56, 57 }, "#602C05"));
             clusters.Add(new Cluster("N2", "North 2", new ArrayList { 73, 74, 75, 76, 77, 78, 83 }, "#5C6005"));
             clusters.Add(new Cluster("N3", "North 3", new ArrayList { }, "#1D6005"));
@@ -115,7 +127,7 @@ namespace Try.Models
             clusters.Add(new Cluster("NE3", "Northeast 3", new ArrayList { }, "#7e3d9c"));
             clusters.Add(new Cluster("E1", "East 1", new ArrayList { 42, 43, 44, 45, 46, 47 }, "#3d5a9c"));
             clusters.Add(new Cluster("E2", "East 2", new ArrayList { 48, 49, 50, 51, 52, 81 }, "#3d9c6c"));
-            clusters.Add(new Cluster("E3", "East 3", new ArrayList { }, "#9c993d"));
+            clusters.Add(new Cluster("E3", "East 3", new ArrayList { }, "#6B34DB"));
             clusters.Add(new Cluster("WHITE", "White", new ArrayList { }, "#FFFFFF"));
         }
 

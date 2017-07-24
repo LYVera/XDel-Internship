@@ -52,37 +52,41 @@
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-info-circle"></i></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class="fa fa-check"></i></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bell"></i></a>
-                <div class="w3-dropdown-hover w3-hide-small">
-                    <button class="w3-button w3-padding-large" title="Notifications">
-                        <i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
+                <div class="w3-right">
+
+                    <div class="w3-dropdown-hover w3-hide-small">
+                        <button class="w3-button w3-padding-large" title="Notifications">
+                            <i class="fa fa-battery-1"></i><span class="w3-badge w3-small w3-green">
+                                <%
+                                    ArrayList lowBatts = new ArrayList();
+                                    lowBatts = (ArrayList)Session["lowBatt"];
+                                %>
+                                <%=lowBatts.Count %>
+
+                            </span>
+                        </button>
+                        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
                             <%
-                                ArrayList lowBatts = new ArrayList();
-                                lowBatts = (ArrayList)Session["lowBatt"];
+                                for (int i = 0; i < lowBatts.Count; i++)
+                                {
+                                    Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
+
                             %>
-                            <%=lowBatts.Count %>
 
-                        </span>
-                    </button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.45em">
-                        <%
-                            for (int i = 0; i < lowBatts.Count; i++)
-                            {
-                                Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
-
-                        %>
-
-                        <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
-                            <br />
-                        </a>
-                        <%} %>
+                            <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
+                                <br />
+                            </a>
+                            <%} %>
+                        </div>
                     </div>
+                    <a href="#" class="w3-bar-item w3-button w3-padding-large"></a>
+
+                    <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right w3-right-align" Text="Logout" />
+
                 </div>
-
-                <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" Text="Logout" />
-
                 <!--Top Right Hand Corner-->
             </div>
         </div>
@@ -104,7 +108,14 @@
                         <div class="w3-card-2 w3-round w3-white">
                             <div class="w3-container w3-padding">
                                 <h3>Manage Cluster</h3>
-                                <button type="button" id="codeBtn" onclick="printElement('content');return false" value="Add">Edit Postal Code</button><br />
+
+                                <div class="row">
+                                    <asp:DropDownList ID="clusterList" runat="server"></asp:DropDownList>
+                                    <asp:TextBox ID="postalcode" runat="server" Text="1"></asp:TextBox>
+                                    <asp:RangeValidator runat="server" ID="postalcodevalidator" ControlToValidate="postalcode" Type="Integer" MinimumValue="1" MaximumValue="83" CssClass="input-error" ErrorMessage="Please enter a positive integer" Display="Dynamic"></asp:RangeValidator>
+                                    <asp:Button runat="server" ID="postal" OnClick="addPostal" Text="Submit" />
+                                </div>
+                                
                                 <% ArrayList clusters = retrieveClusters();%>
                                 <table>
                                     <thead>
@@ -136,55 +147,7 @@
                         </div>
                     </div>
                 </div>
-               
-
     </div>
-    <!-- The RIGHTS Modal -->
-    <div id="codeModal" class="user-modal">
-
-      <!-- Modal content -->
-      <div class="user-modal-content">
-        <div class="modal-header">
-          <span class="close">&times;</span>
-          <h2>Add Postal Codes</h2>
-        </div>
-        <div class="modal-body">
-          <p>Adding postal code into this cluster will means removal of postal code in another cluster</p>
-            Cluster ID: <asp:TextBox ID="clusterId" runat="server" ></asp:TextBox><br />
-            Postal Code: <asp:TextBox ID="postalcode" runat="server" Text="0"></asp:TextBox>
-            <asp:RangeValidator runat="server" ID="postalcodevalidator" ControlToValidate="postalcode" Type="Integer" MinimumValue="0" MaximumValue="83" CssClass="input-error" ErrorMessage="Please enter a positive integer" Display="Dynamic"></asp:RangeValidator>
-        </div>
-        <div class="modal-footer">
-          <asp:Button runat="server" ID="postal" OnClick="addPostal" Text="Submit" />
-        </div>
-      </div>
-    </div>
-    
-
-    <script>
-        // Get the modal
-        var codemodal = document.getElementById('codeModal');
-        // Get the button that opens the modal
-        var codebtn = document.getElementById("codeBtn");
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-        
-        // When the user clicks on the button, open the modal 
-        codebtn.onclick = function () {
-            codemodal.style.display = "block";
-        }
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            codemodal.style.display = "none";
-        }
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == codemodal) {
-                codemodal.style.display = "none";
-            }
-        }
-
-    </script>
     </form>
 </body>
 </html>

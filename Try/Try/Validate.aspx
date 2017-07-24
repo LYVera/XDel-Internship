@@ -46,7 +46,7 @@ div.panel {
 </style>
 
 
-
+    <% Server.Execute("Include.aspx"); %>
         
     <%--<% Server.Execute("Include.aspx"); %>--%>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -111,36 +111,44 @@ div.panel {
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-info-circle"></i></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class="fa fa-check"></i></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bell"></i></a>
-                <div class="w3-dropdown-hover w3-hide-small">
-                    <button class="w3-button w3-padding-large" title="Notifications">
-                        <i class="fa fa-battery-1"></i><span class="w3-badge w3-right w3-small w3-green">
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
+                <div class="w3-right">
+
+                    <div class="w3-dropdown-hover w3-hide-small">
+                        <button class="w3-button w3-padding-large" title="Notifications">
+                            <i class="fa fa-battery-1"></i><span class="w3-badge w3-small w3-green">
+                                <%
+                                    ArrayList lowBatts = new ArrayList();
+                                    lowBatts = (ArrayList)Session["lowBatt"];
+                                %>
+                                <%=lowBatts.Count %>
+
+                            </span>
+                        </button>
+                        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
                             <%
-                                ArrayList lowBatts = new ArrayList();
-                                lowBatts = (ArrayList)Session["lowBatt"];
+                                for (int i = 0; i < lowBatts.Count; i++)
+                                {
+                                    Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
+
                             %>
-                            <%=lowBatts.Count %>
 
-                        </span>
-                    </button>
-                    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width: 300px; font-size: 0.60em">
-                        <%
-                            for (int i = 0; i < lowBatts.Count; i++)
-                            {
-                                Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];
-
-                        %>
-
-                        <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
-                            <br />
-                        </a>
-                        <%} %>
+                            <a href="#" class="w3-bar-item w3-button"><%=lowBattDriver.Name + " " + lowBattDriver.BattPCT + "% Battery "%>
+                                <br />
+                            </a>
+                            <%} %>
+                        </div>
                     </div>
+                    <a href="#" class="w3-bar-item w3-button w3-padding-large"></a>
+
+                    <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right w3-right-align" Text="Logout" />
+
                 </div>
 
-                <%--<asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" Text="Logout" />--%>
+                
+                
 
                 <!--Top Right Hand Corner-->
             </div>
@@ -238,9 +246,10 @@ div.panel {
                                 <div id="map" style="height: 500px; border: 1px solid #AAA;">
 
                                     <script>
+                                        var routeDetails = document.getElementById("HiddenField4").value;
                                         //markers
                                         var trafficMarker = L.ExtraMarkers.icon({
-                                            icon: 'fa-warning',
+                                            icon: 'fa-envelope',
                                             markerColor: 'red',
                                             shape: 'star',
                                             prefix: 'fa'
@@ -252,6 +261,13 @@ div.panel {
                                             shape: 'circle',
                                             prefix: 'fa',
                                         });
+
+                                        var chosenMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-user-circle',
+                                            markerColor: 'green',
+                                            shape: 'circle',
+                                            prefix: 'fa',
+                                        })
 
                                         //map
                                         var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
@@ -284,11 +300,15 @@ div.panel {
                                             for (i = 0; i < allDriverLoc.length; i++) {
                                                 if (allDriverLoc[i].length > 0) {
                                                     var oneDriverLoc = allDriverLoc[i].split("*");
-                                                    marker = new L.marker([parseFloat(oneDriverLoc[0]), parseFloat(oneDriverLoc[1])], { icon: humanMarker })
-                                                        .bindPopup(oneDriverLoc[2]).openPopup()
-                                                        //layers code beneath
-                                                        //.addTo(driverLocationLayer)
-                                                        .addTo(map)
+                                                    if (i == 0) {
+                                                        marker = new L.marker([parseFloat(oneDriverLoc[0]), parseFloat(oneDriverLoc[1])], { icon: chosenMarker })
+                                                            .bindPopup(oneDriverLoc[2]).openPopup()                                                        
+                                                            .addTo(map)
+                                                    } else {
+                                                        marker = new L.marker([parseFloat(oneDriverLoc[0]), parseFloat(oneDriverLoc[1])], { icon: humanMarker })
+                                                            .bindPopup(oneDriverLoc[2]).openPopup()
+                                                            .addTo(map)
+                                                    }
                                                 }
                                                     
                                             }
@@ -309,28 +329,9 @@ div.panel {
 
                                             }
                                         }
-
-                                            //LTA incidents
-                                            //var allLTAIncidents = document.getElementById("HiddenField2").value.split("^");
-
-                                            //if (allLTAIncidents[0] != "") {
-                                            //    for (i = 0; i < allLTAIncidents.length; i++) {
-                                            //        if (allLTAIncidents[i].length > 0) {
-                                            //            var oneLTAIncidents = allLTAIncidents[i].split("*");
-                                            //            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker })
-                                            //                .bindPopup(oneLTAIncidents[0]).openPopup()
-                                            //                .addTo(map)
-                                            //        //trafficLayer.addLayer(marker);
-                                            //        }
-                                                    
-                                            //    }
-                                            //}
-   
                                     </script>
 
                                 </div>
-
-
                                 <p />
 
                             </div>
@@ -368,9 +369,7 @@ div.panel {
 
                         <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchJobTab');return false">Search</button>
                         <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('JobDetails');return false">Details</button>
-
-
-
+                        
                         <div id="SearchJobTab" class="w3-container tab">
                             <p>Search Job:</p>
                             <div id="search">
@@ -379,12 +378,7 @@ div.panel {
                                 <input type="text" name="" id="filter" size="15">
 
                                 <p />
-                                <strong>JobList</strong>
-                               <%-- <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
-                                <!-- Clear and Clear All button-->
-                                <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>--%>
-
-
+                                <strong>JobList</strong>                             
                                 <p />
                                 <!--filter table for searching jobs-->
                                 <div class="scroll">
@@ -411,67 +405,105 @@ div.panel {
                         <div id="JobDetails" class="w3-container tab" style="display: none">
                             <div class="scroll">
 
-                                <button class="accordion">Section 1</button>
-                                <div class="panel">
+                                
                                      <table class="tableC">     
                                    
                                        <%
                                            int count = 1;
-                                        var allDriverDetails = HiddenField2.Value.Split('^');
-                                           for (int j = 0; j < allDriverDetails.Length; j++)
+                                           //first split to differentiate between the the drivers
+                                           var allJobDetails = HiddenField4.Value.Split('%');
+                                           for (int j = 0; j < allJobDetails.Length; j++)
                                            {
-                                               if (allDriverDetails[j].Length > 0)
+                                               if (allJobDetails[j].Length > 0)
                                                {
-                                                   var singleDriverDetails = allDriverDetails[j].Split('*');
-                                        %>
-                                        <tr>
-                                            <td class="align-center">
-                                           
-                                                <%if (count > 5)
-                                                    {
-                                                        count = 1;
-                                                    }%>
+                                                   //second split to differentiate between the 3 types of data. Job details, Driver Name, Driver Distance
+                                                   var singleDriverDetails = allJobDetails[j].Split('^');
+                                                   for (int l = 0; l < singleDriverDetails.Length; l++)
+                                                   {
+                                                       if (singleDriverDetails[l].Length > 0)
+                                                       {
+                                                           //check if its a job details or driver name/driver distance, only job details contain *
+                                                           if (!singleDriverDetails[l].Contains("*"))
+                                                           {
+                                                               %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%
+                                                                        if (count > 5)
+                                                                        {
+                                                                            count = 1;
+                                                                        }
+                                                                        %>
+                                                                <b />
+                                                                <span style="background-color: yellow;"><%=count++ + ". " + singleDriverDetails[l] %></span>
+                                                                    </td>
+                                                                </tr>
+                                                            
+                                                    <%
+                                                        }
+                                                        //else just print driver name/driver distance directly
+                                                        else
+                                                        {
+                                                            //if it contains, split to postal, job ID, job add, job lat, job lon, arriveDate, departDate
+                                                            var singleJobDetails = singleDriverDetails[l].Split('*');
+                                                            string finalOutput = "";
+                                                            for(int m = 0; m < singleJobDetails.Length; m++)
+                                                            {
+                                                                if(singleJobDetails[m].Length > 0)
+                                                                {
+                                                                    if(m == 0)
+                                                                    {
+                                                                        finalOutput = "Job ID: " + singleJobDetails[m] + ", ";
+                                                                    }
+                                                                    else if(m == 1)
+                                                                    {
+                                                                        finalOutput += "Address: " + singleJobDetails[m] + ", ";
+                                                                    }
+                                                                    else if (m == 3)
+                                                                    {
+                                                                        finalOutput += singleJobDetails[m] + " - ";
+                                                                    }
+                                                                    else if (m == 4)
+                                                                    {
+                                                                        finalOutput += singleJobDetails[m] + ", ";
+                                                                    }
+                                                                    else if (m == 5)
+                                                                    {
+                                                                        finalOutput += "Job Type: " + singleJobDetails[m] + " ";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        finalOutput += singleJobDetails[m] + " ";
+                                                                    }
+                                                                    //print each item. I.e. Postal, job id, add, lat, lon, arriveDate, departDate
 
-                                            
-
-                                                <b />
-                                                <span style="background-color: yellow;"><%=count++ + ". " + singleDriverDetails[0].ToUpper() %></span>
-                                            </td>
-                                        </tr>
-                                    
-                                        <tr>
-                                            <td>
-                                            
-                                                <%=singleDriverDetails[1]%>
-
-                                                <br />
-                                                <b />
-                                            
-                                            </td>
-
-                                        </tr>
-
-                                        <% 
-
-                                                    
-                                                
+                                                                }
+                                                            }
+                                                              %>
+                                                                         <tr>
+                                                                            <td class="align-center">   
+                                                                                
+                                                                                <%=finalOutput%>
+                                                                                <b />
+                                                                                
+                                                                            </td>
+                                                                        </tr>            
+                                                                       <%
+                                                                
+                                                         }                                                                                           
+                                                    }
                                                 }
                                             }
-                                        %>
-
-
-                                    </table>
-
-                                </div>
-
-
-
+                                        }           
+                                                    %>
+                     
+                                                </table>                           
                                 
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -523,3 +555,7 @@ div.panel {
     </form>
 </body>
 </html>
+
+
+
+

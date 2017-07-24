@@ -12,6 +12,7 @@ namespace Try.Models
         private static PolygonODAO polygonODao = new PolygonODAO();
         private static ClusterDAO clusterDAO = new ClusterDAO();
         private static UserDAO userDAO = new UserDAO();
+        private static DriverDAO driverDAO = new DriverDAO();
         private static ArrayList selected = new ArrayList();
 
         public static void InitialisePostalCodes()
@@ -19,6 +20,7 @@ namespace Try.Models
             polygonODao = new PolygonODAO();
             clusterDAO = new ClusterDAO();
             userDAO = new UserDAO();
+            driverDAO = new DriverDAO();
             User user = (User)HttpContext.Current.Session["user"];
             if(user != null)
             {
@@ -56,12 +58,27 @@ namespace Try.Models
         {
             return clusterDAO.getClusterId(id);
         }
-        
+
+        public static void updateUser(String username, String role, ArrayList rights)
+        {
+            userDAO.updateUser(username, role, rights);
+        }
 
         public static ArrayList retrieveAllUsers()
         {
             return userDAO.retrieveUsers();
         }
+        
+        public static ArrayList getAllDrivers()
+        {
+            return driverDAO.getDrivers();
+        }
+
+        public static void changeDriverCluster(String driverName, String clusterId)
+        {
+            driverDAO.editDriver(driverName, clusterId);
+        }
+
 
         public static double getClusterLatCenter(string clusterid)
         {
@@ -96,7 +113,7 @@ namespace Try.Models
             string line;
             int postal = 0;
             
-            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Wee Kiat\\Downloads\\Telegram Desktop\\Postal Code Boundary Coordinates.csv");
+            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Kaiyang\\Documents\\SMU\\XDel\\postal codes\\Postal Code Boundary Coordinates.csv");
             file.ReadLine();
 
             while ((line = file.ReadLine()) != null)

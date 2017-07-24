@@ -49,5 +49,15 @@ namespace Try.Models
             }
             return false;
         }
+
+        public void setRole(string r)
+        {
+            role = r;
+        }
+
+        public void setPostalcoderights(ArrayList rights)
+        {
+            postalcoderights = rights;
+        }
     }
 }

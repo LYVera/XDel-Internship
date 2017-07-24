@@ -53,6 +53,7 @@
       </s:complexType>
       <s:complexType name="CheckListItem">
         <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Level" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="CheckListType" type="tns:eCheckListType" />
           <s:element minOccurs="1" maxOccurs="1" name="Input" type="tns:eInput" />
           <s:element minOccurs="1" maxOccurs="1" name="InputType" type="tns:eInputType" />
@@ -902,6 +903,29 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetDistrictJobsResult" type="tns:ArrayOfDistrictJobs" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDistrictJobsDetails">
+        <s:complexType />
+      </s:element>
+      <s:complexType name="DistrictJobsDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="District" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewJobs" type="tns:ArrayOfLong" />
+          <s:element minOccurs="0" maxOccurs="1" name="PIPJobs" type="tns:ArrayOfLong" />
+          <s:element minOccurs="0" maxOccurs="1" name="DIPJobs" type="tns:ArrayOfLong" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDistrictJobsDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DistrictJobsDetails" nillable="true" type="tns:DistrictJobsDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDistrictJobsDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDistrictJobsDetailsResult" type="tns:ArrayOfDistrictJobsDetails" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -2939,6 +2963,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GenerateManagementStatsDated">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="APIKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ADate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateManagementStatsDatedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateManagementStatsDatedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GenerateDunningReport">
         <s:complexType>
           <s:sequence>
@@ -3608,6 +3647,7 @@
       <s:element name="EventLocation" nillable="true" type="tns:EventLocation" />
       <s:element name="RouteInfo" nillable="true" type="tns:RouteInfo" />
       <s:element name="ArrayOfDistrictJobs" nillable="true" type="tns:ArrayOfDistrictJobs" />
+      <s:element name="ArrayOfDistrictJobsDetails" nillable="true" type="tns:ArrayOfDistrictJobsDetails" />
       <s:element name="ArrayOfString" nillable="true" type="tns:ArrayOfString" />
       <s:element name="ArrayOfJobInfo" nillable="true" type="tns:ArrayOfJobInfo" />
       <s:element name="JobBarcodeTag" nillable="true" type="tns:JobBarcodeTag" />
@@ -3871,6 +3911,12 @@
   </wsdl:message>
   <wsdl:message name="GetDistrictJobsSoapOut">
     <wsdl:part name="parameters" element="tns:GetDistrictJobsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDistrictJobsDetails" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDistrictJobsDetailsResponse" />
   </wsdl:message>
   <wsdl:message name="GetSDSoapIn">
     <wsdl:part name="parameters" element="tns:GetSD" />
@@ -4370,6 +4416,12 @@
   <wsdl:message name="GenerateManagementStatsSoapOut">
     <wsdl:part name="parameters" element="tns:GenerateManagementStatsResponse" />
   </wsdl:message>
+  <wsdl:message name="GenerateManagementStatsDatedSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateManagementStatsDated" />
+  </wsdl:message>
+  <wsdl:message name="GenerateManagementStatsDatedSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateManagementStatsDatedResponse" />
+  </wsdl:message>
   <wsdl:message name="GenerateDunningReportSoapIn">
     <wsdl:part name="parameters" element="tns:GenerateDunningReport" />
   </wsdl:message>
@@ -4779,6 +4831,10 @@
   <wsdl:message name="GetDistrictJobsHttpGetIn" />
   <wsdl:message name="GetDistrictJobsHttpGetOut">
     <wsdl:part name="Body" element="tns:ArrayOfDistrictJobs" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsDetailsHttpGetIn" />
+  <wsdl:message name="GetDistrictJobsDetailsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDistrictJobsDetails" />
   </wsdl:message>
   <wsdl:message name="GetSDHttpGetIn">
     <wsdl:part name="ASearchString" type="s:string" />
@@ -5421,6 +5477,13 @@
   <wsdl:message name="GenerateManagementStatsHttpGetOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GenerateManagementStatsDatedHttpGetIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateManagementStatsDatedHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GenerateDunningReportHttpGetIn">
     <wsdl:part name="APIKey" type="s:string" />
     <wsdl:part name="ReportDate" type="s:string" />
@@ -5846,6 +5909,10 @@
   <wsdl:message name="GetDistrictJobsHttpPostIn" />
   <wsdl:message name="GetDistrictJobsHttpPostOut">
     <wsdl:part name="Body" element="tns:ArrayOfDistrictJobs" />
+  </wsdl:message>
+  <wsdl:message name="GetDistrictJobsDetailsHttpPostIn" />
+  <wsdl:message name="GetDistrictJobsDetailsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfDistrictJobsDetails" />
   </wsdl:message>
   <wsdl:message name="GetSDHttpPostIn">
     <wsdl:part name="ASearchString" type="s:string" />
@@ -6488,6 +6555,13 @@
   <wsdl:message name="GenerateManagementStatsHttpPostOut">
     <wsdl:part name="Body" element="tns:string" />
   </wsdl:message>
+  <wsdl:message name="GenerateManagementStatsDatedHttpPostIn">
+    <wsdl:part name="APIKey" type="s:string" />
+    <wsdl:part name="ADate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateManagementStatsDatedHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
   <wsdl:message name="GenerateDunningReportHttpPostIn">
     <wsdl:part name="APIKey" type="s:string" />
     <wsdl:part name="ReportDate" type="s:string" />
@@ -6867,6 +6941,10 @@
       <wsdl:input message="tns:GetDistrictJobsSoapIn" />
       <wsdl:output message="tns:GetDistrictJobsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <wsdl:input message="tns:GetDistrictJobsDetailsSoapIn" />
+      <wsdl:output message="tns:GetDistrictJobsDetailsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetSD">
       <wsdl:input message="tns:GetSDSoapIn" />
       <wsdl:output message="tns:GetSDSoapOut" />
@@ -7199,6 +7277,10 @@
       <wsdl:input message="tns:GenerateManagementStatsSoapIn" />
       <wsdl:output message="tns:GenerateManagementStatsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <wsdl:input message="tns:GenerateManagementStatsDatedSoapIn" />
+      <wsdl:output message="tns:GenerateManagementStatsDatedSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GenerateDunningReport">
       <wsdl:input message="tns:GenerateDunningReportSoapIn" />
       <wsdl:output message="tns:GenerateDunningReportSoapOut" />
@@ -7480,6 +7562,10 @@
     <wsdl:operation name="GetDistrictJobs">
       <wsdl:input message="tns:GetDistrictJobsHttpGetIn" />
       <wsdl:output message="tns:GetDistrictJobsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <wsdl:input message="tns:GetDistrictJobsDetailsHttpGetIn" />
+      <wsdl:output message="tns:GetDistrictJobsDetailsHttpGetOut" />
     </wsdl:operation>
     <wsdl:operation name="GetSD">
       <wsdl:input message="tns:GetSDHttpGetIn" />
@@ -7765,6 +7851,10 @@
       <wsdl:input message="tns:GenerateManagementStatsHttpGetIn" />
       <wsdl:output message="tns:GenerateManagementStatsHttpGetOut" />
     </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <wsdl:input message="tns:GenerateManagementStatsDatedHttpGetIn" />
+      <wsdl:output message="tns:GenerateManagementStatsDatedHttpGetOut" />
+    </wsdl:operation>
     <wsdl:operation name="GenerateDunningReport">
       <wsdl:input message="tns:GenerateDunningReportHttpGetIn" />
       <wsdl:output message="tns:GenerateDunningReportHttpGetOut" />
@@ -8046,6 +8136,10 @@
     <wsdl:operation name="GetDistrictJobs">
       <wsdl:input message="tns:GetDistrictJobsHttpPostIn" />
       <wsdl:output message="tns:GetDistrictJobsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <wsdl:input message="tns:GetDistrictJobsDetailsHttpPostIn" />
+      <wsdl:output message="tns:GetDistrictJobsDetailsHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GetSD">
       <wsdl:input message="tns:GetSDHttpPostIn" />
@@ -8330,6 +8424,10 @@
     <wsdl:operation name="GenerateManagementStats">
       <wsdl:input message="tns:GenerateManagementStatsHttpPostIn" />
       <wsdl:output message="tns:GenerateManagementStatsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <wsdl:input message="tns:GenerateManagementStatsDatedHttpPostIn" />
+      <wsdl:output message="tns:GenerateManagementStatsDatedHttpPostOut" />
     </wsdl:operation>
     <wsdl:operation name="GenerateDunningReport">
       <wsdl:input message="tns:GenerateDunningReportHttpPostIn" />
@@ -8809,6 +8907,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDistrictJobs">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/GetDistrictJobs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/GetDistrictJobsDetails" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -9563,6 +9670,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <soap:operation soapAction="http://www.xdel.com/LukeWS/GenerateManagementStatsDated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GenerateDunningReport">
       <soap:operation soapAction="http://www.xdel.com/LukeWS/GenerateDunningReport" style="document" />
       <wsdl:input>
@@ -10216,6 +10332,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDistrictJobs">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/GetDistrictJobs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/GetDistrictJobsDetails" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -10970,6 +11095,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <soap12:operation soapAction="http://www.xdel.com/LukeWS/GenerateManagementStatsDated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GenerateDunningReport">
       <soap12:operation soapAction="http://www.xdel.com/LukeWS/GenerateDunningReport" style="document" />
       <wsdl:input>
@@ -11580,6 +11714,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDistrictJobs">
       <http:operation location="/GetDistrictJobs" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <http:operation location="/GetDistrictJobsDetails" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -12219,6 +12362,15 @@
     </wsdl:operation>
     <wsdl:operation name="GenerateManagementStats">
       <http:operation location="/GenerateManagementStats" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <http:operation location="/GenerateManagementStatsDated" />
       <wsdl:input>
         <http:urlEncoded />
       </wsdl:input>
@@ -12841,6 +12993,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDistrictJobsDetails">
+      <http:operation location="/GetDistrictJobsDetails" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetSD">
       <http:operation location="/GetSD" />
       <wsdl:input>
@@ -13480,6 +13641,15 @@
         <mime:mimeXml part="Body" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GenerateManagementStatsDated">
+      <http:operation location="/GenerateManagementStatsDated" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GenerateDunningReport">
       <http:operation location="/GenerateDunningReport" />
       <wsdl:input>
@@ -13796,16 +13966,16 @@
   </wsdl:binding>
   <wsdl:service name="LukeWS">
     <wsdl:port name="LukeWSSoap" binding="tns:LukeWSSoap">
-      <soap:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
+      <soap:address location="https://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
     <wsdl:port name="LukeWSSoap12" binding="tns:LukeWSSoap12">
-      <soap12:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
+      <soap12:address location="https://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
     <wsdl:port name="LukeWSHttpGet" binding="tns:LukeWSHttpGet">
-      <http:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
+      <http:address location="https://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
     <wsdl:port name="LukeWSHttpPost" binding="tns:LukeWSHttpPost">
-      <http:address location="http://intranet.xdel.com/lukews/lukews.asmx" />
+      <http:address location="https://intranet.xdel.com/lukews/lukews.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

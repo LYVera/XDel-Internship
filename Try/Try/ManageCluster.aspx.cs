@@ -26,11 +26,9 @@ namespace Try
                 {
                     driverNameArray[i] = driverObjs[i].Name;
                 }
-
-            }
-            else
-            {
-
+                ArrayList listofClustersId = getListOfClusterId();
+                clusterList.DataSource = listofClustersId;
+                clusterList.DataBind();
             }
         }
 
@@ -68,16 +66,28 @@ namespace Try
             HttpContext.Current.Session.Clear();
             Response.Redirect("http://localhost:62482/Login");
         }
-        
 
         public ArrayList retrieveClusters()
         {
-            return PostalCodeInitializer.getClusters();
+            ArrayList clusters = PostalCodeInitializer.getClusters();
+            clusters.RemoveAt(clusters.Count - 1);
+            return clusters;
+        }
+
+        public ArrayList getListOfClusterId()
+        {
+            ArrayList clusterList = new ArrayList();
+            ArrayList clusters = PostalCodeInitializer.getClusters();
+            foreach (Cluster cluster in clusters)
+            {
+                clusterList.Add(cluster.id);
+            }
+            return clusterList;
         }
 
         protected void addPostal(object sender, EventArgs e)
         {
-            PostalCodeInitializer.addPostal(int.Parse(postalcode.Text), clusterId.Text);
+            PostalCodeInitializer.addPostal(int.Parse(postalcode.Text), clusterList.SelectedValue);
             
         }
     }

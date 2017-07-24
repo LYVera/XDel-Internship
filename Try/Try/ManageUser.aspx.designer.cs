@@ -22,39 +22,39 @@ namespace Try {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// checklistpostalcode control.
+        /// userList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList checklistpostalcode;
+        protected global::System.Web.UI.WebControls.DropDownList userList;
         
         /// <summary>
-        /// Button1 control.
+        /// roleList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.DropDownList roleList;
         
         /// <summary>
-        /// dropdownroles control.
+        /// rightsList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropdownroles;
+        protected global::System.Web.UI.WebControls.CheckBoxList rightsList;
         
         /// <summary>
-        /// Button2 control.
+        /// editUserButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button editUserButton;
     }
 }

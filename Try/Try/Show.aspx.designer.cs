@@ -76,6 +76,15 @@ namespace Try {
         protected global::System.Web.UI.WebControls.HiddenField HiddenTrafficLayer;
         
         /// <summary>
+        /// hiddenStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenStatus;
+        
+        /// <summary>
         /// chkTraffic control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace Try {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Grouping;
+        
+        /// <summary>
+        /// hiddenArray control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenArray;
         
         /// <summary>
         /// Button1 control.

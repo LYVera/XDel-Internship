@@ -660,6 +660,9 @@
     <Content Include="Web References\LukeRefL2\StatusCodeStructure.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="Web References\LukeRef\DistrictJobsDetails.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\LukeRef\lukews.disco" />
     <Content Include="XDel Logo.gif" />
     <None Include="Properties\Settings.settings">
@@ -847,6 +850,8 @@
     <Compile Include="Models\ClusterDAO.cs" />
     <Compile Include="Models\ClusterDetails.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\DriverDAO.cs" />
+    <Compile Include="Models\GlobalVariable.cs" />
     <Compile Include="Models\PointD.cs" />
     <Compile Include="Models\PolygonO.cs" />
     <Compile Include="Models\PolygonODAO.cs" />

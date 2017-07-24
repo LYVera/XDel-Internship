@@ -27,6 +27,7 @@ namespace Try
                 HiddenField2.Value = "";
                 HiddenField1.Value = "";
                 HiddenField3.Value = "";
+                HiddenField4.Value = "";
             }
         }
 
@@ -66,8 +67,9 @@ namespace Try
 
         }
 
-        public string getSolution(long driverIDX, long[] parameterArray, LukeRef.LukeWS lukeObj)
+        public string getTempSolution(long driverIDX, long[] parameterArray, LukeRef.LukeWS lukeObj)
         {
+            string solution = "";
             lukeObj.ST_CreateTempProblem(driverIDX, 300, 600, parameterArray, null);
             //parameter for temp driver idx
             string tempIDX = "TMP" + driverIDX;
@@ -81,28 +83,65 @@ namespace Try
                     string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
                     string departDate = driverJobLocations[k].Depart.ToShortTimeString();
 
-                    HiddenField4.Value += jobLoc.postal + "*" + arrayOfJobID[0] + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*" + arriveDate + "*" + departDate + "*";
+                    solution += arrayOfJobID[0] + "*" + jobLoc.postal + "*" + jobLoc.full_address + "*" + arriveDate + "*" + departDate + "*";
                     //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
                     //obtain array of delivery jobs id
-                    //        long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
-                    //        //if its not a dlvery job 
-                    //        if (dlJobsID.Length == 0)
-                    //        {
-                    //            //obtain array of pick up jobs id
-                    //            long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
-                    //            HiddenField3.Value += "PU" + "*" + item1.Key.Name +"^";
-                    //            //driverRoute += "PU" + "^";
-                    //        }
-                    //        else
-                    //        {
-                    //            HiddenField3.Value += "DL" + "*" + item1.Key.Name + "^";
-                    //            //driverRoute += "DL" + "^";
-                    //        }
+                            long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
+                           //if its not a dlvery job 
+                            if (dlJobsID.Length == 0)
+                            {
+                                //obtain array of pick up jobs id
+                                long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
+
+                                solution += "PU" + "%";
+                            }
+                            else
+                            {
+                                
+                                solution += "DL" + "%";
+                            }
                 }
 
-                //    HiddenField3.Value += "$";
-                //    //driverRoute += "$";
-                //return something;
+                return solution;
+            }
+            return null;
+
+        }
+
+        public string getSolution(long driverIDX, long[] parameterArray, LukeRef.LukeWS lukeObj)
+        {
+            string solution = "";
+            //get real solution of drivers
+            LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverIDX.ToString(), driverIDX.ToString());
+            if (driverJobLocations != null && driverJobLocations.Length > 0)
+            {
+                for (int k = 0; k < driverJobLocations.Length; k++)
+                {
+                    long[] arrayOfJobID = driverJobLocations[k].JobsIDXList;
+                    LukeRef.Address jobLoc = driverJobLocations[k].Location;
+                    string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
+                    string departDate = driverJobLocations[k].Depart.ToShortTimeString();
+
+                    solution += arrayOfJobID[0] + "*" + jobLoc.postal + "*" + jobLoc.full_address + "*" + arriveDate + "*" + departDate + "*";
+                    //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
+                    //obtain array of delivery jobs id
+                    long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
+                    //if its not a dlvery job 
+                    if (dlJobsID.Length == 0)
+                    {
+                        //obtain array of pick up jobs id
+                        long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
+
+                        solution += "PU" + "%";
+                    }
+                    else
+                    {
+
+                        solution += "DL" + "%";
+                    }
+                }
+
+                return solution;
             }
             return null;
 
@@ -165,20 +204,36 @@ namespace Try
                             //sorted top 5 nearest drivers
                             var top5 = myDictionary.OrderBy(pair => pair.Value).Take(5)
                             .ToDictionary(pair => pair.Key, pair => pair.Value);
-                            foreach (var item1 in top5)
+                            //for loop through dictionary of top 5 drivers
+                            int count = 0;
+                            foreach(var item1 in top5)
                             {
-                                
+                                //name + distance of driver
+                                HiddenField4.Value += item1.Key.Name + " " + Math.Round(item1.Value, 2) + "KM" + "^";
+
                                 long driverIDX = item1.Key.DriverIDX;
-                                //call method
-                                string solution = getSolution(driverIDX, parameterArray, lukeObj);
-                                if(solution != null)
+                                //Ensure temp solution is only calculated for first driver
+                                if(count < 1)
                                 {
-
+                                    string tempSolution = getTempSolution(driverIDX, parameterArray, lukeObj);
+                                    if (tempSolution == null)
+                                    {
+                                        HiddenField4.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                    }
+                                    else
+                                    {                            
+                                        HiddenField4.Value += tempSolution;
+                                    }
                                 }
-
-                                HiddenField1.Value += item1.Key.LastKnownLocation.Latitude + "*" + item1.Key.LastKnownLocation.Longitude + "*" + item1.Key.Name + "^";
-                                HiddenField2.Value += item1.Key.Name + "*" + Math.Round(item1.Value, 2) + "KM" + "^";
+                                else
+                                {
+                                    HiddenField4.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                }
+                                count++;
+                                //For driver marker contains coordinates 
+                                HiddenField1.Value += item1.Key.LastKnownLocation.Latitude + "*" + item1.Key.LastKnownLocation.Longitude + "*" + item1.Key.Name + "^";    
                             }
+                            //For job marker contains coordinates
                             HiddenField3.Value += jobPULat + "*" + jobPULon + "*"+ arrayOfJobID[i] + "^";   
                             
                             //get top 5 first then 
@@ -192,6 +247,12 @@ namespace Try
 
                 }
         }
+        public void logout(object sender, EventArgs e)
+        {
+            HttpContext.Current.Session.Clear();
+            Response.Redirect("http://localhost:62482/Login");
+        }
     }
 
 }
+//bye keane, have fun!!!!! I love u!

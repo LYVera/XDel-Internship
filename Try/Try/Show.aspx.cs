@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using Try.Models;
 
 namespace Try
 {
@@ -15,7 +14,7 @@ namespace Try
         {
             if (!IsPostBack)
             {
-                Models.PostalCodeInitializer.InitialisePostalCodes();
+                PostalCodeInitializer.InitialisePostalCodes();
             }
         }
 
@@ -40,6 +39,9 @@ namespace Try
                 getBattery();
                 HiddenPostalCode.Value = "0";
                 HiddenTrafficLayer.Value = "0";
+                hiddenStatus.Value = "false";
+                Grouping.DataSource = getListOfClusterId();
+                Grouping.DataBind();
 
             }
             else
@@ -95,6 +97,23 @@ namespace Try
             }
 
 
+        }
+
+        public ArrayList retrieveClusters()
+        {
+            return PostalCodeInitializer.getClusters();
+        }
+
+        public ArrayList getListOfClusterId()
+        {
+            ArrayList clusterList = new ArrayList();
+            ArrayList clusters = PostalCodeInitializer.getClusters();
+            for (int i= 0; i < clusters.Count - 1; i++)
+            {
+                Cluster cluster = (Cluster)clusters[i];
+                clusterList.Add(cluster.id);
+            }
+            return clusterList;
         }
 
         protected void Route_Click()
@@ -205,6 +224,11 @@ namespace Try
             }
         }
 
+        protected bool checkPostalCodeBoundaryStatus()
+        {
+            return hiddenStatus.Value == "true";
+        }
+
 
         protected void CheckBoxList_Click(object sender, EventArgs e)
         {
@@ -244,7 +268,10 @@ namespace Try
             {
                 Models.PostalCodeInitializer.changePostal(int.Parse(id), "WHITE");
             }
+            hiddenStatus.Value = "true";
         }
+
+
 
         protected ArrayList getClusters()
         {
