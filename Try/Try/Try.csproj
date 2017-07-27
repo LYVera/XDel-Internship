@@ -856,6 +856,7 @@
     <Compile Include="Models\PolygonO.cs" />
     <Compile Include="Models\PolygonODAO.cs" />
     <Compile Include="Models\PostalCodeInitializer.cs" />
+    <Compile Include="Models\PostalJob.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserDAO.cs" />
     <Compile Include="Prompt.aspx.cs">

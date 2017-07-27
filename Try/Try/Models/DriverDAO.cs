@@ -13,9 +13,9 @@ namespace Try.Models
             initialiseDrivers();
         }
 
-        public void addDriver(string name, string cluster)
+        public void addDriver(string name, string coordinator)
         {
-            drivers.Add(new Driver(name, cluster));
+            drivers.Add(new Driver(name, coordinator));
         }
 
         public ArrayList getDrivers()
@@ -23,13 +23,13 @@ namespace Try.Models
             return drivers;
         }
 
-        public bool editDriver(string name, string cluster)
+        public bool editDriver(string name, string coordinator)
         {
             foreach (Driver driver in drivers)
             {
                 if(driver.getName() == name)
                 {
-                    driver.setCluster(cluster);
+                    driver.setCoordinator(coordinator);
                     return true;
                 }
             }
@@ -40,11 +40,19 @@ namespace Try.Models
         {
             LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
             ArrayList driverList = new ArrayList();
+            ArrayList userList = PostalCodeInitializer.retrieveAllUsers();
             for (int i = 0; i < arrayOfDrivers.Length; i++)
             {
-                drivers.Add(new Driver(arrayOfDrivers[i].Name, sortClusters(i)));
+                User user = (User)userList[i % userList.Count];
+                if(user.getUsername() == "admin")
+                {
+                    user = (User)userList[1];
+                }
+                drivers.Add(new Driver(arrayOfDrivers[i].Name, user.getUsername()));
             }
         }
+
+
         
         public static LukeRefL2.DriverObject[] getDriverArray()
         {

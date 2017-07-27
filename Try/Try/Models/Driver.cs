@@ -8,27 +8,27 @@ namespace Try.Models
     public class Driver
     {
         private String name { get; set; }
-        private String cluster { get; set; }
+        private String coordinator { get; set; }
 
         public Driver(String n, String c)
         {
             name = n;
-            cluster = c;
+            coordinator = c;
         }
 
         public string getName()
         {
             return name;
         }
-
-        public string getCluster()
+        
+        public string getCoordinator()
         {
-            return cluster;
+            return coordinator;
         }
 
-        public void setCluster(string c)
+        public void setCoordinator(string c)
         {
-            cluster = c;
+            coordinator = c;
         }
     }
 }

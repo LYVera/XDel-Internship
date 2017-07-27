@@ -81,9 +81,8 @@
 <body class="w3-theme-l5">
     <form id="form1" runat="server">
 
-       
         <!-- Navbar -->
-                <div class="w3-top">
+<div class="w3-top">
             <div class="w3-bar w3-theme-orange w3-left-align w3-large">
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
@@ -92,11 +91,9 @@
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
-
-
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-user-o"></i></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class ="fa fa-hand-lizard-o"></i></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bus"></i></a>
                 <div class="w3-right">
 
                     <div class="w3-dropdown-hover w3-hide-small">
@@ -134,176 +131,396 @@
             </div>
         </div>
 
+                
+
+
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-theme-orange w3-hide w3-hide-large w3-hide-medium w3-large">
             <a href="#" class="w3-bar-item w3-button w3-padding-large">Show Map</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">View Map</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">Prompt</a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">Recommend Map</a>
+            <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-padding-large" title="ManageUser"><i class="fa fa-info-circle"></i></a>
+            <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-padding-large" title="ManageCluster"><i class="fa fa-check"></i></a>
+            <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-padding-large" title="ManageDrivers"><i class="fa fa-bell"></i></a>
         </div>
 
         <!-- Page Container -->
-        <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 80px">
+        <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 70px">
             <!-- The Grid -->
             <div class="w3-row">
                 <!-- Left Column -->
-                <div class="w3-col m2">
+                <%--<div class="w3-col m2">
                     <!-- Profile -->
                     <div class="w3-card-2 w3-round w3-white">
-                        <div class="w3-container">
-                            <h4 class="w3-center">Prompt</h4>
-
-                            <hr>
-                            <p>
-                                <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Prompts Low Battery & Delays
-                            </p>
-                           
-                        </div>
+                        
                     </div>
                     <br>
 
-                    
+                    <!-- Accordion -->
+                    <div class="w3-card-2 w3-round">
+                        
+                    </div>
+                    <br>
 
-                    <!-- End Left Column -->
-                </div>
+                    <!-- Others -->
+                    <div class="w3-card-2 w3-round w3-white w3-hide-small">
+                       
+                    </div>--%>
+                <%--<br>--%>
+
+                <!-- Alert Box -->
+                <%--<div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+                        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+                            <i class="fa fa-remove"></i>
+                        </span>
+                        <p>
+                            <strong>Hey!</strong>
+                        </p>
+                        <p>Tan's Battery is Low.</p>
+                    </div>--%>
+
+                <!-- End Left Column -->
+            </div>
+
+            <!-- Middle Column -->
+            <div class="w3-col m7">
+                <div class="w3-row-padding">
+                    <div class="w3-col m12">
+                        <div class="w3-card-2 w3-round w3-white">
+                            <div class="w3-container w3-padding">
+
+                                <!-- hidden field-->
+                                <!-- Delay field -->
+                                <asp:HiddenField ID="Delays" runat="server" />
+                                <!-- red delays -->
+                                <asp:HiddenField ID="RedDelays" runat="server" />
+                                <asp:HiddenField ID="RedDelaysLatLong" runat="server" />
+                                <!-- amber delays -->
+                                <asp:HiddenField ID="AmberDelays" runat="server" />
+                                <asp:HiddenField ID="AmberDelaysLatLong" runat="server" />
+                                <!-- green delays -->
+                                <asp:HiddenField ID="GreenDelays" runat="server" />
+                                <asp:HiddenField ID="GreenDelaysLatLong" runat="server" />
+
+                                <!-- MAP -->
 
 
-                <!--Hidden Field for delay table -->
-                <asp:HiddenField ID="Delays" runat="server" />
+
+                                <br />
+
+                                <p />
+
+                                <div id="map" style="height: 500px; border: 1px solid #AAA;">
+
+                                    <script>
+                                        //markers
+                                        var redMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-envelope',
+                                            markerColor: 'red',
+                                            shape: 'circle',
+                                            prefix: 'fa'
+                                        });
+                                        var greenMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-envelope',
+                                            markerColor: 'green',
+                                            shape: 'circle',
+                                            prefix: 'fa'
+                                        });
+
+                                        var orangeMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-envelope',
+                                            markerColor: 'orange',
+                                            shape: 'circle',
+                                            prefix: 'fa'
+                                        });
+
+                                        var humanMarker = L.ExtraMarkers.icon({
+                                            icon: 'fa-user-circle',
+                                            markerColor: 'blue',
+                                            shape: 'circle',
+                                            prefix: 'fa',
+                                        });
+
+                                        //map
+                                        var osmLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>',
+                                            thunLink = '<a href="http://thunderforest.com/">Thunderforest</a>';
+
+                                        var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                            osmAttrib = '&copy; ' + osmLink + ' Contributors',
+                                            landUrl = 'http://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png',
+                                            thunAttrib = '&copy; ' + osmLink + ' Contributors & ' + thunLink;
+
+                                        var osmMap = L.tileLayer(osmUrl, { attribution: osmAttrib }),
+                                            landMap = L.tileLayer.grayscale(landUrl, { attribution: thunAttrib });
+
+                                        var map = L.map('map', {
+                                            layers: [osmMap] // only add one!
+                                        })
+                                            .setView([1.3521, 103.8198], 11);
+
+                                        var baseLayers = {
+                                            "Colour Map": osmMap,
+                                            "GrayScale Map": landMap
+                                        };
+                                        var oms = new OverlappingMarkerSpiderfier(map);
+                                        var popup = new L.Popup();
+                                        //oms.addListener('click', function (marker) {
+                                        //    popup.setContent(marker.desc);
+                                        //    popup.setLatLng(marker.getLatLng());
+                                        //    map.openPopup(popup);
+                                        //});
+                                        //oms.addListener('spiderfy', function (markers) {
+                                        //    map.closePopup();
+                                        //});
 
 
-                <!-- Middle Column -->
-                <div class="w3-col m10">
-                    <div class="w3-row-padding">
-                        <div class="w3-col m12">
-                            <div class="w3-card-2 w3-round w3-white">
-                                <div class="w3-container w3-padding">
-                                    <table>
-
-                                        <tr>
-                                            <th>
-                                                Job ID
-                                            </th>
-
-                                            <th>
-                                                Driver Name
-                                            </th>
-
-                                            <th>
-                                                Driver ID
-                                            </th>
-
-                                            <th>
-                                                Delay ( Hrs,Mins )
-                                            </th>
-
-                                            <th>
-                                                Arrival Time
-                                            </th>
-
-                                            <th>
-                                                End Time
-                                            </th>
-
-                                            <th>
-                                                PU/DL
-                                            </th>
-                                        </tr>
-
-
-                                        <% string[] eachDelay = Delays.Value.Split('^');
-
-                                            for (int i = 0; i < eachDelay.Length; i++) { %>
-
-                                        <tr>
-                                            <%
-
-                                                if (eachDelay[i].Length != 0)
-                                                {
-                                                    string[] delaySet = eachDelay[i].Split('*');
-                                                    for(int j =0; j< delaySet.Length; j++)
-                                                    {%>
-                                                        
-                                                        <td>
-                                                            <%= delaySet[j]%>
-                                                        </td>
-
-                                                    <%}
+                                        var allRedDelays = document.getElementById("RedDelaysLatLong").value.split("^");
+                                        //alert(allRedDelays);
+                                        for (i = 0; i < allRedDelays.length; i++) {
+                                            //alert(allRedDelays[i]);
+                                            if (allRedDelays[i].length > 0) {
+                                                var oneRedDelay = allRedDelays[i].split("*");
+                                                for (j = 0; j < oneRedDelay.length; j++) {
+                                                    if (oneRedDelay[j].length > 0) {
+                                                        //alert(oneRedDelay[0]);
+                                                        marker = new L.marker([parseFloat(oneRedDelay[0]), parseFloat(oneRedDelay[1])], { icon: redMarker })
+                                                            .bindPopup(oneRedDelay[5] + "<br>" + "JobID:" + oneRedDelay[4] + "<br>" + oneRedDelay[2] + "<br>" + oneRedDelay[3]).openPopup()
+                                                            .addTo(map);
+                                                        //oms.addMarker(marker);  // <-- here
+                                                    }
                                                 }
-                                            %>
-                                        </tr>
-                                        <%}%>
-                                    </table>
-                                    
+                                            }
+
+                                        }
+
+                                        var allAmberDelays = document.getElementById("AmberDelaysLatLong").value.split("^");
+
+                                        for (i = 0; i < allAmberDelays.length; i++) {
+
+                                            if (allAmberDelays[i].length > 0) {
+                                                var oneAmberDelay = allAmberDelays[i].split("*");
+                                                for (j = 0; j < oneAmberDelay.length; j++) {
+                                                    if (oneAmberDelay[j].length > 0) {
+
+                                                        marker = new L.marker([parseFloat(oneAmberDelay[0]), parseFloat(oneAmberDelay[1])], { icon: orangeMarker })
+                                                            .bindPopup(oneAmberDelay[5] + "<br>" + "JobID:" + oneAmberDelay[4] + "<br>" + oneAmberDelay[2] + "<br>" + oneAmberDelay[3]).openPopup()
+                                                            .addTo(map);
+                                                        //oms.addMarker(marker);  // <-- here
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+
+                                        var allGreenDelays = document.getElementById("GreenDelaysLatLong").value.split("^");
+
+                                        for (i = 0; i < allGreenDelays.length; i++) {
+
+                                            if (allGreenDelays[i].length > 0) {
+                                                var oneGreenDelay = allGreenDelays[i].split("*");
+                                                for (j = 0; j < oneGreenDelay.length; j++) {
+                                                    if (oneGreenDelay[j].length > 0) {
+
+                                                        marker = new L.marker([parseFloat(oneGreenDelay[0]), parseFloat(oneGreenDelay[1])], { icon: greenMarker })
+                                                            .bindPopup(oneGreenDelay[5] + "<br>" + "JobID:" + oneGreenDelay[4] + "<br>" + oneGreenDelay[2] + "<br>" + oneGreenDelay[3]).openPopup()
+                                                            .addTo(map);
+                                                        //oms.addMarker(marker);  // <-- here
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+
+                                    </script>
+
+                                  
+
                                 </div>
+
+
+                                <p />
+
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!--Container-->
-                    <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+                <!--Container-->
+                <div class="w3-container w3-card-2 w3-white w3-round w3-margin">
+                </div>
 
-                        <table>
+                <!-- End Middle Column -->
+            </div>
+            <!-- Right Column -->
 
-                                        <tr>
-                                            <th>
-                                                Driver Name
-                                            </th>
 
-                                            <th>
-                                                Battery Percentage 
-                                            </th>
-                                            
-                                            <th>
-                                                Mobile Number 
-                                            </th>
+            <script>
+                                        function openTabs(tabName) {
+                                            var i;
+                                            var x = document.getElementsByClassName("tab");
+                                            for (i = 0; i < x.length; i++) {
+                                                x[i].style.display = "none";
+                                            }
+                                            document.getElementById(tabName).style.display = "block";
+                                        }
+            </script>
 
-                                        </tr>
+
+
+
+            <div class="w3-col m5" style="padding-right">
+                <div class="w3-card-2 w3-round w3-white w3-center">
+                    <div class="w3-container">
+
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('Red');return false">Red <%= RedDelays.Value.Split('^').Length -1 %></button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('Amber');return false">Amber <%= AmberDelays.Value.Split('^').Length -1 %></button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('Green');return false">Green <%= GreenDelays.Value.Split('^').Length -1 %></button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('lowBattery');return false">BattPCT</button>
+
+                        <div id="Red" class="w3-container tab">
+                            <div class="scroll">
+                                <table class="tableC">
+                                    <tr>
+                                        <th>JobID</th><th>Driver Name</th><th>Job Address</th><th>Delay (H:MM)</th><th>Arrival Time</th><th>End Time</th><th>PU/DL</th>
+                                    </tr>
+                                    <%
+                                        var redJobs = RedDelays.Value.Split('^');
+                                        for (int i = 0; i < redJobs.Length; i++)
+                                        {
+
+                                    %>
+                                    <tr>
+                                        <%
+                                            var oneJob = redJobs[i].Split('*');
+                                            for (int j = 0; j < oneJob.Length; j++)
+                                            {
+                                        %>
+                                                <td>
+                                                    <%=oneJob[j] %>
+                                                </td>
+
+                                        <%}%>
+                                    </tr>
+                                    <%} %>
+                                </table>
+
+                            </div>
+                        </div>
+
+
+
+                        <div id="Amber" class="w3-container tab" style="display: none">
                             
-                            <%   
-                                for (int i = 0; i < lowBatts.Count; i++)
-                                {
-                            %>
-                            <tr>
 
-                                <% Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i]; %>
+                            <div class="scroll">
+                                <table class="tableC">
+                                    <tr>
+                                        <th>JobID</th><th>Driver Name</th><th>Job Address</th><th>Delay (H:MM)</th><th>Arrival Time</th><th>End Time</th><th>PU/DL</th>
+                                    </tr>
+                                    <%
+                                        var amberJobs = AmberDelays.Value.Split('^');
+                                        for (int i = 0; i < amberJobs.Length; i++)
+                                        {
 
-                                <td>
-                                    <%= lowBattDriver.Name %>
-                                </td>
-                                 <td>
-                                    <%= lowBattDriver.BattPCT %>
-                                </td>
-                                <td>
-                                    <%= lowBattDriver.Mobile %>
-                                </td>
+                                    %>
+                                    <tr>
+                                        <%
+                                            var oneJob = amberJobs[i].Split('*');
+                                            for (int j = 0; j < oneJob.Length; j++)
+                                            {
+                                        %>
+                                                <td>
+                                                    <%=oneJob[j] %>
+                                                </td>
 
-                            </tr>
-                                   
+                                        <%}%>
+                                    </tr>
+                                    <%} %>
 
-                                
-                                <%}%>
+                                </table>
+                            </div>
+                        </div>
 
-                                    </table>
 
+                        
+                        <div id="Green" class="w3-container tab">
+                            <div class="scroll">
+                                <table class="tableC">
+                                    <tr>
+                                        <th>JobID</th><th>Driver Name</th><th>Job Address</th><th>Delay (H:MM)</th><th>Arrival Time</th><th>End Time</th><th>PU/DL</th>
+                                    </tr>
+                                    <%
+                                        var greenJobs = GreenDelays.Value.Split('^');
+                                        for (int i = 0; i < greenJobs.Length; i++)
+                                        {
+
+                                    %>
+                                    <tr>
+                                        <%
+                                            var oneJob = greenJobs[i].Split('*');
+                                            for (int j = 0; j < oneJob.Length; j++)
+                                            {
+                                        %>
+                                        <td>
+                                            <%=oneJob[j] %>
+                                        </td>
+
+                                        <%}%>
+                                    </tr>
+                                    <%} %>
+                                </table>
+
+                            </div>
+                        </div>
+
+
+                        <div id="lowBattery" class="w3-container tab">
+                            <div class="scroll">
+                                <table class="tableC">
+                                    <% 
+                                        for (int i = 0; i < lowBatts.Count; i++)
+                                        { %>
+                                    <tr>
+                                        <th>Name</th><th>Mobile</th><th>BattPCT</th>
+                                    </tr>
+                                    <tr>
+
+                                        <%Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];%>
+                                        <td><%= lowBattDriver.Name%></td>
+                                        <td><%= lowBattDriver.Mobile %></td>
+                                        <td><%= lowBattDriver.BattPCT %></td>
+                                    </tr>
+
+
+                                    <%}%>
+                                </table>
+
+                            </div>
+                        </div>
 
                     </div>
-
-                    <!-- End Middle Column -->
                 </div>
-               
-
-                <!-- End Grid -->
             </div>
+
+
+
+
+            <!-- End Right Column -->
+
+
+
+
+            <!-- End Grid -->
+
 
             <!-- End Page Container -->
         </div>
         <br>
 
-        <!-- Footer -->
-        <footer class="w3-container w3-theme-orange w3-padding-16">
-            <h5>Xdel RSVP</h5>
-        </footer>
+        
 
         <script>
                                             // Accordion

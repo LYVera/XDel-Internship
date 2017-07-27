@@ -28,23 +28,18 @@ namespace Try
 
         }
 
-        protected void CheckBoxList_Click(object sender, EventArgs e)
-        {
-            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
-            List<ListItem> selected = new List<ListItem>();
-           
-        }
 
+        // Method to get all the low battery that is < 50%
         public void getBattery()
         {
             LukeRefL2.L2 luke2Obj = new LukeRefL2.L2();
 
             LukeRefL2.DriverObject[] arrayOfDrivers = getDriverArray();
             ArrayList lowBatts = new ArrayList();
-            for (int i =0; i< arrayOfDrivers.Length; i++)
+            for (int i = 0; i < arrayOfDrivers.Length; i++)
             {
                 int battPCT = arrayOfDrivers[i].BattPCT;
-                if(battPCT < 50)
+                if (battPCT < 50)
                 {
                     //String toAdd = "";
                     //toAdd = arrayOfDrivers[i].Name + "," + arrayOfDrivers[i].Mobile + "," + arrayOfDrivers[i].BattPCT + "," + arrayOfDrivers[i].BattLastUpdate;
@@ -54,11 +49,8 @@ namespace Try
             Session["lowBatt"] = lowBatts;
         }
 
-        protected void selectAll_Click(object sender, EventArgs e)
-        {
-            
-        }
 
+        //Method to get the Red Green and Amber Delays
         public void getDelays()
         {
             // initializing 
@@ -107,13 +99,37 @@ namespace Try
                         if (PUORDL[k].ToString() == "PU")
                         {
                             endtime = jobInfo.PickByDateTime;
-                            //DateTime arrivalTime1 = arrivalTime[k];
-                            //TimeSpan span = endtime.Subtract(arrivalTime1);
-                            //Delays.Value += span.Hours;
-                            //if the end time - arrival time > 30 
+
                             if (endtime.CompareTo(arrivalTime[k]) < 1)
                             {
-                                Delays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + driverObjs[i].ID + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + "," + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "PU";
+                                Delays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + driverObjs[i].ID + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "PU";
+
+                                //Split into red amber green delays
+                                if (-1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes > 45 || -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours > 1)
+                                {
+                                    RedDelays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + jobInfo.PULocation.POSTALCODE + "," + jobInfo.PULocation.STREET + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "PU";
+                                    //end of one job
+                                    RedDelays.Value += "^";
+                                    RedDelaysLatLong.Value += jobInfo.PULocation.LAT + "*" + jobInfo.PULocation.LNG + "*" + jobInfo.PULocation.POSTALCODE + "," + jobInfo.PULocation.STREET + "*PU*" + jobIds[k] + "*" + driverObjs[i].Name + "^";
+
+
+                                }
+                                else if (-1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes > 15 && -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes < 45)
+                                {
+                                    AmberDelays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + jobInfo.PULocation.POSTALCODE + "," + jobInfo.PULocation.STREET + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "PU";
+                                    AmberDelays.Value += "^";
+
+                                    AmberDelaysLatLong.Value += jobInfo.PULocation.LAT + "*" + jobInfo.PULocation.LNG + "*" + jobInfo.PULocation.POSTALCODE + "," + jobInfo.PULocation.STREET + "*PU*" + jobIds[k] + "*" + driverObjs[i].Name + "^";
+
+                                }
+                                else if (-1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes < 15 && -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes > 1)
+                                {
+                                    GreenDelays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + jobInfo.PULocation.POSTALCODE + "," + jobInfo.PULocation.STREET + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "PU";
+                                    GreenDelays.Value += "^";
+
+                                    GreenDelaysLatLong.Value += jobInfo.PULocation.LAT + "*" + jobInfo.PULocation.LNG + "*" + jobInfo.PULocation.POSTALCODE + "," + jobInfo.PULocation.STREET + "*PU*" + jobIds[k] + "*" + driverObjs[i].Name + "^";
+                                }
+
                             }
 
                         }
@@ -121,9 +137,35 @@ namespace Try
                         {
                             endtime = jobInfo.ToDateTime;
 
-                            if (endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes < 0)
+                            if (endtime.CompareTo(arrivalTime[k]) < 1)
                             {
-                                Delays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + driverObjs[i].ID + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + "," + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + " *" + "DL";
+                                Delays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + driverObjs[i].ID + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "DL";
+
+                                //Split into red amber green delays
+                                if (-1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes > 45 || -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours > 1)
+                                {
+                                    RedDelays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + jobInfo.DLLocation.POSTALCODE + "," + jobInfo.DLLocation.STREET + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "DL";
+                                    //end of one job
+                                    RedDelays.Value += "^";
+
+                                    RedDelaysLatLong.Value += jobInfo.DLLocation.LAT + "*" + jobInfo.DLLocation.LNG + "*" + jobInfo.DLLocation.POSTALCODE + "," + jobInfo.DLLocation.STREET + "*DL*" + jobIds[k] + "*" + driverObjs[i].Name + "^";
+
+                                }
+                                else if (-1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes > 15 && -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes < 45)
+                                {
+                                    AmberDelays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + jobInfo.DLLocation.POSTALCODE + "," + jobInfo.DLLocation.STREET + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "DL";
+                                    AmberDelays.Value += "^";
+
+                                    AmberDelaysLatLong.Value += jobInfo.DLLocation.LAT + "*" + jobInfo.DLLocation.LNG + "*" + jobInfo.DLLocation.POSTALCODE + "," + jobInfo.DLLocation.STREET + "*DL*" + jobIds[k] + "*" + driverObjs[i].Name + "^";
+
+                                }
+                                else if (-1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes < 15 && -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes > 1)
+                                {
+                                    GreenDelays.Value += jobIds[k] + "*" + driverObjs[i].Name + "*" + jobInfo.DLLocation.POSTALCODE + "," + jobInfo.DLLocation.STREET + "*" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Hours + ":" + -1 * endtime.TimeOfDay.Subtract(arrivalTime[k].TimeOfDay).Minutes + "*" + arrivalTime[k].ToShortDateString() + " / " + arrivalTime[k].TimeOfDay + "*" + endtime.ToShortDateString() + " / " + endtime.TimeOfDay + "*" + "DL";
+                                    GreenDelays.Value += "^";
+                                    GreenDelaysLatLong.Value += jobInfo.DLLocation.LAT + "*" + jobInfo.DLLocation.LNG + "*" + jobInfo.DLLocation.POSTALCODE + "," + jobInfo.DLLocation.STREET + "*DL*" + jobIds[k] + "*" + driverObjs[i].Name + "^";
+                                }
+
                             }
                         }
 
@@ -133,6 +175,10 @@ namespace Try
 
                 }
 
+                //end of driver
+                //RedDelays.Value += "%";
+                //AmberDelays.Value += "%";
+                //GreenDelays.Value += "%";
 
                 //clear the list for next driver
                 jobIds.Clear();

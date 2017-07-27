@@ -66,9 +66,9 @@
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-user-o"></i></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class ="fa fa-hand-lizard-o"></i></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bus"></i></a>
                 <div class="w3-right">
 
                     <div class="w3-dropdown-hover w3-hide-small">
@@ -204,10 +204,7 @@
                                     
                                     
 
-                                    <!— Button —>
-                                    <asp:DropDownList ID="Grouping" runat="server" Width="200px"></asp:DropDownList>
-                                    <asp:HiddenField ID="hiddenArray" runat="server" />
-                                    <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit" />
+                                    
 
                                     <!--<p contenteditable="true" class="w3-border w3-padding">-->
                                   
@@ -327,21 +324,23 @@
                                                         <%
                                                         }
                                                         %>
-                                            // driver current location marker 
-                                            var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
-                                            if (allDriverLoc[0] != "") {
-                                                var oneDriverLoc = allDriverLoc[0].split("*");
 
-                                                for (i = 0; i < allDriverLoc.length; i++) {
-                                                    if (allDriverLoc[i].length > 0) {
-                                                        var oneDriverLoc = allDriverLoc[i].split("*");
-                                                        marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])], { icon: humanMarker })
+                                                    <% ArrayList posterCodeDetails = getPostalJobs();%>
+                                                    // driver current location marker 
+                                                    var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
+                                                    if (allDriverLoc[0] != "") {
+                                                        var oneDriverLoc = allDriverLoc[0].split("*");
+
+                                                        for (i = 0; i < allDriverLoc.length; i++) {
+                                                            if (allDriverLoc[i].length > 0) {
+                                                                var oneDriverLoc = allDriverLoc[i].split("*");
+                                                                marker = new L.marker([parseFloat(oneDriverLoc[1]), parseFloat(oneDriverLoc[2])], { icon: humanMarker })
                                                             .bindPopup(oneDriverLoc[0]).openPopup()
                                                             //layers code beneath
                                                             //.addTo(driverLocationLayer)
                                                             .addTo(map)
-                                                    }
-                                                    
+                                                            }
+
                                                 }
                                             }
 
@@ -352,7 +351,7 @@
                                                 for (i = 0; i < allLTAIncidents.length; i++) {
                                                     if (allLTAIncidents[i].length > 0) {
                                                         var oneLTAIncidents = allLTAIncidents[i].split("*");
-                                                        marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker })
+                                            marker = new L.marker([parseFloat(oneLTAIncidents[1]), parseFloat(oneLTAIncidents[2])], { icon: trafficMarker })
                                                             .bindPopup(oneLTAIncidents[0]).openPopup()
                                                             .addTo(map)
                                                     //trafficLayer.addLayer(marker);
@@ -394,7 +393,7 @@
                                             for (j = 0; j < allDriver.length; j++) {
                                                 if (allDriver[j].length > 0) {
                                                     var allDriverRoute = allDriver[j].split("^");
-                                                    var count = 1;
+                                        var count = 1;
                                                     for (i = 0; i < allDriverRoute.length; i++) {
 
                                                         var pickUpMarker = L.ExtraMarkers.icon({
@@ -457,13 +456,13 @@
 
             <script>
                                             function openTabs(tabName) {
-                                                var i;
-                                                var x = document.getElementsByClassName("tab");
-                                                for (i = 0; i < x.length; i++) {
-                                                    x[i].style.display = "none";
-                                                }
-                                                document.getElementById(tabName).style.display = "block";
+                                            var i;
+                                            var x = document.getElementsByClassName("tab");
+                                            for (i = 0; i < x.length; i++) {
+                                                x[i].style.display = "none";
                                             }
+                                            document.getElementById(tabName).style.display = "block";
+                                        }
             </script>
 
 
@@ -473,28 +472,18 @@
                 <div class="w3-card-2 w3-round w3-white w3-center">
                     <div class="w3-container">
 
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('SearchTab');return false">Search</button>
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('routeDetails');return false">Route</button>
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('postalDetails');return false">Zone</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" style="font-size:small" onclick="openTabs('SearchTab');return false">Search</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" style="font-size:small" onclick="openTabs('routeDetails');return false">Route</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" style="font-size:small" onclick="openTabs('postalDetails');return false">Zone</button>
 
 
                         <div id="SearchTab" class="w3-container tab">
                             <div class="scroll">
                             <div id="search">
-                                <p />
-
-                                <input type="text" name="" id="filter" placeholder="Search driver" size="15">
-
-                                <p />
                                 <strong>Driver List</strong>
-                                <div class="col-md-6">
-                                <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w3-block w3-green w3-section" title="SelectAll" Text="Select All"></asp:Button>
-                                </div>
-                                <!-- Clear and Clear All button-->
-                                <div class="col-md-6">
-                                <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w3-block w3-red w3-section" title="ClearAll" Text="Clear All"></asp:Button>
-                                </div>
-
+                                <input type="text" name="" id="filter" placeholder="Search driver" size="15">
+                                    <asp:Button ID="selectAll" OnClick="selectAll_Click" runat="server" class="w3-button w2-block w3-green w2-section" title="SelectAll" style="width:40%; font-size:small" Text="All"></asp:Button>
+                                    <asp:Button ID="uncheckAll" OnClick="uncheckAll_Click" runat="server" class="w3-button w2-block w3-red w2-section" title="ClearAll" style="width:40%; font-size:small" Text="Clear"></asp:Button>
                                 <p />
                                 <!--filter table for searching drivers-->
                                 
@@ -519,6 +508,10 @@
                         
                         <div id="postalDetails" class="w3-container tab" style="display: none">
                             <div class="scroll">
+                            <!— Button —>
+                                    <asp:DropDownList ID="Grouping" runat="server" Width="75px"></asp:DropDownList>
+                                    <asp:HiddenField ID="hiddenArray" runat="server" />
+                                    <asp:Button ID="Button1" runat="server" OnClick="Color_Click" Text="Submit" />
                             <h3>Zone Details</h3>
                                 <table class="tableC">
                                     <thead>
@@ -544,6 +537,29 @@
                                         </tr>
                                         <%}%>
                                     </tbody>
+                                </table>
+
+                                <%ArrayList postaljobs = getPostalJobs();%>
+                                <br /><br />
+                                <table class="tableC">
+                                    <thead>
+                                        <tr>
+                                        <th>Zone</th>
+                                        <th>Dis</th>
+                                        <th>NJ</th>
+                                        <th>PIP</th>
+                                        <th>DIP</th>
+                                        </tr>
+                                    </thead>
+                                    <% foreach(Try.Models.PostalJob postaljob in postaljobs) { %>
+                                        <tr>
+                                            <td><%=postaljob.getZone() %></td>
+                                            <td><%=postaljob.getDistrict()%></td>
+                                            <td><%=postaljob.getNewJob() %></td>
+                                            <td><%=postaljob.getPIP() %></td>
+                                            <td><%=postaljob.getDIP() %></td>
+                                        </tr>
+                                    <%} %>
                                 </table>
                             </div>
                         </div>

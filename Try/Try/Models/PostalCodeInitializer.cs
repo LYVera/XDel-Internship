@@ -74,9 +74,9 @@ namespace Try.Models
             return driverDAO.getDrivers();
         }
 
-        public static void changeDriverCluster(String driverName, String clusterId)
+        public static void changeDriverCluster(String driverName, String coordinator)
         {
-            driverDAO.editDriver(driverName, clusterId);
+            driverDAO.editDriver(driverName, coordinator);
         }
 
 

@@ -6,44 +6,6 @@
 
 <html>
 <head>
-    <style>
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 9px;
-    width: 90%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 12px;
-    transition: 0.4s;
-}
-
-button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-}
-
-button.accordion:after {
-    content: '\002B';
-    color: #777;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-}
-
-button.accordion.active:after {
-    content: "\2212";
-}
-
-div.panel {
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-}
-</style>
 
 
     <% Server.Execute("Include.aspx"); %>
@@ -111,9 +73,9 @@ div.panel {
                 <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
                 <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
                 <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><img src="img\\man-user.png" style="height:20px" alt="user"/></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><img src="img\\ukraine.png" style="height:25px" alt="ukraine"/></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><img src="img\\bus-front-with-driver.png" style="height:21px" alt="drivers"/></a>
+                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-user-o"></i></a>
+                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class ="fa fa-hand-lizard-o"></i></a>
+                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bus"></i></a>
                 <div class="w3-right">
 
                     <div class="w3-dropdown-hover w3-hide-small">
@@ -165,7 +127,6 @@ div.panel {
             <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-padding-large" title="ManageDrivers"><i class="fa fa-bell"></i></a>
         </div>
 
-        <!-- Page Container -->
         <div class="w3-container w3-content" style="max-width: 1400px; margin-top: 70px">
             <!-- The Grid -->
             <div class="w3-row">
@@ -223,6 +184,27 @@ div.panel {
                                 <asp:HiddenField ID="HiddenPostalCode" runat="server" />
                                 <!-- Route Hidden Field -->
                                 <asp:HiddenField ID="HiddenTrafficLayer" runat="server" />
+                                 <!-- Driver Hidden Field -->
+                                <asp:HiddenField ID="Driver1" runat="server" />
+                                <!-- Driver Hidden Field -->
+                                <asp:HiddenField ID="Driver2" runat="server" />
+                                <!-- Driver Hidden Field -->
+                                <asp:HiddenField ID="Driver3" runat="server" />
+                                <!-- Driver Hidden Field -->
+                                <asp:HiddenField ID="Driver4" runat="server" />
+                                <!-- Driver Hidden Field -->
+                                <asp:HiddenField ID="Driver5" runat="server" />
+                                <!-- DriverIDX Hidden Field -->
+                                <asp:HiddenField ID="IDX2" runat="server" />
+                                <!-- DriverIDX Hidden Field -->
+                                <asp:HiddenField ID="IDX3" runat="server" />
+                                <!-- DriverIDX Hidden Field -->
+                                <asp:HiddenField ID="IDX4" runat="server" />
+                                <!-- DriverIDX Hidden Field -->
+                                <asp:HiddenField ID="IDX5" runat="server" />
+                                <!-- New Job IDX Hidden Field -->
+                                <asp:HiddenField ID="NewJobsIDX" runat="server" />
+
 
                                 <!-- MAP -->
 
@@ -290,7 +272,7 @@ div.panel {
                                             "Colour Map": osmMap,
                                             "GrayScale Map": landMap
                                         };
-                                      
+
                                         // Layers 
                                         //L.control.layers(baseLayers, overlays).addTo(map);
 
@@ -300,9 +282,9 @@ div.panel {
                                             for (i = 0; i < allDriverLoc.length; i++) {
                                                 if (allDriverLoc[i].length > 0) {
                                                     var oneDriverLoc = allDriverLoc[i].split("*");
-                                                    if (i == 0) {
+                                                    if (i == 0 || i % 5 == 0) {
                                                         marker = new L.marker([parseFloat(oneDriverLoc[0]), parseFloat(oneDriverLoc[1])], { icon: chosenMarker })
-                                                            .bindPopup(oneDriverLoc[2]).openPopup()                                                        
+                                                            .bindPopup(oneDriverLoc[2]).openPopup()
                                                             .addTo(map)
                                                     } else {
                                                         marker = new L.marker([parseFloat(oneDriverLoc[0]), parseFloat(oneDriverLoc[1])], { icon: humanMarker })
@@ -310,7 +292,7 @@ div.panel {
                                                             .addTo(map)
                                                     }
                                                 }
-                                                    
+
                                             }
                                         }
 
@@ -319,9 +301,9 @@ div.panel {
                                         if (allJobLocations[0] != "") {
                                             for (i = 0; i < allJobLocations.length; i++) {
                                                 if (allJobLocations[i].length > 0) {
-                                                var oneJobLoc = allJobLocations[i].split("*");
-                                                marker = new L.marker([parseFloat(oneJobLoc[0]), parseFloat(oneJobLoc[1])], { icon: trafficMarker })
-                                                    .bindPopup(oneJobLoc[2]).openPopup()
+                                                    var oneJobLoc = allJobLocations[i].split("*");
+                                                    marker = new L.marker([parseFloat(oneJobLoc[0]), parseFloat(oneJobLoc[1])], { icon: trafficMarker })
+                                                        .bindPopup(oneJobLoc[2]).openPopup()
                                                         //layers code beneath
                                                         //.addTo(driverLocationLayer)
                                                         .addTo(map)
@@ -349,14 +331,14 @@ div.panel {
 
 
             <script>
-                                            function openTabs(tabName) {
-                                                var i;
-                                                var x = document.getElementsByClassName("tab");
-                                                for (i = 0; i < x.length; i++) {
-                                                    x[i].style.display = "none";
-                                                }
-                                                document.getElementById(tabName).style.display = "block";
+                                        function openTabs(tabName) {
+                                            var i;
+                                            var x = document.getElementsByClassName("tab");
+                                            for (i = 0; i < x.length; i++) {
+                                                x[i].style.display = "none";
                                             }
+                                            document.getElementById(tabName).style.display = "block";
+                                        }
             </script>
 
 
@@ -365,12 +347,16 @@ div.panel {
             <div class="w3-col m2">
                 <div class="w3-card-2 w3-round w3-white w3-center">
                     <div class="w3-container">
-
+                        
 
                         <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('SearchJobTab');return false">Search</button>
                         <button class="w3-bar-item w3-button w3-orange w3-section w3-half" onclick="openTabs('JobDetails');return false">Details</button>
                         
-                        <div id="SearchJobTab" class="w3-container tab">
+                        <div id="SearchJobTab" class="w3-container tab" >
+
+                                <!--filter table for searching jobs-->
+                                <div class="scroll">
+                                    
                             <p>Search Job:</p>
                             <div id="search">
                                 <p />
@@ -380,130 +366,354 @@ div.panel {
                                 <p />
                                 <strong>JobList</strong>                             
                                 <p />
-                                <!--filter table for searching jobs-->
-                                <div class="scroll">
-                                    
                                     <table id="UserGridView" class="tableC">
 
                                         <tr>
                                             <td style="text-align: left; padding-left: 5px;">
-                                                <asp:CheckBoxList
-                                                    ID="CheckBoxList2"
+                                                <asp:RadioButtonList
+                                                    
+                                                    enabled="true"
+                                                    ID="radioList"
                                                     AutoPostBack="True"
-                                                    OnSelectedIndexChanged="CheckBoxList_Click"
+                                                    OnSelectedIndexChanged="RadioList_Click"
                                                     runat="server">
-                                                </asp:CheckBoxList>
+                                                </asp:RadioButtonList>
                                             </td>
                                         </tr>
 
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                            </div>
 
-
-                        <div id="JobDetails" class="w3-container tab" style="display: none">
+                        <div id="JobDetails" class="w3-container tab" style="display: none; max-width:180px">
                             <div class="scroll">
-
-                                
-                                     <table class="tableC">     
-                                   
-                                       <%
-                                           int count = 1;
-                                           //first split to differentiate between the the drivers
-                                           var allJobDetails = HiddenField4.Value.Split('%');
-                                           for (int j = 0; j < allJobDetails.Length; j++)
-                                           {
-                                               if (allJobDetails[j].Length > 0)
-                                               {
-                                                   //second split to differentiate between the 3 types of data. Job details, Driver Name, Driver Distance
-                                                   var singleDriverDetails = allJobDetails[j].Split('^');
-                                                   for (int l = 0; l < singleDriverDetails.Length; l++)
-                                                   {
-                                                       if (singleDriverDetails[l].Length > 0)
-                                                       {
-                                                           //check if its a job details or driver name/driver distance, only job details contain *
-                                                           if (!singleDriverDetails[l].Contains("*"))
-                                                           {
-                                                               %>
-                                                            <tr>
-                                                                <td>
-                                                                    <%
-                                                                        if (count > 5)
-                                                                        {
-                                                                            count = 1;
-                                                                        }
-                                                                        %>
-                                                                <b />
-                                                                <span style="background-color: yellow;"><%=count++ + ". " + singleDriverDetails[l] %></span>
-                                                                    </td>
-                                                                </tr>
-                                                            
-                                                    <%
-                                                        }
-                                                        //else just print driver name/driver distance directly
-                                                        else
-                                                        {
-                                                            //if it contains, split to postal, job ID, job add, job lat, job lon, arriveDate, departDate
-                                                            var singleJobDetails = singleDriverDetails[l].Split('*');
-                                                            string finalOutput = "";
-                                                            for(int m = 0; m < singleJobDetails.Length; m++)
-                                                            {
-                                                                if(singleJobDetails[m].Length > 0)
-                                                                {
-                                                                    if(m == 0)
-                                                                    {
-                                                                        finalOutput = "Job ID: " + singleJobDetails[m] + ", ";
-                                                                    }
-                                                                    else if(m == 1)
-                                                                    {
-                                                                        finalOutput += "Address: " + singleJobDetails[m] + ", ";
-                                                                    }
-                                                                    else if (m == 3)
-                                                                    {
-                                                                        finalOutput += singleJobDetails[m] + " - ";
-                                                                    }
-                                                                    else if (m == 4)
-                                                                    {
-                                                                        finalOutput += singleJobDetails[m] + ", ";
-                                                                    }
-                                                                    else if (m == 5)
-                                                                    {
-                                                                        finalOutput += "Job Type: " + singleJobDetails[m] + " ";
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        finalOutput += singleJobDetails[m] + " ";
-                                                                    }
-                                                                    //print each item. I.e. Postal, job id, add, lat, lon, arriveDate, departDate
-
-                                                                }
-                                                            }
-                                                              %>
-                                                                         <tr>
-                                                                            <td class="align-center">   
-                                                                                
-                                                                                <%=finalOutput%>
-                                                                                <b />
-                                                                                
-                                                                            </td>
-                                                                        </tr>            
-                                                                       <%
-                                                                
-                                                         }                                                                                           
-                                                    }
+                                <%-- Start Of First Driver --%>
+                                <% var driver1 = Driver1.Value.Split('^');
+                                    if (radioList.SelectedIndex != -1)
+                                    {
+                                        string driverNameDistNum1 = "";
+                                        for (int i = 0; i < driver1.Length; i++)
+                                        {
+                                            if (driver1[i].Length > 0 && !driver1[i].Contains("*"))
+                                            {
+                                                driverNameDistNum1 = driver1[i];
+                                %>          
+                                            <button onclick="myFunction('FirstDriver');return false" class="w3-button w3-block w3-theme-l1 w3-left-align" style="font-size:8px"><%=driverNameDistNum1 %></button>
+                                            <div id="FirstDriver" class="w3-hide w3-animate-zoom">
+                                            <table class="tableC">
+                                <%
+                                    }
+                                    else
+                                    {
+                                        if (i != driver1.Length - 1)
+                                        {
+                                            var driver1jobDetails = driver1[i].Split('*');
+                                            string finalOutput1 = "";
+                                            for (int j = 0; j < driver1jobDetails.Length; j++)
+                                            {
+                                                if (driver1jobDetails[j].Length > 0)
+                                                {
+                                                    finalOutput1 += driver1jobDetails[j] + " ";
                                                 }
                                             }
-                                        }           
-                                                    %>
-                     
-                                                </table>                           
-                                
-                                        </div>
-                                    </div>
+                                            string newJobIDX = NewJobsIDX.Value;
+                                            if (finalOutput1.Contains(newJobIDX))
+                                            {
+                                            %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                        <span style="background-color: yellow;"><%= i + ". " + finalOutput1%></span>                    
+                                                    </td>
+                                                </tr>
+                                            <%
+                                            }
+                                            else
+                                            {
+                                            %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                        <%= i + ". " + finalOutput1%>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }
+                                             
+
+                                        }
+                                    }
+                                }
+                                             %>
+                                                </table>
                                 </div>
+                                                <%
+                                                    }%>
+                                
+                                <%-- End Of First Driver --%>
+                                <%-- Start Of Second Driver --%>
+                                <% var driver2 = Driver2.Value.Split('^');
+                                    if (radioList.SelectedIndex != -1)
+                                    {
+                                        string driverNameDistNum2 = "";
+                                        for (int i = 0; i < driver2.Length; i++)
+                                        {
+                                            if (driver2[i].Length > 0 && !driver2[i].Contains("*"))
+                                            {
+                                                driverNameDistNum2 = driver2[i];
+                                %>    
+                                            <button onclick="myFunction('SecondDriver');return false" class="w3-button w3-block w3-theme-l1 w3-left-align" style="font-size:8px""><%=driverNameDistNum2 %></button>
+                                            <div id="SecondDriver" class="w3-hide w3-animate-zoom">
+                                            <table class="tableC">
+                                <%
+                                    }
+                                    else
+                                    {
+                                        if (i != driver2.Length-1)
+                                        {
+                                            var driver2jobDetails = driver2[i].Split('*');
+                                            string finalOutput2 = "";
+                                            for (int j = 0; j < driver2jobDetails.Length; j++)
+                                            {
+                                                if (driver2jobDetails[j].Length > 0)
+                                                {
+                                                    finalOutput2 += driver2jobDetails[j] + " ";
+                                                }
+                                            }
+                                            string newJobIDX = NewJobsIDX.Value;
+                                            if (finalOutput2.Contains(newJobIDX))
+                                            {
+                                             %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                         <span style="background-color: yellow;"><%= i + ". " + finalOutput2%></span>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }else
+                                            {
+                                            %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                        <%= i + ". " + finalOutput2%>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }
+                                                         }
+                                                     }
+                                                 }
+                                                     %>
+                                                 <tr>
+                                    <td>
+                                        <asp:Button ID="validate2" OnClick="ValidateSecond" runat="server" class="w3-button w3-block w3-green w3-section" title="validate2" Text="Validate"></asp:Button>
+                                    </td>
+                                </tr> 
+                                                </table>
+                                </div>
+                                                <%
+                                                    }%>   
+                                                       
+                                
+                                 <%-- End Of Second Driver --%>
+                                <%-- Start Of Third Driver --%>
+                                <% var driver3 = Driver3.Value.Split('^');
+                                    if (radioList.SelectedIndex != -1)
+                                    {
+                                        string driverNameDistNum3 = "";
+                                        for (int i = 0; i < driver3.Length; i++)
+                                        {
+                                            if (driver3[i].Length > 0 && !driver3[i].Contains("*"))
+                                            {
+                                                driverNameDistNum3 = driver3[i];
+                                %>    
+                                            <button onclick="myFunction('ThirdDriver');return false" class="w3-button w3-block w3-theme-l1 w3-left-align" style="font-size:8px"><%=driverNameDistNum3 %></button>
+                                            <div id="ThirdDriver" class="w3-hide w3-animate-zoom">
+                                            <table class="tableC">
+                                <%
+                                    }
+                                    else
+                                    {
+                                        if (i != driver3.Length-1)
+                                        {
+                                            var driver3jobDetails = driver3[i].Split('*');
+                                            string finalOutput3 = "";
+                                            for (int j = 0; j < driver3jobDetails.Length; j++)
+                                            {
+                                                if (driver3jobDetails[j].Length > 0)
+                                                {
+                                                    finalOutput3 += driver3jobDetails[j] + " ";
+                                                }
+                                            }
+                                           string newJobIDX = NewJobsIDX.Value;
+                                            if (finalOutput3.Contains(newJobIDX))
+                                            {
+                                             %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                         <span style="background-color: yellow;"><%= i + ". " + finalOutput3%></span>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }else
+                                            {
+                                            %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                        <%= i + ". " + finalOutput3%>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }
+                                                         }
+                                                     }
+                                                 }
+                                                     %>
+                                                 <tr>
+                                    <td>
+                                        <asp:Button ID="validate3" OnClick="ValidateThird" runat="server" class="w3-button w3-block w3-green w3-section" title="validate3" Text="Validate"></asp:Button>
+                                    </td>
+                                </tr> 
+                                                </table>
+                                </div>
+                                                <%
+                                                    }%>   
+                                
+                                
+                                <%-- End Of Third Driver --%>
+                                <%-- Start Of Fourth Driver --%>
+                                <% var driver4 = Driver4.Value.Split('^');
+                                    if (radioList.SelectedIndex != -1)
+                                    {
+                                        string driverNameDistNum4 = "";
+                                        for (int i = 0; i < driver4.Length; i++)
+                                        {
+                                            if (driver4[i].Length > 0 && !driver4[i].Contains("*"))
+                                            {
+                                                driverNameDistNum4 = driver4[i];
+                                %>    
+                                            <button onclick="myFunction('FourthDriver');return false" class="w3-button w3-block w3-theme-l1 w3-left-align" style="font-size:8px"><%=driverNameDistNum4 %></button>
+                                            <div id="FourthDriver" class="w3-hide w3-animate-zoom">
+                                            <table class="tableC">
+                                <%
+                                    }
+                                    else
+                                    {
+                                        if (i != driver4.Length-1)
+                                        {
+                                            var driver4jobDetails = driver4[i].Split('*');
+                                            string finalOutput4 = "";
+                                            for (int j = 0; j < driver4jobDetails.Length; j++)
+                                            {
+                                                if (driver4jobDetails[j].Length > 0)
+                                                {
+                                                    finalOutput4 += driver4jobDetails[j] + " ";
+                                                }
+                                            }
+                                            string newJobIDX = NewJobsIDX.Value;
+                                            if (finalOutput4.Contains(newJobIDX))
+                                            {
+                                             %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                         <span style="background-color: yellow;"><%= i + ". " + finalOutput4%></span>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }else
+                                            {
+                                            %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                        <%= i + ". " + finalOutput4%>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }
+                                                         }
+                                                     }
+                                                 }
+                                                     %>
+                                                 <tr>
+                                    <td>
+                                        <asp:Button ID="validate4" OnClick="ValidateFourth" runat="server" class="w3-button w3-block w3-green w3-section" title="validate4" Text="Validate"></asp:Button>
+                                    </td>
+                                </tr> 
+                                                </table>
+                                </div>
+                                                <%
+                                                    }%>   
+                                                               
+                                <%-- End Of Fourth Driver --%>
+                                <%-- Start Of Fifth Driver --%>
+                                <% var driver5 = Driver5.Value.Split('^');
+                                    if (radioList.SelectedIndex != -1)
+                                    {
+                                        string driverNameDistNum5 = "";
+                                        for (int i = 0; i < driver5.Length; i++)
+                                        {
+                                            if (driver5[i].Length > 0 && !driver5[i].Contains("*"))
+                                            {
+                                                driverNameDistNum5 = driver5[i];
+                                %>    
+                                            <button onclick="myFunction('FifthDriver');return false" class="w3-button w3-block w3-theme-l1 w3-left-align" style="font-size:8px"><%=driverNameDistNum5 %></button>
+                                            <div id="FifthDriver" class="w3-hide w3-animate-zoom">
+                                            <table class="tableC">
+                                <%
+                                    }
+                                    else
+                                    {
+                                        if (i != driver5.Length-1)
+                                        {
+                                            var driver5jobDetails = driver5[i].Split('*');
+                                            string finalOutput5 = "";
+                                            for (int j = 0; j < driver5jobDetails.Length; j++)
+                                            {
+                                                if (driver5jobDetails[j].Length > 0)
+                                                {
+                                                    finalOutput5 += driver5jobDetails[j] + " ";
+                                                }
+                                            }
+                                              string newJobIDX = NewJobsIDX.Value;
+                                            if (finalOutput5.Contains(newJobIDX))
+                                            {
+                                             %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                         <span style="background-color: yellow;"><%= i + ". " + finalOutput5%></span>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }else
+                                            {
+                                            %>                  
+                                                <tr>
+                                                    <td class="align-center">
+                                                        <%= i + ". " + finalOutput5%>
+                                                    </td>
+                                                </tr>
+                                             <%
+                                            }
+                                                         }
+                                                     }
+                                                 }
+                                                     %>
+                                                 <tr>
+                                    <td>
+                                        <asp:Button ID="validate5" OnClick="ValidateFifth" runat="server" class="w3-button w3-block w3-green w3-section" title="validate5" Text="Validate"></asp:Button>
+                                    </td>
+                                </tr> 
+                                                </table>
+                                </div>
+                                                <%
+                                                    }%> 
+                                                       
+                                <%-- End Of Fifth Driver --%>                   
+                            </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+           </div>
 
 
 
@@ -517,7 +727,6 @@ div.panel {
 
 
             <!-- End Page Container -->
-        </div>
         <br>
 
         <!-- Footer -->
@@ -525,32 +734,29 @@ div.panel {
             <h5>Xdel RSVP</h5>
         </footer>
 
-        <script>
-                                                // Accordion
-                                                var acc = document.getElementsByClassName("accordion");
-                                                var i;
-
-                                                for (i = 0; i < acc.length; i++) {
-                                                    acc[i].onclick = function () {
-                                                        this.classList.toggle("active");
-                                                        var panel = this.nextElementSibling;
-                                                        if (panel.style.maxHeight) {
-                                                            panel.style.maxHeight = null;
-                                                        } else {
-                                                            panel.style.maxHeight = panel.scrollHeight + "px";
-                                                        }
-                                                    }
+        <script>                                   
+                                            // Accordion
+                                            function myFunction(id) {
+                                                var x = document.getElementById(id);
+                                                if (x.className.indexOf("w3-show") == -1) {
+                                                    x.className += " w3-show";
+                                                    x.previousElementSibling.className += " w3-theme-d1";
+                                                } else {
+                                                    x.className = x.className.replace("w3-show", "");
+                                                    x.previousElementSibling.className =
+                                                        x.previousElementSibling.className.replace(" w3-theme-d1", "");
                                                 }
+                                            }
 
-                                                // Used to toggle the menu on smaller screens when clicking on the menu button
-                                                function openNav() {
-                                                    var x = document.getElementById("navDemo");
-                                                    if (x.className.indexOf("w3-show") == -1) {
-                                                        x.className += " w3-show";
-                                                    } else {
-                                                        x.className = x.className.replace(" w3-show", "");
-                                                    }
+                                            // Used to toggle the menu on smaller screens when clicking on the menu button
+                                            function openNav() {
+                                                var x = document.getElementById("navDemo");
+                                                if (x.className.indexOf("w3-show") == -1) {
+                                                    x.className += " w3-show";
+                                                } else {
+                                                    x.className = x.className.replace(" w3-show", "");
                                                 }
+                                            }
         </script>
     </form>
 </body>

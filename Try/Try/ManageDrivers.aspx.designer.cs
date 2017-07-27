@@ -31,13 +31,13 @@ namespace Try {
         protected global::System.Web.UI.WebControls.DropDownList driverName;
         
         /// <summary>
-        /// clusterList control.
+        /// userList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList clusterList;
+        protected global::System.Web.UI.WebControls.DropDownList userList;
         
         /// <summary>
         /// DriverNameButton control.

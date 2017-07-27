@@ -17,8 +17,8 @@ namespace Try
             {
                 LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
                 long[] arrayOfJobID = lukeObj.GetNewJobsIDX();
-                CheckBoxList2.DataSource = arrayOfJobID;
-                CheckBoxList2.DataBind();
+                radioList.DataSource = arrayOfJobID;
+                radioList.DataBind();
                 getBattery();
 
             }
@@ -76,45 +76,7 @@ namespace Try
             LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(tempIDX, tempIDX);
             if (driverJobLocations != null)
             {
-                for (int k = 0; k < driverJobLocations.Length; k++)
-                {
-                    long[] arrayOfJobID = driverJobLocations[k].JobsIDXList;
-                    LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                    string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
-                    string departDate = driverJobLocations[k].Depart.ToShortTimeString();
-
-                    solution += arrayOfJobID[0] + "*" + jobLoc.postal + "*" + jobLoc.full_address + "*" + arriveDate + "*" + departDate + "*";
-                    //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
-                    //obtain array of delivery jobs id
-                            long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
-                           //if its not a dlvery job 
-                            if (dlJobsID.Length == 0)
-                            {
-                                //obtain array of pick up jobs id
-                                long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
-
-                                solution += "PU" + "%";
-                            }
-                            else
-                            {
-                                
-                                solution += "DL" + "%";
-                            }
-                }
-
-                return solution;
-            }
-            return null;
-
-        }
-
-        public string getSolution(long driverIDX, long[] parameterArray, LukeRef.LukeWS lukeObj)
-        {
-            string solution = "";
-            //get real solution of drivers
-            LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverIDX.ToString(), driverIDX.ToString());
-            if (driverJobLocations != null && driverJobLocations.Length > 0)
-            {
+                solution += "(" + driverJobLocations.Length + ")" + "^";
                 for (int k = 0; k < driverJobLocations.Length; k++)
                 {
                     long[] arrayOfJobID = driverJobLocations[k].JobsIDXList;
@@ -132,12 +94,12 @@ namespace Try
                         //obtain array of pick up jobs id
                         long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
 
-                        solution += "PU" + "%";
+                        solution += "PU" + "^";
                     }
                     else
                     {
 
-                        solution += "DL" + "%";
+                        solution += "DL" + "^";
                     }
                 }
 
@@ -147,10 +109,59 @@ namespace Try
 
         }
 
-
-
-        protected void CheckBoxList_Click(object sender, EventArgs e)
+        public string getSolution(long driverIDX, long[] parameterArray, LukeRef.LukeWS lukeObj)
         {
+            string solution = "";
+            //get real solution of drivers
+            LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverIDX.ToString(), driverIDX.ToString());
+            if (driverJobLocations != null && driverJobLocations.Length > 0)
+            {
+                solution += "(" + driverJobLocations.Length + ")" + "^";
+                for (int k = 0; k < driverJobLocations.Length; k++)
+                {
+                    long[] arrayOfJobID = driverJobLocations[k].JobsIDXList;
+                    LukeRef.Address jobLoc = driverJobLocations[k].Location;
+                    string arriveDate = driverJobLocations[k].Arrive.ToShortTimeString();
+                    string departDate = driverJobLocations[k].Depart.ToShortTimeString();
+
+                    solution += arrayOfJobID[0] + "*" + jobLoc.postal + "*" + jobLoc.full_address + "*" + arriveDate + "*" + departDate + "*";
+                    //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
+                    //obtain array of delivery jobs id
+                    long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
+                    //if its not a dlvery job 
+                    if (dlJobsID.Length == 0)
+                    {
+                        //obtain array of pick up jobs id
+                        long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
+
+                        solution += "PU" + "^";
+                    }
+                    else
+                    {
+
+                        solution += "DL" + "^";
+                    }
+                }
+                return solution;
+            }
+            return null;
+
+        }
+
+
+
+        protected void RadioList_Click(object sender, EventArgs e)
+        {
+            Driver1.Value = "";
+            Driver2.Value = "";
+            Driver3.Value = "";
+            Driver4.Value = "";
+            Driver5.Value = "";
+            IDX2.Value = "";
+            IDX3.Value = "";
+            IDX4.Value = "";
+            IDX5.Value = "";
+            NewJobsIDX.Value = "";
             //array for additional pickup jobs (parameter required for create temp job)
             long[] parameterArray = new long[1];
             //create dictionary
@@ -168,7 +179,7 @@ namespace Try
             LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
             long[] arrayOfJobID = lukeObj.GetNewJobsIDX();
             //for loop through selected items
-            foreach (ListItem item in CheckBoxList2.Items)
+            foreach (ListItem item in radioList.Items)
                 //check if item selected
                 if (item.Selected)
                 {
@@ -186,7 +197,7 @@ namespace Try
                             double jobPULat = jobInfo.PULocation.LAT;
                             double jobPULon = jobInfo.PULocation.LNG;
                             //obtain coordinates of new job
-                            GeoCoordinate jobCoordinate = new GeoCoordinate(jobPULat, jobPULon);                      
+                            GeoCoordinate jobCoordinate = new GeoCoordinate(jobPULat, jobPULon);
                             //for loop through array for drivers
                             for (int j = 0; j < driverObjs.Length; j++)
                             {
@@ -205,37 +216,74 @@ namespace Try
                             var top5 = myDictionary.OrderBy(pair => pair.Value).Take(5)
                             .ToDictionary(pair => pair.Key, pair => pair.Value);
                             //for loop through dictionary of top 5 drivers
-                            int count = 0;
-                            foreach(var item1 in top5)
+                            for (int b = 0; b < top5.Count; b++)
                             {
-                                //name + distance of driver
-                                HiddenField4.Value += item1.Key.Name + " " + Math.Round(item1.Value, 2) + "KM" + "^";
-
-                                long driverIDX = item1.Key.DriverIDX;
-                                //Ensure temp solution is only calculated for first driver
-                                if(count < 1)
+                                var element = top5.ElementAt(b);
+                                if (b == 0)
                                 {
+
+                                    //Retrieve element in dictionary top 5
+                                    Driver1.Value += element.Key.Name + " " + Math.Round(element.Value, 2) + "KM ";
+                                    long driverIDX = element.Key.DriverIDX;
+                                    //Ensure temp solution is only calculated for first driver
                                     string tempSolution = getTempSolution(driverIDX, parameterArray, lukeObj);
                                     if (tempSolution == null)
                                     {
-                                        HiddenField4.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                        Driver1.Value += getSolution(driverIDX, parameterArray, lukeObj);
                                     }
                                     else
-                                    {                            
-                                        HiddenField4.Value += tempSolution;
+                                    {
+                                        Driver1.Value += tempSolution;
                                     }
+                                    //For driver marker contains coordinates 
+                                    HiddenField1.Value += element.Key.LastKnownLocation.Latitude + "*" + element.Key.LastKnownLocation.Longitude + "*" + element.Key.Name + "^";
+                                }
+                                else if (b == 1)
+                                {
+                                    Driver2.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    IDX2.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    long driverIDX = element.Key.DriverIDX;
+                                    IDX2.Value += getTempSolution(driverIDX, parameterArray, lukeObj);
+                                    Driver2.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                    //For driver marker contains coordinates 
+                                    HiddenField1.Value += element.Key.LastKnownLocation.Latitude + "*" + element.Key.LastKnownLocation.Longitude + "*" + element.Key.Name + "^";
+                                }
+                                else if (b == 2)
+                                {
+                                    Driver3.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    IDX3.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    long driverIDX = element.Key.DriverIDX;
+                                    IDX3.Value += getTempSolution(driverIDX, parameterArray, lukeObj);
+                                    Driver3.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                    //For driver marker contains coordinates 
+                                    HiddenField1.Value += element.Key.LastKnownLocation.Latitude + "*" + element.Key.LastKnownLocation.Longitude + "*" + element.Key.Name + "^";
+                                }
+                                else if (b == 3)
+                                {
+                                    Driver4.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    IDX4.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    long driverIDX = element.Key.DriverIDX;
+                                    IDX4.Value += getTempSolution(driverIDX, parameterArray, lukeObj);
+                                    Driver4.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                    //For driver marker contains coordinates 
+                                    HiddenField1.Value += element.Key.LastKnownLocation.Latitude + "*" + element.Key.LastKnownLocation.Longitude + "*" + element.Key.Name + "^";
                                 }
                                 else
                                 {
-                                    HiddenField4.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                    Driver5.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    IDX5.Value += top5.ElementAt(b).Key.Name + " " + Math.Round(top5.ElementAt(b).Value, 2) + "KM ";
+                                    long driverIDX = element.Key.DriverIDX;
+                                    IDX5.Value += getTempSolution(driverIDX, parameterArray, lukeObj);
+                                    Driver5.Value += getSolution(driverIDX, parameterArray, lukeObj);
+                                    //For driver marker contains coordinates 
+                                    HiddenField1.Value += element.Key.LastKnownLocation.Latitude + "*" + element.Key.LastKnownLocation.Longitude + "*" + element.Key.Name + "^";
                                 }
-                                count++;
-                                //For driver marker contains coordinates 
-                                HiddenField1.Value += item1.Key.LastKnownLocation.Latitude + "*" + item1.Key.LastKnownLocation.Longitude + "*" + item1.Key.Name + "^";    
+
+
                             }
                             //For job marker contains coordinates
-                            HiddenField3.Value += jobPULat + "*" + jobPULon + "*"+ arrayOfJobID[i] + "^";   
-                            
+                            HiddenField3.Value += jobPULat + "*" + jobPULon + "*" + arrayOfJobID[i] + "^";
+
                             //get top 5 first then 
                             //lukeObj.ST_CreateTempProblem(driverObjs[i].DriverIDX, 300, 600, )
                             //invoke webservice to run validation
@@ -246,12 +294,32 @@ namespace Try
 
 
                 }
+            NewJobsIDX.Value += parameterArray[0];
         }
         public void logout(object sender, EventArgs e)
         {
             HttpContext.Current.Session.Clear();
             Response.Redirect("http://localhost:62482/Login");
         }
+        public void ValidateSecond(object sender, EventArgs e)
+        {
+            Driver2.Value = IDX2.Value;
+        }
+        public void ValidateThird(object sender, EventArgs e)
+        {
+            Driver3.Value = IDX3.Value;
+        }
+        public void ValidateFourth(object sender, EventArgs e)
+        {
+            Driver4.Value = IDX4.Value;
+        }
+        public void ValidateFifth(object sender, EventArgs e)
+        {
+            Driver5.Value = IDX5.Value;
+        }
+
+
+
     }
 
 }

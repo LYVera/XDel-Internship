@@ -25,12 +25,7 @@ namespace Try
             if (!IsPostBack)
             {
                 //load your check box list                
-                LukeRefL2.DriverObject[] driverObjs = getDriverArray();
-                String[] driverNameArray = new String[getDriverArray().Length];
-                for (int i = 0; i < getDriverArray().Length; i++)
-                {
-                    driverNameArray[i] = driverObjs[i].Name;
-                }
+                ArrayList driverNameArray = getDriversByCoordinator();
 
                 CheckBoxList1.DataSource = driverNameArray;
                 CheckBoxList1.DataBind();
@@ -75,6 +70,19 @@ namespace Try
 
 
         }
+        public ArrayList getDriversByCoordinator()
+        {
+            User coordinator = (User)HttpContext.Current.Session["user"];
+            ArrayList allDrivers = PostalCodeInitializer.getAllDrivers();
+            ArrayList driversByCoordinator = new ArrayList();
+            foreach (Driver driver in allDrivers){
+                if (coordinator != null && (coordinator.getUsername().Equals("admin") || driver.getCoordinator().Equals(coordinator.getUsername()))){
+                    driversByCoordinator.Add(driver.getName());
+                }
+            }
+            return driversByCoordinator;
+        }
+
 
         public LukeRefL2.DriverObject[] getDriverArray()
         {
@@ -291,57 +299,82 @@ namespace Try
         protected ArrayList getClusterDetails()
         {
             ArrayList result = new ArrayList();
-            ArrayList clusters = Models.PostalCodeInitializer.getClusters();
-            int[,] postalJobs = getPostalJobs();
+            ArrayList clusters = PostalCodeInitializer.getClusters();
+            ArrayList postalJobs = getPostalJobs();
+            User user = (User)HttpContext.Current.Session["user"];
+            ArrayList userRights = user.getPostalCodeRights();
 
             for (int i = 0; i < clusters.Count; i++)
             {
-                Models.Cluster cluster = (Models.Cluster)clusters[i];
-                Models.ClusterDetails clusterDetail = new Models.ClusterDetails(cluster.id);
-                ArrayList postalcodes = cluster.postals;
-                if (postalcodes.Count > 0)
+                Cluster cluster = (Cluster)clusters[i];
+                if (userRights.Contains(cluster.id))
                 {
-                    clusterDetail.setLat(Models.PostalCodeInitializer.getClusterLatCenter(cluster.id));
-                    clusterDetail.setLng(Models.PostalCodeInitializer.getClusterLngCenter(cluster.id));
-
-                    for (int j = 0; j < postalcodes.Count; j++)
+                    ClusterDetails clusterDetail = new ClusterDetails(cluster.id);
+                    ArrayList postalcodes = cluster.postals;
+                    if (postalcodes.Count > 0)
                     {
-                        int postalcode = (int)postalcodes[j];
-                        clusterDetail.addNewJob(postalJobs[j, 0]);
-                        clusterDetail.addPuJob(postalJobs[j, 1]);
-                        clusterDetail.addDelJob(postalJobs[j, 2]);
+                        clusterDetail.setLat(PostalCodeInitializer.getClusterLatCenter(cluster.id));
+                        clusterDetail.setLng(PostalCodeInitializer.getClusterLngCenter(cluster.id));
+
+                        for (int j = 0; j < postalcodes.Count; j++)
+                        {
+                            int postalcode = (int)postalcodes[j];
+                            PostalJob postaljob = null;
+                            for (int k = 0; k < postalJobs.Count; k++)
+                            {
+                                PostalJob current = (PostalJob)postalJobs[k];
+                                if (current.getDistrict() == postalcode)
+                                {
+                                    postaljob = (PostalJob)postalJobs[k];
+                                    break;
+                                }
+                            }
+
+                            if (postaljob != null)
+                            {
+                                clusterDetail.addNewJob(postaljob.getNewJob());
+                                clusterDetail.addPuJob(postaljob.getPIP());
+                                clusterDetail.addDelJob(postaljob.getDIP());
+                            }
+
+                        }
+                        result.Add(clusterDetail);
                     }
-                    result.Add(clusterDetail);
                 }
             }
             return result;
         }
 
-
-
-        protected int[,] getPostalJobs()
+        protected ArrayList getPostalJobs()
         {
             LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
             LukeRef.DistrictJobs[] arrayOfDistrictJobs = lukeObj.GetDistrictJobs();
-            int[,] postalJobs = new int[150, 3];
-
+            ArrayList clusters = PostalCodeInitializer.getClusters();
+            ArrayList postalJobs = new ArrayList();
+            User user = (User)HttpContext.Current.Session["user"];
+            ArrayList userRights = user.getPostalCodeRights();
             for (int i = 0; i < arrayOfDistrictJobs.Length; i++)
             {
-                if (arrayOfDistrictJobs[i].NewJobs != 0)
+                int district = int.Parse(arrayOfDistrictJobs[i].District);
+                string zone = "";
+                foreach (Cluster cluster in clusters)
                 {
-                    postalJobs[i, 0] = arrayOfDistrictJobs[i].NewJobs;
+                    if (cluster.getPostalCodes().Contains(district))
+                    {
+                        zone = cluster.id;
+                        break;
+                    }
                 }
-                if (arrayOfDistrictJobs[i].PIPJobs != 0)
+                if (!zone.Equals("") && userRights.Contains(zone))
                 {
-                    postalJobs[i, 1] = arrayOfDistrictJobs[i].PIPJobs;
-                }
-                if (arrayOfDistrictJobs[i].DIPJobs != 0)
-                {
-                    postalJobs[i, 2] = arrayOfDistrictJobs[i].DIPJobs;
+                    
+                    int newjob = arrayOfDistrictJobs[i].NewJobs;
+                    int pip = arrayOfDistrictJobs[i].PIPJobs;
+                    int dip = arrayOfDistrictJobs[i].DIPJobs;
+                    postalJobs.Add(new PostalJob(zone, district, newjob, dip, pip));
                 }
             }
             return postalJobs;
-
         }
 
         protected void uncheckAll_Click(object sender, EventArgs e)

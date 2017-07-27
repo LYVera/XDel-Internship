@@ -78,9 +78,17 @@ namespace Try
         {
             ArrayList clusterList = new ArrayList();
             ArrayList clusters = PostalCodeInitializer.getClusters();
-            foreach (Cluster cluster in clusters)
+            User user = (User)HttpContext.Current.Session["user"];
+            if (user != null)
             {
-                clusterList.Add(cluster.id);
+                ArrayList userRights = user.getPostalCodeRights();
+                foreach (Cluster cluster in clusters)
+                {
+                    if (userRights.Contains(cluster.id))
+                    {
+                        clusterList.Add(cluster.id);
+                    }
+                }
             }
             return clusterList;
         }

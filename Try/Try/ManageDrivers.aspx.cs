@@ -14,11 +14,11 @@ namespace Try
             {
                 //load your check box list
                 ArrayList driverNameArray = getListOfDriversNames();
-                ArrayList clusters = getListOfClusterId();
+                ArrayList usersList = getListOfUsers();
                 driverName.DataSource = driverNameArray;
                 driverName.DataBind();
-                clusterList.DataSource = clusters;
-                clusterList.DataBind();
+                userList.DataSource = usersList;
+                userList.DataBind();
             }
         }
 
@@ -30,24 +30,30 @@ namespace Try
 
         public ArrayList getListOfDriversNames()
         {
+            User user = (User)HttpContext.Current.Session["user"];
+
             ArrayList driversNamesList = new ArrayList();
             ArrayList drivers = getDriverList();
             foreach(Driver driver in drivers)
             {
-                driversNamesList.Add(driver.getName());
+                if(user != null && (user.getUsername().Equals("admin") || driver.getCoordinator().Equals(user.getUsername())))
+                {
+                    driversNamesList.Add(driver.getName());
+                }
+                
             }
             return driversNamesList;
         }
 
-        public ArrayList getListOfClusterId()
+        public ArrayList getListOfUsers()
         {
-            ArrayList clusterList = new ArrayList();
-            ArrayList clusters = PostalCodeInitializer.getClusters();
-            foreach (Cluster cluster in clusters)
+            ArrayList usersList = new ArrayList();
+            ArrayList users = PostalCodeInitializer.retrieveAllUsers();
+            foreach (User user in users)
             {
-                clusterList.Add(cluster.id);
+                usersList.Add(user.getUsername());
             }
-            return clusterList;
+            return usersList;
         }
 
         public LukeRefL2.DriverObject[] getDriverArray()
@@ -60,7 +66,7 @@ namespace Try
         protected void driverName_Click(object sender, EventArgs e)
         {
             String name = driverName.SelectedValue;
-            String cluster = clusterList.SelectedValue;
+            String cluster = userList.SelectedValue;
             PostalCodeInitializer.changeDriverCluster(name, cluster);
         }
 
@@ -88,10 +94,6 @@ namespace Try
             HttpContext.Current.Session.Clear();
             Response.Redirect("http://localhost:62482/Login");
         }
-
-        public ArrayList retrieveClusters()
-        {
-            return PostalCodeInitializer.getClusters();
-        }
+        
     }
 }
