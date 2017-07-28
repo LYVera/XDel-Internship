@@ -64,7 +64,7 @@ namespace Try
         public void logout(object sender, EventArgs e)
         {
             HttpContext.Current.Session.Clear();
-            Response.Redirect("http://localhost:62482/Login");
+            Response.Redirect("Login");
         }
 
         public ArrayList retrieveClusters()

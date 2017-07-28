@@ -31,15 +31,6 @@ namespace Try {
         protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
         
         /// <summary>
-        /// HiddenField2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField2;
-        
-        /// <summary>
         /// HiddenField3 control.
         /// </summary>
         /// <remarks>
@@ -47,33 +38,6 @@ namespace Try {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenField3;
-        
-        /// <summary>
-        /// HiddenField4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField4;
-        
-        /// <summary>
-        /// HiddenPostalCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenPostalCode;
-        
-        /// <summary>
-        /// HiddenTrafficLayer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenTrafficLayer;
         
         /// <summary>
         /// Driver1 control.

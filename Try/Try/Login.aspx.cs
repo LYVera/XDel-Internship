@@ -19,7 +19,7 @@ namespace Try
             {
                 HttpContext.Current.Session["user"] = user;
                 PostalCodeInitializer.InitialisePostalCodes();
-                Response.Redirect("http://localhost:62482/Show");
+                Response.Redirect("Show");
 
             }
             HiddenError.Value = "Please type a correct username/password";

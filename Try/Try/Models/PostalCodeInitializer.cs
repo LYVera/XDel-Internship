@@ -112,10 +112,11 @@ namespace Try.Models
         {
             string line;
             int postal = 0;
+            //System.IO.StreamReader file = new System.IO.StreamReader(@"img\\Postal Code Boundary Coordinates.csv");
             
-            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Kaiyang\\Documents\\SMU\\XDel\\postal codes\\Postal Code Boundary Coordinates.csv");
+            String path = AppDomain.CurrentDomain.BaseDirectory;
+            System.IO.StreamReader file = new System.IO.StreamReader(path + "/img/Postal Code Boundary Coordinates.csv");
             file.ReadLine();
-
             while ((line = file.ReadLine()) != null)
             {
                 string[] tokens = line.Split(',');

@@ -24,10 +24,8 @@ namespace Try
             }
             else
             {
-                HiddenField2.Value = "";
                 HiddenField1.Value = "";
                 HiddenField3.Value = "";
-                HiddenField4.Value = "";
             }
         }
 
@@ -299,7 +297,7 @@ namespace Try
         public void logout(object sender, EventArgs e)
         {
             HttpContext.Current.Session.Clear();
-            Response.Redirect("http://localhost:62482/Login");
+            Response.Redirect("Login");
         }
         public void ValidateSecond(object sender, EventArgs e)
         {

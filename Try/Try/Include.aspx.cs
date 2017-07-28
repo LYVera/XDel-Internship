@@ -9,7 +9,7 @@ namespace Try
         {
             if (HttpContext.Current.Session["user"] == null)
             {
-                Response.Redirect("http://localhost:62482/Login");
+                Response.Redirect("Login");
             }
         }
     }
