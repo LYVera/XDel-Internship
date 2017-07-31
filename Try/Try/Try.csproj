@@ -571,6 +571,8 @@
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\test\spec\formatter-spec.js" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\test\spec\osrmv1-spec.js" />
     <Content Include="Scripts\ShowMap.css" />
+    <Content Include="Scripts\w3-theme.css" />
+    <Content Include="Scripts\W3.css" />
     <Content Include="Show.aspx" />
     <Content Include="Validate.aspx" />
     <Content Include="Scripts\routing machine\leaflet-routing-machine-3.2.5\.gitignore" />
