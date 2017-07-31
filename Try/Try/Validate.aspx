@@ -1,13 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Validate.aspx.cs" Inherits="Try.Validate" %>
-
-
-
 <!DOCTYPE html>
 
 <html>
 <head>
-
-
     <% Server.Execute("Include.aspx"); %>
         
     <%--<% Server.Execute("Include.aspx"); %>--%>
@@ -26,8 +21,6 @@
 
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
     <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
-
-    
     
     <style>
             div.scroll {
@@ -49,15 +42,10 @@
     <script type="text/javascript" src="Scripts/SearchBar.js"></script>
     <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
 
-
-   
-
     <title>View Map</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-
 
 <body class="w3-theme-l5">
     <form id="form1" runat="server">
@@ -108,9 +96,6 @@
                     <asp:Button runat="server" OnClick="logout" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right w3-right-align" Text="Logout" />
 
                 </div>
-
-                
-                
 
                 <!--Top Right Hand Corner-->
             </div>
@@ -196,22 +181,7 @@
                                 <asp:HiddenField ID="IDX5" runat="server" />
                                 <!-- New Job IDX Hidden Field -->
                                 <asp:HiddenField ID="NewJobsIDX" runat="server" />
-
-
                                 <!-- MAP -->
-
-
-
-                                <div class="row">
-                                    <div class="divToggleButton">
-                                        <asp:CheckBox ID="chkTraffic" runat="server"
-                                            AutoPostBack="true" />
-                                        <asp:Label ID="lblToggleTraffic"
-                                            AssociatedControlID="chkTraffic" runat="server"
-                                            ToolTip="Toggle between Traffic Condition" />
-                                    </div>
-
-                                </div>
 
                                 <br />
 
@@ -264,9 +234,6 @@
                                             "Colour Map": osmMap,
                                             "GrayScale Map": landMap
                                         };
-
-                                        // Layers 
-                                        //L.control.layers(baseLayers, overlays).addTo(map);
 
                                         // driver current location marker                
                                         var allDriverLoc = document.getElementById("HiddenField1").value.split("^");
@@ -707,16 +674,9 @@
                 </div>
            </div>
 
-
-
-
             <!-- End Right Column -->
 
-
-
-
             <!-- End Grid -->
-
 
             <!-- End Page Container -->
         <br>

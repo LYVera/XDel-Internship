@@ -29,11 +29,7 @@ namespace Try
 
                 CheckBoxList1.DataSource = driverNameArray;
                 CheckBoxList1.DataBind();
-                //getTrafficConditions();
-                HiddenPostalCode.Value = "0";
                 getBattery();
-                HiddenPostalCode.Value = "0";
-                HiddenTrafficLayer.Value = "0";
                 hiddenStatus.Value = "false";
                 Grouping.DataSource = getListOfClusterId();
                 Grouping.DataBind();
@@ -41,9 +37,7 @@ namespace Try
             }
             else
             {
-                HiddenField3.Value = "";
-                HiddenPostalCode.Value = "1";
-                HiddenTrafficLayer.Value = "1";
+                HiddenField3.Value = "";     
 
                 //toggle traffic condition
                 if (chkTraffic.Checked)
@@ -179,66 +173,13 @@ namespace Try
             }
         }
 
-        // cluster
-        protected void Cluster_Click()
-        {
-            LukeRefL2.DriverObject[] driverObjs = getDriverArray();
-            List<ListItem> selected = new List<ListItem>();
-            foreach (ListItem item in CheckBoxList1.Items)
-                if (item.Selected) selected.Add(item);
-
-            for (int j = 0; j < selected.Count; j++)
-            {
-                for (int i = 0; i < driverObjs.Length; i++)
-                {
-                    if (selected[j].ToString().Equals(driverObjs[i].Name))
-                    {
-
-                        long driverID = driverObjs[i].DriverIDX;
-                        LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
-                        LukeRef.RouteLocation[] driverJobLocations = lukeObj.ST_GetSol(driverID.ToString(), driverID.ToString());
-                        if (driverJobLocations != null)
-                        {
-
-                            for (int k = 0; k < driverJobLocations.Length; k++)
-                            {
-                                LukeRef.Address jobLoc = driverJobLocations[k].Location;
-                                HiddenField4.Value += jobLoc.postal + "*" + jobLoc.id + "*" + jobLoc.full_address + "*" + jobLoc.lat + "*" + jobLoc.lon + "*";
-                                //driverRoute += jobLoc.postal + "," + jobLoc.id + "," + jobLoc.full_address + "," + jobLoc.lat + "," + jobLoc.lon + ","; ;
-                                //obtain array of delivery jobs id
-                                long[] dlJobsID = driverJobLocations[k].DLJobsIDXList;
-                                //if its not a dlvery job 
-                                if (dlJobsID.Length == 0)
-                                {
-                                    //obtain array of pick up jobs id
-                                    long[] puJobsID = driverJobLocations[k].PUJobsIDXList;
-                                    HiddenField4.Value += "PU" + "^";
-                                    //driverRoute += "PU" + "^";
-                                }
-                                else
-                                {
-                                    HiddenField4.Value += "DL" + "^";
-                                    //driverRoute += "DL" + "^";
-                                }
-                            }
-
-                            HiddenField4.Value += "$";
-                            //driverRoute += "$";
-                        }
-                        //Session["driverRoute"] = driverRoute;
-                    }
-
-                }
-            }
-        }
-
         protected bool checkPostalCodeBoundaryStatus()
         {
             return hiddenStatus.Value == "true";
         }
+        
 
-
-        protected void CheckBoxList_Click(object sender, EventArgs e)
+    protected void CheckBoxList_Click(object sender, EventArgs e)
         {
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();
             List<ListItem> selected = new List<ListItem>();

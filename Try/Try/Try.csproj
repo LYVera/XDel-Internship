@@ -864,7 +864,6 @@
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverDAO.cs" />
     <Compile Include="Models\GlobalVariable.cs" />
-    <Compile Include="Models\PointD.cs" />
     <Compile Include="Models\PolygonO.cs" />
     <Compile Include="Models\PolygonODAO.cs" />
     <Compile Include="Models\PostalCodeInitializer.cs" />

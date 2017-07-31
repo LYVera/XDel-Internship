@@ -142,51 +142,7 @@ namespace Try.Models
             clusterDAO.changePostal(postal, zone);
         }
 
-        public static List<PointD> ConvexHull(List<PointD> points)
-        {
-            if (points.Count < 3)
-            {
-                throw new ArgumentException("At least 3 points reqired", "points");
-            }
-
-            List<PointD> hull = new List<PointD>();
-
-            PointD vPointOnHull = points.Where(p => p.X == points.Min(min => min.X)).First();
-
-            PointD vEndpoint;
-            do
-            {
-                hull.Add(vPointOnHull);
-                vEndpoint = points[0];
-
-                for (int i = 1; i < points.Count; i++)
-                {
-                    if ((vPointOnHull == vEndpoint)
-                        || (Orientation(vPointOnHull, vEndpoint, points[i]) == -1))
-                    {
-                        vEndpoint = points[i];
-                    }
-                }
-
-                vPointOnHull = vEndpoint;
-
-            }
-            while (vEndpoint != hull[0]);
-
-            return hull;
-        }
-
-        private static int Orientation(PointD p1, PointD p2, PointD p)
-        {
-            double Orin = (p2.X - p1.X) * (p.Y - p1.Y) - (p.X - p1.X) * (p2.Y - p1.Y);
-
-            if (Orin > 0)
-                return -1;
-            if (Orin < 0)
-                return 1;
-
-            return 0;
-        }
+        
     }
 
 

@@ -130,24 +130,6 @@ namespace Try {
         protected global::System.Web.UI.WebControls.HiddenField NewJobsIDX;
         
         /// <summary>
-        /// chkTraffic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkTraffic;
-        
-        /// <summary>
-        /// lblToggleTraffic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblToggleTraffic;
-        
-        /// <summary>
         /// radioList control.
         /// </summary>
         /// <remarks>

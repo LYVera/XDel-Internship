@@ -166,14 +166,6 @@ namespace Try
             Dictionary<LukeRefL2.DriverObject, double> myDictionary = new Dictionary<LukeRefL2.DriverObject, double>();
             //get array of drivers
             LukeRefL2.DriverObject[] driverObjs = getDriverArray();
-            //declare new array of top 5 drivers
-            LukeRefL2.DriverObject[] top5DriverArray = new LukeRefL2.DriverObject[5];
-            //populate top 5 driver array with first 5 driver first
-            for (int a = 0; a < 5; a++)
-            {
-                top5DriverArray[a] = driverObjs[a];
-            }
-
             LukeRef.LukeWS lukeObj = new LukeRef.LukeWS();
             long[] arrayOfJobID = lukeObj.GetNewJobsIDX();
             //for loop through selected items
