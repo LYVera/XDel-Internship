@@ -479,6 +479,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DashBoard.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ForgetPassword.aspx" />
@@ -606,6 +607,8 @@
     <Content Include="Web References\LukeRefL2\DelStat.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
+    <Content Include="img\Postal Code Boundary Coordinates.csv" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Web References\LukeRefL2\l2.disco" />
     <Content Include="Web References\LukeRef\AddressStructure1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -800,6 +803,13 @@
     </Compile>
     <Compile Include="DashBoard.aspx.designer.cs">
       <DependentUpon>DashBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>

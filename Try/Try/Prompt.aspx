@@ -10,70 +10,46 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+     <!-- Css for ShowMap -->
+    <link rel="stylesheet" type="text/css" href="Scripts/ShowMap.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="Scripts/leaflet.extra-markers.min.css" />
+
     <link rel="stylesheet" type="text/css" href="Scripts/Leaflet/leaflet.css" />
     <link rel="stylesheet" href="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.css" />
 
-
-    <script type='text/javascript' src="Scripts/Leaflet/leaflet.js"></script>
-    <script src="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
-    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
-
-
-    <!--The search bar script here-->
-    <script type="text/javascript" src="Scripts/SearchBar.js"></script>
-    <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
-
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-
-
-    <title>Prompt</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        html, body, h1, h2, h3, h4, h5 {
-            font-family: "Open Sans", sans-serif
-        }
-
-        .w3-theme-orange {
-            color: #f1f1f1 !important;
-            background-color: #ff9800 !important;
-        }
-
-        .tableC {
-            font-family: Arial,Verdana,sans-serif;
-            font-size: 0.75em;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even){background-color: #f2f2f2}
-
-        th {
-            background-color: #FFA500;
-            color: white;
-        }
-    </style>
-     
+    
+    
     <style>
             div.scroll {
             height: 500px;
-            width: 180px; 
+            width: 540px; 
             overflow: scroll;
         }
 
     </style>
 
+    <script type='text/javascript' src="Scripts/Leaflet/leaflet.js"></script>
+    <script src="Scripts/routing machine/leaflet-routing-machine-3.2.5/dist/leaflet-routing-machine.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="Scripts/Leaflet/GreyScale.js" type="text/javascript"></script>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/leaflet.markercluster.js'></script>
+    <script src="Scripts/leaflet.extra-markers.min.js"></script>
+    <!--The search bar script here-->
+    <script type="text/javascript" src="Scripts/SearchBar.js"></script>
+    <script type="text/javascript" src="~/Scripts/Toggle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
 
+
+   
+
+    <title>View Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 
@@ -87,13 +63,13 @@
                 <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-orange" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
                 <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-orange">
                     <img src="XDel Logo.gif" alt="Xdel Logo" style="height: 36px; width: 36px" /></a>
-                <a href="http://localhost:62482/DashBoard" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
-                <a href="http://localhost:62482/Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
-                <a href="http://localhost:62482/Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
-                <a href="http://localhost:62482/Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
-                <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-user-o"></i></a>
-                <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class ="fa fa-hand-lizard-o"></i></a>
-                <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bus"></i></a>
+                <a href="DashBoard" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
+                <a href="Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
+                <a href="Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
+                <a href="Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
+                <a href="ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-user-o"></i></a>
+                <a href="ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class ="fa fa-hand-lizard-o"></i></a>
+                <a href="ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bus"></i></a>
                 <div class="w3-right">
 
                     <div class="w3-dropdown-hover w3-hide-small">
@@ -136,13 +112,13 @@
 
         <!-- Navbar on small screens -->
         <div id="navDemo" class="w3-bar-block w3-theme-orange w3-hide w3-hide-large w3-hide-medium w3-large">
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">Show Map</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">View Map</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">Prompt</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">Recommend Map</a>
-            <a href="http://localhost:62482/ManageUser" class="w3-bar-item w3-button w3-padding-large" title="ManageUser"><i class="fa fa-info-circle"></i></a>
-            <a href="http://localhost:62482/ManageCluster" class="w3-bar-item w3-button w3-padding-large" title="ManageCluster"><i class="fa fa-check"></i></a>
-            <a href="http://localhost:62482/ManageDrivers" class="w3-bar-item w3-button w3-padding-large" title="ManageDrivers"><i class="fa fa-bell"></i></a>
+            <a href="DashBoard" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="DashBoard"><i class="fa fa-area-chart"></i></a>
+                <a href="Show" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Show"><i class="fa fa-info-circle"></i></a>
+                <a href="Validate" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Validate"><i class="fa fa-check"></i></a>
+                <a href="Prompt" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Prompt"><i class="fa fa-bell"></i></a>
+                <a href="ManageUser" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageUser"><i class="fa fa-user-o"></i></a>
+                <a href="ManageCluster" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageCluster"><i class ="fa fa-hand-lizard-o"></i></a>
+                <a href="ManageDrivers" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="ManageDrivers"><i class="fa fa-bus"></i></a>
         </div>
 
         <!-- Page Container -->
@@ -375,10 +351,10 @@
                 <div class="w3-card-2 w3-round w3-white w3-center">
                     <div class="w3-container">
 
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('Red');return false">Red <%= RedDelays.Value.Split('^').Length -1 %></button>
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('Amber');return false">Amber <%= AmberDelays.Value.Split('^').Length -1 %></button>
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('Green');return false">Green <%= GreenDelays.Value.Split('^').Length -1 %></button>
-                        <button class="w3-bar-item w3-button w3-orange w3-section w3-third btnFont" onclick="openTabs('lowBattery');return false">BattPCT</button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-fourth btnFont" onclick="openTabs('Red');return false">Red <%= RedDelays.Value.Split('^').Length -1 %></button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-fourth btnFont" onclick="openTabs('Amber');return false">Amber <%= AmberDelays.Value.Split('^').Length -1 %></button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-fourth btnFont" onclick="openTabs('Green');return false">Green <%= GreenDelays.Value.Split('^').Length -1 %></button>
+                        <button class="w3-bar-item w3-button w3-orange w3-section w3-fourth btnFont" onclick="openTabs('lowBattery');return false">BattPCT</button>
 
                         <div id="Red" class="w3-container tab">
                             <div class="scroll">
@@ -446,7 +422,7 @@
 
 
                         
-                        <div id="Green" class="w3-container tab">
+                        <div id="Green" class="w3-container tab" style="display: none">
                             <div class="scroll">
                                 <table class="tableC">
                                     <tr>
@@ -477,15 +453,17 @@
                         </div>
 
 
-                        <div id="lowBattery" class="w3-container tab">
+                        <div id="lowBattery" class="w3-container tab" style="display: none">
                             <div class="scroll">
                                 <table class="tableC">
-                                    <% 
-                                        for (int i = 0; i < lowBatts.Count; i++)
-                                        { %>
                                     <tr>
                                         <th>Name</th><th>Mobile</th><th>BattPCT</th>
                                     </tr>
+                                    <% 
+
+                                        for (int i = 0; i < lowBatts.Count; i++)
+                                        { %>
+                                    
                                     <tr>
 
                                         <%Try.LukeRefL2.DriverObject lowBattDriver = (Try.LukeRefL2.DriverObject)lowBatts[i];%>
@@ -523,28 +501,28 @@
         
 
         <script>
-                                            // Accordion
-                                            function myFunction(id) {
-                                                var x = document.getElementById(id);
-                                                if (x.className.indexOf("w3-show") == -1) {
-                                                    x.className += " w3-show";
-                                                    x.previousElementSibling.className += " w3-theme-d1";
-                                                } else {
-                                                    x.className = x.className.replace("w3-show", "");
-                                                    x.previousElementSibling.className =
-                                                        x.previousElementSibling.className.replace(" w3-theme-d1", "");
-                                                }
+                                        // Accordion
+                                        function myFunction(id) {
+                                            var x = document.getElementById(id);
+                                            if (x.className.indexOf("w3-show") == -1) {
+                                                x.className += " w3-show";
+                                                x.previousElementSibling.className += " w3-theme-d1";
+                                            } else {
+                                                x.className = x.className.replace("w3-show", "");
+                                                x.previousElementSibling.className =
+                                                    x.previousElementSibling.className.replace(" w3-theme-d1", "");
                                             }
+                                        }
 
-                                            // Used to toggle the menu on smaller screens when clicking on the menu button
-                                            function openNav() {
-                                                var x = document.getElementById("navDemo");
-                                                if (x.className.indexOf("w3-show") == -1) {
-                                                    x.className += " w3-show";
-                                                } else {
-                                                    x.className = x.className.replace(" w3-show", "");
-                                                }
+                                        // Used to toggle the menu on smaller screens when clicking on the menu button
+                                        function openNav() {
+                                            var x = document.getElementById("navDemo");
+                                            if (x.className.indexOf("w3-show") == -1) {
+                                                x.className += " w3-show";
+                                            } else {
+                                                x.className = x.className.replace(" w3-show", "");
                                             }
+                                        }
         </script>
     </form>
 </body>

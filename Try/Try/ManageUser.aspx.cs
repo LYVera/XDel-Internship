@@ -64,7 +64,7 @@ namespace Try
         public void logout(object sender, EventArgs e)
         {
             HttpContext.Current.Session.Clear();
-            Response.Redirect("http://localhost:62482/Login");
+            Response.Redirect("Login");
         }
 
         public ArrayList retrieveUserInfo()
@@ -115,7 +115,7 @@ namespace Try
                 {
                     foreach (User user in users)
                     {
-                        if (user.getRole() == "manager")
+                        if (user.getRole() == "manager" && loggedInUser.getSubodinates().Contains(user.getUsername()))
                         {
                             userList.Add(user.getUsername());
                         }

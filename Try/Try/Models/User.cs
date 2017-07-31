@@ -9,13 +9,15 @@ namespace Try.Models
         private string password { get; set; }
         private string role { get; set; }
         private ArrayList postalcoderights { get; set; }
+        private ArrayList subodinates { get; set; }
 
-        public User(string u, string p, string r, ArrayList pcr)
+        public User(string u, string p, string r, ArrayList pcr, ArrayList s)
         {
             username = u;
             password = p;
             role = r;
             postalcoderights = pcr;
+            subodinates = s;
         }
 
         public string getUsername()
@@ -36,6 +38,11 @@ namespace Try.Models
         public string getRole()
         {
             return role;
+        }
+
+        public ArrayList getSubodinates()
+        {
+            return subodinates;
         }
 
         public Boolean haveRights(string id)
